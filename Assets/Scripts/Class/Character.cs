@@ -10,6 +10,8 @@ public class Character : MonoBehaviour
 
     public int atk;
 
+    public int killScore;
+
     //相手のHPを減らす機能
     public void CutHP(Character target)
     {

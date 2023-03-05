@@ -8,5 +8,6 @@ public class Player : Character
     {
         name = "Player";
         hp = 10;
+        atk = 1;
     }
 }
