@@ -23,7 +23,6 @@ public class Enemy : Character
         base.Update();
         if (hp <= 0)
         {
-            Debug.Log("des");
             Destroy(this.gameObject);
         }
     }

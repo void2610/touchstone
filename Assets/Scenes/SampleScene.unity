@@ -1628,7 +1628,7 @@ GameObject:
   - component: {fileID: 1471282075}
   - component: {fileID: 1471282076}
   - component: {fileID: 1471282077}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Player
   m_TagString: PlayerTrigger
   m_Icon: {fileID: 0}
@@ -2537,12 +2537,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2477272818698084255, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477272818698084255, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4479309209965336364, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479309209965336364, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7958906719924020119, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
       propertyPath: m_RootOrder
