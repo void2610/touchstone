@@ -12,6 +12,10 @@ public class Character : MonoBehaviour
 
     public int killScore;
 
+    public int direction = 1; //-1 = 左  1 = 右
+
+    public Vector2 firstLScale;
+
     //相手のHPを減らす機能
     public void CutHP(Character target)
     {
@@ -35,14 +39,28 @@ public class Character : MonoBehaviour
     public virtual void SetStatus()
     {
         name = "NoName";
+        hp = 1;
+        atk = 1;
+        killScore = 1;
     }
 
     public void Start()
     {
         SetStatus();
+        firstLScale = this.gameObject.transform.localScale;
     }
 
     public void Update()
     {
+        if (direction == 1)
+        {
+            this.gameObject.transform.localScale =
+                new Vector2(firstLScale.x, firstLScale.y);
+        }
+        else
+        {
+            this.gameObject.transform.localScale =
+                new Vector2(-firstLScale.x, firstLScale.y);
+        }
     }
 }
