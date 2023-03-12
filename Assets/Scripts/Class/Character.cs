@@ -35,22 +35,16 @@ public class Character : MonoBehaviour
         return result;
     }
 
-    //ステータス色々設定
-    public virtual void SetStatus()
+    public virtual void Start()
     {
         name = "NoName";
         hp = 1;
         atk = 1;
         killScore = 1;
-    }
-
-    public void Start()
-    {
-        SetStatus();
         firstLScale = this.gameObject.transform.localScale;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         if (direction == 1)
         {

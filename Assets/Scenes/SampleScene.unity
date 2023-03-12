@@ -268,7 +268,6 @@ MonoBehaviour:
   attackTime: 0.15
   attackDegree: 60
   attacking: 0
-  attackValue: 1
 --- !u!212 &347372025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -681,6 +680,9 @@ MonoBehaviour:
   hp: 0
   atk: 0
   killScore: 0
+  direction: 1
+  firstLScale: {x: 0, y: 0}
+  stopTime: 1
 --- !u!1 &786270577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +1823,12 @@ MonoBehaviour:
   hp: 0
   atk: 0
   killScore: 0
+  direction: 0
+  firstLScale: {x: 0, y: 0}
+  speed: 0
+  jumpable: 1
+  jumpForce: 500
+  jp: 0
 --- !u!1 &1533861394
 GameObject:
   m_ObjectHideFlags: 0

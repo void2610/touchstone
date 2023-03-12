@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    public override void SetStatus()
+    //攻撃処理(この中でCutHPを呼ぶ)(キャラによって違う)
+    public virtual void Attack()
     {
+    }
+
+    public override void Start()
+    {
+        base.Start();
         name = "Enemy";
         hp = 1;
         atk = 1;
         killScore = 1;
     }
 
-    void Update()
+    public override void Update()
     {
-        if (hp == 0)
+        base.Update();
+        if (hp <= 0)
         {
+            Debug.Log("des");
             Destroy(this.gameObject);
         }
-    }
-
-    //攻撃処理(この中でCutHPを呼ぶ)(キャラによって違う)
-    public virtual void Attack()
-    {
     }
 
     void OnCollisionEnter2D(Collision2D other) //敵に触れた時の処理

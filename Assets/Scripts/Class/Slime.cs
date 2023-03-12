@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
-    public override void SetStatus()
-    {
-        name = "Slime";
-        hp = 1;
-        atk = 1;
-        killScore = 1;
-    }
-
     void attack()
     {
     }
@@ -24,10 +16,18 @@ public class Slime : Enemy
 
     private bool isMoving = true; // 移動中かどうか
 
-    void Update()
+    public override void Start()
+    {
+        base.Start();
+        name = "Slime";
+        hp = 1;
+        atk = 1;
+        killScore = 1;
+    }
+
+    public override void Update()
     {
         base.Update();
-        Debug.Log (firstLScale);
         if (isMoving)
         {
             // 移動中の処理

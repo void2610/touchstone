@@ -5,13 +5,6 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public override void SetStatus()
-    {
-        name = "Player";
-        hp = 10;
-        atk = 1;
-    }
-
     //ビルド時は270に
     public float speed;
 
@@ -27,16 +20,20 @@ public class Player : Character
 
     JumpResetScript jrs;
 
-    void Start()
+    public override void Start()
     {
         base.Start();
+        name = "Player";
+        hp = 10;
+        atk = 1;
+
         rb = this.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         jrs = GameObject.Find("Leg").GetComponent<JumpResetScript>();
         direction = 1;
     }
 
-    void Update()
+    public override void Update()
     {
         base.Update();
 

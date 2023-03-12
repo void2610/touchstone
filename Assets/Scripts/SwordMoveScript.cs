@@ -40,8 +40,6 @@ public class SwordMoveScript : MonoBehaviour
 
     public int attacking = 0;
 
-    public int attackValue = 1;
-
     float sTime;
 
     bool attacked = false;
@@ -49,12 +47,13 @@ public class SwordMoveScript : MonoBehaviour
     //フェードする速度
     private float _fadingSpeed = 0.05f;
 
+    Character player;
+
     void Start()
     {
         fls = gameObject.transform.localScale.x;
         gcScript = gc.GetComponent<GameControlScript>();
-
-        attackValue = GameObject.Find("Player").GetComponent<Character>().atk;
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -150,7 +149,7 @@ public class SwordMoveScript : MonoBehaviour
         {
             if (attacking != 0 && !attacked)
             {
-                target.hp -= attackValue;
+                target.hp -= player.atk;
                 Debug.Log(target.name + "を攻撃した");
 
                 if (target.hp <= 0)
