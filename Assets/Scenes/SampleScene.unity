@@ -2534,7 +2534,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2477272818698084255, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
       propertyPath: m_Mass
-      value: 1
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477272818698084255, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2477272818698084255, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
       propertyPath: m_Simulated
