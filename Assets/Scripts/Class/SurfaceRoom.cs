@@ -37,9 +37,6 @@ namespace NRoom
                     tilemap
                         .SetTile(position + new Vector3Int(i, k, 0),
                         underground);
-
-                    //生成したらポジションと共にログに出力
-                    Debug.Log(position + new Vector3Int(i, k, 0));
                 }
             }
         }

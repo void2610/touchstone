@@ -7,7 +7,7 @@ namespace NRoom
 
     public class Room : MonoBehaviour
     {
-        public Vector3Int position;
+        public Vector3Int position = new Vector3Int(0, 0, 0);
 
         public int length;
 
@@ -16,6 +16,14 @@ namespace NRoom
         public TileBase underground;
 
         //constructor
+        public Room()
+        {
+            position = new Vector3Int(0, 0, 0);
+            length = 0;
+            surface = null;
+            underground = null;
+        }
+
         public Room(Vector3 pos, int len, TileBase sur, TileBase und)
         {
             //Vector3Intに変換してpositionに代入

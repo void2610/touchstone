@@ -13,29 +13,36 @@ namespace NRoom
 
         int gHeight = 0;
 
-        int maxRoomNum = 1;
+        int maxRoomNum = 30;
 
         public float enemyProbability = 0.3f;
 
-        //private Room[] rooms;
+        private Room[] rooms = new Room[50];
+
         public GameObject slime;
 
         private Tilemap tilemap;
 
         void Start()
         {
+            for (int i = 0; i < rooms.Length; i++)
+            {
+                rooms[i] = new Room();
+            }
+
             tilemap = GetComponent<Tilemap>();
 
+            Vector3 pos = new Vector3(0, 0, 0);
+
             //ランダムな横幅の部屋を生成
-            for (int i = 0; i < maxRoomNum; i++)
+            for (int i = 1; i <= maxRoomNum; i++)
             {
-                Vector3 pos = new Vector3(0, 0, 0);
-                Room rooms =
-                    new SurfaceRoom(tilemap,
-                        pos,
-                        (int) Random.Range(10, 15),
-                        ground,
-                        underground);
+                int len = (int) Random.Range(10, 15);
+                int xPos = rooms[i - 1].position.x + rooms[i - 1].length;
+                int yPos = (int) Random.Range(0, 3);
+                pos = new Vector3(xPos, yPos, 0);
+                rooms[i] =
+                    new SurfaceRoom(tilemap, pos, len, ground, underground);
             }
 
             // for (int i = 0; i < maxRoomNum; i++)
