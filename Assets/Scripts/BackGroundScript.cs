@@ -32,7 +32,7 @@ public class BackGroundScript : MonoBehaviour
     {
         backGroundWidth = backGround.bounds.size.x * scale.x;
         player = GameObject.Find("Player");
-        position = new Vector3(0, 0, 0);
+        position = new Vector3(0, 7, 0);
         CreateBackGround (position);
     }
 
