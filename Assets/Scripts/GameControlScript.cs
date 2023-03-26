@@ -57,6 +57,7 @@ public class GameControlScript : MonoBehaviour
             ResetScore();
         }
 
+        //死亡
         if (player.hp <= 0)
         {
             ResetScore();
