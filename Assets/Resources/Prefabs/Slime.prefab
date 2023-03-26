@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 17336279914637029}
   - component: {fileID: 2477272818698084255}
   - component: {fileID: 2616246821924791097}
-  - component: {fileID: 819639846418840150}
+  - component: {fileID: 695909057653262003}
   m_Layer: 6
   m_Name: Slime
   m_TagString: Enemy
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.30769902, y: 0.21701536}
   m_EdgeRadius: 0
---- !u!114 &819639846418840150
+--- !u!114 &695909057653262003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4479309209965336364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fcb4936b608eb64c8871cdbb6b2ea07, type: 3}
+  m_Script: {fileID: 11500000, guid: 143ab38069666ad43a61c42002f4e82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
