@@ -37,7 +37,6 @@ namespace NRoom
         {
             //ゴールエリアをPrefabフォルダから読み込む
             GoalArea = (GameObject) Resources.Load("Prefabs/Room/GoalArea");
-            Debug.Log(GoalArea.name);
 
             //ゴールエリアをpositionの位置に生成
             Vector3 goalPosition =
@@ -47,7 +46,6 @@ namespace NRoom
 
             //ゴールエリアをlengthの長さに変形
             _goal.transform.localScale = new Vector3(length, 5, 1);
-            Debug.Log (length);
         }
     }
 }
