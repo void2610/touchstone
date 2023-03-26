@@ -15,7 +15,7 @@ namespace NRoom
 
         int gHeight = 0;
 
-        int maxRoomNum = 3;
+        int maxRoomNum = 10;
 
         float enemyProbability = 0.7f;
 

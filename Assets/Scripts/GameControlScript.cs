@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NCharacter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,30 @@ public class GameControlScript : MonoBehaviour
 
     Character player;
 
+    public void ResetScore()
+    {
+        PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.SetInt("highScore", 0);
+        PlayerPrefs.Save();
+    }
+
+    public void SaveScore()
+    {
+        if (score > PlayerPrefs.GetInt("highScore"))
+        {
+            PlayerPrefs.SetInt("highScore", score);
+        }
+        PlayerPrefs.SetInt("score", score);
+        PlayerPrefs.Save();
+    }
+
+    async void PlayerDeath()
+    {
+        movable = false;
+
+        await Task.Delay(1000);
+    }
+
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Character>();
@@ -28,7 +53,6 @@ public class GameControlScript : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // Update is called once per frame
     void Update()
     {
         HP = player.hp;
@@ -36,24 +60,14 @@ public class GameControlScript : MonoBehaviour
         //簡易スコアリセット
         if (Input.GetKey(KeyCode.P))
         {
-            PlayerPrefs.SetInt("score", 0);
-            PlayerPrefs.SetInt("highScore", 0);
-            PlayerPrefs.Save();
+            ResetScore();
         }
+
         if (HP <= 0)
         {
-            t += Time.deltaTime;
-            movable = false;
-            if (t >= 1)
-            {
-                if (score > PlayerPrefs.GetInt("highScore"))
-                {
-                    PlayerPrefs.SetInt("highScore", score);
-                }
-                PlayerPrefs.SetInt("score", score);
-                PlayerPrefs.Save();
-                SceneManager.LoadScene("GameOverScene");
-            }
+            ResetScore();
+            PlayerDeath();
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }
