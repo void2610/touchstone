@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NCharacter;
 using UnityEngine;
 
 public class SwordMoveScript : MonoBehaviour
