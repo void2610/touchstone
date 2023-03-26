@@ -8,11 +8,7 @@ using UnityEngine.UI;
 
 public class GameControlScript : MonoBehaviour
 {
-    public int HP;
-
     public int score = 0;
-
-    float t = 0;
 
     public bool movable = true;
 
@@ -55,15 +51,13 @@ public class GameControlScript : MonoBehaviour
 
     void Update()
     {
-        HP = player.hp;
-
         //簡易スコアリセット
         if (Input.GetKey(KeyCode.P))
         {
             ResetScore();
         }
 
-        if (HP <= 0)
+        if (player.hp <= 0)
         {
             ResetScore();
             PlayerDeath();
