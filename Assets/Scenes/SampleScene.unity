@@ -2007,7 +2007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: {fileID: 11400000, guid: 0967508aab88b8945a25be91692fdba8, type: 2}
   underground: {fileID: 11400000, guid: 9d545b150081bc648977020af02a6109, type: 2}
-  enemyProbability: 0.3
+  goal: {fileID: 11400000, guid: bb11bf4bb4df1a841a23f0bcf00c144f, type: 2}
   slime: {fileID: 4479309209965336364, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
 --- !u!50 &2053585681
 Rigidbody2D:
