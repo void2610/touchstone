@@ -9,6 +9,12 @@ namespace NRoom
     {
         public Tilemap tilemap;
 
+        //constructor
+        public SurfaceRoom() :
+            base()
+        {
+        }
+
         public SurfaceRoom(
             Tilemap tm,
             Vector3 pos,

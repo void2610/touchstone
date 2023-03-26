@@ -11,13 +11,15 @@ namespace NRoom
 
         public TileBase underground;
 
+        public TileBase goal;
+
         int gHeight = 0;
 
-        int maxRoomNum = 30;
+        int maxRoomNum = 3;
 
-        public float enemyProbability = 0.7f;
+        float enemyProbability = 0.7f;
 
-        private Room[] rooms = new Room[50];
+        private Room[] rooms = new Room[100];
 
         public GameObject slime;
 
@@ -35,7 +37,7 @@ namespace NRoom
             Vector3 pos = new Vector3(0, 0, 0);
 
             //ランダムな横幅の部屋を生成
-            for (int i = 1; i <= maxRoomNum; i++)
+            for (int i = 1; i < maxRoomNum; i++)
             {
                 int len = (int) Random.Range(4, 10);
                 int xPos = rooms[i - 1].position.x + rooms[i - 1].length;
@@ -52,6 +54,13 @@ namespace NRoom
                     Quaternion.identity);
                 }
             }
+            pos =
+                new Vector3(rooms[maxRoomNum - 1].position.x +
+                    rooms[maxRoomNum - 1].length,
+                    pos.y,
+                    0);
+            rooms[maxRoomNum] =
+                new GoalRoom(tilemap, pos, 10, goal, underground);
         }
 
         void Update()
