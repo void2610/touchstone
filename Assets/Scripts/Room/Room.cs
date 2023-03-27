@@ -39,7 +39,6 @@ namespace NRoom
 
         public virtual void Start()
         {
-            Debug.Log("Room Start");
         }
 
         public virtual void Update()

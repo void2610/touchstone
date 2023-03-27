@@ -8,7 +8,6 @@ namespace NCharacter
 
     public class Player : Character
     {
-        //ビルド時は270に
         public float speed;
 
         public bool jumpable = true;
