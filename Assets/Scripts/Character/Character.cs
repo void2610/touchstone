@@ -59,5 +59,9 @@ namespace NCharacter
                     new Vector2(-firstLScale.x, firstLScale.y);
             }
         }
+
+        public virtual void FixedUpdate()
+        {
+        }
     }
 }

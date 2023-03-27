@@ -20,9 +20,9 @@ namespace NCharacter
             killScore = 1;
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
-            base.Update();
+            base.FixedUpdate();
             if (hp <= 0)
             {
                 Destroy(this.gameObject);

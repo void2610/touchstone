@@ -815,7 +815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596208f0f719bbd40827f2c54bc1b9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gc: {fileID: 1017836006}
 --- !u!1 &1017836006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,7 +1450,7 @@ MonoBehaviour:
   killScore: 0
   direction: 1
   firstLScale: {x: 0, y: 0}
-  speed: 100
+  speed: 300
   jumpable: 1
   jumpForce: 500
   jp: 0

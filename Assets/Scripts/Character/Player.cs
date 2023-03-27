@@ -39,8 +39,23 @@ namespace NCharacter
         public override void Update()
         {
             base.Update();
-
             jp = jrs.jumpCount;
+
+            //ジャンプ
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+            {
+                if (this.jp < 1)
+                {
+                    this.rb.AddForce(transform.up * jumpForce);
+                    jrs.jumpCount++;
+                }
+            }
+        }
+
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+
             if (
                 GameObject
                     .Find("GameController")
@@ -82,18 +97,6 @@ namespace NCharacter
                     }
                 }
 
-                //ジャンプ
-                if (
-                    Input.GetKeyDown(KeyCode.Space) ||
-                    Input.GetKeyDown(KeyCode.W)
-                )
-                {
-                    if (this.jp < 1)
-                    {
-                        this.rb.AddForce(transform.up * jumpForce);
-                        jrs.jumpCount++;
-                    }
-                }
                 if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
                 {
                     if (this.jp < 1)
