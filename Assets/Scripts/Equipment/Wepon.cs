@@ -25,6 +25,8 @@ namespace NEquipment
             actionKey = "Mouse0";
             coolTimeLength = 0.1f;
             isEnable = true;
+            isActive = false;
+            attackPower = 1;
         }
 
         public virtual void Update()

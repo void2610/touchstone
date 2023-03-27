@@ -22,6 +22,11 @@ namespace NEquipment
         public float coolTimeLength;
 
         /// <summary>
+        /// クールタイムの開始時間
+        /// </summary>
+        public float coolStartTime;
+
+        /// <summary>
         /// クールタイム中かどうか
         /// </summary>
         public bool isCooling;
@@ -35,6 +40,11 @@ namespace NEquipment
         /// 装備が効果を発揮する時間の長さ
         /// </summary>
         public float activeTimeLength;
+
+        /// <summary>
+        /// 装備の効果の開始時間
+        /// </summary>
+        public float activeStartTime;
 
         /// <summary>
         /// 装備が効果を発揮しているかどうか
@@ -54,7 +64,7 @@ namespace NEquipment
         public virtual void Action()
         {
             isActive = true;
-            Invoke("ResetActionTime", activeTimeLength);
+            activeStartTime = Time.time;
         }
 
         public virtual void Start()
@@ -62,9 +72,11 @@ namespace NEquipment
             name = "NoName";
             actionKey = "NoKey";
             coolTimeLength = 0.0f;
+            coolStartTime = Mathf.Infinity;
             isCooling = false;
             isEnable = true;
             activeTimeLength = 0.0f;
+            activeStartTime = Mathf.Infinity;
             isActive = false;
 
             icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);
@@ -72,6 +84,14 @@ namespace NEquipment
 
         public virtual void Update()
         {
+            if (Time.time - activeStartTime > activeTimeLength)
+            {
+                isActive = false;
+            }
+            if (Time.time - coolStartTime > coolTimeLength)
+            {
+                isCooling = false;
+            }
         }
 
         public virtual void FixedUpdate()
@@ -82,7 +102,6 @@ namespace NEquipment
                 {
                     Action();
                     isCooling = true;
-                    Invoke("ResetCoolTime", coolTimeLength);
                 }
             }
         }
