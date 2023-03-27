@@ -1083,7 +1083,7 @@ GameObject:
   - component: {fileID: 1198063309}
   - component: {fileID: 1198063310}
   - component: {fileID: 1198063311}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Leg
   m_TagString: Trigger
   m_Icon: {fileID: 0}
@@ -1290,7 +1290,7 @@ GameObject:
   - component: {fileID: 1471282075}
   - component: {fileID: 1471282076}
   - component: {fileID: 1471282077}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Player
   m_TagString: PlayerTrigger
   m_Icon: {fileID: 0}

@@ -1,68 +1,70 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using NCharacter;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
-public class GameControlScript : MonoBehaviour
+namespace NControl
 {
-    public int score = 0;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using NCharacter;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
+    using UnityEngine.UI;
 
-    public bool movable = true;
-
-    Character player;
-
-    public void ResetScore()
+    public class GameControlScript : MonoBehaviour
     {
-        PlayerPrefs.SetInt("score", 0);
-        PlayerPrefs.SetInt("highScore", 0);
-        PlayerPrefs.Save();
-    }
+        public int score = 0;
 
-    public void SaveScore()
-    {
-        if (score > PlayerPrefs.GetInt("highScore"))
+        public bool movable = true;
+
+        Character player;
+
+        public void ResetScore()
         {
-            PlayerPrefs.SetInt("highScore", score);
-        }
-        PlayerPrefs.SetInt("score", score);
-        PlayerPrefs.Save();
-    }
-
-    async void PlayerDeath()
-    {
-        movable = false;
-
-        await Task.Delay(1000);
-    }
-
-    void Start()
-    {
-        player = GameObject.Find("Player").GetComponent<Character>();
-        PlayerPrefs.SetInt("score", 0);
-        if (PlayerPrefs.GetInt("highScore") == null)
-        {
+            PlayerPrefs.SetInt("score", 0);
             PlayerPrefs.SetInt("highScore", 0);
-        }
-        PlayerPrefs.Save();
-    }
-
-    void Update()
-    {
-        //簡易スコアリセット
-        if (Input.GetKey(KeyCode.P))
-        {
-            ResetScore();
+            PlayerPrefs.Save();
         }
 
-        //死亡
-        if (player.hp <= 0)
+        public void SaveScore()
         {
-            ResetScore();
-            PlayerDeath();
-            SceneManager.LoadScene("GameOverScene");
+            if (score > PlayerPrefs.GetInt("highScore"))
+            {
+                PlayerPrefs.SetInt("highScore", score);
+            }
+            PlayerPrefs.SetInt("score", score);
+            PlayerPrefs.Save();
+        }
+
+        async void PlayerDeath()
+        {
+            movable = false;
+            SaveScore();
+            await Task.Delay(1000);
+        }
+
+        void Start()
+        {
+            player = GameObject.Find("Player").GetComponent<Character>();
+            PlayerPrefs.SetInt("score", 0);
+            if (PlayerPrefs.GetInt("highScore") == null)
+            {
+                PlayerPrefs.SetInt("highScore", 0);
+            }
+            PlayerPrefs.Save();
+        }
+
+        void Update()
+        {
+            //簡易スコアリセット
+            if (Input.GetKey(KeyCode.P))
+            {
+                ResetScore();
+            }
+
+            //死亡
+            if (player.hp <= 0)
+            {
+                PlayerDeath();
+                SceneManager.LoadScene("GameOverScene");
+            }
         }
     }
 }

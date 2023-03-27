@@ -1,37 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class ShowScoreScript : MonoBehaviour
+namespace NUI
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using NControl;
+    using UnityEngine;
+    using UnityEngine.UI;
 
-    public GameObject gc;
-    GameControlScript gcScript;
-
-    void Start()
+    public class ShowScoreScript : MonoBehaviour
     {
-        if(gc != null){
-            gcScript = gc.GetComponent<GameControlScript>();
+        void Start()
+        {
+            Debug.Log("score:" + PlayerPrefs.GetInt("score").ToString());
+            Debug
+                .Log("highScore:" + PlayerPrefs.GetInt("highScore").ToString());
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Text score_text = gameObject.GetComponent<Text> ();
-        // テキストの表示を入れ替える
-        if(this.name == "ScoreText"){
-            if(gc == null){
-                score_text.text = "Score:" + PlayerPrefs.GetInt("score").ToString();
-            }
-            else
+        void Update()
+        {
+            Text score_text = gameObject.GetComponent<Text>();
+
+            // テキストの表示を入れ替える
+            if (this.name == "ScoreText")
             {
-                score_text.text = "Score:" + gcScript.score;
+                score_text.text =
+                    "Score:" + PlayerPrefs.GetInt("score").ToString();
             }
-        }
-        else if(this.name == "HighScoreText"){
-            score_text.text = "Highcore:" + PlayerPrefs.GetInt("highScore").ToString();
+            else if (this.name == "HighScoreText")
+            {
+                score_text.text =
+                    "Highcore:" + PlayerPrefs.GetInt("highScore").ToString();
+            }
         }
     }
 }
