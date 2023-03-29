@@ -43,8 +43,7 @@ namespace NRoom
 				int xPos = rooms[i - 1].position.x + rooms[i - 1].length;
 				int yPos = (int)Random.Range(-1, 1);
 				pos = new Vector3(xPos, yPos, 0);
-				rooms[i] =
-								new SurfaceRoom(tilemap, pos, len, ground, underground);
+				rooms[i] = new SurfaceRoom(tilemap, pos, len, ground, underground);
 
 				//敵を生成
 				if (Random.value < enemyProbability)
@@ -54,13 +53,8 @@ namespace NRoom
 					Quaternion.identity);
 				}
 			}
-			pos =
-							new Vector3(rooms[maxRoomNum - 1].position.x +
-											rooms[maxRoomNum - 1].length,
-											pos.y,
-											0);
-			rooms[maxRoomNum] =
-							new GoalRoom(tilemap, pos, 10, goal, underground);
+			pos = new Vector3(rooms[maxRoomNum - 1].position.x + rooms[maxRoomNum - 1].length, pos.y, 0);
+			rooms[maxRoomNum] = new GoalRoom(tilemap, pos, 10, goal, underground);
 		}
 
 		void Update()

@@ -1,166 +1,157 @@
 namespace NControl
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using NCharacter;
-    using UnityEngine;
+	using System.Collections;
+	using System.Collections.Generic;
+	using NCharacter;
+	using UnityEngine;
 
-    public class SwordMoveScript : MonoBehaviour
-    {
-        public GameObject p;
+	public class SwordMoveScript : MonoBehaviour
+	{
+		public GameObject p;
 
-        Vector3 pPos;
+		Vector3 pPos;
 
-        public GameObject gc;
+		public GameObject gc;
 
-        GameControlScript gcScript;
+		GameControlScript gcScript;
 
-        Vector3 position;
+		Vector3 position;
 
-        Vector3 dif;
+		Vector3 dif;
 
-        private Vector3 screenToWorldPointPosition;
+		private Vector3 screenToWorldPointPosition;
 
-        float fls;
+		float fls;
 
-        Vector3 attackStartPos;
+		Vector3 attackStartPos;
 
-        public float angle;
+		public float angle;
 
-        int hankei = 60;
+		int hankei = 60;
 
-        float sAngle;
+		float sAngle;
 
-        public AnimationCurve animationCurve;
+		public AnimationCurve animationCurve;
 
-        private float _curveRate = 0;
+		private float _curveRate = 0;
 
-        public float attackTime = 1;
+		public float attackTime = 1;
 
-        public int attackDegree = 60;
+		public int attackDegree = 60;
 
-        public int attacking = 0;
+		public int attacking = 0;
 
-        float sTime;
+		float sTime;
 
-        bool attacked = false;
+		bool attacked = false;
 
-        //フェードする速度
-        private float _fadingSpeed = 0.05f;
+		//フェードする速度
+		private float _fadingSpeed = 0.05f;
 
-        Character player;
+		Character player;
 
-        void Start()
-        {
-            fls = gameObject.transform.localScale.x;
-            gcScript = gc.GetComponent<GameControlScript>();
-            player = GameObject.Find("Player").GetComponent<Player>();
-        }
+		void Start()
+		{
+			fls = gameObject.transform.localScale.x;
+			gcScript = gc.GetComponent<GameControlScript>();
+			player = GameObject.Find("Player").GetComponent<Player>();
+		}
 
-        // Update is called once per frame
-        void Update()
-        {
-            _curveRate = Mathf.Clamp(_curveRate + _fadingSpeed, 0f, 1f);
+		// Update is called once per frame
+		void Update()
+		{
+			_curveRate = Mathf.Clamp(_curveRate + _fadingSpeed, 0f, 1f);
 
-            pPos = p.transform.position;
-            pPos.y -= 0.4f;
-            pPos.x -= 0.4f;
+			pPos = p.transform.position;
+			pPos.y -= 0.4f;
+			pPos.x -= 0.4f;
 
-            // Vector3でマウス位置座標を取得する
-            position = Input.mousePosition;
+			// Vector3でマウス位置座標を取得する
+			position = Input.mousePosition;
 
-            // Z軸修正
-            position.z = 10f;
+			// Z軸修正
+			position.z = 10f;
 
-            // マウス位置座標をスクリーン座標からワールド座標に変換する
-            screenToWorldPointPosition =
-                Camera.main.ScreenToWorldPoint(position);
-            dif = screenToWorldPointPosition - pPos;
-            angle = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg;
+			// マウス位置座標をスクリーン座標からワールド座標に変換する
+			screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
+			dif = screenToWorldPointPosition - pPos;
+			angle = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg;
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (attacking == 0)
-                {
-                    if (Mathf.Abs(angle) < 90)
-                    {
-                        attacking = 1;
-                    }
-                    else
-                    {
-                        attacking = 2;
-                    }
-                    sTime = Time.time;
-                    sAngle = angle;
-                    attackStartPos = transform.position;
-                }
-            }
-            if (Time.time - sTime > attackTime)
-            {
-                attacking = 0;
-                attacked = false;
-            }
+			if (Input.GetMouseButtonDown(0))
+			{
+				if (attacking == 0)
+				{
+					if (Mathf.Abs(angle) < 90)
+					{
+						attacking = 1;
+					}
+					else
+					{
+						attacking = 2;
+					}
+					sTime = Time.time;
+					sAngle = angle;
+					attackStartPos = transform.position;
+				}
+			}
+			if (Time.time - sTime > attackTime)
+			{
+				attacking = 0;
+				attacked = false;
+			}
 
-            if (attacking == 1)
-            {
-                attack();
-            }
-            else if (attacking == 2)
-            {
-                attack2();
-            }
+			if (attacking == 1)
+			{
+				attack();
+			}
+			else if (attacking == 2)
+			{
+				attack2();
+			}
 
-            var radian = angle * (Mathf.PI / 180);
-            this.transform.position =
-                new Vector3(Mathf.Cos(radian) * hankei + 10,
-                    Mathf.Sin(radian) * hankei - 25,
-                    0).normalized +
-                pPos;
-            transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
-        }
+			var radian = angle * (Mathf.PI / 180);
+			this.transform.position = new Vector3(Mathf.Cos(radian) * hankei + 10, Mathf.Sin(radian) * hankei - 25, 0).normalized + pPos;
+			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
+		}
 
-        void attack()
-        {
-            angle -=
-                animationCurve.Evaluate((Time.time - sTime) / attackTime) *
-                attackDegree;
-            return;
-        }
+		void attack()
+		{
+			angle -= animationCurve.Evaluate((Time.time - sTime) / attackTime) * attackDegree;
+			return;
+		}
 
-        void attack2()
-        {
-            angle +=
-                animationCurve.Evaluate((Time.time - sTime) / attackTime) *
-                attackDegree;
-            return;
-        }
+		void attack2()
+		{
+			angle += animationCurve.Evaluate((Time.time - sTime) / attackTime) * attackDegree;
+			return;
+		}
 
-        void OnTriggerStay2D(Collider2D other) //敵に武器が当たったとき
-        {
-            Character target = null;
-            if (other.gameObject.GetComponent<Character>() != null)
-            {
-                target = other.gameObject.GetComponent<Character>();
-            }
-            else
-            {
-                return;
-            }
+		void OnTriggerStay2D(Collider2D other) //敵に武器が当たったとき
+		{
+			Character target = null;
+			if (other.gameObject.GetComponent<Character>() != null)
+			{
+				target = other.gameObject.GetComponent<Character>();
+			}
+			else
+			{
+				return;
+			}
 
-            if (target.GetType().IsSubclassOf(typeof (Enemy)))
-            {
-                if (attacking != 0 && !attacked)
-                {
-                    target.hp -= player.atk;
-                    Debug.Log(target.name + "を攻撃した");
+			if (target.GetType().IsSubclassOf(typeof(Enemy)))
+			{
+				if (attacking != 0 && !attacked)
+				{
+					target.hp -= player.atk;
+					Debug.Log(target.name + "を攻撃した");
 
-                    if (target.hp <= 0)
-                    {
-                        gcScript.score += target.killScore;
-                    }
-                    attacked = true;
-                }
-            }
-        }
-    }
+					if (target.hp <= 0)
+					{
+						gcScript.score += target.killScore;
+					}
+					attacked = true;
+				}
+			}
+		}
+	}
 }
