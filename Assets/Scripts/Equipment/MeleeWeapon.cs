@@ -43,11 +43,6 @@ namespace NEquipment
 		public virtual void FixedUpdate()
 		{
 			base.FixedUpdate();
-			if (Input.GetKeyDown(actionKey) && isEnable && !isCooling)
-			{
-				StartCoroutine(Attack());
-				StartCoroutine(CoolDown());
-			}
 		}
 	}
 }

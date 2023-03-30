@@ -46,9 +46,16 @@ namespace NEquipment
 		/// </summary>
 		public Sprite icon;
 
-		public void ResetCoolTime()
+		public bool GetKeyOrMouse(string key)
 		{
-			isCooling = false;
+			if (key == "Mouse0" || key == "Mouse1")
+			{
+				return Input.GetMouseButtonDown(int.Parse(key.Substring(5)));
+			}
+			else
+			{
+				return Input.GetKeyDown(key);
+			}
 		}
 
 		public virtual IEnumerator Action()
@@ -60,16 +67,21 @@ namespace NEquipment
 			yield break;
 		}
 
+		public IEnumerator CoolDown()
+		{
+			yield return new WaitForSeconds(coolTimeLength);
+			isCooling = false;
+			yield break;
+		}
+
 		public virtual void Start()
 		{
 			name = "NoName";
 			actionKey = "NoKey";
 			coolTimeLength = 0.0f;
-			coolStartTime = Mathf.Infinity;
 			isCooling = false;
 			isEnable = true;
 			activeTimeLength = 0.0f;
-			activeStartTime = Mathf.Infinity;
 			isActive = false;
 
 			icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);
@@ -77,21 +89,24 @@ namespace NEquipment
 
 		public virtual void Update()
 		{
-			if (Time.time - activeStartTime > activeTimeLength)
+			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
 			{
-				isActive = false;
-			}
-			if (Time.time - coolStartTime > coolTimeLength)
-			{
-				isCooling = false;
+				StartCoroutine(Action());
+				StartCoroutine(CoolDown());
 			}
 		}
 
 		public virtual void FixedUpdate()
 		{
-			if (Input.GetKeyDown(actionKey) && isEnable && !isCooling)
+			if (isActive && isEnable && !isCooling)
 			{
-				Action();
+				// 装備の効果を発揮する処理
+				Debug.Log("Active");
+			}
+			if (isCooling)
+			{
+				// クールタイム中の処理
+				Debug.Log("Cooling");
 			}
 		}
 	}
