@@ -448,7 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   actionKey: 
-  coolTimeLength: 0
+  coolTimeLength: 0.1
   isCooling: 0
   isEnable: 0
   activeTimeLength: 0
