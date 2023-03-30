@@ -3,6 +3,7 @@ namespace NEquipment
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using NCharacter;
 
 	public class Equipment : MonoBehaviour
 	{
@@ -46,16 +47,10 @@ namespace NEquipment
 		/// </summary>
 		public Sprite icon;
 
-		public bool GetKeyOrMouse(string key)
+		public void CutHP(Character target, int atk)
 		{
-			if (key == "Mouse0" || key == "Mouse1")
-			{
-				return Input.GetMouseButtonDown(int.Parse(key.Substring(5)));
-			}
-			else
-			{
-				return Input.GetKeyDown(key);
-			}
+			target.hp -= atk;
+			Debug.Log(target.name + "のHPが" + atk + "削れた");
 		}
 
 		public virtual IEnumerator Action()

@@ -3,6 +3,7 @@ namespace NEquipment
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using NCharacter;
 
 	public class MeleeWepon : Wepon
 	{
@@ -32,7 +33,7 @@ namespace NEquipment
 			name = "Wepon";
 			actionKey = "Mouse0";
 			coolTimeLength = 0.1f;
-			isActive = true;
+			isActive = false;
 		}
 
 		public virtual void Update()
@@ -43,6 +44,34 @@ namespace NEquipment
 		public virtual void FixedUpdate()
 		{
 			base.FixedUpdate();
+		}
+
+		//敵に武器が当たったとき
+		public void OnTriggerStay2D(Collider2D other)
+		{
+			Character target = null;
+			if (other.gameObject.GetComponent<Character>() != null)
+			{
+				target = other.gameObject.GetComponent<Character>();
+			}
+			else
+			{
+				return;
+			}
+
+			if (target.GetType().IsSubclassOf(typeof(Enemy)))
+			{
+				if (isActive)
+				{
+					target.hp -= attackPower;
+					Debug.Log(target.name + "を攻撃した");
+
+					// if (target.hp <= 0)
+					// {
+					// 	gcScript.score += target.killScore;
+					// }
+				}
+			}
 		}
 	}
 }
