@@ -21,16 +21,10 @@ namespace NEquipment
 		private Vector3 difference;
 
 		public float angle;
-
-		public override IEnumerator Action()
-		{
-			Debug.Log("Action");
-			base.Action();
-			yield break;
-		}
-
 		public void MoveWeapon()
 		{
+			player = GameObject.Find("Player");
+
 			playerPosition = player.transform.position;
 			playerPosition.x -= 0.4f;
 			playerPosition.y -= 0.4f;
@@ -49,29 +43,7 @@ namespace NEquipment
 
 		public virtual void Start()
 		{
-			base.Start();
-			name = "Wepon";
-			actionKey = "Mouse0";
-			coolTimeLength = 1f;
-			isEnable = true;
-			isActive = false;
-			activeTimeLength = 1f;
-			attackPower = 1;
-			moveRadius = 60;
-
-			localScaleX = gameObject.transform.localScale.x;
-			player = GameObject.Find("Player");
-		}
-
-		public virtual void Update()
-		{
-			base.Update();
-			MoveWeapon();
-		}
-
-		public virtual void FixedUpdate()
-		{
-			base.FixedUpdate();
+			//localScaleX = gameObject.transform.localScale.x;
 		}
 	}
 }

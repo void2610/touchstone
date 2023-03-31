@@ -9,7 +9,7 @@ namespace NEquipment
 	{
 		public AnimationCurve animationCurve;
 
-		public float attackDegree = 1f;
+		public float attackDegree = 60f;
 
 		/// <summary>
 		/// フェード速度
@@ -21,9 +21,15 @@ namespace NEquipment
 		private float attackStartTime = 0;
 		public override IEnumerator Action()
 		{
+
+
 			attackStartTime = Time.time;
-			Debug.Log("Action");
-			base.Action();
+			isActive = true;
+			yield return new WaitForSeconds(activeTimeLength);
+			isActive = false;
+			isCooling = true;
+			yield return new WaitForSeconds(coolTimeLength);
+			isCooling = false;
 			yield break;
 		}
 
@@ -31,27 +37,31 @@ namespace NEquipment
 		{
 			angle -= animationCurve.Evaluate((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
 			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
-			Debug.Log(angle);
+			Debug.Log(animationCurve.Evaluate((Time.time - attackStartTime) / activeTimeLength));
 			return;
 		}
 
 		public virtual void Start()
 		{
-			base.Start();
 			name = "Wepon";
 			actionKey = "Mouse0";
 			coolTimeLength = 1f;
+			isCooling = false;
+			isEnable = true;
 			isActive = false;
 			activeTimeLength = 1f;
 			attackPower = 1;
 			moveRadius = 60;
 
+			icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);
 		}
 
 		public virtual void Update()
 		{
-			_curveRate = Mathf.Clamp(_curveRate + _fadingSpeed, 0f, 1f);
-			base.Update();
+			//_curveRate = Mathf.Clamp(_curveRate + _fadingSpeed, 0f, 1f);
+
+			MoveWeapon();
+
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
 			{
 				StartCoroutine(Action());
@@ -66,7 +76,16 @@ namespace NEquipment
 
 		public virtual void FixedUpdate()
 		{
-			base.FixedUpdate();
+			if (isActive && isEnable && !isCooling)
+			{
+				// 装備の効果を発揮する処理
+				Debug.Log("Active");
+			}
+			if (isCooling)
+			{
+				// クールタイム中の処理
+				Debug.Log("Cooling");
+			}
 		}
 
 		//敵に武器が当たったとき

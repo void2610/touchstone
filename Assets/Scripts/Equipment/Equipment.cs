@@ -55,48 +55,18 @@ namespace NEquipment
 
 		public virtual IEnumerator Action()
 		{
-			Debug.Log("Action");
-			isActive = true;
-			yield return new WaitForSeconds(activeTimeLength);
-			isActive = false;
-			isCooling = true;
-			yield return new WaitForSeconds(coolTimeLength);
-			isCooling = false;
 			yield break;
 		}
 		public virtual void Start()
 		{
-			name = "NoName";
-			actionKey = "NoKey";
-			coolTimeLength = 1f;
-			isCooling = false;
-			isEnable = true;
-			activeTimeLength = 1f;
-			isActive = false;
-
-			icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);
 		}
 
 		public virtual void Update()
 		{
-			// if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
-			// {
-			// 	StartCoroutine(Action());
-			// }
 		}
 
 		public virtual void FixedUpdate()
 		{
-			if (isActive && isEnable && !isCooling)
-			{
-				// 装備の効果を発揮する処理
-				Debug.Log("Active");
-			}
-			if (isCooling)
-			{
-				// クールタイム中の処理
-				Debug.Log("Cooling");
-			}
 		}
 	}
 }
