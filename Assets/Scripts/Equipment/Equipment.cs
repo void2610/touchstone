@@ -73,10 +73,10 @@ namespace NEquipment
 		{
 			name = "NoName";
 			actionKey = "NoKey";
-			coolTimeLength = 0.0f;
+			coolTimeLength = 1f;
 			isCooling = false;
 			isEnable = true;
-			activeTimeLength = 0.0f;
+			activeTimeLength = 1f;
 			isActive = false;
 
 			icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);

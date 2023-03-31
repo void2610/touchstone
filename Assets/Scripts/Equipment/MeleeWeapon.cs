@@ -7,24 +7,29 @@ namespace NEquipment
 
 	public class MeleeWepon : Wepon
 	{
-		public virtual void Action()
-		{
-		}
+		public AnimationCurve animationCurve;
 
-		public virtual IEnumerator Attack()
+		public float attackDegree;
+
+		/// <summary>
+		/// フェード速度
+		/// </summary>
+		private float _fadingSpeed = 0.05f;
+
+		private float _curveRate = 0;
+
+		private float attackStartTime = 0;
+		public virtual IEnumerator Action()
 		{
-			isActive = true;
-			yield return new WaitForSeconds(activeTimeLength);
-			isActive = false;
-			isCooling = true;
+			attackStartTime = Time.time;
+			base.Action();
 			yield break;
 		}
 
-		public IEnumerator CoolDown()
+		private void AttackAnimation()
 		{
-			yield return new WaitForSeconds(coolTimeLength);
-			isCooling = false;
-			yield break;
+			angle -= animationCurve.Evaluate((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+			return;
 		}
 
 		public virtual void Start()
@@ -32,13 +37,19 @@ namespace NEquipment
 			base.Start();
 			name = "Wepon";
 			actionKey = "Mouse0";
-			coolTimeLength = 0.1f;
+			coolTimeLength = 1f;
 			isActive = false;
+			activeTimeLength = 1f;
 		}
 
 		public virtual void Update()
 		{
+			_curveRate = Mathf.Clamp(_curveRate + _fadingSpeed, 0f, 1f);
 			base.Update();
+			if (isActive)
+			{
+				AttackAnimation();
+			}
 		}
 
 		public virtual void FixedUpdate()

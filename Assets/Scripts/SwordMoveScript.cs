@@ -125,33 +125,5 @@ namespace NControl
 			angle += animationCurve.Evaluate((Time.time - sTime) / attackTime) * attackDegree;
 			return;
 		}
-
-		void OnTriggerStay2D(Collider2D other) //敵に武器が当たったとき
-		{
-			Character target = null;
-			if (other.gameObject.GetComponent<Character>() != null)
-			{
-				target = other.gameObject.GetComponent<Character>();
-			}
-			else
-			{
-				return;
-			}
-
-			if (target.GetType().IsSubclassOf(typeof(Enemy)))
-			{
-				if (attacking != 0 && !attacked)
-				{
-					target.hp -= player.atk;
-					Debug.Log(target.name + "を攻撃した");
-
-					if (target.hp <= 0)
-					{
-						gcScript.score += target.killScore;
-					}
-					attacked = true;
-				}
-			}
-		}
 	}
 }
