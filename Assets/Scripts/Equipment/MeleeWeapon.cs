@@ -9,7 +9,7 @@ namespace NEquipment
 	{
 		public AnimationCurve animationCurve;
 
-		public float attackDegree;
+		public float attackDegree = 1f;
 
 		/// <summary>
 		/// フェード速度
@@ -19,9 +19,10 @@ namespace NEquipment
 		private float _curveRate = 0;
 
 		private float attackStartTime = 0;
-		public virtual IEnumerator Action()
+		public override IEnumerator Action()
 		{
 			attackStartTime = Time.time;
+			Debug.Log("Action");
 			base.Action();
 			yield break;
 		}
@@ -29,6 +30,8 @@ namespace NEquipment
 		private void AttackAnimation()
 		{
 			angle -= animationCurve.Evaluate((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
+			Debug.Log(angle);
 			return;
 		}
 
@@ -40,15 +43,24 @@ namespace NEquipment
 			coolTimeLength = 1f;
 			isActive = false;
 			activeTimeLength = 1f;
+			attackPower = 1;
+			moveRadius = 60;
+
 		}
 
 		public virtual void Update()
 		{
 			_curveRate = Mathf.Clamp(_curveRate + _fadingSpeed, 0f, 1f);
 			base.Update();
+			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
+			{
+				StartCoroutine(Action());
+			}
+
 			if (isActive)
 			{
 				AttackAnimation();
+
 			}
 		}
 

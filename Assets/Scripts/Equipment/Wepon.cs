@@ -22,8 +22,9 @@ namespace NEquipment
 
 		public float angle;
 
-		public virtual IEnumerator Action()
+		public override IEnumerator Action()
 		{
+			Debug.Log("Action");
 			base.Action();
 			yield break;
 		}

@@ -55,6 +55,7 @@ namespace NEquipment
 
 		public virtual IEnumerator Action()
 		{
+			Debug.Log("Action");
 			isActive = true;
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
@@ -78,10 +79,10 @@ namespace NEquipment
 
 		public virtual void Update()
 		{
-			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
-			{
-				StartCoroutine(Action());
-			}
+			// if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
+			// {
+			// 	StartCoroutine(Action());
+			// }
 		}
 
 		public virtual void FixedUpdate()

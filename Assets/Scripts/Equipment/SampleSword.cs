@@ -18,14 +18,14 @@ namespace NEquipment
 			attackPower = 1;
 		}
 
-		public virtual void Update()
-		{
-			base.Update();
-		}
+		// public virtual void Update()
+		// {
+		// 	base.Update();
+		// }
 
-		public virtual void FixedUpdate()
-		{
-			base.FixedUpdate();
-		}
+		// public virtual void FixedUpdate()
+		// {
+		// 	base.FixedUpdate();
+		// }
 	}
 }
