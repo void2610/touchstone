@@ -59,16 +59,10 @@ namespace NEquipment
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
 			isCooling = true;
-			yield break;
-		}
-
-		public IEnumerator CoolDown()
-		{
 			yield return new WaitForSeconds(coolTimeLength);
 			isCooling = false;
 			yield break;
 		}
-
 		public virtual void Start()
 		{
 			name = "NoName";
@@ -87,7 +81,6 @@ namespace NEquipment
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
 			{
 				StartCoroutine(Action());
-				StartCoroutine(CoolDown());
 			}
 		}
 
