@@ -11,14 +11,11 @@ namespace NEquipment
 
 		public float attackDegree = 60f;
 
-		/// <summary>
-		/// フェード速度
-		/// </summary>
-		private float _fadingSpeed = 0.05f;
-
-		private float _curveRate = 0;
-
 		private float attackStartTime = 0;
+
+		private float attackStartAngle = 0;
+
+		private event System.Action<bool> OnUpdateActive;
 		public override IEnumerator Action()
 		{
 
@@ -35,10 +32,24 @@ namespace NEquipment
 
 		private void AttackAnimation()
 		{
-			angle -= animationCurve.Evaluate((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+			if (Mathf.Abs(angle) < 90)
+			{
+				angle -= animationCurve.Evaluate((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+			}
+			else
+			{
+				angle += animationCurve.Evaluate((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+			}
+			var radian = angle * (Mathf.PI / 180);
+			transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
 			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
-			Debug.Log(animationCurve.Evaluate((Time.time - attackStartTime) / activeTimeLength));
 			return;
+		}
+
+		private void UpdateAttackStartAngle(bool attackStart)
+		{
+			attackStartAngle = angle;
+			Debug.Log("AttackStartAngle: " + attackStartAngle);
 		}
 
 		public virtual void Start()
@@ -54,12 +65,12 @@ namespace NEquipment
 			moveRadius = 60;
 
 			icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);
+
+			OnUpdateActive += UpdateAttackStartAngle;
 		}
 
 		public virtual void Update()
 		{
-			//_curveRate = Mathf.Clamp(_curveRate + _fadingSpeed, 0f, 1f);
-
 			MoveWeapon();
 
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
@@ -67,10 +78,15 @@ namespace NEquipment
 				StartCoroutine(Action());
 			}
 
+			//isActiveが更新されたらAttackStartAngleを更新する
+			if (OnUpdateActive != null)
+			{
+				OnUpdateActive.Invoke(isActive);
+			}
+
 			if (isActive)
 			{
 				AttackAnimation();
-
 			}
 		}
 

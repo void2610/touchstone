@@ -14,7 +14,7 @@ namespace NEquipment
 
 		private GameObject player;
 
-		private Vector3 playerPosition;
+		public Vector3 playerPosition;
 
 		private Vector3 mousePosition;
 

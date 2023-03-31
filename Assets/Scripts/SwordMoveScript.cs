@@ -102,6 +102,7 @@ namespace NControl
 
 			if (attacking == 1)
 			{
+
 				attack();
 			}
 			else if (attacking == 2)

@@ -11,11 +11,12 @@ namespace NEquipment
 			base.Start();
 			name = "SampleSword";
 			actionKey = "Fire1";
-			coolTimeLength = 1f;
+			coolTimeLength = 0.1f;
 			isEnable = true;
 			isActive = false;
-			activeTimeLength = 1f;
+			activeTimeLength = 0.3f;
 			attackPower = 1;
+			attackDegree = 50f;
 		}
 
 		// public virtual void Update()
