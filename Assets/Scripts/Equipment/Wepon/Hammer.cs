@@ -4,25 +4,24 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Sword : MeleeWepon
+	public class Hammer : MeleeWepon
 	{
 		public void Awake()
 		{
-			name = "Sword";
+			name = "Hammer";
 			actionKey = "Fire1";
-			coolTimeLength = 0.1f;
+			coolTimeLength = 0.3f;
 			isEnable = true;
 			isActive = false;
-			activeTimeLength = 0.3f;
-			attackPower = 1;
-			attackDegree = 50f;
-			moveRadius = 60;
+			activeTimeLength = 0.9f;
+			attackPower = 3;
+			attackDegree = 80f;
+			moveRadius = 90;
 		}
 
 		public override void Start()
 		{
 			base.Start();
-			Debug.Log(icon.name);
 		}
 	}
 }
