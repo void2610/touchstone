@@ -4,7 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Sword : MeleeWepon
+	public class Sword : MeleeWeapon
 	{
 		public void Awake()
 		{

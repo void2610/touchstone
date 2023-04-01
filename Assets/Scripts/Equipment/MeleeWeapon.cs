@@ -5,7 +5,7 @@ namespace NEquipment
 	using UnityEngine;
 	using NCharacter;
 
-	public class MeleeWepon : Wepon
+	public class MeleeWeapon : Weapon
 	{
 		public AnimationCurve animationCurve;
 
@@ -34,11 +34,11 @@ namespace NEquipment
 		{
 			if (Mathf.Abs(attackStartAngle) < 90)
 			{
-				angle -= ((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+				angle = attackStartAngle - ((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
 			}
 			else
 			{
-				angle += ((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+				angle = attackStartAngle + ((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
 			}
 			var radian = angle * (Mathf.PI / 180);
 			transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
@@ -48,24 +48,13 @@ namespace NEquipment
 
 		public virtual void Start()
 		{
-			// name = "Wepon";
-			// actionKey = "Mouse0";
-			// coolTimeLength = 1f;
-			// isCooling = false;
-			// isEnable = true;
-			// isActive = false;
-			// activeTimeLength = 1f;
-			// attackPower = 1;
-			// moveRadius = 60;
-
-
 			//iconに画像を入れる
 			icon = this.GetComponent<SpriteRenderer>().sprite;
 		}
 
 		public virtual void Update()
 		{
-			MoveWeapon();
+			MoveWeaponPosition();
 
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
 			{
@@ -75,6 +64,10 @@ namespace NEquipment
 			if (isActive)
 			{
 				AttackAnimation();
+			}
+			else
+			{
+				MoveWeaponAngle();
 			}
 		}
 

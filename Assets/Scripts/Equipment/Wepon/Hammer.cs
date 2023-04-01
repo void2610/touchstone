@@ -4,7 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Hammer : MeleeWepon
+	public class Hammer : MeleeWeapon
 	{
 		public void Awake()
 		{

@@ -4,7 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Wepon : Equipment
+	public class Weapon : Equipment
 	{
 		public int attackPower;
 
@@ -21,7 +21,14 @@ namespace NEquipment
 		private Vector3 difference;
 
 		public float angle;
-		public void MoveWeapon()
+		public void MoveWeaponAngle()
+		{
+			difference = Camera.main.ScreenToWorldPoint(mousePosition) - playerPosition;
+			angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
+		}
+
+		public void MoveWeaponPosition()
 		{
 			player = GameObject.Find("Player");
 
@@ -34,16 +41,14 @@ namespace NEquipment
 
 			// マウス位置座標をスクリーン座標からワールド座標に変換する
 			difference = Camera.main.ScreenToWorldPoint(mousePosition) - playerPosition;
-			angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
 			var radian = angle * (Mathf.PI / 180);
+
 			this.transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
-			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
 		}
 
 		public virtual void Start()
 		{
-			//localScaleX = gameObject.transform.localScale.x;
 		}
 	}
 }
