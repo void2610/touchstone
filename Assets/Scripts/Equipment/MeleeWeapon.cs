@@ -19,8 +19,6 @@ namespace NEquipment
 
 		public override IEnumerator Action()
 		{
-
-			Debug.Log(angle);
 			attackStartTime = Time.time;
 			isActive = true;
 			attackStartAngle = angle;
@@ -50,17 +48,19 @@ namespace NEquipment
 
 		public virtual void Start()
 		{
-			name = "Wepon";
-			actionKey = "Mouse0";
-			coolTimeLength = 1f;
-			isCooling = false;
-			isEnable = true;
-			isActive = false;
-			activeTimeLength = 1f;
-			attackPower = 1;
-			moveRadius = 60;
+			// name = "Wepon";
+			// actionKey = "Mouse0";
+			// coolTimeLength = 1f;
+			// isCooling = false;
+			// isEnable = true;
+			// isActive = false;
+			// activeTimeLength = 1f;
+			// attackPower = 1;
+			// moveRadius = 60;
 
-			//icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);
+
+			//iconに画像を入れる
+			icon = this.GetComponent<SpriteRenderer>().sprite;
 		}
 
 		public virtual void Update()

@@ -4,12 +4,11 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class SampleSword : MeleeWepon
+	public class Sword : MeleeWepon
 	{
-		public override void Start()
+		public void Awake()
 		{
-			base.Start();
-			name = "SampleSword";
+			name = "Sword";
 			actionKey = "Fire1";
 			coolTimeLength = 0.1f;
 			isEnable = true;
@@ -17,16 +16,13 @@ namespace NEquipment
 			activeTimeLength = 0.3f;
 			attackPower = 1;
 			attackDegree = 50f;
+			moveRadius = 60;
 		}
 
-		// public virtual void Update()
-		// {
-		// 	base.Update();
-		// }
-
-		// public virtual void FixedUpdate()
-		// {
-		// 	base.FixedUpdate();
-		// }
+		public override void Start()
+		{
+			base.Start();
+			Debug.Log(icon.name);
+		}
 	}
 }
