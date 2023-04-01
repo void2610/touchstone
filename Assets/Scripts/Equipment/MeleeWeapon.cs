@@ -19,8 +19,11 @@ namespace NEquipment
 		{
 			set
 			{
-				isActiveCopy = value;
-				UpdateAttackStartAngle();
+				//isActiveCopy = value;
+				if (isActive)
+				{
+					UpdateAttackStartAngle();
+				}
 			}
 			get
 			{
