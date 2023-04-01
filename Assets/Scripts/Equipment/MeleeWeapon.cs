@@ -15,15 +15,32 @@ namespace NEquipment
 
 		private float attackStartAngle = 0;
 
-		private event System.Action<bool> OnUpdateActive;
+		private bool isActiveCopy
+		{
+			set
+			{
+				isActiveCopy = value;
+				UpdateAttackStartAngle();
+			}
+			get
+			{
+				return isActiveCopy;
+			}
+		}
+
+
+
+
 		public override IEnumerator Action()
 		{
 
 
 			attackStartTime = Time.time;
 			isActive = true;
+			isActiveCopy = true;
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
+			isActiveCopy = false;
 			isCooling = true;
 			yield return new WaitForSeconds(coolTimeLength);
 			isCooling = false;
@@ -46,7 +63,7 @@ namespace NEquipment
 			return;
 		}
 
-		private void UpdateAttackStartAngle(bool attackStart)
+		private void UpdateAttackStartAngle()
 		{
 			attackStartAngle = angle;
 			Debug.Log("AttackStartAngle: " + attackStartAngle);
@@ -60,13 +77,12 @@ namespace NEquipment
 			isCooling = false;
 			isEnable = true;
 			isActive = false;
+			isActiveCopy = false;
 			activeTimeLength = 1f;
 			attackPower = 1;
 			moveRadius = 60;
 
-			icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);
-
-			OnUpdateActive += UpdateAttackStartAngle;
+			//icon = Resources.Load<Sprite>("Sprites/Equipment/" + name);
 		}
 
 		public virtual void Update()
@@ -76,12 +92,6 @@ namespace NEquipment
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
 			{
 				StartCoroutine(Action());
-			}
-
-			//isActiveが更新されたらAttackStartAngleを更新する
-			if (OnUpdateActive != null)
-			{
-				OnUpdateActive.Invoke(isActive);
 			}
 
 			if (isActive)
