@@ -18,7 +18,7 @@ namespace NCharacter
 
 		private Rigidbody2D rb;
 
-		private Vector2 speedLimit = new Vector2(5, 10);
+		private Vector2 speedLimit = new Vector2(5, 9);
 
 		Animator animator;
 
