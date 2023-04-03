@@ -21,7 +21,7 @@ namespace NEquipment
 		public void MoveWeaponAngle()
 		{
 			difference = Camera.main.ScreenToWorldPoint(mousePosition) - playerPosition;
-			angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+			angle = getMouseAngle();
 			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
 		}
 

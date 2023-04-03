@@ -11,6 +11,7 @@ namespace NEquipment
 			activeStartTime = Time.time;
 			isActive = true;
 			activeStartAngle = angle;
+			Debug.Log(activeStartAngle);
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
 			isCooling = true;
@@ -30,6 +31,7 @@ namespace NEquipment
 
 		public virtual void Update()
 		{
+			angle = getMouseAngle();
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
 			{
 				Debug.Log("Utility");

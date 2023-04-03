@@ -71,6 +71,13 @@ namespace NEquipment
 			Debug.Log(target.name + "のHPが" + atk + "削れた");
 		}
 
+		public float getMouseAngle()
+		{
+			Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;
+			float res = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+			return res;
+		}
+
 		public virtual IEnumerator Action()
 		{
 			yield break;

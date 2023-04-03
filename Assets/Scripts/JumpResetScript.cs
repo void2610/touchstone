@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class JumpResetScript : MonoBehaviour
 {
-    public bool j = false;
+	public bool j = false;
 
-    public GameObject player;
+	public GameObject player;
 
-    Animator animator;
+	Animator animator;
 
-    public int jumpCount = 0;
+	public int jumpCount = 0;
 
-    void Start()
-    {
-        animator = player.GetComponent<Animator>();
-    }
+	void Start()
+	{
+		animator = player.GetComponent<Animator>();
+	}
 
-    void Update()
-    {
-    }
+	void Update()
+	{
+	}
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag != "Trigger")
-        {
-            j = true;
-            jumpCount = 0;
-        }
-    }
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.gameObject.tag != "Trigger")
+		{
+			j = true;
+			jumpCount = 0;
+		}
+	}
 
-    void OnTriggerExsit2D(Collider2D other)
-    {
-        animator.SetInteger("PlayerState", 2);
-        j = false;
-    }
+	void OnTriggerExsit2D(Collider2D other)
+	{
+		animator.SetInteger("PlayerState", 2);
+		j = false;
+	}
 }

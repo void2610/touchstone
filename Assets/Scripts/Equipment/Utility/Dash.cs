@@ -6,6 +6,8 @@ namespace NEquipment
 
 	public class Dash : Utility
 	{
+		private Vector3 moveAngle;
+
 		public void Awake()
 		{
 			name = "Dash";
@@ -19,8 +21,13 @@ namespace NEquipment
 
 		public override void Effect()
 		{
-			Debug.Log("Dash");
-			player.transform.position += transform.forward * 10;
+
+
+			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad), Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
+
+			Debug.Log(moveAngle);
+
+			player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 1000);
 		}
 
 		public override void Start()
