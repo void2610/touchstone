@@ -34,11 +34,11 @@ namespace NEquipment
 		{
 			if (Mathf.Abs(attackStartAngle) < 90)
 			{
-				angle = attackStartAngle - ((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+				angle = attackStartAngle - animationCurve.Evaluate(((Time.time - attackStartTime) / activeTimeLength)) * attackDegree;
 			}
 			else
 			{
-				angle = attackStartAngle + ((Time.time - attackStartTime) / activeTimeLength) * attackDegree;
+				angle = attackStartAngle + animationCurve.Evaluate(((Time.time - attackStartTime) / activeTimeLength)) * attackDegree;
 			}
 			var radian = angle * (Mathf.PI / 180);
 			transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
