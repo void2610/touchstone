@@ -20,7 +20,7 @@ namespace NEquipment
 		{
 			// ここにダッシュの処理を書く
 			// 例えば、
-			transform.position += transform.forward * 10;
+			player.transform.position += transform.forward * 10;
 			// とか
 		}
 

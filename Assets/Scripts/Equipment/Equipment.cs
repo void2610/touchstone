@@ -4,6 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 	using NCharacter;
+	using UnityEngine.UI;
 
 	public class Equipment : MonoBehaviour
 	{
@@ -82,6 +83,7 @@ namespace NEquipment
 		public virtual void Start()
 		{
 			player = GameObject.Find("Player");
+			icon = Resources.Load<Sprite>("Pictures/Equipment/" + name);
 		}
 
 		public virtual void Update()
