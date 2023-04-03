@@ -12,8 +12,6 @@ namespace NEquipment
 
 		private float localScaleX;
 
-		private GameObject player;
-
 		public Vector3 playerPosition;
 
 		private Vector3 mousePosition;
@@ -29,8 +27,6 @@ namespace NEquipment
 
 		public void MoveWeaponPosition()
 		{
-			player = GameObject.Find("Player");
-
 			playerPosition = player.transform.position;
 			playerPosition.x -= 0.4f;
 			playerPosition.y -= 0.4f;
@@ -44,6 +40,11 @@ namespace NEquipment
 			var radian = angle * (Mathf.PI / 180);
 
 			this.transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
+		}
+
+		public override void Start()
+		{
+			base.Start();
 		}
 	}
 }

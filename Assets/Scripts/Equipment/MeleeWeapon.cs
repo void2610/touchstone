@@ -42,6 +42,7 @@ namespace NEquipment
 
 		public virtual void Start()
 		{
+			base.Start();
 			//iconに画像を入れる
 			icon = this.GetComponent<SpriteRenderer>().sprite;
 		}

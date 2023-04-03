@@ -62,6 +62,8 @@ namespace NEquipment
 		/// </summary>
 		public float angle;
 
+		public GameObject player;
+
 		public void CutHP(Character target, int atk)
 		{
 			target.hp -= atk;
@@ -79,6 +81,7 @@ namespace NEquipment
 
 		public virtual void Start()
 		{
+			player = GameObject.Find("Player");
 		}
 
 		public virtual void Update()

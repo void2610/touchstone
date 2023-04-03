@@ -35,13 +35,13 @@ namespace NEquipment
 			{
 				StartCoroutine(Action());
 			}
+		}
 
+		public virtual void FixedUpdate()
+		{
 			if (isActive)
 			{
 				Effect();
-			}
-			else
-			{
 			}
 		}
 	}
