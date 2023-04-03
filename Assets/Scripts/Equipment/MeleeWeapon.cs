@@ -54,7 +54,7 @@ namespace NEquipment
 				StartCoroutine(Action());
 			}
 
-			if (isActive)
+			if (isActive && isEnable && !isCooling)
 			{
 				Effect();
 			}
@@ -69,12 +69,12 @@ namespace NEquipment
 			if (isActive && isEnable && !isCooling)
 			{
 				// 装備の効果を発揮する処理
-				Debug.Log("Active");
+				//Debug.Log("Active");
 			}
 			if (isCooling)
 			{
 				// クールタイム中の処理
-				Debug.Log("Cooling");
+				//Debug.Log("Cooling");
 			}
 		}
 
@@ -96,7 +96,7 @@ namespace NEquipment
 				if (isActive)
 				{
 					target.hp -= attackPower;
-					Debug.Log(target.name + "を攻撃した");
+					//Debug.Log(target.name + "を攻撃した");
 
 					// if (target.hp <= 0)
 					// {

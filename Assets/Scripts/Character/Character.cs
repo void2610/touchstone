@@ -22,7 +22,7 @@ namespace NCharacter
 		public void CutHP(Character target)
 		{
 			target.hp -= atk;
-			Debug.Log(target.name + "のHPが" + atk + "削れた");
+			//Debug.Log(target.name + "のHPが" + atk + "削れた");
 		}
 
 		public Character SearchCharacter(GameObject target)
