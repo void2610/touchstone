@@ -11,7 +11,6 @@ namespace NEquipment
 			activeStartTime = Time.time;
 			isActive = true;
 			activeStartAngle = angle;
-			Debug.Log(activeStartAngle);
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
 			isCooling = true;

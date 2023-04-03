@@ -21,13 +21,9 @@ namespace NEquipment
 
 		public override void Effect()
 		{
-
-
+			//座標弄る？
 			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad), Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
-
-			Debug.Log(moveAngle);
-
-			player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 50, ForceMode2D.Impulse);
+			player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 1, ForceMode2D.Impulse);
 		}
 
 		public override void Start()

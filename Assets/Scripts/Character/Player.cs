@@ -101,28 +101,28 @@ namespace NCharacter
 				//this.rb.velocity = new Vector2(0, this.rb.velocity.y);
 			}
 
-			if (Math.Abs(rb.velocity.x) > speedLimit.x)
-			{
-				if (rb.velocity.x > 0)
-				{
-					rb.velocity = new Vector2(speedLimit.x, rb.velocity.y);
-				}
-				else
-				{
-					rb.velocity = new Vector2(-speedLimit.x, rb.velocity.y);
-				}
-			}
-			if (Math.Abs(rb.velocity.y) > speedLimit.y)
-			{
-				if (rb.velocity.y > 0)
-				{
-					rb.velocity = new Vector2(rb.velocity.x, speedLimit.y);
-				}
-				else
-				{
-					rb.velocity = new Vector2(rb.velocity.x, -speedLimit.y);
-				}
-			}
+			// if (Math.Abs(rb.velocity.x) > speedLimit.x)
+			// {
+			// 	if (rb.velocity.x > 0)
+			// 	{
+			// 		rb.velocity = new Vector2(speedLimit.x, rb.velocity.y);
+			// 	}
+			// 	else
+			// 	{
+			// 		rb.velocity = new Vector2(-speedLimit.x, rb.velocity.y);
+			// 	}
+			// }
+			// if (Math.Abs(rb.velocity.y) > speedLimit.y)
+			// {
+			// 	if (rb.velocity.y > 0)
+			// 	{
+			// 		rb.velocity = new Vector2(rb.velocity.x, speedLimit.y);
+			// 	}
+			// 	else
+			// 	{
+			// 		rb.velocity = new Vector2(rb.velocity.x, -speedLimit.y);
+			// 	}
+			// }
 		}
 	}
 }
