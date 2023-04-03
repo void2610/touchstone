@@ -63,7 +63,6 @@ namespace NCharacter
 					direction = 1;
 					if (Math.Abs(rb.velocity.x) < 100000)
 					{
-						//rb.AddForce(transform.right * speed);
 						rb.velocity = new Vector2(speed * direction, rb.velocity.y);
 					}
 				}
@@ -81,7 +80,6 @@ namespace NCharacter
 					direction = -1;
 					if (Math.Abs(rb.velocity.x) < 100)
 					{
-						//rb.AddForce(-transform.right * speed);
 						rb.velocity = new Vector2(speed * direction, rb.velocity.y);
 					}
 				}
@@ -100,32 +98,7 @@ namespace NCharacter
 						animator.SetInteger("PlayerState", 1);
 					}
 				}
-				Debug.Log(rb.velocity.x);
-				//this.rb.velocity = new Vector2(0, this.rb.velocity.y);
 			}
-
-			// if (Math.Abs(rb.velocity.x) > speedLimit.x)
-			// {
-			// 	if (rb.velocity.x > 0)
-			// 	{
-			// 		rb.velocity = new Vector2(speedLimit.x, rb.velocity.y);
-			// 	}
-			// 	else
-			// 	{
-			// 		rb.velocity = new Vector2(-speedLimit.x, rb.velocity.y);
-			// 	}
-			// }
-			// if (Math.Abs(rb.velocity.y) > speedLimit.y)
-			// {
-			// 	if (rb.velocity.y > 0)
-			// 	{
-			// 		rb.velocity = new Vector2(rb.velocity.x, speedLimit.y);
-			// 	}
-			// 	else
-			// 	{
-			// 		rb.velocity = new Vector2(rb.velocity.x, -speedLimit.y);
-			// 	}
-			// }
 		}
 	}
 }
