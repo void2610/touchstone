@@ -27,7 +27,7 @@ namespace NEquipment
 
 			Debug.Log(moveAngle);
 
-			player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 1000);
+			player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 50);
 		}
 
 		public override void Start()

@@ -18,6 +18,8 @@ namespace NCharacter
 
 		private Rigidbody2D rb;
 
+		private Vector2 speedLimit = new Vector2(5, 10);
+
 		Animator animator;
 
 		JumpResetScript jrs;
@@ -39,8 +41,6 @@ namespace NCharacter
 		{
 			base.Update();
 			jp = jrs.jumpCount;
-
-			//ジャンプ
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
 			{
 				if (this.jp < 1)
@@ -61,7 +61,7 @@ namespace NCharacter
 				if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
 				{
 					direction = 1;
-					if (Math.Abs(rb.velocity.x) < 10)
+					if (Math.Abs(rb.velocity.x) < 100000)
 					{
 						rb.AddForce(transform.right * speed);
 					}
@@ -98,32 +98,29 @@ namespace NCharacter
 						animator.SetInteger("PlayerState", 1);
 					}
 				}
-				if (!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D))
-				{
-					this.rb.velocity = new Vector2(0, this.rb.velocity.y);
-				}
+				//this.rb.velocity = new Vector2(0, this.rb.velocity.y);
 			}
 
-			if (Math.Abs(rb.velocity.x) > 30)
+			if (Math.Abs(rb.velocity.x) > speedLimit.x)
 			{
 				if (rb.velocity.x > 0)
 				{
-					rb.velocity = new Vector2(30, rb.velocity.y);
+					rb.velocity = new Vector2(speedLimit.x, rb.velocity.y);
 				}
 				else
 				{
-					rb.velocity = new Vector2(-30, rb.velocity.y);
+					rb.velocity = new Vector2(-speedLimit.x, rb.velocity.y);
 				}
 			}
-			if (Math.Abs(rb.velocity.y) > 30)
+			if (Math.Abs(rb.velocity.y) > speedLimit.y)
 			{
 				if (rb.velocity.y > 0)
 				{
-					rb.velocity = new Vector2(rb.velocity.x, 10);
+					rb.velocity = new Vector2(rb.velocity.x, speedLimit.y);
 				}
 				else
 				{
-					rb.velocity = new Vector2(rb.velocity.x, -10);
+					rb.velocity = new Vector2(rb.velocity.x, -speedLimit.y);
 				}
 			}
 		}
