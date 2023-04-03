@@ -12,13 +12,13 @@ namespace NCharacter
 
 		public bool jumpable = true;
 
-		public float jumpForce = 500f;
+		public float jumpForce = 600f;
 
 		public int jp = 0;
 
 		private Rigidbody2D rb;
 
-		private Vector2 speedLimit = new Vector2(5, 9);
+		private Vector2 speedLimit = new Vector2(5, 30);
 
 		Animator animator;
 
@@ -63,7 +63,8 @@ namespace NCharacter
 					direction = 1;
 					if (Math.Abs(rb.velocity.x) < 100000)
 					{
-						rb.AddForce(transform.right * speed);
+						//rb.AddForce(transform.right * speed);
+						rb.velocity = new Vector2(speed * direction, rb.velocity.y);
 					}
 				}
 				else
@@ -80,7 +81,8 @@ namespace NCharacter
 					direction = -1;
 					if (Math.Abs(rb.velocity.x) < 100)
 					{
-						rb.AddForce(-transform.right * speed);
+						//rb.AddForce(-transform.right * speed);
+						rb.velocity = new Vector2(speed * direction, rb.velocity.y);
 					}
 				}
 				else
@@ -98,6 +100,7 @@ namespace NCharacter
 						animator.SetInteger("PlayerState", 1);
 					}
 				}
+				Debug.Log(rb.velocity.x);
 				//this.rb.velocity = new Vector2(0, this.rb.velocity.y);
 			}
 

@@ -41,16 +41,14 @@ namespace NRoom
 			{
 				int len = (int)Random.Range(4, 10);
 				int xPos = rooms[i - 1].position.x + rooms[i - 1].length;
-				int yPos = (int)Random.Range(-1, 1);
+				int yPos = 1; //(int)Random.Range(-1, 1);
 				pos = new Vector3(xPos, yPos, 0);
 				rooms[i] = new SurfaceRoom(tilemap, pos, len, ground, underground);
 
 				//敵を生成
 				if (Random.value < enemyProbability)
 				{
-					Instantiate(slime,
-					new Vector3Int(xPos + 1, yPos + 2, 0),
-					Quaternion.identity);
+					//Instantiate(slime, new Vector3Int(xPos + 1, yPos + 2, 0), Quaternion.identity);
 				}
 			}
 			pos = new Vector3(rooms[maxRoomNum - 1].position.x + rooms[maxRoomNum - 1].length, pos.y, 0);

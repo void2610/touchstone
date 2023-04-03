@@ -16,14 +16,15 @@ namespace NEquipment
 			coolTimeLength = 0.1f;
 			isEnable = true;
 			isActive = false;
-			activeTimeLength = 0.3f;
+			activeTimeLength = 0.1f;
 		}
 
 		public override void Effect()
 		{
 			//座標弄る？
 			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad), Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
-			player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 1, ForceMode2D.Impulse);
+			player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 4, ForceMode2D.Impulse);
+			//player.transform.Translate(moveAngle * 1f);
 		}
 
 		public override void Start()
