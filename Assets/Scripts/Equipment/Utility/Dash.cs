@@ -10,6 +10,7 @@ namespace NEquipment
 		{
 			name = "Dash";
 			actionKey = "Fire3";
+			isCooling = false;
 			coolTimeLength = 0.1f;
 			isEnable = true;
 			isActive = false;
@@ -18,10 +19,8 @@ namespace NEquipment
 
 		public override void Effect()
 		{
-			// ここにダッシュの処理を書く
-			// 例えば、
+			Debug.Log("Dash");
 			player.transform.position += transform.forward * 10;
-			// とか
 		}
 
 		public override void Start()
