@@ -20,7 +20,6 @@ namespace NEquipment
 
 		private Vector3 difference;
 
-		public float angle;
 		public void MoveWeaponAngle()
 		{
 			difference = Camera.main.ScreenToWorldPoint(mousePosition) - playerPosition;
@@ -45,10 +44,6 @@ namespace NEquipment
 			var radian = angle * (Mathf.PI / 180);
 
 			this.transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
-		}
-
-		public virtual void Start()
-		{
 		}
 	}
 }

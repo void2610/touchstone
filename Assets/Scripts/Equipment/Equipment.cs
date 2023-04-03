@@ -38,6 +38,16 @@ namespace NEquipment
 		public float activeTimeLength;
 
 		/// <summary>
+		/// 装備が効果を発揮する時間の開始時間
+		/// </summary>
+		public float activeStartTime = 0;
+
+		/// <summary>
+		/// 装備が効果を発揮する時間の開始時の角度
+		/// </summary>
+		public float activeStartAngle = 0;
+
+		/// <summary>
 		/// 装備が効果を発揮しているかどうか
 		/// </summary>
 		public bool isActive;
@@ -46,6 +56,11 @@ namespace NEquipment
 		/// 装備のアイコン画像
 		/// </summary>
 		public Sprite icon;
+
+		/// <summary>
+		/// マウスの角度
+		/// </summary>
+		public float angle;
 
 		public void CutHP(Character target, int atk)
 		{
@@ -57,6 +72,11 @@ namespace NEquipment
 		{
 			yield break;
 		}
+
+		public virtual void Effect()
+		{
+		}
+
 		public virtual void Start()
 		{
 		}

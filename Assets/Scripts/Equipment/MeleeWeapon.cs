@@ -11,17 +11,11 @@ namespace NEquipment
 
 		public float attackDegree = 60f;
 
-		private float attackStartTime = 0;
-
-		private float attackStartAngle = 0;
-
-
-
 		public override IEnumerator Action()
 		{
-			attackStartTime = Time.time;
+			activeStartTime = Time.time;
 			isActive = true;
-			attackStartAngle = angle;
+			activeStartAngle = angle;
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
 			isCooling = true;
@@ -30,15 +24,15 @@ namespace NEquipment
 			yield break;
 		}
 
-		private void AttackAnimation()
+		public virtual void Effect()
 		{
-			if (Mathf.Abs(attackStartAngle) < 90)
+			if (Mathf.Abs(activeStartAngle) < 90)
 			{
-				angle = attackStartAngle - animationCurve.Evaluate(((Time.time - attackStartTime) / activeTimeLength)) * attackDegree;
+				angle = activeStartAngle - animationCurve.Evaluate(((Time.time - activeStartTime) / activeTimeLength)) * attackDegree;
 			}
 			else
 			{
-				angle = attackStartAngle + animationCurve.Evaluate(((Time.time - attackStartTime) / activeTimeLength)) * attackDegree;
+				angle = activeStartAngle + animationCurve.Evaluate(((Time.time - activeStartTime) / activeTimeLength)) * attackDegree;
 			}
 			var radian = angle * (Mathf.PI / 180);
 			transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
@@ -63,7 +57,7 @@ namespace NEquipment
 
 			if (isActive)
 			{
-				AttackAnimation();
+				Effect();
 			}
 			else
 			{
