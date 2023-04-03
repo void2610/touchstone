@@ -297,7 +297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &347372025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1024,10 +1024,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0014150441, y: -0.0034494847}
+  m_Offset: {x: 0.15952903, y: 0.15881917}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.27, y: 0.28}
     adaptiveTilingThreshold: 0.5
@@ -1035,7 +1035,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.33397335, y: 0.33439806}
+  m_Size: {x: 0.3247009, y: 0.31982696}
   m_EdgeRadius: 0
 --- !u!212 &1072354940
 SpriteRenderer:
@@ -1130,7 +1130,34 @@ MonoBehaviour:
   angle: 0
   animationCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5651538
+      value: 0.28192532
+      inSlope: 0.78028506
+      outSlope: 0.78028506
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0072021
+      value: 1.2302742
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

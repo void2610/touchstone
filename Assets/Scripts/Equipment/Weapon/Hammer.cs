@@ -10,7 +10,7 @@ namespace NEquipment
 		{
 			name = "Hammer";
 			actionKey = "Fire1";
-			coolTimeLength = 0.3f;
+			coolTimeLength = 0.25f;
 			isEnable = true;
 			isActive = false;
 			activeTimeLength = 0.9f;
