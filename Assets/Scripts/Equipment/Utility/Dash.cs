@@ -22,9 +22,10 @@ namespace NEquipment
 		public override void Effect()
 		{
 			//座標弄る？
-			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad), Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
-			player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 4, ForceMode2D.Impulse);
+			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
+			//player.GetComponent<Rigidbody2D>().AddForce(moveAngle * 4, ForceMode2D.Impulse);
 			//player.transform.Translate(moveAngle * 1f);
+			player.GetComponent<Rigidbody2D>().velocity = moveAngle * 12;
 		}
 
 		public override void Start()
