@@ -18,6 +18,7 @@ namespace NEquipment
 			activeStartAngle = angle;
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
+			Oninvalid();
 			isCooling = true;
 			yield return new WaitForSeconds(coolTimeLength);
 			isCooling = false;
@@ -38,6 +39,10 @@ namespace NEquipment
 			transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
 			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
 			return;
+		}
+
+		public virtual void Oninvalid()
+		{
 		}
 
 		public virtual void Start()

@@ -82,10 +82,14 @@ namespace NEquipment
 		{
 		}
 
+		public virtual void Oninvalid()
+		{
+		}
+
 		public virtual void Start()
 		{
 			player = GameObject.Find("Player");
-			//icon = Resources.Load<Sprite>("Pictures/Equipment/" + name);
+
 		}
 
 		public virtual void Update()

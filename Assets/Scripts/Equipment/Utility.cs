@@ -13,6 +13,7 @@ namespace NEquipment
 			activeStartAngle = angle;
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
+			Oninvalid();
 			isCooling = true;
 			yield return new WaitForSeconds(coolTimeLength);
 			isCooling = false;
@@ -20,6 +21,10 @@ namespace NEquipment
 		}
 
 		public virtual void Effect()
+		{
+		}
+
+		public virtual void Oninvalid()
 		{
 		}
 
