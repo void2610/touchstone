@@ -49,6 +49,11 @@ namespace NEquipment
 		public float activeStartAngle = 0;
 
 		/// <summary>
+		/// 装備が効果を発揮する時間の開始時のマウス位置
+		/// </summary>
+		public Vector2 activeStartPosition = Vector2.zero;
+
+		/// <summary>
 		/// 装備が効果を発揮しているかどうか
 		/// </summary>
 		public bool isActive;
@@ -70,6 +75,12 @@ namespace NEquipment
 		{
 			Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;
 			float res = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+			return res;
+		}
+
+		public Vector2 getMousePosition()
+		{
+			Vector2 res = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;
 			return res;
 		}
 
