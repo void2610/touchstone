@@ -25,7 +25,7 @@ namespace NEquipment
 			player.GetComponent<Rigidbody2D>().velocity = moveAngle * 40;
 		}
 
-		public override void Oninvalid()
+		public override void OnActionEnd()
 		{
 			player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 		}

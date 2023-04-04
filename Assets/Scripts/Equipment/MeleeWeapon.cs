@@ -16,9 +16,10 @@ namespace NEquipment
 			activeStartTime = Time.time;
 			isActive = true;
 			activeStartAngle = angle;
+			OnActionStart();
 			yield return new WaitForSeconds(activeTimeLength);
 			isActive = false;
-			Oninvalid();
+			OnActionEnd();
 			isCooling = true;
 			yield return new WaitForSeconds(coolTimeLength);
 			isCooling = false;
@@ -41,7 +42,7 @@ namespace NEquipment
 			return;
 		}
 
-		public virtual void Oninvalid()
+		public virtual void OnActionStart()
 		{
 		}
 

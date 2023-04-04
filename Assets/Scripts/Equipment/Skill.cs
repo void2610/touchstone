@@ -13,11 +13,12 @@ namespace NEquipment
 			isActive = true;
 			activeStartAngle = angle;
 			activeStartPosition = getMousePosition();
+			OnActionStart();
 			yield return new WaitForSeconds(activeTimeLength);
 			if (isActive)
 			{
 				isActive = false;
-				Oninvalid();
+				OnActionEnd();
 				StartCoroutine(CoolTime());
 			}
 		}
@@ -34,7 +35,7 @@ namespace NEquipment
 		{
 		}
 
-		public virtual void Oninvalid()
+		public virtual void OnActionEnd()
 		{
 		}
 
@@ -56,7 +57,7 @@ namespace NEquipment
 				//長押しを離したらクールタイムが始まる
 				isActive = false;
 				activeStartTime = 0;
-				Oninvalid();
+				OnActionEnd();
 				StartCoroutine(CoolTime());
 			}
 		}

@@ -24,7 +24,7 @@ namespace NEquipment
 			player.GetComponent<Player>().isMovable = false;
 		}
 
-		public override void Oninvalid()
+		public override void OnActionEnd()
 		{
 			player.GetComponent<Player>().isInvincible = false;
 			player.GetComponent<Player>().isMovable = true;

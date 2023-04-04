@@ -80,7 +80,7 @@ namespace NEquipment
 
 		public Vector2 getMousePosition()
 		{
-			Vector2 res = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;
+			Vector2 res = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			return res;
 		}
 
@@ -89,11 +89,15 @@ namespace NEquipment
 			yield break;
 		}
 
+		public virtual void OnActionStart()
+		{
+		}
+
 		public virtual void Effect()
 		{
 		}
 
-		public virtual void Oninvalid()
+		public virtual void OnActionEnd()
 		{
 		}
 
