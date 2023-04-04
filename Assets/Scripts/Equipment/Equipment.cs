@@ -54,11 +54,6 @@ namespace NEquipment
 		public bool isActive;
 
 		/// <summary>
-		/// 装備のアイコン画像
-		/// </summary>
-		public Sprite icon;
-
-		/// <summary>
 		/// マウスの角度
 		/// </summary>
 		public float angle;
@@ -90,7 +85,7 @@ namespace NEquipment
 		public virtual void Start()
 		{
 			player = GameObject.Find("Player");
-			icon = Resources.Load<Sprite>("Pictures/Equipment/" + name);
+			//icon = Resources.Load<Sprite>("Pictures/Equipment/" + name);
 		}
 
 		public virtual void Update()
