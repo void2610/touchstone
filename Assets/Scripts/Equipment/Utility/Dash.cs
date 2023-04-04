@@ -13,7 +13,7 @@ namespace NEquipment
 			name = "Dash";
 			actionKey = "Fire3";
 			isCooling = false;
-			coolTimeLength = 0.1f;
+			coolTimeLength = 1.0f;
 			isEnable = true;
 			isActive = false;
 			activeTimeLength = 0.1f;
@@ -22,7 +22,7 @@ namespace NEquipment
 		public override void Effect()
 		{
 			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
-			player.GetComponent<Rigidbody2D>().velocity = moveAngle * 12;
+			player.GetComponent<Rigidbody2D>().velocity = moveAngle * 15;
 		}
 
 		public override void Start()
