@@ -16,13 +16,18 @@ namespace NEquipment
 			coolTimeLength = 1.0f;
 			isEnable = true;
 			isActive = false;
-			activeTimeLength = 0.1f;
+			activeTimeLength = 0.17f;
 		}
 
 		public override void Effect()
 		{
 			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
-			player.GetComponent<Rigidbody2D>().velocity = moveAngle * 15;
+			player.GetComponent<Rigidbody2D>().velocity = moveAngle * 40;
+		}
+
+		public override void Oninvalid()
+		{
+			player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 		}
 
 		public override void Start()
