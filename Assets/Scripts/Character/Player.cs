@@ -98,8 +98,6 @@ namespace NCharacter
 						animator.SetInteger("PlayerState", 1);
 					}
 				}
-
-				Debug.Log(MathF.Abs(this.GetComponent<Rigidbody2D>().velocity.x));
 			}
 		}
 	}
