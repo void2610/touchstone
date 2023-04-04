@@ -18,11 +18,16 @@ namespace NCharacter
 
 		public Vector2 firstLScale;
 
+		public bool isInvincible = false;
+
 		//相手のHPを減らす機能
 		public void CutHP(Character target)
 		{
-			target.hp -= atk;
-			//Debug.Log(target.name + "のHPが" + atk + "削れた");
+			if (target.isInvincible == false)
+			{
+				target.hp -= atk;
+				//Debug.Log(target.name + "のHPが" + atk + "削れた");
+			}
 		}
 
 		public Character SearchCharacter(GameObject target)

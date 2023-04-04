@@ -3,6 +3,7 @@ namespace NEquipment
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using NCharacter;
 
 	public class Guard : Skill
 	{
@@ -20,11 +21,13 @@ namespace NEquipment
 		public override void Effect()
 		{
 			Debug.Log("Guard");
+			player.GetComponent<Player>().isInvincible = true;
 		}
 
 		public override void Oninvalid()
 		{
 			Debug.Log("End");
+			player.GetComponent<Player>().isInvincible = false;
 		}
 
 		public override void Start()
