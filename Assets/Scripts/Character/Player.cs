@@ -10,11 +10,11 @@ namespace NCharacter
 	{
 		public float speed;
 
-		public bool jumpable = true;
-
 		public float jumpForce = 600f;
 
 		public int jp = 0;
+
+		public bool isMovable = true;
 
 		private Rigidbody2D rb;
 
@@ -55,7 +55,7 @@ namespace NCharacter
 		{
 			base.FixedUpdate();
 
-			if (GameObject.Find("GameController").GetComponent<GameControlScript>().movable)
+			if (isMovable)
 			{
 				//右入力で右向きに動く
 				if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
@@ -91,13 +91,15 @@ namespace NCharacter
 					}
 				}
 
-				if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+				if (MathF.Abs(this.GetComponent<Rigidbody2D>().velocity.x) > 0.1f)
 				{
 					if (this.jp < 1)
 					{
 						animator.SetInteger("PlayerState", 1);
 					}
 				}
+
+				Debug.Log(MathF.Abs(this.GetComponent<Rigidbody2D>().velocity.x));
 			}
 		}
 	}

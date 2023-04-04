@@ -20,14 +20,14 @@ namespace NEquipment
 
 		public override void Effect()
 		{
-			Debug.Log("Guard");
 			player.GetComponent<Player>().isInvincible = true;
+			player.GetComponent<Player>().isMovable = false;
 		}
 
 		public override void Oninvalid()
 		{
-			Debug.Log("End");
 			player.GetComponent<Player>().isInvincible = false;
+			player.GetComponent<Player>().isMovable = true;
 		}
 
 		public override void Start()
