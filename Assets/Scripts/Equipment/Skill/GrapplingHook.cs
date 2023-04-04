@@ -7,7 +7,7 @@ namespace NEquipment
 	public class GrapplingHook : Skill
 	{
 		private float hookLength = 10;
-		private float hookPullSpeed = 2000;
+		private float hookPullSpeed = 10;
 		private Vector2 playerPosition;
 		private Vector2 direction;
 
@@ -26,13 +26,11 @@ namespace NEquipment
 			coolTimeLength = 1.0f;
 			isEnable = true;
 			isActive = false;
-			activeTimeLength = 5f;
+			activeTimeLength = 15;
 		}
 
 		public override void Effect()
 		{
-			this.transform.position = new Vector3(playerPosition.x, playerPosition.y, -1);
-
 		}
 
 		public override void OnActionStart()
@@ -53,7 +51,7 @@ namespace NEquipment
 
 			joint.enabled = true;
 			joint.connectedAnchor = activeStartPosition;
-			joint.distance = distance - 3;
+			joint.distance = distance - hookPullSpeed;
 			//joint.frequency = hookPullSpeed;
 		}
 
