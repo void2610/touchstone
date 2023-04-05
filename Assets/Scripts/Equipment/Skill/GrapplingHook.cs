@@ -6,15 +6,11 @@ namespace NEquipment
 
 	public class GrapplingHook : Skill
 	{
-		private float hookLength = 999;
-		private float hookPullSpeed = 3;
+		private float hookLength = 10;
 		private Vector2 playerPosition;
 		private Vector2 direction;
-
-		private float distance = 0;
-
+		private float frequency = 0;
 		private Rigidbody2D rb;
-
 		private SpringJoint2D joint;
 		private LineRenderer lineRenderer;
 
@@ -26,7 +22,7 @@ namespace NEquipment
 			coolTimeLength = 1.0f;
 			isEnable = true;
 			isActive = false;
-			activeTimeLength = 15;
+			activeTimeLength = 0.2f;
 		}
 
 		public override void Effect()
@@ -36,23 +32,13 @@ namespace NEquipment
 		public override void OnActionStart()
 		{
 			playerPosition = player.GetComponent<Rigidbody2D>().position;
-
 			direction = activeStartPosition - playerPosition;
-
-			player.GetComponent<Rigidbody2D>().AddForce(direction * 5);
-
-			distance = direction.magnitude;
-			if (distance < hookLength)
-			{
-				distance = hookLength;
-			}
+			//player.GetComponent<Rigidbody2D>().AddForce(direction);
 
 			lineRenderer.enabled = true;
 
 			joint.enabled = true;
 			joint.connectedAnchor = activeStartPosition;
-			joint.distance = 0.5f;
-			joint.frequency = hookPullSpeed;
 		}
 
 		public override void OnActionEnd()
@@ -68,15 +54,15 @@ namespace NEquipment
 			rb = this.GetComponent<Rigidbody2D>();
 			joint = player.GetComponent<SpringJoint2D>();
 			joint.enabled = false;
+
 			lineRenderer = this.GetComponent<LineRenderer>();
 			lineRenderer.positionCount = 2;
 		}
-		public override void Update()
+		public override void FixedUpdate()
 		{
-			base.Update();
+			base.FixedUpdate();
 			if (joint.enabled)
 			{
-
 				Vector3 pos = new Vector3(joint.connectedAnchor.x, joint.connectedAnchor.y, -1);
 				lineRenderer.SetPosition(0, player.transform.position);
 				lineRenderer.SetPosition(1, pos);
