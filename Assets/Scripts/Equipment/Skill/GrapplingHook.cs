@@ -22,7 +22,7 @@ namespace NEquipment
 			coolTimeLength = 1.0f;
 			isEnable = true;
 			isActive = false;
-			activeTimeLength = 0.2f;
+			activeTimeLength = 2f;
 		}
 
 		public override void Effect()
@@ -33,7 +33,6 @@ namespace NEquipment
 		{
 			playerPosition = player.GetComponent<Rigidbody2D>().position;
 			direction = activeStartPosition - playerPosition;
-			//player.GetComponent<Rigidbody2D>().AddForce(direction);
 
 			lineRenderer.enabled = true;
 
