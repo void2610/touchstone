@@ -4,7 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class GrapplingHook : Skill
+	public class Grapple : Skill
 	{
 		private float hookLength = 10;
 		private Vector2 playerPosition;
@@ -16,13 +16,13 @@ namespace NEquipment
 
 		public void Awake()
 		{
-			name = "GrapplingHook";
+			name = "Grapple";
 			actionKey = "Fire2";
 			isCooling = false;
 			coolTimeLength = 1.0f;
 			isEnable = true;
 			isActive = false;
-			activeTimeLength = 2f;
+			activeTimeLength = 3f;
 		}
 
 		public override void Effect()
@@ -45,6 +45,8 @@ namespace NEquipment
 			joint.enabled = false;
 			lineRenderer.enabled = false;
 			rb.velocity = Vector2.zero;
+			lineRenderer.SetPosition(0, Vector2.zero);
+			lineRenderer.SetPosition(1, Vector2.zero);
 		}
 
 		public override void Start()

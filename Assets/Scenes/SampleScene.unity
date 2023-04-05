@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 292822432}
   - component: {fileID: 292822434}
   m_Layer: 0
-  m_Name: GrapplingHook
+  m_Name: Grapple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,6 +399,13 @@ MonoBehaviour:
   isActive: 0
   angle: 0
   player: {fileID: 0}
+  hookLength: 10
+  playerPosition: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
+  frequency: 0
+  rb: {fileID: 0}
+  joint: {fileID: 0}
+  lineRenderer: {fileID: 0}
 --- !u!4 &292822430
 Transform:
   m_ObjectHideFlags: 0
