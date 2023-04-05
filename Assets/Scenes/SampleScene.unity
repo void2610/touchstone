@@ -364,10 +364,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 292822430}
-  - component: {fileID: 292822429}
   - component: {fileID: 292822433}
   - component: {fileID: 292822432}
   - component: {fileID: 292822434}
+  - component: {fileID: 292822435}
   m_Layer: 0
   m_Name: Grapple
   m_TagString: Untagged
@@ -375,37 +375,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &292822429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292822428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4525e1ebc0346e944a81a43663ffdb3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
-  actionKey: 
-  coolTimeLength: 0
-  isCooling: 0
-  isEnable: 0
-  activeTimeLength: 0
-  activeStartTime: 0
-  activeStartAngle: 0
-  activeStartPosition: {x: 0, y: 0}
-  isActive: 0
-  angle: 0
-  player: {fileID: 0}
-  hookLength: 10
-  playerPosition: {x: 0, y: 0}
-  direction: {x: 0, y: 0}
-  frequency: 0
-  rb: {fileID: 0}
-  joint: {fileID: 0}
-  lineRenderer: {fileID: 0}
 --- !u!4 &292822430
 Transform:
   m_ObjectHideFlags: 0
@@ -557,6 +526,30 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &292822435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292822428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bdb4ddd0a72084892141f0d2d10f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  actionKey: 
+  coolTimeLength: 0
+  isCooling: 0
+  isEnable: 0
+  activeTimeLength: 0
+  activeStartTime: 0
+  activeStartAngle: 0
+  activeStartPosition: {x: 0, y: 0}
+  isActive: 0
+  angle: 0
+  player: {fileID: 0}
 --- !u!1 &349875317
 GameObject:
   m_ObjectHideFlags: 0

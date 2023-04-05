@@ -7,7 +7,7 @@ public class SetEquipmentScript : MonoBehaviour
 	void Start()
 	{
 		PlayerPrefs.SetString("NowEquipWeapon", "Sword");
-		PlayerPrefs.SetString("NowEquipSkill", "Guard");
+		PlayerPrefs.SetString("NowEquipSkill", "Grapple");
 		PlayerPrefs.SetString("NowEquipUtility", "Dash");
 	}
 }
