@@ -3,9 +3,12 @@ namespace NEquipment
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using UnityEngine.UI;
 
 	public class Utility : Equipment
 	{
+		public GameObject gauge;
+
 		public override IEnumerator Action()
 		{
 			activeStartTime = Time.time;
@@ -16,6 +19,7 @@ namespace NEquipment
 			isActive = false;
 			OnActionEnd();
 			isCooling = true;
+			coolStartTime = Time.time;
 			yield return new WaitForSeconds(coolTimeLength);
 			isCooling = false;
 			yield break;
@@ -32,6 +36,7 @@ namespace NEquipment
 		public virtual void Start()
 		{
 			base.Start();
+			gauge = GameObject.Find("UtilityGauge");
 		}
 
 		public virtual void Update()
@@ -41,6 +46,11 @@ namespace NEquipment
 			{
 				Debug.Log("Utility");
 				StartCoroutine(Action());
+			}
+
+			if (isCooling)
+			{
+				gauge.GetComponent<Image>().fillAmount = 1 - ((Time.time - coolStartTime) / coolTimeLength);
 			}
 		}
 

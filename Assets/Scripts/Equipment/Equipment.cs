@@ -29,6 +29,11 @@ namespace NEquipment
 		public bool isCooling;
 
 		/// <summary>
+		/// クールタイムの開始時間
+		/// </summary>
+		public float coolStartTime;
+
+		/// <summary>
 		/// 装備を使用可能かどうか
 		/// </summary>
 		public bool isEnable;

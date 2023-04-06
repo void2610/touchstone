@@ -3,9 +3,13 @@ namespace NEquipment
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using UnityEngine.UI;
 
 	public class Skill : Equipment
 	{
+		public GameObject gauge;
+
+
 		//長押しでactiveTimeLengthの時間まで有効、長押しを離したらクールタイムが始まる
 		public override IEnumerator Action()
 		{
@@ -26,6 +30,7 @@ namespace NEquipment
 		public IEnumerator CoolTime()
 		{
 			isCooling = true;
+			coolStartTime = Time.time;
 			yield return new WaitForSeconds(coolTimeLength);
 			isCooling = false;
 			yield break;
@@ -42,6 +47,7 @@ namespace NEquipment
 		public virtual void Start()
 		{
 			base.Start();
+			gauge = GameObject.Find("SkillGauge");
 		}
 
 		public virtual void Update()
@@ -59,6 +65,11 @@ namespace NEquipment
 				activeStartTime = 0;
 				OnActionEnd();
 				StartCoroutine(CoolTime());
+			}
+
+			if (isCooling)
+			{
+				gauge.GetComponent<Image>().fillAmount = 1 - ((Time.time - coolStartTime) / coolTimeLength);
 			}
 		}
 

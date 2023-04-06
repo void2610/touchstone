@@ -4,12 +4,15 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 	using NCharacter;
+	using UnityEngine.UI;
 
 	public class MeleeWeapon : Weapon
 	{
 		public AnimationCurve animationCurve;
 
 		public float attackDegree = 60f;
+
+		public GameObject gauge;
 
 		public override IEnumerator Action()
 		{
@@ -21,6 +24,7 @@ namespace NEquipment
 			isActive = false;
 			OnActionEnd();
 			isCooling = true;
+			coolStartTime = Time.time;
 			yield return new WaitForSeconds(coolTimeLength);
 			isCooling = false;
 			yield break;
@@ -49,6 +53,7 @@ namespace NEquipment
 		public virtual void Start()
 		{
 			base.Start();
+			gauge = GameObject.Find("WeaponGauge");
 		}
 
 		public virtual void Update()
@@ -67,6 +72,11 @@ namespace NEquipment
 			else
 			{
 				MoveWeaponAngle();
+			}
+
+			if (isCooling)
+			{
+				gauge.GetComponent<Image>().fillAmount = 1 - ((Time.time - coolStartTime) / coolTimeLength);
 			}
 		}
 
