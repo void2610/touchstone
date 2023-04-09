@@ -24,9 +24,10 @@ namespace NRoom
 		//constructor
 		public Area()
 		{
-			position = new Vector3Int(0, 0, 0);
+			position = new Vector3Int(-1, -1, -1);
 			width = 0;
 			height = 0;
+			minSize = 1;
 			children = new Area[2];
 		}
 
@@ -46,12 +47,11 @@ namespace NRoom
 			{
 				return false;
 			}
-			Area area1 = new Area(this.position, x, this.height, this.minSize);
-			Area area2 = new Area(new Vector3Int(this.position.x + x, this.position.y, this.position.z), this.width - x, this.height, this.minSize);
-			children[0] = area1;
+
+			children[0] = new Area(this.position, x, this.height, this.minSize);
 			children[0].tile1 = tile1;
 			children[0].tile2 = tile2;
-			children[1] = area2;
+			children[1] = new Area(new Vector3Int(this.position.x + x, this.position.y, this.position.z), this.width - x, this.height, this.minSize);
 			children[1].tile1 = tile1;
 			children[1].tile2 = tile2;
 
@@ -66,12 +66,11 @@ namespace NRoom
 			{
 				return false;
 			}
-			Area area1 = new Area(this.position, this.width, y, this.minSize);
-			Area area2 = new Area(new Vector3Int(this.position.x, this.position.y + y, this.position.z), this.width, this.height - y, this.minSize);
-			children[0] = area1;
+
+			children[0] = new Area(this.position, this.width, y, this.minSize);
 			children[0].tile1 = tile1;
 			children[0].tile2 = tile2;
-			children[1] = area2;
+			children[1] = new Area(new Vector3Int(this.position.x, this.position.y + y, this.position.z), this.width, this.height - y, this.minSize);
 			children[1].tile1 = tile1;
 			children[1].tile2 = tile2;
 
