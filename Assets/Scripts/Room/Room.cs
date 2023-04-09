@@ -1,48 +1,50 @@
 namespace NRoom
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using UnityEngine;
-    using UnityEngine.Tilemaps;
+	using System.Collections;
+	using System.Collections.Generic;
+	using UnityEngine;
+	using UnityEngine.Tilemaps;
 
-    public class Room : MonoBehaviour
-    {
-        public Vector3Int position = new Vector3Int(0, 0, 0);
+	public class Room : MonoBehaviour
+	{
+		public Vector3Int position = new Vector3Int(0, 0, 0);
 
-        public int length;
+		public int width;
 
-        public TileBase surface;
+		public int height;
 
-        public TileBase underground;
+		public TileBase surface;
 
-        //constructor
-        public Room()
-        {
-            position = new Vector3Int(0, 0, 0);
-            length = 0;
-            surface = null;
-            underground = null;
-        }
+		public TileBase underground;
 
-        public Room(Vector3 pos, int len, TileBase sur, TileBase und)
-        {
-            //Vector3Intに変換してpositionに代入
-            position = new Vector3Int((int) pos.x, (int) pos.y, (int) pos.z);
-            length = len;
-            surface = sur;
-            underground = und;
-        }
+		//constructor
+		public Room()
+		{
+			position = new Vector3Int(0, 0, 0);
+			width = 0;
+			surface = null;
+			underground = null;
+		}
 
-        public virtual void CreateFloor()
-        {
-        }
+		public Room(Vector3 pos, int wid, TileBase sur, TileBase und)
+		{
+			//Vector3Intに変換してpositionに代入
+			position = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
+			width = wid;
+			surface = sur;
+			underground = und;
+		}
 
-        public virtual void Start()
-        {
-        }
+		public virtual void CreateFloor()
+		{
+		}
 
-        public virtual void Update()
-        {
-        }
-    }
+		public virtual void Start()
+		{
+		}
+
+		public virtual void Update()
+		{
+		}
+	}
 }

@@ -14,11 +14,11 @@ namespace NRoom
 		{
 		}
 
-		public SurfaceRoom(Tilemap tm, Vector3 pos, int len, TileBase sur, TileBase und) : base(pos, len, sur, und)
+		public SurfaceRoom(Tilemap tm, Vector3 pos, int wid, TileBase sur, TileBase und) : base(pos, wid, sur, und)
 		{
 			tilemap = tm;
 			base.position = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
-			base.length = len;
+			base.width = wid;
 			base.surface = sur;
 			base.underground = und;
 			CreateFloor();
@@ -26,7 +26,7 @@ namespace NRoom
 
 		public override void CreateFloor()
 		{
-			for (int i = 0; i < length; i++)
+			for (int i = 0; i < width; i++)
 			{
 				tilemap.SetTile(position + new Vector3Int(i, 0, 0), surface);
 				for (int k = -1; k > -20; k--)

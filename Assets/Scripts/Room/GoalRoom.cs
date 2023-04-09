@@ -13,10 +13,10 @@ namespace NRoom
 		{
 		}
 
-		public GoalRoom(Tilemap tm, Vector3 pos, int len, TileBase sur, TileBase und) : base(tm, pos, len, sur, und)
+		public GoalRoom(Tilemap tm, Vector3 pos, int wid, TileBase sur, TileBase und) : base(tm, pos, wid, sur, und)
 		{
 			base.position = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
-			base.length = len;
+			base.width = wid;
 			base.surface = sur;
 			base.underground = und;
 			CreateFloor();
@@ -31,11 +31,11 @@ namespace NRoom
 			GoalArea = (GameObject)Resources.Load("Prefabs/Room/GoalArea");
 
 			//ゴールエリアをpositionの位置に生成
-			Vector3 goalPosition = new Vector3(position.x + length / 2, position.y + 2, 0);
+			Vector3 goalPosition = new Vector3(position.x + width / 2, position.y + 2, 0);
 			GameObject _goal = Instantiate(GoalArea, goalPosition, Quaternion.identity);
 
 			//ゴールエリアをlengthの長さに変形
-			_goal.transform.localScale = new Vector3(length, 5, 1);
+			_goal.transform.localScale = new Vector3(width, 5, 1);
 		}
 	}
 }
