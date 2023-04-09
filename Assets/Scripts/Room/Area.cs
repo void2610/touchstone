@@ -94,5 +94,10 @@ namespace NRoom
 				}
 			}
 		}
+
+		public int GetSize()
+		{
+			return width * height;
+		}
 	}
 }

@@ -15,7 +15,9 @@ namespace NRoom
 
 		int gHeight = 0;
 
-		int maxRoomNum = 15;
+		private int maxRoomNum = 30;
+
+		private int minRoomNum = 15;
 
 		float enemyProbability = 0.7f;
 
@@ -23,15 +25,19 @@ namespace NRoom
 
 		private Area firstArea;
 
-		private Area[] areas = new Area[100];
+		private Area[] areas = new Area[500];
 
-		private int minAreaSize = 17;
+		private int minAreaSize = 10;
 
 		public GameObject slime;
 
 		private Tilemap tilemap;
 
 		private int areaCount = 0;
+
+		private int loopCount = 0;
+
+		private bool loopFlag = true;
 
 		void SplitRecursion(Area a)
 		{
@@ -75,6 +81,7 @@ namespace NRoom
 			}
 		}
 
+
 		void Start()
 		{
 			for (int i = 0; i < rooms.Length; i++)
@@ -87,17 +94,39 @@ namespace NRoom
 
 			Vector3 pos = new Vector3(0, 0, 0);
 
-			firstArea = new Area(new Vector3Int(0, 0, 0), 100, 100, minAreaSize);
+			firstArea = new Area(new Vector3Int(0, 0, 0), 75, 75, minAreaSize);
 			firstArea.tile1 = ground;
 			firstArea.tile2 = underground;
 
-			SplitRecursion(firstArea);
-			SearchAllArea(firstArea);
 
-			for (int i = 0; i < areaCount; i++)
+
+			while (areaCount > maxRoomNum || areaCount < minRoomNum || loopFlag)
 			{
-				Debug.Log(areas[i].position);
+				areaCount = 0;
+				tilemap.ClearAllTiles();
+				firstArea = new Area(new Vector3Int(0, 0, 0), 75, 75, minAreaSize);
+				firstArea.tile1 = ground;
+				firstArea.tile2 = underground;
+				SplitRecursion(firstArea);
+				SearchAllArea(firstArea);
+				loopCount++;
+				if (loopCount > 100)
+				{
+					Debug.Log("ループ回数が多すぎます");
+					break;
+				}
+				loopFlag = false;
+				for (int i = 0; i < areaCount; i++)
+				{
+					if (areas[i].GetSize() > 1000)
+					{
+						Debug.Log(areas[i].GetSize());
+						loopFlag = true;
+					}
+				}
 			}
+
+
 		}
 
 	}
