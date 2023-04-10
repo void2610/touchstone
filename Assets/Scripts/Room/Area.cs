@@ -8,17 +8,11 @@ namespace NRoom
 	public class Area : MonoBehaviour
 	{
 		public Vector3Int position = new Vector3Int(0, 0, 0);
-
 		public int width;
-
 		public int height;
-
 		public int minSize = 1;
-
 		public Area[] children;
-
 		public TileBase tile1;
-
 		public TileBase tile2;
 
 		//constructor
