@@ -24,7 +24,7 @@ namespace NRoom
 		private int loopCount = 0;
 		private bool loopFlag = true;
 
-		void SplitRecursion(Area a)
+		void SplitAreaRecursion(Area a)
 		{
 			bool ok = true;
 			//50%の確率でX方向に分割、50%の確率でY方向に分割
@@ -38,8 +38,8 @@ namespace NRoom
 			}
 			if (ok)
 			{
-				SplitRecursion(a.children[0]);
-				SplitRecursion(a.children[1]);
+				SplitAreaRecursion(a.children[0]);
+				SplitAreaRecursion(a.children[1]);
 			}
 		}
 
@@ -66,6 +66,34 @@ namespace NRoom
 			}
 		}
 
+		Room CreateRoom(Area a, int minSize)
+		{
+			//ランダムな大きさのRoomをAreaの内部に生成し、返す
+			Vector3Int pos = new Vector3Int(Random.Range(a.position.x + 1, a.position.x + a.width - 1), Random.Range(a.position.y + 1, a.position.y + a.height - 1), 0);
+			int wid = Random.Range(minSize, a.width - 1);
+			int hei = Random.Range(minSize, a.height - 1);
+			Room r = new Room(pos, wid, hei, ground, underground);
+			return r;
+		}
+		void CreateMap()
+		{
+			tilemap.ClearAllTiles();
+
+			firstArea = new Area(new Vector3Int(0, 0, 0), 75, 75, minAreaSize);
+			firstArea.tile1 = ground;
+			firstArea.tile2 = underground;
+
+			SplitAreaRecursion(firstArea);
+
+			areaCount = 0;
+			SearchAllArea(firstArea);
+
+			for (int i = 0; i < areaCount; i++)
+			{
+				rooms[i] = CreateRoom(areas[i], 3);
+			}
+		}
+
 
 		void Start()
 		{
@@ -84,34 +112,29 @@ namespace NRoom
 			firstArea.tile2 = underground;
 
 
-
+			//いい感じになるまでループ
 			while (areaCount > maxRoomNum || areaCount < minRoomNum || loopFlag)
 			{
-				areaCount = 0;
-				tilemap.ClearAllTiles();
-				firstArea = new Area(new Vector3Int(0, 0, 0), 75, 75, minAreaSize);
-				firstArea.tile1 = ground;
-				firstArea.tile2 = underground;
-				SplitRecursion(firstArea);
-				SearchAllArea(firstArea);
-				loopCount++;
+				CreateMap();
+
+				//ループ回数が多すぎたらやめる
 				if (loopCount > 100)
 				{
 					Debug.Log("ループ回数が多すぎます");
 					break;
 				}
+
+				//大きすぎる部屋があったらやり直し
 				loopFlag = false;
 				for (int i = 0; i < areaCount; i++)
 				{
 					if (areas[i].GetSize() > 1000)
 					{
-						Debug.Log(areas[i].GetSize());
 						loopFlag = true;
 					}
 				}
+				loopCount++;
 			}
-
-
 		}
 
 	}
