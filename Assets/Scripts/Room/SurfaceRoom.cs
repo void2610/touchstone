@@ -35,10 +35,5 @@ namespace NRoom
 				}
 			}
 		}
-
-		public override void Update()
-		{
-			base.Update();
-		}
 	}
 }

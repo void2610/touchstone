@@ -8,35 +8,20 @@ namespace NRoom
 	public class NewMapScript : MonoBehaviour
 	{
 		public TileBase ground;
-
 		public TileBase underground;
-
 		public TileBase goal;
-
 		int gHeight = 0;
-
 		private int maxRoomNum = 30;
-
 		private int minRoomNum = 15;
-
 		float enemyProbability = 0.7f;
-
 		private Room[] rooms = new Room[100];
-
 		private Area firstArea;
-
 		private Area[] areas = new Area[500];
-
 		private int minAreaSize = 10;
-
 		public GameObject slime;
-
 		private Tilemap tilemap;
-
 		private int areaCount = 0;
-
 		private int loopCount = 0;
-
 		private bool loopFlag = true;
 
 		void SplitRecursion(Area a)
