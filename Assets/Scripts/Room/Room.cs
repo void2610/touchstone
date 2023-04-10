@@ -8,15 +8,10 @@ namespace NRoom
 	public class Room : MonoBehaviour
 	{
 		public Vector3Int position = new Vector3Int(0, 0, 0);
-
 		public int width;
-
 		public int height;
-
 		public TileBase surface;
-
 		public TileBase underground;
-
 		//constructor
 		public Room()
 		{
