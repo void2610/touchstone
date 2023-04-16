@@ -16,8 +16,6 @@ namespace NRoom
 		private int minAreaSize = 25;
 		private int maxAreaSize = 32;
 		private Tilemap tilemap;
-		private int loopCount = 0;
-		private bool loopFlag = true;
 
 		void CreateArea()
 		{
@@ -29,15 +27,24 @@ namespace NRoom
 				x = Random.Range(minAreaSize + 10, maxAreaSize);
 				y = Random.Range(minAreaSize - 10, maxAreaSize);
 				areas[i] = new Area(new Vector3Int(areas[i - 1].position.x + areas[i - 1].width, areas[i - 1].position.y + Random.Range(-3, 3), 0), x, y);
-				areas[i].SetAllTile(ground);
-				Debug.Log(" width:" + areas[i].width + " height:" + areas[i].height);
+			}
+		}
+
+		void CreateRoom()
+		{
+			for (int i = 0; i < areaNum; i++)
+			{
+				rooms[i] = new Room(new Vector3Int(areas[i].position.x, areas[i].position.y, 0), areas[i].width, areas[i].height, ground);
+				rooms[i].SetAllTileRoom(ground);
 			}
 		}
 
 		void CreateMap()
 		{
-			tilemap.ClearAllTiles();
 			CreateArea();
+			CreateRoom();
+
+			rooms[areaNum + 1] = new GoalRoom(new Vector3Int(areas[areaNum - 1].position.x + areas[areaNum - 1].width, areas[areaNum - 1].position.y + Random.Range(-3, 3), 0), 5, 5, ground);
 		}
 
 
@@ -51,10 +58,7 @@ namespace NRoom
 				areas[i] = new Area();
 			}
 
-			tilemap = GetComponent<Tilemap>();
 			CreateMap();
-
-			Vector3 pos = new Vector3(0, 0, 0);
 		}
 
 	}

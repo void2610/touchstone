@@ -13,18 +13,21 @@ namespace NRoom
 		{
 		}
 
-		public GoalRoom(Tilemap tm, Vector3 pos, int wid, int hei, TileBase sur, TileBase und) : base(tm, pos, wid, hei, sur, und)
+		public GoalRoom(Vector3 pos, int wid, int hei, TileBase sur) : base(pos, wid, hei, sur)
 		{
 			base.position = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
 			base.width = wid;
 			base.height = hei;
 			base.surface = sur;
-			base.underground = und;
-			CreateFloor();
-			CreateGoal();
+			CreateRoomObject();
 		}
 
 		private GameObject GoalArea;
+
+		public override void CreateRoomObject()
+		{
+			CreateGoal();
+		}
 
 		void CreateGoal()
 		{

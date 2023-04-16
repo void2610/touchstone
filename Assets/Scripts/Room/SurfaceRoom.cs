@@ -14,19 +14,18 @@ namespace NRoom
 		{
 		}
 
-		public SurfaceRoom(Tilemap tm, Vector3 pos, int wid, int hei, TileBase sur, TileBase und) : base(pos, wid, hei, sur, und)
+		public SurfaceRoom(Vector3 pos, int wid, int hei, TileBase sur) : base(pos, wid, hei, sur)
 		{
-			tilemap = tm;
 			base.position = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
 			base.width = wid;
 			base.height = hei;
 			base.surface = sur;
-			base.underground = und;
-			CreateFloor();
+			CreateRoomObject();
 		}
 
-		public override void CreateFloor()
+		public override void CreateRoomObject()
 		{
+			tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
 			for (int i = 0; i < width; i++)
 			{
 				tilemap.SetTile(position + new Vector3Int(i, 0, 0), surface);
