@@ -48,13 +48,11 @@ namespace NRoom
 		public void CreateUnderGround()
 		{
 			TileBase underground = Resources.Load("Tiles/UndergroundTile") as TileBase;
-			Debug.Log(underground);
 			for (int i = 0; i < width; i++)
 			{
 				for (int k = -1; k > -20; k--)
 				{
 					GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(position + new Vector3Int(i, k, 0), underground);
-					Debug.Log(position + new Vector3Int(i, k, 0));
 				}
 			}
 		}
