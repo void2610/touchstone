@@ -29,7 +29,7 @@ namespace NRoom
 			//Vector3Intに変換してpositionに代入
 			position = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
 			width = wid;
-			haight = hei;
+			height = hei;
 			surface = sur;
 			underground = und;
 		}

@@ -13,10 +13,11 @@ namespace NRoom
 		{
 		}
 
-		public GoalRoom(Tilemap tm, Vector3 pos, int wid, TileBase sur, TileBase und) : base(tm, pos, wid, sur, und)
+		public GoalRoom(Tilemap tm, Vector3 pos, int wid, int hei, TileBase sur, TileBase und) : base(tm, pos, wid, hei, sur, und)
 		{
 			base.position = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
 			base.width = wid;
+			base.height = hei;
 			base.surface = sur;
 			base.underground = und;
 			CreateFloor();

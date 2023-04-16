@@ -14,11 +14,12 @@ namespace NRoom
 		{
 		}
 
-		public SurfaceRoom(Tilemap tm, Vector3 pos, int wid, TileBase sur, TileBase und) : base(pos, wid, sur, und)
+		public SurfaceRoom(Tilemap tm, Vector3 pos, int wid, int hei, TileBase sur, TileBase und) : base(pos, wid, hei, sur, und)
 		{
 			tilemap = tm;
 			base.position = new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z);
 			base.width = wid;
+			base.height = hei;
 			base.surface = sur;
 			base.underground = und;
 			CreateFloor();
