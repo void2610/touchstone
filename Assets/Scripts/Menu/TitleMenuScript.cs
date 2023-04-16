@@ -26,7 +26,7 @@ public class TitleMenuScript : MonoBehaviour
 	private string utilityName = "Grappling";
 
 	private int state = 0;
-	//0:タイトル画面 1:装備編成画面 2:設定画面
+	//0:タイトル画面 1:装備編成画面 2:設定画面 3:weapon 4:skill 5:utility
 
 	public void OnClickStartButton()
 	{
@@ -40,7 +40,14 @@ public class TitleMenuScript : MonoBehaviour
 
 	public void OnClickBackButton()
 	{
-		state = 0;
+		if (state == 3 || state == 4 || state == 5)
+		{
+			state = 1;
+		}
+		else
+		{
+			state = 0;
+		}
 	}
 
 	public void OnClickQuitButton()
@@ -55,6 +62,21 @@ public class TitleMenuScript : MonoBehaviour
 	{
 		//ゲームシーンへ
 		SceneManager.LoadScene("SampleScene");
+	}
+
+	public void OnClickWeaponButton()
+	{
+		state = 3;
+	}
+
+	public void OnClickSkillButton()
+	{
+		state = 4;
+	}
+
+	public void OnClickUtilityButton()
+	{
+		state = 5;
 	}
 
 	void Start()
@@ -85,6 +107,7 @@ public class TitleMenuScript : MonoBehaviour
 			quitButton.SetActive(false);
 			entryButton.SetActive(true);
 			equipments.SetActive(true);
+
 		}
 		else if (state == 2)
 		{
@@ -94,6 +117,36 @@ public class TitleMenuScript : MonoBehaviour
 			backButton.SetActive(true);
 			quitButton.SetActive(false);
 			entryButton.SetActive(false);
+			equipments.SetActive(false);
+		}
+		else if (state == 3)
+		{
+			titleText.GetComponent<Text>().text = "Weapon";
+			startButton.SetActive(false);
+			settingButton.SetActive(false);
+			backButton.SetActive(true);
+			quitButton.SetActive(false);
+			entryButton.SetActive(true);
+			equipments.SetActive(false);
+		}
+		else if (state == 4)
+		{
+			titleText.GetComponent<Text>().text = "Skill";
+			startButton.SetActive(false);
+			settingButton.SetActive(false);
+			backButton.SetActive(true);
+			quitButton.SetActive(false);
+			entryButton.SetActive(true);
+			equipments.SetActive(false);
+		}
+		else if (state == 5)
+		{
+			titleText.GetComponent<Text>().text = "Utility";
+			startButton.SetActive(false);
+			settingButton.SetActive(false);
+			backButton.SetActive(true);
+			quitButton.SetActive(false);
+			entryButton.SetActive(true);
 			equipments.SetActive(false);
 		}
 	}
