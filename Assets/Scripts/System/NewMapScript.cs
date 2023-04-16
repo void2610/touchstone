@@ -14,7 +14,7 @@ namespace NRoom
 		private Room[] rooms = new Room[100];
 		private Area[] areas = new Area[500];
 		private int minAreaSize = 25;
-		private int maxAreaSize = 40;
+		private int maxAreaSize = 32;
 		private Tilemap tilemap;
 		private int loopCount = 0;
 		private bool loopFlag = true;
@@ -22,7 +22,7 @@ namespace NRoom
 		void CreateArea()
 		{
 			int x = Random.Range(minAreaSize + 10, maxAreaSize);
-			int y = Random.Range(minAreaSize - 10, maxAreaSize);
+			int y = Random.Range(minAreaSize - 15, maxAreaSize - 15);
 			areas[0] = new Area(new Vector3Int(0, 0, 0), x, y);
 			for (int i = 1; i < areaNum; i++)
 			{

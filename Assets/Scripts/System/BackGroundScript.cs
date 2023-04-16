@@ -8,7 +8,7 @@ public class BackGroundScript : MonoBehaviour
 	[SerializeField]
 	private Sprite backGround;
 
-	private float s = 3f;
+	private float s = 8f;
 	private Vector3 scale;
 
 	private GameObject player;
@@ -38,7 +38,7 @@ public class BackGroundScript : MonoBehaviour
 
 		backGroundWidth = backGround.bounds.size.x * scale.x;
 		player = GameObject.Find("Player");
-		position = new Vector3(0, 7, 0);
+		position = new Vector3(0, 15, 0);
 		CreateBackGround(position);
 	}
 

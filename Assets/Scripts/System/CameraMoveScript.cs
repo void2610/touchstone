@@ -15,7 +15,7 @@ public class CameraMoveScript : MonoBehaviour
 	void Update()
 	{
 		plapos = player.transform.position;
-		this.transform.position = new Vector3(plapos.x, plapos.y, -10);
+		this.transform.position = new Vector3(plapos.x, plapos.y + 5, -10);
 		// if (plapos.x > 5 && plapos.x < 1300)
 		// {
 		// 	this.transform.position = new Vector3(plapos.x, this.transform.position.y, -10);
