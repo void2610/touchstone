@@ -111,11 +111,23 @@ namespace NMenu
 
 		public void OnClickSetUtilityButton(Button b)
 		{
+			Debug.Log(b.name);
 			PlayerPrefs.SetString("NowEquipUtility", b.name);
 			nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Utility/" + b.name);
 			state = 1;
 		}
-		// Update is called once per frame
+
+		void Start()
+		{
+			PlayerPrefs.SetString("NowEquipWeapon", "Sword");
+			PlayerPrefs.SetString("NowEquipSkill", "Grapple");
+			PlayerPrefs.SetString("NowEquipUtility", "Dash");
+
+			nowWeapon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + PlayerPrefs.GetString("NowEquipWeapon", "Sword"));
+			nowSkill.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipSkill", "Grapple"));
+			nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Utility/" + PlayerPrefs.GetString("NowEquipUtility", "Dash"));
+		}
+
 		void Update()
 		{
 			if (state == 0)
