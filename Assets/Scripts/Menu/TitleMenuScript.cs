@@ -18,6 +18,12 @@ public class TitleMenuScript : MonoBehaviour
 	private GameObject quitButton;
 	[SerializeField]
 	private GameObject entryButton;
+	[SerializeField]
+	private GameObject equipments;
+
+	private string weaponName = "Sword";
+	private string skillName = "Dash";
+	private string utilityName = "Grappling";
 
 	private int state = 0;
 	//0:タイトル画面 1:装備編成画面 2:設定画面
@@ -67,6 +73,7 @@ public class TitleMenuScript : MonoBehaviour
 			backButton.SetActive(false);
 			quitButton.SetActive(true);
 			entryButton.SetActive(false);
+			equipments.SetActive(false);
 
 		}
 		else if (state == 1)
@@ -77,6 +84,7 @@ public class TitleMenuScript : MonoBehaviour
 			backButton.SetActive(true);
 			quitButton.SetActive(false);
 			entryButton.SetActive(true);
+			equipments.SetActive(true);
 		}
 		else if (state == 2)
 		{
@@ -86,6 +94,7 @@ public class TitleMenuScript : MonoBehaviour
 			backButton.SetActive(true);
 			quitButton.SetActive(false);
 			entryButton.SetActive(false);
+			equipments.SetActive(false);
 		}
 	}
 }
