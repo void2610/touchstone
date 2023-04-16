@@ -21,6 +21,7 @@ namespace NRoom
 			base.height = hei;
 			base.surface = sur;
 			CreateRoomObject();
+			CreateUnderGround();
 		}
 
 		public override void CreateRoomObject()
@@ -29,10 +30,7 @@ namespace NRoom
 			for (int i = 0; i < width; i++)
 			{
 				tilemap.SetTile(position + new Vector3Int(i, 0, 0), surface);
-				for (int k = -1; k > -20; k--)
-				{
-					tilemap.SetTile(position + new Vector3Int(i, k, 0), underground);
-				}
+
 			}
 		}
 	}

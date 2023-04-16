@@ -11,7 +11,6 @@ namespace NRoom
 		public int width;
 		public int height;
 		public TileBase surface;
-		public TileBase underground;
 		//constructor
 		public Room()
 		{
@@ -19,7 +18,6 @@ namespace NRoom
 			width = 0;
 			height = 0;
 			surface = null;
-			underground = null;
 		}
 
 		public Room(Vector3 pos, int wid, int hei, TileBase sur)
@@ -39,18 +37,16 @@ namespace NRoom
 		{
 		}
 
-		public void SetAllTileRoom(TileBase tile)
+		public void CreateUnderGround()
 		{
+			TileBase underground = Resources.Load("Tiles/UndergroundTile") as TileBase;
+			Debug.Log(underground);
 			for (int i = 0; i < width; i++)
 			{
-				for (int k = 0; k < height; k++)
+				for (int k = -1; k > -20; k--)
 				{
-					//GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(position + new Vector3Int(i, k, 0), tile);
-					//エリアの外枠だけにTileをセット
-					if (k == 0)
-					{
-						GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(position + new Vector3Int(i, k, 0), tile);
-					}
+					GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(position + new Vector3Int(i, k, 0), underground);
+					Debug.Log(position + new Vector3Int(i, k, 0));
 				}
 			}
 		}

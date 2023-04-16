@@ -8,7 +8,6 @@ namespace NRoom
 	public class NewMapScript : MonoBehaviour
 	{
 		public TileBase ground;
-		public TileBase underground;
 		private int areaNum = 5;
 		private float enemyProbability = 0.7f;
 		private Room[] rooms = new Room[100];
@@ -34,8 +33,7 @@ namespace NRoom
 		{
 			for (int i = 0; i < areaNum; i++)
 			{
-				rooms[i] = new Room(new Vector3Int(areas[i].position.x, areas[i].position.y, 0), areas[i].width, areas[i].height, ground);
-				rooms[i].SetAllTileRoom(ground);
+				rooms[i] = new SurfaceRoom(new Vector3Int(areas[i].position.x, areas[i].position.y, 0), areas[i].width, areas[i].height, ground);
 			}
 		}
 
