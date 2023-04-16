@@ -44,7 +44,6 @@ namespace NEquipment
 			angle = getMouseAngle();
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
 			{
-				Debug.Log("Utility");
 				StartCoroutine(Action());
 			}
 
