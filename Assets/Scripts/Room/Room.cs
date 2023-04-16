@@ -41,5 +41,21 @@ namespace NRoom
 		public virtual void Start()
 		{
 		}
+
+		public void SetAllTileRoom(TileBase tile)
+		{
+			for (int i = 0; i < width; i++)
+			{
+				for (int k = 0; k < height; k++)
+				{
+					//GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(position + new Vector3Int(i, k, 0), tile);
+					//エリアの外枠だけにTileをセット
+					if (k == 0)
+					{
+						GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(position + new Vector3Int(i, k, 0), tile);
+					}
+				}
+			}
+		}
 	}
 }

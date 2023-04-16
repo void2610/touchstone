@@ -874,7 +874,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 10.53
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -898,8 +898,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0000038146973, y: 0.00000047683716, z: -10}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2815,7 +2815,6 @@ GameObject:
   - component: {fileID: 2053585678}
   - component: {fileID: 2053585677}
   - component: {fileID: 2053585679}
-  - component: {fileID: 2053585680}
   - component: {fileID: 2053585681}
   - component: {fileID: 2053585682}
   - component: {fileID: 2053585683}
@@ -3060,22 +3059,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &2053585680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053585675}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04a6169da360845859e766eae846e329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ground: {fileID: 11400000, guid: 0967508aab88b8945a25be91692fdba8, type: 2}
-  underground: {fileID: 11400000, guid: 9d545b150081bc648977020af02a6109, type: 2}
-  goal: {fileID: 11400000, guid: bb11bf4bb4df1a841a23f0bcf00c144f, type: 2}
-  slime: {fileID: 4479309209965336364, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
 --- !u!50 &2053585681
 Rigidbody2D:
   serializedVersion: 4
@@ -3135,8 +3118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: {fileID: 11400000, guid: 0967508aab88b8945a25be91692fdba8, type: 2}
   underground: {fileID: 11400000, guid: 9d545b150081bc648977020af02a6109, type: 2}
-  goal: {fileID: 0}
-  slime: {fileID: 0}
 --- !u!1001 &795282419440741428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3150,7 +3131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 795282419230217667, guid: 7479c7d771a92994da26701cc2525369, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 795282419230217678, guid: 7479c7d771a92994da26701cc2525369, type: 3}
       propertyPath: m_RootOrder
@@ -3289,7 +3270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4670409368434794897, guid: def94d2b41d08014a9e8a0b7e5d8c92e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4670409368434794901, guid: def94d2b41d08014a9e8a0b7e5d8c92e, type: 3}
       propertyPath: m_RootOrder
