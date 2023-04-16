@@ -20,10 +20,16 @@ public class TitleMenuScript : MonoBehaviour
 	private GameObject entryButton;
 	[SerializeField]
 	private GameObject equipments;
+	[SerializeField]
+	private GameObject weapons;
+	[SerializeField]
+	private GameObject skills;
+	[SerializeField]
+	private GameObject utilities;
 
 	private string weaponName = "Sword";
 	private string skillName = "Dash";
-	private string utilityName = "Grappling";
+	private string utilityName = "Grapple";
 
 	private int state = 0;
 	//0:タイトル画面 1:装備編成画面 2:設定画面 3:weapon 4:skill 5:utility
@@ -79,11 +85,20 @@ public class TitleMenuScript : MonoBehaviour
 		state = 5;
 	}
 
-	void Start()
+	public void OnClickSetWeaponButton(Button b)
 	{
-
+		PlayerPrefs.SetString("NowEquipWeapon", b.name);
 	}
 
+	public void OnClickSetSkillButton(Button b)
+	{
+		PlayerPrefs.SetString("NowEquipSkill", b.name);
+	}
+
+	public void OnClickSetUtilityButton(Button b)
+	{
+		PlayerPrefs.SetString("NowEquipUtility", b.name);
+	}
 	// Update is called once per frame
 	void Update()
 	{
@@ -96,6 +111,9 @@ public class TitleMenuScript : MonoBehaviour
 			quitButton.SetActive(true);
 			entryButton.SetActive(false);
 			equipments.SetActive(false);
+			weapons.SetActive(false);
+			skills.SetActive(false);
+			utilities.SetActive(false);
 
 		}
 		else if (state == 1)
@@ -107,6 +125,9 @@ public class TitleMenuScript : MonoBehaviour
 			quitButton.SetActive(false);
 			entryButton.SetActive(true);
 			equipments.SetActive(true);
+			weapons.SetActive(false);
+			skills.SetActive(false);
+			utilities.SetActive(false);
 
 		}
 		else if (state == 2)
@@ -118,6 +139,9 @@ public class TitleMenuScript : MonoBehaviour
 			quitButton.SetActive(false);
 			entryButton.SetActive(false);
 			equipments.SetActive(false);
+			weapons.SetActive(false);
+			skills.SetActive(false);
+			utilities.SetActive(false);
 		}
 		else if (state == 3)
 		{
@@ -128,6 +152,10 @@ public class TitleMenuScript : MonoBehaviour
 			quitButton.SetActive(false);
 			entryButton.SetActive(true);
 			equipments.SetActive(false);
+			weapons.SetActive(true);
+			skills.SetActive(false);
+			utilities.SetActive(false);
+
 		}
 		else if (state == 4)
 		{
@@ -138,6 +166,9 @@ public class TitleMenuScript : MonoBehaviour
 			quitButton.SetActive(false);
 			entryButton.SetActive(true);
 			equipments.SetActive(false);
+			weapons.SetActive(false);
+			skills.SetActive(true);
+			utilities.SetActive(false);
 		}
 		else if (state == 5)
 		{
@@ -148,6 +179,9 @@ public class TitleMenuScript : MonoBehaviour
 			quitButton.SetActive(false);
 			entryButton.SetActive(true);
 			equipments.SetActive(false);
+			weapons.SetActive(false);
+			skills.SetActive(false);
+			utilities.SetActive(true);
 		}
 	}
 }
