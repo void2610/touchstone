@@ -26,6 +26,12 @@ public class TitleMenuScript : MonoBehaviour
 	private GameObject skills;
 	[SerializeField]
 	private GameObject utilities;
+	[SerializeField]
+	private GameObject nowWeapon;
+	[SerializeField]
+	private GameObject nowSkill;
+	[SerializeField]
+	private GameObject nowUtility;
 
 	private string weaponName = "Sword";
 	private string skillName = "Dash";
@@ -88,16 +94,22 @@ public class TitleMenuScript : MonoBehaviour
 	public void OnClickSetWeaponButton(Button b)
 	{
 		PlayerPrefs.SetString("NowEquipWeapon", b.name);
+		nowWeapon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + b.name);
+		state = 1;
 	}
 
 	public void OnClickSetSkillButton(Button b)
 	{
 		PlayerPrefs.SetString("NowEquipSkill", b.name);
+		nowSkill.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + b.name);
+		state = 1;
 	}
 
 	public void OnClickSetUtilityButton(Button b)
 	{
 		PlayerPrefs.SetString("NowEquipUtility", b.name);
+		nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Utility/" + b.name);
+		state = 1;
 	}
 	// Update is called once per frame
 	void Update()

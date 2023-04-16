@@ -774,6 +774,9 @@ MonoBehaviour:
   weapons: {fileID: 356774589}
   skills: {fileID: 274535265}
   utilities: {fileID: 33571753}
+  nowWeapon: {fileID: 1455015472}
+  nowSkill: {fileID: 665032149}
+  nowUtility: {fileID: 1160525374}
 --- !u!1 &356774589
 GameObject:
   m_ObjectHideFlags: 0
