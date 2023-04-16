@@ -22,16 +22,12 @@ namespace NRoom
 			base.surface = sur;
 			CreateRoomObject();
 			CreateUnderGround();
+			CreateSurface();
 		}
 
 		public override void CreateRoomObject()
 		{
-			tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
-			for (int i = 0; i < width; i++)
-			{
-				tilemap.SetTile(position + new Vector3Int(i, 0, 0), surface);
 
-			}
 		}
 	}
 }

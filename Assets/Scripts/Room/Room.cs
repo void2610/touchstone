@@ -37,6 +37,14 @@ namespace NRoom
 		{
 		}
 
+		public void CreateSurface()
+		{
+			for (int i = 0; i < width; i++)
+			{
+				GameObject.Find("Tilemap").GetComponent<Tilemap>().SetTile(position + new Vector3Int(i, 0, 0), surface);
+			}
+		}
+
 		public void CreateUnderGround()
 		{
 			TileBase underground = Resources.Load("Tiles/UndergroundTile") as TileBase;
