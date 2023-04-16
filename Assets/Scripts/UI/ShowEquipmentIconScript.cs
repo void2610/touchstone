@@ -1,30 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class ShowEquipmentIconScript : MonoBehaviour
+namespace NUI
 {
-	private string weapon;
-	private string skill;
-	private string utility;
+	using System.Collections;
+	using System.Collections.Generic;
+	using UnityEngine;
+	using UnityEngine.UI;
 
-	private Image weaponIcon;
-	private Image skillIcon;
-	private Image utilityIcon;
-
-	void Start()
+	public class ShowEquipmentIconScript : MonoBehaviour
 	{
-		weapon = PlayerPrefs.GetString("NowEquipWeapon", "Sword");
-		skill = PlayerPrefs.GetString("NowEquipSkill", "Guard");
-		utility = PlayerPrefs.GetString("NowEquipUtility", "Dash");
+		private string weapon;
+		private string skill;
+		private string utility;
 
-		weaponIcon = GameObject.Find("WeaponIcon").GetComponent<Image>();
-		skillIcon = GameObject.Find("SkillIcon").GetComponent<Image>();
-		utilityIcon = GameObject.Find("UtilityIcon").GetComponent<Image>();
+		private Image weaponIcon;
+		private Image skillIcon;
+		private Image utilityIcon;
 
-		weaponIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + weapon);
-		skillIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + skill);
-		utilityIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Utility/" + utility);
+		void Start()
+		{
+			weapon = PlayerPrefs.GetString("NowEquipWeapon", "Sword");
+			skill = PlayerPrefs.GetString("NowEquipSkill", "Guard");
+			utility = PlayerPrefs.GetString("NowEquipUtility", "Dash");
+
+			weaponIcon = GameObject.Find("WeaponIcon").GetComponent<Image>();
+			skillIcon = GameObject.Find("SkillIcon").GetComponent<Image>();
+			utilityIcon = GameObject.Find("UtilityIcon").GetComponent<Image>();
+
+			weaponIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + weapon);
+			skillIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + skill);
+			utilityIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Utility/" + utility);
+		}
 	}
 }
