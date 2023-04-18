@@ -12,7 +12,7 @@ public class DigMapScript : MonoBehaviour
 	private int width = 110;
 	private int height = 110;
 	private int[,] map;
-	private int[] currentPos = { 0, 0 };
+	private int[] currentPos = { 10, 10 };
 	private int[] lastPos = { 0, 0 };
 	private int direction = 0; //0 = up, 1 = upright, 2 = right, 3 = downright, 4 = down, 5 = downleft, 6 = left, 7 = upleft
 	private int radius = 3;
@@ -201,22 +201,44 @@ public class DigMapScript : MonoBehaviour
 			}
 
 			ChangePosition(direction);
-			Wait(0.1f);
 		}
 	}
-
+	int startDirection = 1;
 	void Start()
 	{
 
 		tilemap = this.GetComponent<Tilemap>();
 		map = GenerateArray(width, height, false);
-		DigTunnel(5, 5, 15, 6, 2);
+
+		//DigTunnel(5, 5, 15, 6, 2);
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		if (currentPos[0] > 5 && currentPos[0] < width && currentPos[1] > 5 && currentPos[1] < height)
+		{
+			DigTilemap(currentPos[0], currentPos[1], radius);
+			RenderMap(map, tilemap, ground);
 
+			ChangeRadius(15, 6);
+
+			//斜めにずれすぎないようにする
+			ChangeDirection();
+			while (direction > startDirection + 2 || direction < startDirection - 2)
+			{
+				ChangeDirection();
+			}
+
+			ChangePosition(direction);
+			Wait(0.1f);
+		}
+		else
+		{
+			Debug.Log("end");
+			currentPos[0] = 99999;
+			currentPos[1] = 99999;
+		}
 
 
 	}
