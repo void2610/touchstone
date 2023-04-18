@@ -67,23 +67,86 @@ namespace NRoom
 			}
 		}
 
-		public static int[,] PerlinNoise(int[,] map, float seed)
+		public static int[,] GenerateCellularAutomata(int width, int height, float seed, int fillPercent, bool edgesAreWalls)
 		{
-			int newPoint;
-			//パーリンノイズのポイントの位置を下げるために使用される
-			float reduction = 0.5f;
-			//パーリンノイズを生成する
+			// 乱数生成器にシード値を設定する
+			System.Random rand = new System.Random(seed.GetHashCode());
+
+			// マップを初期化する
+			int[,] map = new int[width, height];
+
 			for (int x = 0; x < map.GetUpperBound(0); x++)
 			{
-				newPoint = Mathf.FloorToInt((Mathf.PerlinNoise(x, seed) - reduction) * map.GetUpperBound(1));
-
-				//高さの半分の位置付近からノイズが始まるようにする
-				newPoint += (map.GetUpperBound(1) / 2);
-				for (int y = newPoint; y >= 0; y--)
+				for (int y = 0; y < map.GetUpperBound(1); y++)
 				{
-					map[x, y] = 1;
+					// エッジが壁に設定されている場合は、セルが on（1）に設定されるようにする
+					if (edgesAreWalls && (x == 0 || x == map.GetUpperBound(0) - 1 || y == 0 || y == map.GetUpperBound(1) - 1))
+					{
+						map[x, y] = 1;
+					}
+					else
+					{
+						// グリッドをランダムに生成する
+						map[x, y] = (rand.Next(0, 100) < fillPercent) ? 1 : 0;
+					}
 				}
 			}
+			return map;
+		}
+
+		static int GetMooreSurroundingTiles(int[,] map, int x, int y, bool edgesAreWalls)
+		{
+			/* ムーア近傍は次のようになっている（「T」はタイル、「N」は近傍）。
+			 *
+			 * N N N
+			 * N T N
+			 * N N N
+			 *
+			 */
+
+			int tileCount = 0;
+
+			for (int neighbourX = x - 1; neighbourX <= x + 1; neighbourX++)
+			{
+				for (int neighbourY = y - 1; neighbourY <= y + 1; neighbourY++)
+				{
+					if (neighbourX >= 0 && neighbourX < map.GetUpperBound(0) && neighbourY >= 0 && neighbourY < map.GetUpperBound(1))
+					{
+						// 周囲のチェックが行われている、中心のタイルはカウントしない
+						if (neighbourX != x || neighbourY != y)
+						{
+							tileCount += map[neighbourX, neighbourY];
+						}
+					}
+				}
+			}
+			return tileCount;
+		}
+
+		public static int[,] SmoothMooreCellularAutomata(int[,] map, bool edgesAreWalls, int smoothCount)
+		{
+			for (int i = 0; i < smoothCount; i++)
+			{
+				for (int x = 0; x < map.GetUpperBound(0); x++)
+				{
+					for (int y = 0; y < map.GetUpperBound(1); y++)
+					{
+						int surroundingTiles = GetMooreSurroundingTiles(map, x, y, edgesAreWalls); if (edgesAreWalls && (x == 0 || x == (map.GetUpperBound(0) - 1) || y == 0 || y == (map.GetUpperBound(1) - 1)))
+						{ // edgesAreWalls が true であればエッジを壁として設定する
+							map[x, y] = 1;
+						} // デフォルトのムーア近傍の規則では 5 つ以上の近傍が必要
+						else if (surroundingTiles > 4)
+						{
+							map[x, y] = 1;
+						}
+						else if (surroundingTiles < 4)
+						{
+							map[x, y] = 0;
+						}
+					}
+				}
+			}
+			// 戻り値として修正されたマップを返す
 			return map;
 		}
 
@@ -94,11 +157,12 @@ namespace NRoom
 			//マップの幅と高さを設定する
 			int width = 100;
 			int height = 100;
-			//マップを生成する
-			int[,] map = GenerateArray(width, height, true);
-			//マップをパーリンノイズで生成する
-			map = PerlinNoise(map, 0.13f);
-			//マップを更新する
+			//セルオートマトンでマップを生成する
+			int[,] map = GenerateCellularAutomata(width, height, 0.5f, 50, true);
+			//マップを平滑化する
+			map = SmoothMooreCellularAutomata(map, true, 5);
+
+			//マップを描画する
 			RenderMap(map, tilemap, ground);
 		}
 
