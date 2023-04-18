@@ -157,8 +157,10 @@ namespace NRoom
 			//マップの幅と高さを設定する
 			int width = 100;
 			int height = 100;
+			//現実の時間をシード値として使用する
+			float seed = Time.realtimeSinceStartup;
 			//セルオートマトンでマップを生成する
-			int[,] map = GenerateCellularAutomata(width, height, 0.5f, 50, true);
+			int[,] map = GenerateCellularAutomata(width, height, seed, 50, true);
 			//マップを平滑化する
 			map = SmoothMooreCellularAutomata(map, true, 5);
 
