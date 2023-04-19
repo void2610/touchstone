@@ -12,12 +12,11 @@ public class DigMapScript : MonoBehaviour
 	private int width = 110;
 	private int height = 110;
 	private int[,] map;
-	private int[] currentPos = { 10, 10 };
+	private int[] currentPos = { 1, 1 };
 	private int[] lastPos = { 0, 0 };
 	private int direction = 0; //0 = up, 1 = upright, 2 = right, 3 = downright, 4 = down, 5 = downleft, 6 = left, 7 = upleft
-	private int radius = 3;
+	private int radius = 8;
 	private int count = 0;
-
 
 	private int[,] GenerateArray(int width, int height, bool empty)
 	{
@@ -58,7 +57,7 @@ public class DigMapScript : MonoBehaviour
 		}
 	}
 
-	private void DigTilemap(int x, int y, int radius)
+	private void DigMap(int x, int y, int radius)
 	{
 		for (int i = x - radius; i < x + radius; i++)
 		{
@@ -134,13 +133,6 @@ public class DigMapScript : MonoBehaviour
 			break;
 		}
 	}
-
-	private IEnumerator Wait(float time)
-	{
-
-		yield return new WaitForSeconds(time);
-	}
-
 	private void ChangeRadius(int maxRadius, int minRadius)
 	{
 		if (Random.value < 0.3f)
@@ -183,19 +175,102 @@ public class DigMapScript : MonoBehaviour
 		}
 	}
 
+	private bool CheckNextPosition()
+	{
+		switch (direction)
+		{
+			case 0:
+			if (map[currentPos[0], currentPos[1] + radius] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			case 1:
+			if (map[currentPos[0] + radius, currentPos[1] + radius] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			case 2:
+			if (map[currentPos[0] + radius, currentPos[1]] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			case 3:
+			if (map[currentPos[0] + radius, currentPos[1] - radius] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			case 4:
+			if (map[currentPos[0], currentPos[1] - radius] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			case 5:
+			if (map[currentPos[0] - radius, currentPos[1] - radius] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			case 6:
+			if (map[currentPos[0] - radius, currentPos[1]] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			case 7:
+			if (map[currentPos[0] - radius, currentPos[1] + radius] == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			default:
+			return false;
+		}
+	}
+
 	private void DigTunnel(int startXpos, int startYpos, int maxRadius, int minRadius, int startDirection)
 	{
 		currentPos[0] = startXpos;
 		currentPos[1] = startYpos;
-		while (currentPos[0] > 0 && currentPos[0] < width && currentPos[1] > 0 && currentPos[1] < height)
+		direction = startDirection;
+		while (currentPos[0] - radius > 0 && currentPos[0] + radius < width && currentPos[1] - radius > 0 && currentPos[1] + radius < height && CheckNextPosition())
 		{
-			DigTilemap(currentPos[0], currentPos[1], radius);
-			RenderMap(map, tilemap, ground);
+			DigMap(currentPos[0], currentPos[1], radius);
+
 
 			ChangeRadius(maxRadius, minRadius);
 
+			//斜めにずれすぎないようにする
 			ChangeDirection();
-			while (direction > startDirection + 4 || direction < startDirection - 4)
+			while (direction > startDirection + 1 || direction < startDirection - 1)
 			{
 				ChangeDirection();
 			}
@@ -203,43 +278,18 @@ public class DigMapScript : MonoBehaviour
 			ChangePosition(direction);
 		}
 	}
+
 	int startDirection = 1;
 	void Start()
 	{
-
 		tilemap = this.GetComponent<Tilemap>();
 		map = GenerateArray(width, height, false);
 
-		//DigTunnel(5, 5, 15, 6, 2);
+		DigTunnel(15, 15, 15, 9, 1);
+		RenderMap(map, tilemap, ground);
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
-		if (currentPos[0] > 5 && currentPos[0] < width && currentPos[1] > 5 && currentPos[1] < height)
-		{
-			DigTilemap(currentPos[0], currentPos[1], radius);
-			RenderMap(map, tilemap, ground);
-
-			ChangeRadius(15, 6);
-
-			//斜めにずれすぎないようにする
-			ChangeDirection();
-			while (direction > startDirection + 2 || direction < startDirection - 2)
-			{
-				ChangeDirection();
-			}
-
-			ChangePosition(direction);
-			Wait(0.1f);
-		}
-		else
-		{
-			Debug.Log("end");
-			currentPos[0] = 99999;
-			currentPos[1] = 99999;
-		}
-
-
 	}
 }
