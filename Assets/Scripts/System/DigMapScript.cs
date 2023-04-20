@@ -344,7 +344,7 @@ public class DigMapScript : MonoBehaviour
 			return;
 		}
 
-		int limit = ((maxRadius + minRadius) * (maxRadius + minRadius) / 4 * 3) * 3;
+		int limit = (int)(((maxRadius + minRadius) * (maxRadius + minRadius) / 4 * 3) * 2.4f);
 		Debug.Log(limit);
 		int[,] oldMap = new int[width, height];
 		System.Array.Copy(map, oldMap, map.Length);
@@ -373,6 +373,7 @@ public class DigMapScript : MonoBehaviour
 		map = GenerateArray(width, height, false);
 		Random.InitState(System.DateTime.Now.Millisecond);
 
+		//メインの穴を1つ生成
 		DigTunnelUntillSuccess(15, 15, 13, 5, 1);
 
 
@@ -380,7 +381,8 @@ public class DigMapScript : MonoBehaviour
 		currentPos[0] = Random.Range(0, width);
 		currentPos[1] = Random.Range(0, height);
 
-		//DigTunnelUntillSuccess(currentPos[0], currentPos[1], 4, 2, direction);
+		//細い穴を複数生成
+		//DigTunnelUntillSuccess(currentPos[0], currentPos[1], 5, 3, direction);
 
 		RenderMap(map, tilemap, ground);
 	}
