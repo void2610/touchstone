@@ -15,8 +15,9 @@ public class DigMapScript : MonoBehaviour
 	private int[] currentPos = { 1, 1 };
 	private int[] lastPos = { 0, 0 };
 	private int direction = 0; //0 = up, 1 = upright, 2 = right, 3 = downright, 4 = down, 5 = downleft, 6 = left, 7 = upleft
-	private int radius = 8;
+	private int radius;
 	private int count = 0;
+	private int seed = -1;
 
 	private int[,] GenerateArray(int width, int height, bool empty)
 	{
@@ -72,7 +73,6 @@ public class DigMapScript : MonoBehaviour
 				}
 			}
 		}
-		count++;
 	}
 
 	private void ChangePosition(int direction)
@@ -135,25 +135,25 @@ public class DigMapScript : MonoBehaviour
 	}
 	private void ChangeRadius(int maxRadius, int minRadius)
 	{
-		if (Random.value < 0.3f)
+		if (Random.Range(0, 100) < 30)
 		{
-			if (Random.value < 0.5f)
+
+			if (Random.Range(0, 100) < 50)
 			{
 				if (radius < maxRadius)
 				{
 					radius++;
 				}
 			}
-			else
+		}
+		else
+		{
+			if (radius > minRadius)
 			{
-				if (radius > minRadius)
-				{
-					radius--;
-				}
+				radius--;
 			}
 		}
 	}
-
 	private void ChangeDirection()
 	{
 		if (Random.value < 0.7f)
@@ -256,11 +256,31 @@ public class DigMapScript : MonoBehaviour
 		}
 	}
 
+	private bool CheckArea(int x, int y, int radius)
+	{
+		for (int i = x - radius; i < x + radius; i++)
+		{
+			for (int j = y - radius; j < y + radius; j++)
+			{
+				if (i < 0 || i >= width || j < 0 || j >= height)
+				{
+					continue;
+				}
+				if (map[i, j] == 0)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	private void DigTunnel(int startXpos, int startYpos, int maxRadius, int minRadius, int startDirection)
 	{
 		currentPos[0] = startXpos;
 		currentPos[1] = startYpos;
 		direction = startDirection;
+		radius = Random.Range(minRadius, maxRadius);
 		while (currentPos[0] - radius > 0 && currentPos[0] + radius < width && currentPos[1] - radius > 0 && currentPos[1] + radius < height && CheckNextPosition())
 		{
 			DigMap(currentPos[0], currentPos[1], radius);
@@ -279,17 +299,89 @@ public class DigMapScript : MonoBehaviour
 		}
 	}
 
+	private int CountMapChange(int[,] oldMap, int[,] newMap)
+	{
+		int res = 0;
+		for (int i = 0; i < width; i++)
+		{
+			for (int j = 0; j < height; j++)
+			{
+				if (oldMap[i, j] != newMap[i, j])
+				{
+					res++;
+				}
+			}
+		}
+		return res;
+	}
+	private void ChangeDirectionToCenter()
+	{
+		//中心にdirectionを向ける
+		if (currentPos[0] > width / 2 && currentPos[1] > height / 2)
+		{
+			startDirection = 1;
+		}
+		else if (currentPos[0] < width / 2 && currentPos[1] > height / 2)
+		{
+			startDirection = 7;
+		}
+		else if (currentPos[0] > width / 2 && currentPos[1] < height / 2)
+		{
+			startDirection = 3;
+		}
+		else if (currentPos[0] < width / 2 && currentPos[1] < height / 2)
+		{
+			startDirection = 5;
+		}
+	}
+
+	private void DigTunnelUntillSuccess(int startXpos, int startYpos, int maxRadius, int minRadius, int startDirection)
+	{
+		count++;
+		if (count > 100)
+		{
+			Debug.Log("failed");
+			return;
+		}
+
+		int limit = ((maxRadius + minRadius) * (maxRadius + minRadius) / 4 * 3) * 3;
+		Debug.Log(limit);
+		int[,] oldMap = new int[width, height];
+		System.Array.Copy(map, oldMap, map.Length);
+		DigTunnel(startXpos, startYpos, maxRadius, minRadius, startDirection);
+		Debug.Log(CountMapChange(oldMap, map));
+		if (CountMapChange(oldMap, map) < limit)
+		{
+			Debug.Log(CountMapChange(oldMap, map));
+			map = oldMap;
+
+			while (!CheckArea(currentPos[0], currentPos[1], radius))
+			{
+				currentPos[0] = Random.Range(0, width);
+				currentPos[1] = Random.Range(0, height);
+			}
+			ChangeDirectionToCenter();
+
+			DigTunnelUntillSuccess(startXpos, startYpos, maxRadius, minRadius, startDirection);
+		}
+	}
+
 	int startDirection = 1;
 	void Start()
 	{
 		tilemap = this.GetComponent<Tilemap>();
 		map = GenerateArray(width, height, false);
+		Random.InitState(System.DateTime.Now.Millisecond);
 
-		DigTunnel(15, 15, 15, 9, 1);
+		DigTunnelUntillSuccess(15, 15, 13, 5, 1);
+
+
+		//いい感じのところに移動
+		currentPos[0] = Random.Range(0, width);
+		currentPos[1] = Random.Range(0, height);
+
+		//DigTunnelUntillSuccess(currentPos[0], currentPos[1], 4, 2, direction);
+
 		RenderMap(map, tilemap, ground);
-	}
-
-	void Update()
-	{
 	}
 }
