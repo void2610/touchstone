@@ -2562,9 +2562,7 @@ GameObject:
   - component: {fileID: 2053585679}
   - component: {fileID: 2053585681}
   - component: {fileID: 2053585682}
-  - component: {fileID: 2053585683}
   - component: {fileID: 2053585684}
-  - component: {fileID: 2053585685}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: TileMap
@@ -2851,19 +2849,6 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &2053585683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053585675}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76cb6d84b2e36684d8ddfcb2f7160775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ground: {fileID: 11400000, guid: 0967508aab88b8945a25be91692fdba8, type: 2}
 --- !u!114 &2053585684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2874,19 +2859,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56b61228d651b477797115788fca1bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ground: {fileID: 11400000, guid: 9d545b150081bc648977020af02a6109, type: 2}
---- !u!114 &2053585685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053585675}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a075b02d5a4a1d347b14c93d377d4a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 11400000, guid: 9d545b150081bc648977020af02a6109, type: 2}
