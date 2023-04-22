@@ -286,6 +286,9 @@ public class DigMapScript : MonoBehaviour
 		map = GenerateArray(width, height, false);
 
 		DigTunnel(15, 15, 15, 9, 1);
+
+		DigTunnel(Random.Range(0, width), Random.Range(0, height), Random.Range(4, 5), Random.Range(2, 3), Random.Range(0, 7));
+
 		RenderMap(map, tilemap, ground);
 	}
 
