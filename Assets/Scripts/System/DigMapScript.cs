@@ -317,19 +317,19 @@ public class DigMapScript : MonoBehaviour
 	private void ChangeDirectionToCenter()
 	{
 		//中心にdirectionを向ける
-		if (currentPos[0] > width / 2 && currentPos[1] > height / 2)
+		if (currentPos[0] < width / 2 && currentPos[1] < height / 2)
 		{
 			startDirection = 1;
 		}
-		else if (currentPos[0] < width / 2 && currentPos[1] > height / 2)
+		else if (currentPos[0] > width / 2 && currentPos[1] < height / 2)
 		{
 			startDirection = 7;
 		}
-		else if (currentPos[0] > width / 2 && currentPos[1] < height / 2)
+		else if (currentPos[0] < width / 2 && currentPos[1] > height / 2)
 		{
 			startDirection = 3;
 		}
-		else if (currentPos[0] < width / 2 && currentPos[1] < height / 2)
+		else if (currentPos[0] > width / 2 && currentPos[1] > height / 2)
 		{
 			startDirection = 5;
 		}
@@ -345,14 +345,11 @@ public class DigMapScript : MonoBehaviour
 		}
 
 		int limit = (int)(((maxRadius + minRadius) * (maxRadius + minRadius) / 4 * 3) * 2.4f);
-		Debug.Log(limit);
 		int[,] oldMap = new int[width, height];
 		System.Array.Copy(map, oldMap, map.Length);
 		DigTunnel(startXpos, startYpos, maxRadius, minRadius, startDirection);
-		Debug.Log(CountMapChange(oldMap, map));
 		if (CountMapChange(oldMap, map) < limit)
 		{
-			Debug.Log(CountMapChange(oldMap, map));
 			map = oldMap;
 
 			while (!CheckArea(currentPos[0], currentPos[1], radius))
@@ -374,7 +371,7 @@ public class DigMapScript : MonoBehaviour
 		Random.InitState(System.DateTime.Now.Millisecond);
 
 		//メインの穴を1つ生成
-		DigTunnelUntillSuccess(15, 15, 13, 5, 1);
+		DigTunnelUntillSuccess(15, 15, 12, 5, 1);
 
 
 		//いい感じのところに移動
@@ -382,7 +379,9 @@ public class DigMapScript : MonoBehaviour
 		currentPos[1] = Random.Range(0, height);
 
 		//細い穴を複数生成
-		//DigTunnelUntillSuccess(currentPos[0], currentPos[1], 5, 3, direction);
+		DigTunnelUntillSuccess(currentPos[0], currentPos[1], 5, 3, direction);
+		GameObject.Find("EventSystem").transform.position = new Vector3(currentPos[0], currentPos[1], 0);
+		Debug.Log(startDirection);
 
 		RenderMap(map, tilemap, ground);
 	}
