@@ -67,7 +67,10 @@ public class DigMapScript : MonoBehaviour
 			{
 				if (Mathf.Pow(i - x, 2) + Mathf.Pow(j - y, 2) < Mathf.Pow(radius, 2))
 				{
-					map[i, j] = 0;
+					if (i >= 0 && j >= 0 && i < width && j < height)
+					{
+						map[i, j] = 0;
+					}
 				}
 			}
 		}
@@ -275,6 +278,7 @@ public class DigMapScript : MonoBehaviour
 
 			ChangePosition(direction);
 		}
+		DigMap(currentPos[0], currentPos[1], radius + 2);
 	}
 
 	private int CountMapChange(int[,] oldMap, int[,] newMap)
@@ -365,7 +369,6 @@ public class DigMapScript : MonoBehaviour
 		else
 		{
 			count = 0;
-			map[currentPos[0], currentPos[1]] = 1;
 		}
 	}
 
