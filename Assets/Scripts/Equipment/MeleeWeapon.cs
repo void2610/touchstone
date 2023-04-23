@@ -16,6 +16,10 @@ namespace NEquipment
 
 		private GameObject damegeText;
 
+		private float attackCoolTime = 0;
+		private float attackCoolTimeLength = 0.5f;
+
+
 		public IEnumerator ShowDamageText(int damage, Vector3 position)
 		{
 			//position = new Vector3(position.x, position.y, 0);
@@ -116,7 +120,7 @@ namespace NEquipment
 		}
 
 		//敵に武器が当たったとき
-		public void OnTriggerEnter2D(Collider2D other)
+		public void OnTriggerStay2D(Collider2D other)
 		{
 			Character target = null;
 			if (other.gameObject.GetComponent<Character>() != null)
@@ -130,13 +134,14 @@ namespace NEquipment
 
 			if (target.GetType().IsSubclassOf(typeof(Enemy)))
 			{
-				if (isActive)
+				if (isActive && Time.time - attackCoolTime > attackCoolTimeLength)
 				{
 					target.hp -= attackPower;
 
 					StartCoroutine(ShowDamageText(attackPower, target.transform.position));
 
 					Debug.Log(target.name + "を攻撃した");
+					attackCoolTime = Time.time;
 
 					// if (target.hp <= 0)
 					// {
