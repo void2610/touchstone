@@ -11,7 +11,7 @@ public class DigMapScript : MonoBehaviour
 	private Tilemap tilemap;
 	private int width = 250;
 	private int height = 250;
-	private int[,] map = new int[500, 500];
+	public int[,] map = new int[500, 500];
 	private int[] currentPos = { 1, 1 };
 	private int direction = 1; //0 = up, 1 = upright, 2 = right, 3 = downright, 4 = down, 5 = downleft, 6 = left, 7 = upleft
 	private int radius;
