@@ -677,7 +677,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.57
+  orthographic size: 12.23
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   firstLScale: {x: 0, y: 0}
   isInvincible: 0
   speed: 15
-  jumpForce: 500
+  jumpForce: 1000
   jp: 0
   isMovable: 1
 --- !u!231 &1471282078

@@ -10,7 +10,7 @@ namespace NCharacter
 	{
 		public float speed;
 
-		public float jumpForce = 600f;
+		public float jumpForce = 500f;
 
 		public int jp = 0;
 
@@ -43,7 +43,7 @@ namespace NCharacter
 			jp = jrs.jumpCount;
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
 			{
-				if (this.jp < 1)
+				if (this.jp < 2)
 				{
 					this.rb.AddForce(transform.up * jumpForce);
 					jrs.jumpCount++;
