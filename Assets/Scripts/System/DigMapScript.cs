@@ -13,12 +13,13 @@ public class DigMapScript : MonoBehaviour
 	private int height = 250;
 	private int[,] map = new int[500, 500];
 	private int[] currentPos = { 1, 1 };
-	private int direction = 0; //0 = up, 1 = upright, 2 = right, 3 = downright, 4 = down, 5 = downleft, 6 = left, 7 = upleft
+	private int direction = 1; //0 = up, 1 = upright, 2 = right, 3 = downright, 4 = down, 5 = downleft, 6 = left, 7 = upleft
 	private int radius;
 	private int count = 0;
 	private int seed = -1;
 	private int margin = 10;
 	private int countLimit = 100;
+	private int startDirection = 1;
 
 	private int[,] GenerateArray(int width, int height, bool empty)
 	{
@@ -306,28 +307,36 @@ public class DigMapScript : MonoBehaviour
 		}
 		return res;
 	}
-	private void ChangeDirectionToCenter()
+	private void ChangeStartDirectionToCenter()
 	{
-		//中心にdirectionを向ける
-		if (currentPos[0] < width / 2 && currentPos[1] < height / 2)
+		if (currentPos[0] < width / 2 && currentPos[1] < height / 3)
 		{
 			startDirection = 1;
 		}
-		else if (currentPos[0] > width / 2 && currentPos[1] < height / 2)
+		else if (currentPos[0] < width / 2 && currentPos[1] > height / 3 && currentPos[1] < height / 3 * 2)
 		{
-			startDirection = 7;
+			startDirection = 2;
 		}
-		else if (currentPos[0] < width / 2 && currentPos[1] > height / 2)
+		else if (currentPos[0] < width / 2 && currentPos[1] > height / 3 * 2)
 		{
 			startDirection = 3;
 		}
-		else if (currentPos[0] > width / 2 && currentPos[1] > height / 2)
+		else if (currentPos[0] > width / 2 && currentPos[1] > height / 3 * 2)
 		{
 			startDirection = 5;
 		}
+		else if (currentPos[0] > width / 2 && currentPos[1] > height / 3 && currentPos[1] < height / 3 * 2)
+		{
+			startDirection = 6;
+		}
+		else if (currentPos[0] > width / 2 && currentPos[1] < height / 3)
+		{
+			startDirection = 7;
+		}
 	}
-	private void DigTunnelUntillSuccess(int startXpos, int startYpos, int maxRadius, int minRadius, int startDirection, int minSize)
+	private void DigTunnelUntillSuccess(int startXpos, int startYpos, int maxRadius, int minRadius, int minSize)
 	{
+		ChangeStartDirectionToCenter();
 		count++;
 		if (count > countLimit)
 		{
@@ -349,19 +358,18 @@ public class DigMapScript : MonoBehaviour
 				currentPos[1] = startYpos;
 			}
 
-			ChangeDirectionToCenter();
-			Debug.Log("startXpos:" + startXpos + " startYpos:" + startYpos + "startDirection" + startDirection);
+			ChangeStartDirectionToCenter();
 
-			DigTunnelUntillSuccess(startXpos, startYpos, maxRadius, minRadius, startDirection, minSize);
+			DigTunnelUntillSuccess(startXpos, startYpos, maxRadius, minRadius, minSize);
 		}
 		else
 		{
 			count = 0;
-
+			map[currentPos[0], currentPos[1]] = 1;
 		}
 	}
 
-	int startDirection = 1;
+
 	void Start()
 	{
 		tilemap = this.GetComponent<Tilemap>();
@@ -370,7 +378,7 @@ public class DigMapScript : MonoBehaviour
 		Random.InitState(seed);
 
 		//メインの穴を1つ生成
-		DigTunnelUntillSuccess(15, 15, 20, 9, 1, 5000);
+		DigTunnelUntillSuccess(15, 15, 20, 9, 5000);
 
 
 		//いい感じのところに移動
@@ -386,7 +394,7 @@ public class DigMapScript : MonoBehaviour
 				currentPos[1] = Random.Range(margin, height - margin);
 			}
 			int limit = 100;
-			DigTunnelUntillSuccess(currentPos[0], currentPos[1], 5, 3, direction, limit);
+			DigTunnelUntillSuccess(currentPos[0], currentPos[1], 5, 3, limit);
 		}
 		if (count > countLimit)
 		{
