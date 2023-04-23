@@ -17,7 +17,8 @@ public class DigMapScript : MonoBehaviour
 	private int radius;
 	private int count = 0;
 	private int seed = -1;
-	private int checkMargin = 1;
+	private int margin = 10;
+	private int countLimit = 100;
 
 	private int[,] GenerateArray(int width, int height, bool empty)
 	{
@@ -149,14 +150,14 @@ public class DigMapScript : MonoBehaviour
 
 	private bool CheckNextPosition()
 	{
-		if (currentPos[0] - radius - checkMargin < 0 || currentPos[1] - radius - checkMargin < 0)
+		if (currentPos[0] - radius < 0 || currentPos[1] - radius < 0)
 		{
 			return false;
 		}
 		switch (direction)
 		{
 			case 0:
-			if (map[currentPos[0], currentPos[1] + radius + checkMargin] == 1)
+			if (map[currentPos[0], currentPos[1] + radius] == 1)
 			{
 				return true;
 			}
@@ -165,7 +166,7 @@ public class DigMapScript : MonoBehaviour
 				return false;
 			}
 			case 1:
-			if (map[currentPos[0] + radius + checkMargin, currentPos[1] + radius + checkMargin] == 1)
+			if (map[currentPos[0] + radius, currentPos[1] + radius] == 1)
 			{
 				return true;
 			}
@@ -174,7 +175,7 @@ public class DigMapScript : MonoBehaviour
 				return false;
 			}
 			case 2:
-			if (map[currentPos[0] + radius + checkMargin, currentPos[1]] == 1)
+			if (map[currentPos[0] + radius, currentPos[1]] == 1)
 			{
 				return true;
 			}
@@ -183,7 +184,7 @@ public class DigMapScript : MonoBehaviour
 				return false;
 			}
 			case 3:
-			if (map[currentPos[0] + radius + checkMargin, currentPos[1] - radius - checkMargin] == 1)
+			if (map[currentPos[0] + radius, currentPos[1] - radius] == 1)
 			{
 				return true;
 			}
@@ -192,7 +193,7 @@ public class DigMapScript : MonoBehaviour
 				return false;
 			}
 			case 4:
-			if (map[currentPos[0], currentPos[1] - radius - checkMargin] == 1)
+			if (map[currentPos[0], currentPos[1] - radius] == 1)
 			{
 				return true;
 			}
@@ -201,7 +202,7 @@ public class DigMapScript : MonoBehaviour
 				return false;
 			}
 			case 5:
-			if (map[currentPos[0] - radius - checkMargin, currentPos[1] - radius - checkMargin] == 1)
+			if (map[currentPos[0] - radius, currentPos[1] - radius] == 1)
 			{
 				return true;
 			}
@@ -210,7 +211,7 @@ public class DigMapScript : MonoBehaviour
 				return false;
 			}
 			case 6:
-			if (map[currentPos[0] - radius - checkMargin, currentPos[1]] == 1)
+			if (map[currentPos[0] - radius, currentPos[1]] == 1)
 			{
 				return true;
 			}
@@ -219,7 +220,7 @@ public class DigMapScript : MonoBehaviour
 				return false;
 			}
 			case 7:
-			if (map[currentPos[0] - radius - checkMargin, currentPos[1] + radius + checkMargin] == 1)
+			if (map[currentPos[0] - radius, currentPos[1] + radius] == 1)
 			{
 				return true;
 			}
@@ -288,7 +289,6 @@ public class DigMapScript : MonoBehaviour
 				}
 			}
 		}
-		Debug.Log(res);
 		return res;
 	}
 	private int CountDigedArea(int[,] map)
@@ -326,37 +326,38 @@ public class DigMapScript : MonoBehaviour
 			startDirection = 5;
 		}
 	}
-	private void DigTunnelUntillSuccess(int startXpos, int startYpos, int maxRadius, int minRadius, int startDirection)
+	private void DigTunnelUntillSuccess(int startXpos, int startYpos, int maxRadius, int minRadius, int startDirection, int minSize)
 	{
 		count++;
-		if (count > 100)
+		if (count > countLimit)
 		{
 			Debug.Log("failed");
 			return;
 		}
-
-		int limit = (int)(((maxRadius + minRadius) * (maxRadius + minRadius) / 4 * 3) * 3.4f);
-		Debug.Log("limit: " + limit);
 		int[,] oldMap = new int[500, 500];
 		System.Array.Copy(map, oldMap, map.Length);
 		DigTunnel(startXpos, startYpos, maxRadius, minRadius, startDirection);
-		if (CountMapChange(oldMap, map) < limit)
+		if (CountMapChange(oldMap, map) < minSize)
 		{
 			map = oldMap;
 
 			while (!CheckArea(currentPos[0], currentPos[1], radius))
 			{
-				currentPos[0] = Random.Range(0, width);
-				currentPos[1] = Random.Range(0, height);
+				startXpos = Random.Range(margin, width - margin);
+				currentPos[0] = startXpos;
+				startYpos = Random.Range(margin, height - margin);
+				currentPos[1] = startYpos;
 			}
 
 			ChangeDirectionToCenter();
+			Debug.Log("startXpos:" + startXpos + " startYpos:" + startYpos + "startDirection" + startDirection);
 
-			DigTunnelUntillSuccess(startXpos, startYpos, maxRadius, minRadius, startDirection);
+			DigTunnelUntillSuccess(startXpos, startYpos, maxRadius, minRadius, startDirection, minSize);
 		}
 		else
 		{
 			count = 0;
+
 		}
 	}
 
@@ -369,24 +370,25 @@ public class DigMapScript : MonoBehaviour
 		Random.InitState(seed);
 
 		//メインの穴を1つ生成
-		DigTunnel(15, 15, 12, 5, 1);
+		DigTunnelUntillSuccess(15, 15, 20, 9, 1, 5000);
 
 
 		//いい感じのところに移動
-		currentPos[0] = Random.Range(checkMargin, width);
-		currentPos[1] = Random.Range(checkMargin, height);
+		currentPos[0] = Random.Range(margin, width - margin);
+		currentPos[1] = Random.Range(margin, height - margin);
 
-		while (CountDigedArea(map) < 15000 && count < 100)
+		while (CountDigedArea(map) < 15000 && count < countLimit)
 		{
 			//細い穴を複数生成
 			while (!CheckArea(currentPos[0], currentPos[1], radius))
 			{
-				currentPos[0] = Random.Range(checkMargin, width);
-				currentPos[1] = Random.Range(checkMargin, height);
+				currentPos[0] = Random.Range(margin, width - margin);
+				currentPos[1] = Random.Range(margin, height - margin);
 			}
-			DigTunnelUntillSuccess(currentPos[0], currentPos[1], 5, 3, direction);
+			int limit = 100;
+			DigTunnelUntillSuccess(currentPos[0], currentPos[1], 5, 3, direction, limit);
 		}
-		if (count > 100)
+		if (count > countLimit)
 		{
 			Debug.Log("failed");
 		}
