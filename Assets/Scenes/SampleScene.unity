@@ -1186,6 +1186,7 @@ GameObject:
   - component: {fileID: 1017836010}
   - component: {fileID: 1017836011}
   - component: {fileID: 1017836012}
+  - component: {fileID: 1017836013}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1274,6 +1275,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8802f3f68097d124ab9247e3c7718fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1017836013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017836006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8184c12a1ae14c408502d3e23bd5519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1090723332
@@ -2903,7 +2916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958906719924020119, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 7958906719924020119, guid: be2ffb5bbcd37e74499e55b429cd7efe, type: 3}
       propertyPath: m_LocalPosition.z

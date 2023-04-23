@@ -90,6 +90,10 @@ namespace NCharacter
 						animator.SetInteger("PlayerState", 0);
 					}
 				}
+				if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+				{
+					rb.velocity = new Vector2(0, rb.velocity.y);
+				}
 
 				if (MathF.Abs(this.GetComponent<Rigidbody2D>().velocity.x) > 0.1f)
 				{
