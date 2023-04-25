@@ -27,7 +27,7 @@ namespace NEquipment
 
 		public override void OnActionEnd()
 		{
-			player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+			player.GetComponent<Rigidbody2D>().velocity *= 0.5f;
 		}
 
 		public override void Start()

@@ -27,8 +27,21 @@ namespace NCharacter
 			if (target.isInvincible == false)
 			{
 				target.hp -= atk;
-				//Debug.Log(target.name + "のHPが" + atk + "削れた");
+				Debug.Log(target.name + "のHPが" + atk + "削れた");
+				if (target.name == "Player")
+				{
+					StartCoroutine(StartDamageCooldown(target));
+				}
 			}
+
+		}
+
+		public IEnumerator StartDamageCooldown(Character target)
+		{
+			target.isInvincible = true;
+			Debug.Log("無敵");
+			yield return new WaitForSeconds(0.5f);
+			target.isInvincible = false;
 		}
 
 		public Character SearchCharacter(GameObject target)

@@ -27,6 +27,14 @@ namespace NCharacter
 			Destroy(dt);
 		}
 
+		public IEnumerator ChangeColortoRed(GameObject target)
+		{
+			target.GetComponent<SpriteRenderer>().color = Color.red;
+			yield return new WaitForSeconds(0.3f);
+			target.GetComponent<SpriteRenderer>().color = Color.white;
+			yield return null;
+		}
+
 
 		//攻撃処理(この中でCutHPを呼ぶ)(キャラによって違う)
 		public virtual void Attack()
@@ -58,11 +66,13 @@ namespace NCharacter
 			if (other.gameObject.tag == "PlayerTrigger")
 			{
 				target = SearchCharacter(other.gameObject);
-			}
-			if (target != null)
-			{
-				CutHP(target);
-				StartCoroutine(ShowDamageText(atk, target.transform.position));
+
+				if (!target.isInvincible)
+				{
+					StartCoroutine(ChangeColortoRed(other.gameObject));
+					CutHP(target);
+					StartCoroutine(ShowDamageText(atk, target.transform.position));
+				}
 			}
 		}
 	}
