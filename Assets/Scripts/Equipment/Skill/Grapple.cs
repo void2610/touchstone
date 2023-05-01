@@ -58,6 +58,8 @@ namespace NEquipment
 
 			lineRenderer = this.GetComponent<LineRenderer>();
 			lineRenderer.positionCount = 2;
+
+			GameObject.Find("Player").GetComponent<SpringJoint2D>().enabled = true;
 		}
 		public override void FixedUpdate()
 		{
