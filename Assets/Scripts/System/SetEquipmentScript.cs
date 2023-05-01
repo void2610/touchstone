@@ -16,5 +16,6 @@ public class SetEquipmentScript : MonoBehaviour
 		GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Weapon/" + weapon));
 		GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Skill/" + skill));
 		GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Utility/" + utility));
+		Debug.Log(weapon + " " + skill + " " + utility);
 	}
 }
