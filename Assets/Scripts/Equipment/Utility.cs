@@ -9,15 +9,25 @@ namespace NEquipment
 	{
 		public GameObject gauge;
 
+		//長押しでactiveTimeLengthの時間まで有効、長押しを離したらクールタイムが始まる
 		public override IEnumerator Action()
 		{
 			activeStartTime = Time.time;
 			isActive = true;
 			activeStartAngle = angle;
+			activeStartPosition = getMousePosition();
 			OnActionStart();
 			yield return new WaitForSeconds(activeTimeLength);
-			isActive = false;
-			OnActionEnd();
+			if (isActive)
+			{
+				isActive = false;
+				OnActionEnd();
+				StartCoroutine(CoolTime());
+			}
+		}
+
+		public IEnumerator CoolTime()
+		{
 			isCooling = true;
 			coolStartTime = Time.time;
 			yield return new WaitForSeconds(coolTimeLength);
@@ -45,6 +55,15 @@ namespace NEquipment
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
 			{
 				StartCoroutine(Action());
+			}
+
+			if (isActive && Input.GetButtonUp(actionKey))
+			{
+				//長押しを離したらクールタイムが始まる
+				isActive = false;
+				activeStartTime = 0;
+				OnActionEnd();
+				StartCoroutine(CoolTime());
 			}
 
 			if (isCooling)
