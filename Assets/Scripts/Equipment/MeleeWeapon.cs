@@ -122,25 +122,17 @@ namespace NEquipment
 		//敵に武器が当たったとき
 		public void OnTriggerStay2D(Collider2D other)
 		{
-			Character target = null;
-			if (other.gameObject.GetComponent<Character>() != null)
-			{
-				target = other.gameObject.GetComponent<Character>();
-			}
-			else
+			if (other.gameObject.GetComponent<Character>() == null)
 			{
 				return;
 			}
 
-			if (target.GetType().IsSubclassOf(typeof(Enemy)))
+			if (other.gameObject.GetComponent<Character>().GetType().IsSubclassOf(typeof(Enemy)))
 			{
 				if (isActive && Time.time - attackCoolTime > attackCoolTimeLength)
 				{
-					target.hp -= attackPower;
+					ProvideDamage(other.gameObject);
 
-					StartCoroutine(ShowDamageText(attackPower, target.transform.position));
-
-					Debug.Log(target.name + "を攻撃した");
 					attackCoolTime = Time.time;
 
 					// if (target.hp <= 0)

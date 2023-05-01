@@ -22,7 +22,7 @@ namespace NCharacter
 		{
 			base.Start();
 			name = "Slime";
-			hp = 10;
+			hp = 3;
 			atk = 1;
 			killScore = 1;
 		}
