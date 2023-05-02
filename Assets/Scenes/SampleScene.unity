@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 264215456}
   - component: {fileID: 264215455}
   m_Layer: 5
-  m_Name: UtilityGauge
+  m_Name: Skill2Gauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1450,7 +1450,7 @@ GameObject:
   - component: {fileID: 1116362492}
   - component: {fileID: 1116362491}
   m_Layer: 5
-  m_Name: UtilityIcon
+  m_Name: Skill2Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2084,7 +2084,7 @@ GameObject:
   - component: {fileID: 1510405647}
   - component: {fileID: 1510405646}
   m_Layer: 5
-  m_Name: SkillIcon
+  m_Name: Skill1Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2381,7 +2381,7 @@ GameObject:
   - component: {fileID: 1729483086}
   - component: {fileID: 1729483085}
   m_Layer: 5
-  m_Name: SkillGauge
+  m_Name: Skill1Gauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

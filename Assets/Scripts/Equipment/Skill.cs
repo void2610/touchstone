@@ -47,7 +47,14 @@ namespace NEquipment
 		public virtual void Start()
 		{
 			base.Start();
-			gauge = GameObject.Find("SkillGauge");
+			if (actionKey == "Fire2")
+			{
+				gauge = GameObject.Find("Skill1Gauge");
+			}
+			else if (actionKey == "Fire3")
+			{
+				gauge = GameObject.Find("Skill2Gauge");
+			}
 		}
 
 		public virtual void Update()

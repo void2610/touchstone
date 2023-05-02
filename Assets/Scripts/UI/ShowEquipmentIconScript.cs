@@ -22,8 +22,8 @@ namespace NUI
 			skill2 = PlayerPrefs.GetString("NowEquipSkill2", "Dash");
 
 			weaponIcon = GameObject.Find("WeaponIcon").GetComponent<Image>();
-			skill1Icon = GameObject.Find("SkillIcon").GetComponent<Image>();
-			skill2Icon = GameObject.Find("UtilityIcon").GetComponent<Image>();
+			skill1Icon = GameObject.Find("Skill1Icon").GetComponent<Image>();
+			skill2Icon = GameObject.Find("Skill2Icon").GetComponent<Image>();
 
 			weaponIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + weapon);
 			skill1Icon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + skill1);
