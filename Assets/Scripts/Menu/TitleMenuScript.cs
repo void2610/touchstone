@@ -104,7 +104,7 @@ namespace NMenu
 
 		public void OnClickSetSkillButton(Button b)
 		{
-			PlayerPrefs.SetString("NowEquipSkill", b.name);
+			PlayerPrefs.SetString("NowEquipSkill1", b.name);
 			nowSkill.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + b.name);
 			state = 1;
 		}
@@ -112,20 +112,20 @@ namespace NMenu
 		public void OnClickSetUtilityButton(Button b)
 		{
 			Debug.Log(b.name);
-			PlayerPrefs.SetString("NowEquipUtility", b.name);
-			nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Utility/" + b.name);
+			PlayerPrefs.SetString("NowEquipSkill2", b.name);
+			nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + b.name);
 			state = 1;
 		}
 
 		void Start()
 		{
 			PlayerPrefs.SetString("NowEquipWeapon", "Sword");
-			PlayerPrefs.SetString("NowEquipSkill", "Grapple");
-			PlayerPrefs.SetString("NowEquipUtility", "Dash");
+			PlayerPrefs.SetString("NowEquipSkill1", "Grapple");
+			PlayerPrefs.SetString("NowEquipSkill2", "Dash");
 
 			nowWeapon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + PlayerPrefs.GetString("NowEquipWeapon", "Sword"));
-			nowSkill.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipSkill", "Grapple"));
-			nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Utility/" + PlayerPrefs.GetString("NowEquipUtility", "Dash"));
+			nowSkill.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipSkill1", "Grapple"));
+			nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipUSkill2", "Dash"));
 		}
 
 		void Update()

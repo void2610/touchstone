@@ -4,7 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Dash : Utility
+	public class Dash : Skill
 	{
 		private Vector3 moveAngle;
 

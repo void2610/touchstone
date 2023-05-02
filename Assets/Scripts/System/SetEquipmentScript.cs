@@ -5,17 +5,17 @@ using UnityEngine;
 public class SetEquipmentScript : MonoBehaviour
 {
 	private string weapon = "Sword";
-	private string skill = "Grapple";
-	private string utility = "Dash";
+	private string skill1 = "Grapple";
+	private string skill2 = "Dash";
 	void Start()
 	{
 		weapon = PlayerPrefs.GetString("NowEquipWeapon", "Sword");
-		skill = PlayerPrefs.GetString("NowEquipSkill", "Grapple");
-		utility = PlayerPrefs.GetString("NowEquipUtility", "Dash");
+		skill1 = PlayerPrefs.GetString("NowEquipSkill1", "Grapple");
+		skill2 = PlayerPrefs.GetString("NowEquipSkill2", "Dash");
 
 		GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Weapon/" + weapon));
-		GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Skill/" + skill));
-		GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Utility/" + utility));
-		Debug.Log(weapon + " " + skill + " " + utility);
+		GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Skill/" + skill1));
+		GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Skill/" + skill2));
+		Debug.Log(weapon + " " + skill1 + " " + skill2);
 	}
 }

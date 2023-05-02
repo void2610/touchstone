@@ -4,10 +4,10 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Bomb : Utility
+	public class Bomb : Skill
 	{
 		private Vector3 bombAngle;
-		private float throwPower = 40;
+		private float throwPower = 5;
 
 		public void Awake()
 		{
