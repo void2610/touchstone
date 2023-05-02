@@ -27,9 +27,9 @@ namespace NMenu
 		[SerializeField]
 		private GameObject weapons;
 		[SerializeField]
-		private GameObject skills;
+		private GameObject skills1;
 		[SerializeField]
-		private GameObject utilities;
+		private GameObject skills2;
 		[SerializeField]
 		private GameObject nowWeapon;
 		[SerializeField]
@@ -42,7 +42,7 @@ namespace NMenu
 		private string utilityName = "Grapple";
 
 		private int state = 0;
-		//0:タイトル画面 1:装備編成画面 2:設定画面 3:weapon 4:skill 5:utility
+		//0:タイトル画面 1:装備編成画面 2:設定画面 3:weapon 4:skill1 5:skill2
 
 		public void OnClickStartButton()
 		{
@@ -102,14 +102,14 @@ namespace NMenu
 			state = 1;
 		}
 
-		public void OnClickSetSkillButton(Button b)
+		public void OnClickSetSkill1Button(Button b)
 		{
 			PlayerPrefs.SetString("NowEquipSkill1", b.name);
 			nowSkill.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + b.name);
 			state = 1;
 		}
 
-		public void OnClickSetUtilityButton(Button b)
+		public void OnClickSetSkill2Button(Button b)
 		{
 			Debug.Log(b.name);
 			PlayerPrefs.SetString("NowEquipSkill2", b.name);
@@ -140,9 +140,8 @@ namespace NMenu
 				entryButton.SetActive(false);
 				equipments.SetActive(false);
 				weapons.SetActive(false);
-				skills.SetActive(false);
-				utilities.SetActive(false);
-
+				skills1.SetActive(false);
+				skills2.SetActive(false);
 			}
 			else if (state == 1)
 			{
@@ -154,9 +153,8 @@ namespace NMenu
 				entryButton.SetActive(true);
 				equipments.SetActive(true);
 				weapons.SetActive(false);
-				skills.SetActive(false);
-				utilities.SetActive(false);
-
+				skills1.SetActive(false);
+				skills2.SetActive(false);
 			}
 			else if (state == 2)
 			{
@@ -168,8 +166,8 @@ namespace NMenu
 				entryButton.SetActive(false);
 				equipments.SetActive(false);
 				weapons.SetActive(false);
-				skills.SetActive(false);
-				utilities.SetActive(false);
+				skills1.SetActive(false);
+				skills2.SetActive(false);
 			}
 			else if (state == 3)
 			{
@@ -181,9 +179,8 @@ namespace NMenu
 				entryButton.SetActive(true);
 				equipments.SetActive(false);
 				weapons.SetActive(true);
-				skills.SetActive(false);
-				utilities.SetActive(false);
-
+				skills1.SetActive(false);
+				skills2.SetActive(false);
 			}
 			else if (state == 4)
 			{
@@ -195,8 +192,8 @@ namespace NMenu
 				entryButton.SetActive(true);
 				equipments.SetActive(false);
 				weapons.SetActive(false);
-				skills.SetActive(true);
-				utilities.SetActive(false);
+				skills1.SetActive(true);
+				skills2.SetActive(false);
 			}
 			else if (state == 5)
 			{
@@ -208,8 +205,8 @@ namespace NMenu
 				entryButton.SetActive(true);
 				equipments.SetActive(false);
 				weapons.SetActive(false);
-				skills.SetActive(false);
-				utilities.SetActive(true);
+				skills1.SetActive(false);
+				skills2.SetActive(true);
 			}
 		}
 	}
