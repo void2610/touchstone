@@ -778,8 +778,8 @@ MonoBehaviour:
   entryButton: {fileID: 2031789569}
   equipments: {fileID: 188136355}
   weapons: {fileID: 356774589}
-  skills: {fileID: 274535265}
-  utilities: {fileID: 33571753}
+  skills1: {fileID: 274535265}
+  skills2: {fileID: 33571753}
   nowWeapon: {fileID: 1455015472}
   nowSkill: {fileID: 665032149}
   nowUtility: {fileID: 1160525374}
