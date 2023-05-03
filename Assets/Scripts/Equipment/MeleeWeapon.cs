@@ -134,11 +134,6 @@ namespace NEquipment
 					ProvideDamage(other.gameObject);
 					StartCoroutine(HitStop());
 					attackCoolTime = Time.time;
-
-					// if (target.hp <= 0)
-					// {
-					// 	gcScript.score += target.killScore;
-					// }
 				}
 			}
 		}
