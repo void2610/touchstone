@@ -405,5 +405,17 @@ public class DigMapScript : MonoBehaviour
 		}
 
 		RenderMap(map, tilemap, ground);
+
+		//生成したマップの外に壁を作る
+		for (int i = -10; i < width + 10; i++)
+		{
+			for (int j = -10; j < height + 10; j++)
+			{
+				if (i < 0 || i >= width || j < 0 || j >= height)
+				{
+					tilemap.SetTile(new Vector3Int(i, j, 0), ground);
+				}
+			}
+		}
 	}
 }
