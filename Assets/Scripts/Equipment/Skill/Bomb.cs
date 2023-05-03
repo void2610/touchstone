@@ -17,7 +17,7 @@ namespace NEquipment
 			name = "Bomb";
 			actionKey = "Fire3";
 			isCooling = false;
-			coolTimeLength = 1.0f;
+			coolTimeLength = 4.0f;
 			isEnable = true;
 			isActive = false;
 			activeTimeLength = 3f;
