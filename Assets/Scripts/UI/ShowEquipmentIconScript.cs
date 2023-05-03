@@ -28,6 +28,7 @@ namespace NUI
 			weaponIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + weapon);
 			skill1Icon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + skill1);
 			skill2Icon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + skill2);
+			Debug.Log("ShowEquipmentIconScript: " + weapon + " " + skill1 + " " + skill2);
 		}
 	}
 }

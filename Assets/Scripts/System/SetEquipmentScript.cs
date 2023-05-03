@@ -14,7 +14,7 @@ public class SetEquipmentScript : MonoBehaviour
 	void Start()
 	{
 		weapon = PlayerPrefs.GetString("NowEquipWeapon", "Sword");
-		skill1 = PlayerPrefs.GetString("NowEquipSkill1", "Grapple");
+		skill1 = PlayerPrefs.GetString("NowEquipSkill1", "Guard");
 		skill2 = PlayerPrefs.GetString("NowEquipSkill2", "Dash");
 
 		weaponObj = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/Weapon/" + weapon));
@@ -23,5 +23,6 @@ public class SetEquipmentScript : MonoBehaviour
 
 		skill1Obj.GetComponent<Skill>().actionKey = "Fire2";
 		skill2Obj.GetComponent<Skill>().actionKey = "Fire3";
+		//Debug.Log("SetEquipmentScript: " + weapon + " " + skill1 + " " + skill2);
 	}
 }
