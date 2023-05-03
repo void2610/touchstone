@@ -132,7 +132,7 @@ namespace NEquipment
 				if (isActive && Time.time - attackCoolTime > attackCoolTimeLength)
 				{
 					ProvideDamage(other.gameObject);
-
+					StartCoroutine(HitStop());
 					attackCoolTime = Time.time;
 
 					// if (target.hp <= 0)

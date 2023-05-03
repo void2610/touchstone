@@ -20,7 +20,7 @@ namespace NEquipment
 
 		private Vector3 difference;
 
-		private GameObject damegeText;
+		private GameObject damageText;
 
 		public void MoveWeaponAngle()
 		{
@@ -57,28 +57,25 @@ namespace NEquipment
 			yield return null;
 		}
 
-		public IEnumerator ShowDamageText(int damage, Vector3 position)
+		public void ShowDamageText(int damage, Vector3 position)
 		{
-			//position = new Vector3(position.x, position.y, 0);
-			GameObject dt = GameObject.Instantiate(damegeText, position, Quaternion.identity);
+			GameObject dt = GameObject.Instantiate(damageText, position, Quaternion.identity);
 			GameObject canvas = GameObject.Find("WorldCanvas");
 			dt.GetComponent<Text>().text = damage.ToString();
 			dt.transform.SetParent(canvas.transform, false);
+		}
 
-			for (int i = 0; i < 50; i++)
-			{
-				float up = (50 - i) * 0.0005f;
-				dt.transform.position += new Vector3(0, up, 0);
-				yield return new WaitForSeconds(0.001f);
-			}
-			yield return new WaitForSeconds(0.8f);
-			Destroy(dt);
+		public IEnumerator HitStop()
+		{
+			Time.timeScale = 0f;
+			yield return new WaitForSecondsRealtime(0.1f);
+			Time.timeScale = 1;
 		}
 
 		public void ProvideDamage(GameObject target)
 		{
 			target.GetComponent<Character>().hp -= attackPower;
-			StartCoroutine(ShowDamageText(attackPower, target.transform.position));
+			ShowDamageText(attackPower, target.transform.position);
 			StartCoroutine(ChangeColortoRed(target));
 
 			Debug.Log(target.name + "を攻撃した");
@@ -87,7 +84,7 @@ namespace NEquipment
 		public override void Start()
 		{
 			base.Start();
-			damegeText = Resources.Load<GameObject>("Prefabs/DamegeText");
+			damageText = Resources.Load<GameObject>("Prefabs/DamageText");
 		}
 	}
 }

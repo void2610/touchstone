@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6233550182972516775}
   - component: {fileID: 6233550182972516773}
   - component: {fileID: 6233550182972516772}
+  - component: {fileID: -3907560636754366650}
   m_Layer: 5
-  m_Name: DamegeText
+  m_Name: DamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,3 +81,15 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 999
+--- !u!114 &-3907560636754366650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233550182972516774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e28274f31a1be649b1c0b679e781eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
