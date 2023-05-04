@@ -9,9 +9,11 @@ public class DigMapScript : MonoBehaviour
 	[SerializeField]
 	private TileBase ground;
 	private Tilemap tilemap;
+	public int[,] map = new int[500, 500];
+	public bool isMapCreated = false;
 	private int width = 250;
 	private int height = 250;
-	public int[,] map = new int[500, 500];
+
 	private int[] currentPos = { 1, 1 };
 	private int direction = 1; //0 = up, 1 = upright, 2 = right, 3 = downright, 4 = down, 5 = downleft, 6 = left, 7 = upleft
 	private int radius;
@@ -375,6 +377,7 @@ public class DigMapScript : MonoBehaviour
 
 	void Start()
 	{
+		isMapCreated = false;
 		tilemap = this.GetComponent<Tilemap>();
 		map = GenerateArray(width, height, false);
 		seed = System.DateTime.Now.Millisecond;
@@ -417,5 +420,6 @@ public class DigMapScript : MonoBehaviour
 				}
 			}
 		}
+		isMapCreated = true;
 	}
 }
