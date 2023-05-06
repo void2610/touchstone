@@ -1,4 +1,4 @@
-namespace NControl
+namespace NManager
 {
 	using System.Collections;
 	using System.Collections.Generic;
@@ -8,12 +8,9 @@ namespace NControl
 	using UnityEngine.SceneManagement;
 	using UnityEngine.UI;
 
-	public class GameControlScript : MonoBehaviour
+	public class ScoreManager : MonoBehaviour
 	{
 		public int score = 0;
-
-		public bool movable = true;
-
 		private GameObject sText;
 		private Character player;
 
@@ -32,13 +29,6 @@ namespace NControl
 			}
 			PlayerPrefs.SetInt("score", score);
 			PlayerPrefs.Save();
-		}
-
-		async void PlayerDeath()
-		{
-			movable = false;
-			SaveScore();
-			await Task.Delay(1000);
 		}
 
 		void Start()
@@ -60,13 +50,6 @@ namespace NControl
 			if (Input.GetKey(KeyCode.P))
 			{
 				ResetScore();
-			}
-
-			//死亡
-			if (player.hp <= 0)
-			{
-				PlayerDeath();
-				SceneManager.LoadScene("GameOverScene");
 			}
 			sText.GetComponent<Text>().text = "Score: " + score.ToString();
 		}

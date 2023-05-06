@@ -9,6 +9,8 @@ public class DigMapScript : MonoBehaviour
 	[SerializeField]
 	private TileBase ground;
 	private Tilemap tilemap;
+	public int seed = -1;
+	public bool randomSeed = false;
 	public int[,] map = new int[500, 500];
 	public bool isMapCreated = false;
 	private int width = 250;
@@ -18,7 +20,7 @@ public class DigMapScript : MonoBehaviour
 	private int direction = 1; //0 = up, 1 = upright, 2 = right, 3 = downright, 4 = down, 5 = downleft, 6 = left, 7 = upleft
 	private int radius;
 	private int count = 0;
-	private int seed = -1;
+
 	private int margin = 10;
 	private int countLimit = 100;
 	private int startDirection = 1;
@@ -380,7 +382,10 @@ public class DigMapScript : MonoBehaviour
 		isMapCreated = false;
 		tilemap = this.GetComponent<Tilemap>();
 		map = GenerateArray(width, height, false);
-		seed = System.DateTime.Now.Millisecond;
+		if (randomSeed)
+		{
+			seed = System.DateTime.Now.Millisecond;
+		}
 		Random.InitState(seed);
 
 		//メインの穴を1つ生成

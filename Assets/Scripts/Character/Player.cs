@@ -3,7 +3,7 @@ namespace NCharacter
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
-	using NControl;
+	using NManager;
 	using UnityEngine;
 
 	public class Player : Character

@@ -2,7 +2,7 @@ namespace NUI
 {
 	using System.Collections;
 	using System.Collections.Generic;
-	using NControl;
+	using NManager;
 	using UnityEngine;
 	using UnityEngine.UI;
 

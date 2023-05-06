@@ -4,13 +4,13 @@ namespace NCharacter
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEngine.UI;
-	using NControl;
+	using NManager;
 
 	public class Enemy : Character
 	{
 		private GameObject damageText;
 		private Character target = null;
-		private GameControlScript gcScript;
+		private ScoreManager sm;
 
 		public void ShowDamageText(int damage, Vector3 position)
 		{
@@ -56,7 +56,7 @@ namespace NCharacter
 			atk = 1;
 			killScore = 1;
 			damageText = Resources.Load<GameObject>("Prefabs/DamageText");
-			gcScript = GameObject.Find("GameController").GetComponent<GameControlScript>();
+			sm = GameObject.Find("GameController").GetComponent<ScoreManager>();
 		}
 
 		public override void FixedUpdate()
@@ -64,7 +64,7 @@ namespace NCharacter
 			base.FixedUpdate();
 			if (hp <= 0)
 			{
-				gcScript.score += killScore;
+				sm.score += killScore;
 				Destroy(this.gameObject);
 			}
 		}

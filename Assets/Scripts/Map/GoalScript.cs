@@ -1,33 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class GoalScript : MonoBehaviour
+namespace NMap
 {
-	// Start is called before the first frame update
-	void Start()
-	{
+	using System.Collections;
+	using System.Collections.Generic;
+	using UnityEngine;
+	using UnityEngine.SceneManagement;
+	using NManager;
 
-	}
-
-	// Update is called once per frame
-	void Update()
+	public class GoalScript : MonoBehaviour
 	{
-		//少しづつ回転させる
-		this.transform.Rotate(new Vector3(0, 0, 0.03f));
-		//少し上下に動かす
-		this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + Mathf.Sin(Time.time) * 0.001f, this.transform.position.z);
-	}
-
-	//衝突判定
-	void OnTriggerEnter(Collider other)
-	{
-		//プレイヤーと衝突したら
-		if (other.gameObject.name == "Player")
+		private GameManager gm;
+		void Start()
 		{
-			//ゲームクリア
-			SceneManager.LoadScene("ClearScene");
+			gm = GameObject.Find("GameController").GetComponent<GameManager>();
+		}
+
+		// Update is called once per frame
+		void Update()
+		{
+			//少しづつ回転させる
+			this.transform.Rotate(new Vector3(0, 0, 0.03f));
+			//少し上下に動かす
+			this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + Mathf.Sin(Time.time) * 0.001f, this.transform.position.z);
+		}
+
+		//衝突判定
+		void OnTriggerEnter2D(Collider2D other)
+		{
+			//プレイヤーと衝突したら
+			if (other.gameObject.name == "Player")
+			{
+				//ゲームクリア
+				gm.state = GameManager.GameState.Clear;
+			}
 		}
 	}
 }

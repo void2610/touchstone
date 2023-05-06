@@ -52,7 +52,6 @@ public class SetObjectScript : MonoBehaviour
 
 	private Vector3 ReturnGroundPosition(Vector3 pos)
 	{
-		Debug.Log("pos = " + pos.y);
 		//mapを確認し、posに一番近い地面を返す
 		for (int y = (int)pos.y; y > 0; y--)
 		{
@@ -60,7 +59,6 @@ public class SetObjectScript : MonoBehaviour
 			{
 				if (map[(int)pos.x, y - 1] == 1)
 				{
-					Debug.Log("pos.x = " + pos.x + ", y = " + y);
 					return new Vector3(pos.x, y + goalSize, 0);
 				}
 			}
@@ -156,6 +154,15 @@ public class SetObjectScript : MonoBehaviour
 		goal = (GameObject)Resources.Load("Prefabs/Map/GoalArea");
 		player = GameObject.Find("Player");
 		startPosition = Random.Range(1, 5);
+
+		if (digMapScript.randomSeed)
+		{
+			Random.InitState(System.DateTime.Now.Millisecond);
+		}
+		else
+		{
+			Random.InitState(digMapScript.seed);
+		}
 	}
 
 	// Update is called once per frame

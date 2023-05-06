@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6982381528520803990}
   - component: {fileID: 600605090459127269}
   - component: {fileID: -7414126670434161072}
-  - component: {fileID: -3040904433931453174}
   m_Layer: 0
   m_Name: GoalArea
   m_TagString: GoalAreaTag
@@ -123,17 +122,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99e44e9c88c6b454fac00e5b7f772677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-3040904433931453174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493436130110502286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf97c191fa4b58447920a06209aa09d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
