@@ -24,13 +24,18 @@ namespace NCharacter
 
 		JumpResetScript jrs;
 
+		public void Awake()
+		{
+			base.Awake();
+			name = "Player";
+			maxHp = 10;
+			hp = 2;
+			atk = 1;
+		}
+
 		public override void Start()
 		{
 			base.Start();
-			name = "Player";
-			maxHp = 10;
-			hp = 10;
-			atk = 1;
 
 			rb = this.GetComponent<Rigidbody2D>();
 			animator = GetComponent<Animator>();

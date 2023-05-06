@@ -58,12 +58,16 @@ namespace NCharacter
 			return result;
 		}
 
-		public virtual void Start()
+		public virtual void Awake()
 		{
 			name = "NoName";
 			hp = 1;
 			atk = 1;
 			killScore = 1;
+		}
+
+		public virtual void Start()
+		{
 			firstLScale = this.gameObject.transform.localScale;
 		}
 

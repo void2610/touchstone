@@ -1,67 +1,83 @@
 namespace NUI
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using NCharacter;
-    using UnityEngine;
-    using UnityEngine.UI;
+	using System.Collections;
+	using System.Collections.Generic;
+	using NCharacter;
+	using UnityEngine;
+	using UnityEngine.UI;
 
-    public class ShowHPScript : MonoBehaviour
-    {
-        public float HP;
+	public class ShowHPScript : MonoBehaviour
+	{
+		private float HP;
 
-        public Sprite hrt;
+		[SerializeField]
+		private Sprite hrt;
 
-        public Sprite halfHrt;
+		[SerializeField]
+		private Sprite halfHrt;
 
-        public Sprite noneHrt;
+		[SerializeField]
+		private Sprite noneHrt;
+		[SerializeField]
+		private GameObject noneHrtObj;
+		private GameObject[] heartArray = new GameObject[20];
+		private GameObject hearts;
 
-        GameObject[] hearts = new GameObject[5];
+		private Player player;
 
-        Character player;
+		private void SetHearts(int max)
+		{
+			int maxN = (int)Mathf.Floor(max / 2f);
 
-        void Start()
-        {
-            player = GameObject.Find("Player").GetComponent<Character>();
+			for (int i = 0; i < maxN; i++)
+			{
+				heartArray[i] = Instantiate(noneHrtObj, Vector3.zero, Quaternion.identity);
+				heartArray[i].transform.SetParent(hearts.transform, false);
+				heartArray[i].transform.localPosition = new Vector3(100 * i, 0, 0);
+			}
 
-            hearts[0] = GameObject.Find("Heart1");
-            hearts[1] = GameObject.Find("Heart2");
-            hearts[2] = GameObject.Find("Heart3");
-            hearts[3] = GameObject.Find("Heart4");
-            hearts[4] = GameObject.Find("Heart5");
-        }
 
-        void Update()
-        {
-            HP = player.hp / 2f;
-            int n = (int) Mathf.Floor(HP);
+		}
+		private void UpdateHearts(int hp, int max)
+		{
+			int n = (int)Mathf.Floor(hp / 2f);
+			int maxN = (int)Mathf.Floor(max / 2f);
+			bool isHalf = false;
 
-            //(⋈◍＞◡＜◍)。✧♡描画処理
-            for (int i = 0; i < 5; i++)
-            {
-                hearts[i].GetComponent<Image>().sprite = noneHrt;
-            }
-            bool isHalf = false;
-            if (player.hp % 2 != 0)
-            {
-                isHalf = true;
-            }
+			for (int i = 0; i < maxN; i++)
+			{
+				heartArray[i].GetComponent<Image>().sprite = noneHrt;
+			}
 
-            for (int i = 0; i < n; i++)
-            {
-                hearts[i].GetComponent<Image>().sprite = hrt;
-            }
-            if (isHalf)
-            {
-                hearts[n].GetComponent<Image>().sprite = halfHrt;
-            }
-            if (n < 4)
-            {
-                for (int i = n + 1; i <= 4; i++)
-                {
-                    hearts[i].GetComponent<Image>().sprite = noneHrt;
-                }
-            }
-        }
-    }
+			if (hp % 2 != 0)
+			{
+				isHalf = true;
+			}
+
+			for (int i = 0; i < n; i++)
+			{
+				heartArray[i].GetComponent<Image>().sprite = hrt;
+			}
+			if (isHalf)
+			{
+				heartArray[n].GetComponent<Image>().sprite = halfHrt;
+			}
+		}
+
+		void Start()
+		{
+			player = GameObject.Find("Player").GetComponent<Player>();
+
+			hearts = GameObject.Find("Hearts");
+
+			SetHearts(player.maxHp);
+			UpdateHearts(player.hp, player.maxHp);
+		}
+
+		void Update()
+		{
+			UpdateHearts(player.hp, player.maxHp);
+			Debug.Log(player.name);
+		}
+	}
 }
