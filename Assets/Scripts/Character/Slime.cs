@@ -22,7 +22,8 @@ namespace NCharacter
 		{
 			base.Start();
 			name = "Slime";
-			hp = 3;
+			maxHp = 1;
+			hp = 1;
 			atk = 1;
 			killScore = 1;
 		}

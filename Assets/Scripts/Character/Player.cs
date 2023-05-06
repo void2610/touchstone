@@ -28,6 +28,7 @@ namespace NCharacter
 		{
 			base.Start();
 			name = "Player";
+			maxHp = 10;
 			hp = 10;
 			atk = 1;
 

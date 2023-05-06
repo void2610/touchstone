@@ -9,6 +9,8 @@ namespace NCharacter
 	{
 		public string name;
 
+		public int maxHp;
+
 		public int hp;
 
 		public int atk;
