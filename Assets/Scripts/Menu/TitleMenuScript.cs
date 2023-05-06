@@ -78,6 +78,8 @@ namespace NMenu
 		{
 			//ゲームシーンへ
 			SceneManager.LoadScene("SampleScene");
+			PlayerPrefs.SetInt("PlayerHp", 10);
+			PlayerPrefs.SetInt("PlayerMaxHp", 10);
 		}
 
 		public void OnClickWeaponButton()

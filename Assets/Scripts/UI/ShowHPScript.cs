@@ -27,6 +27,14 @@ namespace NUI
 
 		private void SetHearts(int max)
 		{
+			for (int i = 0; i < heartArray.Length; i++)
+			{
+				if (heartArray[i] != null)
+				{
+					Destroy(heartArray[i]);
+				}
+			}
+
 			int maxN = (int)Mathf.Floor(max / 2f);
 
 			for (int i = 0; i < maxN; i++)

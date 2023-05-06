@@ -28,8 +28,8 @@ namespace NCharacter
 		{
 			base.Awake();
 			name = "Player";
-			maxHp = 10;
-			hp = 2;
+			maxHp = PlayerPrefs.GetInt("PlayerMaxHp", 10);
+			hp = PlayerPrefs.GetInt("PlayerHp", 10);
 			atk = 1;
 		}
 
