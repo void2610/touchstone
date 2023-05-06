@@ -51,6 +51,12 @@ namespace NManager
 		// Update is called once per frame
 		void Update()
 		{
+			if (player.hp <= 0)
+			{
+				state = GameState.GameOver;
+			}
+
+
 			switch (state)
 			{
 				case GameState.Playing:
