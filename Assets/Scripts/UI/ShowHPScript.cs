@@ -85,7 +85,6 @@ namespace NUI
 		void Update()
 		{
 			UpdateHearts(player.hp, player.maxHp);
-			Debug.Log(player.name);
 		}
 	}
 }
