@@ -7,7 +7,7 @@ namespace NUI
 	using NArtifact;
 	public class ArtifactCardScript : MonoBehaviour
 	{
-		public Artifact artifact;
+		public ArtifactData artifact;
 		private Text nameText;
 		private Text descriptionText;
 		void Start()
@@ -17,8 +17,8 @@ namespace NUI
 			descriptionText = transform.GetChild(2).GetComponent<Text>();
 
 			//アーティファクトの名前と説明を表示
-			nameText.text = artifact.name;
-			descriptionText.text = artifact.description;
+			nameText.text = artifact.artifactName;
+			descriptionText.text = artifact.artifactDescription;
 		}
 	}
 }
