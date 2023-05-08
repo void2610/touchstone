@@ -14,6 +14,7 @@ namespace NUI
 		private bool canBreakLine = true;
 
 		private Text textComponent;
+		private string tmp;
 
 		private void AdjustWidth()
 		{
@@ -21,9 +22,9 @@ namespace NUI
 			textComponent.text = textComponent.text.Replace("\n", "");
 
 			string[] words = textComponent.text.Split(' ');
+
 			string wrappedText = "";
 
-			float textWidth = maxWidth;
 			float spaceWidth = textComponent.fontSize;
 
 			float currentLineWidth = 0;
@@ -32,7 +33,7 @@ namespace NUI
 			{
 				float wordWidth = word.Length * textComponent.fontSize;
 
-				if (currentLineWidth + wordWidth <= textWidth)
+				if (currentLineWidth + wordWidth <= maxWidth)
 				{
 					wrappedText += word + " ";
 					currentLineWidth += wordWidth + spaceWidth;
@@ -45,7 +46,6 @@ namespace NUI
 			}
 
 			textComponent.text = wrappedText;
-			AdjustHeight();
 		}
 
 		private void AdjustHeight()
@@ -53,7 +53,6 @@ namespace NUI
 			float originalFontSize = textComponent.fontSize;
 			string[] lines = textComponent.text.Split('\n');
 			float height = lines.Length * originalFontSize;
-			Debug.Log(height);
 			if (height > maxHeight)
 			{
 				textComponent.fontSize = (int)(originalFontSize * maxHeight / height);
@@ -70,18 +69,26 @@ namespace NUI
 			{
 				AdjustWidth();
 			}
-			else
-			{
-				AdjustHeight();
-			}
+			AdjustHeight();
 		}
 
 		void Start()
 		{
 			textComponent = this.GetComponent<Text>();
-			AdjustText();
+			tmp = "aaa";
 		}
 
+		void Update()
+		{
+			if (tmp != textComponent.text)
+			{
+				Debug.Log(tmp + " -> " + textComponent.text);
+				AdjustText();
+				tmp = textComponent.text;
+			}
+
+			tmp = textComponent.text;
+		}
 
 	}
 }
