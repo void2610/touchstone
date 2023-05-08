@@ -10,6 +10,8 @@ namespace NUI
 		private float maxWidth;
 		[SerializeField]
 		private float maxHeight;
+		[SerializeField]
+		private bool canBreakLine = true;
 
 		private Text textComponent;
 
@@ -55,14 +57,29 @@ namespace NUI
 			if (height > maxHeight)
 			{
 				textComponent.fontSize = (int)(originalFontSize * maxHeight / height);
+				if (canBreakLine)
+				{
+					AdjustWidth();
+				}
+			}
+		}
+
+		private void AdjustText()
+		{
+			if (canBreakLine)
+			{
 				AdjustWidth();
+			}
+			else
+			{
+				AdjustHeight();
 			}
 		}
 
 		void Start()
 		{
 			textComponent = this.GetComponent<Text>();
-			AdjustWidth();
+			AdjustText();
 		}
 
 
