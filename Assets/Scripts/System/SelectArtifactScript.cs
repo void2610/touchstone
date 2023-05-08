@@ -36,6 +36,7 @@ namespace NUI
 
 		void Start()
 		{
+			Random.InitState(System.DateTime.Now.Millisecond);
 			artifactCard1 = transform.GetChild(0).GetComponent<ArtifactCardScript>();
 			artifactCard2 = transform.GetChild(1).GetComponent<ArtifactCardScript>();
 			artifactCard3 = transform.GetChild(2).GetComponent<ArtifactCardScript>();
