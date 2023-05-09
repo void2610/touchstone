@@ -17,13 +17,29 @@ namespace NUI
 		private ArtifactCardScript artifactCard2;
 		private ArtifactCardScript artifactCard3;
 
-		void AddArtifact(ArtifactData artifact)
+		public void OnClickArtifactCard1()
+		{
+			AddArtifact(artifactCard1.artifact);
+		}
+
+		public void OnClickArtifactCard2()
+		{
+			AddArtifact(artifactCard2.artifact);
+		}
+
+		public void OnClickArtifactCard3()
+		{
+			AddArtifact(artifactCard3.artifact);
+		}
+
+		private void AddArtifact(ArtifactData artifact)
 		{
 			//obtainedArtifactsのartifactsリストにartifactを追加する
 			obtainedArtifacts.artifacts.Add(artifact);
+			Debug.Log("AddArtifact: " + artifact.artifactName);
 		}
 
-		void PickThreeArtifact()
+		private void PickThreeArtifact()
 		{
 			//allArtifactsのartifactsリストからランダムにartifactを取得し、ArtifactCardScriptのartifactに代入する
 			ArtifactData artifact = allArtifacts.artifacts[Random.Range(0, allArtifacts.artifacts.Count)];
