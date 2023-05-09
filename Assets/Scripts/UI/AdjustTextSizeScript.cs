@@ -10,45 +10,11 @@ namespace NUI
 		private float maxWidth;
 		[SerializeField]
 		private float maxHeight;
-		[SerializeField]
-		private bool canBreakLine = true;
 
 		private Text textComponent;
 		private string tmp;
 
-		private void AdjustWidth()
-		{
-			//改行コードを全て削除
-			textComponent.text = textComponent.text.Replace("\n", "");
-
-			string[] words = textComponent.text.Split(' ');
-
-			string wrappedText = "";
-
-			float spaceWidth = textComponent.fontSize;
-
-			float currentLineWidth = 0;
-
-			foreach (string word in words)
-			{
-				float wordWidth = word.Length * textComponent.fontSize;
-
-				if (currentLineWidth + wordWidth <= maxWidth)
-				{
-					wrappedText += word + " ";
-					currentLineWidth += wordWidth + spaceWidth;
-				}
-				else
-				{
-					wrappedText += "\n" + word + " ";
-					currentLineWidth = wordWidth + spaceWidth;
-				}
-			}
-
-			textComponent.text = wrappedText;
-		}
-
-		private void AdjustHeight()
+		private void AdjustText()
 		{
 			float originalFontSize = textComponent.fontSize;
 			string[] lines = textComponent.text.Split('\n');
@@ -56,20 +22,7 @@ namespace NUI
 			if (height > maxHeight)
 			{
 				textComponent.fontSize = (int)(originalFontSize * maxHeight / height);
-				if (canBreakLine)
-				{
-					AdjustWidth();
-				}
 			}
-		}
-
-		private void AdjustText()
-		{
-			if (canBreakLine)
-			{
-				AdjustWidth();
-			}
-			AdjustHeight();
 		}
 
 		void Start()
@@ -82,13 +35,11 @@ namespace NUI
 		{
 			if (tmp != textComponent.text)
 			{
-				Debug.Log(tmp + " -> " + textComponent.text);
 				AdjustText();
 				tmp = textComponent.text;
 			}
 
 			tmp = textComponent.text;
 		}
-
 	}
 }
