@@ -14,6 +14,7 @@ namespace NManager
 			Playing,
 			Paused,
 			Clear,
+			SelectArtifact,
 			GameOver,
 			Other
 		}
@@ -27,6 +28,14 @@ namespace NManager
 			state = GameState.Other;
 			player.isMovable = false;
 			playerObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+			yield return new WaitForSeconds(1);
+			state = GameState.SelectArtifact;
+		}
+
+		private IEnumerator OpenArtifactCard()
+		{
+			state = GameState.Other;
+			//ArtifactCardを表示
 			sm.score += 20 * player.hp;
 			sm.SaveScore();
 			yield return new WaitForSeconds(1);
@@ -65,6 +74,9 @@ namespace NManager
 				break;
 				case GameState.Clear:
 				StartCoroutine(StageClear());
+				break;
+				case GameState.SelectArtifact:
+				StartCoroutine(OpenArtifactCard());
 				break;
 				case GameState.GameOver:
 				StartCoroutine(PlayerDeath());
