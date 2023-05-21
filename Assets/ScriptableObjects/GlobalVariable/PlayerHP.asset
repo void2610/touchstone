@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c85a4171c1510be438a2ef1a2f444506, type: 3}
-  m_Name: Protein
+  m_Script: {fileID: 11500000, guid: 1552746fc392e284ba54409f6d8c79d7, type: 3}
+  m_Name: PlayerHP
   m_EditorClassIdentifier: 
-  artifactName: Protein
-  artifactDescription: Raise the player's attack power by 1
-  artifactIcon: {fileID: 0}
+  InitialValue: 10
