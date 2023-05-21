@@ -34,7 +34,18 @@ namespace NManager
 		}
 		public void OnClickArtifactCardEvent()
 		{
-			state = GameState.GameOver;
+			state = GameState.Other;
+			StartCoroutine(LoadNextScene());
+			Debug.Log("aaa");
+
+		}
+		public IEnumerator LoadNextScene()
+		{
+			sm.score += 20 * player.hp;
+			sm.SaveScore();
+			Debug.Log("LoadNextScene");
+			yield return new WaitForSeconds(1);
+			SceneManager.LoadScene("SampleScene");
 		}
 
 		private IEnumerator StageClear()
@@ -44,16 +55,6 @@ namespace NManager
 			playerObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 			yield return new WaitForSeconds(1);
 			state = GameState.OpenArtifact;
-		}
-
-		private IEnumerator OpenArtifactCard()
-		{
-			state = GameState.Other;
-			//ArtifactCardを表示
-			sm.score += 20 * player.hp;
-			sm.SaveScore();
-			yield return new WaitForSeconds(1);
-			SceneManager.LoadScene("GameOverScene");
 		}
 
 		private IEnumerator PlayerDeath()

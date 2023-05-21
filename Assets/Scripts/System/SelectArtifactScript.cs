@@ -21,20 +21,29 @@ namespace NUI
 
 		public void OnClickArtifactCard1()
 		{
-			AddArtifact(artifactCard1.artifact);
-			OnClickArtifactCardEvent.Raise();
+			if (GameManager.instance.state == GameManager.GameState.SelectArtifact)
+			{
+				AddArtifact(artifactCard1.artifact);
+				OnClickArtifactCardEvent.Raise();
+			}
 		}
 
 		public void OnClickArtifactCard2()
 		{
-			AddArtifact(artifactCard2.artifact);
-			OnClickArtifactCardEvent.Raise();
+			if (GameManager.instance.state == GameManager.GameState.SelectArtifact)
+			{
+				AddArtifact(artifactCard2.artifact);
+				OnClickArtifactCardEvent.Raise();
+			}
 		}
 
 		public void OnClickArtifactCard3()
 		{
-			AddArtifact(artifactCard3.artifact);
-			OnClickArtifactCardEvent.Raise();
+			if (GameManager.instance.state == GameManager.GameState.SelectArtifact)
+			{
+				AddArtifact(artifactCard3.artifact);
+				OnClickArtifactCardEvent.Raise();
+			}
 		}
 
 		private void AddArtifact(ArtifactData artifact)
