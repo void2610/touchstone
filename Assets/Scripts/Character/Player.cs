@@ -8,6 +8,7 @@ namespace NCharacter
 
 	public class Player : Character
 	{
+		public IntVariable hpSO;
 		public GameEvent deathEvent;
 		public float speed;
 
@@ -47,6 +48,7 @@ namespace NCharacter
 		public override void Update()
 		{
 			base.Update();
+			hpSO.RuntimeValue = hp;
 			if (hp <= 0)
 			{
 				deathEvent.Raise();
