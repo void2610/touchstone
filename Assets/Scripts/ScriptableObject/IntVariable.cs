@@ -6,10 +6,10 @@ using System;
 [CreateAssetMenu(fileName = "IntVariable", menuName = "ScriptableObject/IntVariable")]
 public class IntVariable : ScriptableObject, ISerializationCallbackReceiver
 {
-	public float InitialValue;
+	public int InitialValue;
 
 	[NonSerialized]
-	public float RuntimeValue;
+	public int RuntimeValue;
 
 	public void OnAfterDeserialize()
 	{

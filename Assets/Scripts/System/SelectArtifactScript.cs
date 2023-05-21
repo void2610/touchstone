@@ -36,10 +36,10 @@ namespace NUI
 		{
 			//obtainedArtifactsのartifactsリストにartifactを追加する
 			obtainedArtifacts.artifacts.Add(artifact);
-			Debug.Log("AddArtifact: " + artifact.artifactName);
+			Debug.Log("AddArtifact: " + obtainedArtifacts.artifacts.Count);
 		}
 
-		private void PickThreeArtifact()
+		public void PickThreeArtifact()
 		{
 			//allArtifactsのartifactsリストからランダムにartifactを取得し、ArtifactCardScriptのartifactに代入する
 			ArtifactData artifact = allArtifacts.artifacts[Random.Range(0, allArtifacts.artifacts.Count)];
@@ -60,5 +60,6 @@ namespace NUI
 			//PickThreeArtifactを実行
 			PickThreeArtifact();
 		}
+
 	}
 }

@@ -7,9 +7,13 @@ namespace NMenu
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
 	using UnityEngine.UI;
+	using NArtifact;
 
 	public class TitleMenuScript : MonoBehaviour
 	{
+		[SerializeField]
+		private ArtifactList obtainedArtifacts;
+
 		[SerializeField]
 		private GameObject titleText;
 		[SerializeField]
@@ -80,6 +84,7 @@ namespace NMenu
 			SceneManager.LoadScene("SampleScene");
 			PlayerPrefs.SetInt("PlayerHp", 10);
 			PlayerPrefs.SetInt("PlayerMaxHp", 10);
+			obtainedArtifacts.ResetToInitial();
 		}
 
 		public void OnClickWeaponButton()
