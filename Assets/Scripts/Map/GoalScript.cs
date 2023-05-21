@@ -8,13 +8,7 @@ namespace NMap
 
 	public class GoalScript : MonoBehaviour
 	{
-		private GameManager gm;
-		void Start()
-		{
-			gm = GameObject.Find("GameController").GetComponent<GameManager>();
-		}
 
-		// Update is called once per frame
 		void Update()
 		{
 			//少しづつ回転させる
@@ -30,7 +24,7 @@ namespace NMap
 			if (other.gameObject.name == "Player")
 			{
 				//ゲームクリア
-				gm.state = GameManager.GameState.Clear;
+				GameManager.instance.state = GameManager.GameState.Clear;
 			}
 		}
 	}
