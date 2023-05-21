@@ -3,6 +3,7 @@ namespace NUI
 	using System.Collections;
 	using System.Collections.Generic;
 	using NCharacter;
+	using NManager;
 	using UnityEngine;
 	using UnityEngine.UI;
 
@@ -84,7 +85,10 @@ namespace NUI
 
 		void Update()
 		{
-			UpdateHearts(player.hp, player.maxHp);
+			if (GameManager.instance.state != GameManager.GameState.GameOver && GameManager.instance.state != GameManager.GameState.Other)
+			{
+				UpdateHearts(player.hp, player.maxHp);
+			}
 		}
 	}
 }

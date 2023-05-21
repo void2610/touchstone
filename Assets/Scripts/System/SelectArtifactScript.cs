@@ -5,9 +5,11 @@ namespace NUI
 	using UnityEngine;
 	using UnityEngine.UI;
 	using NArtifact;
+	using NManager;
 
 	public class SelectArtifactScript : MonoBehaviour
 	{
+		public GameEvent OnClickArtifactCardEvent;
 		[SerializeField]
 		private ArtifactList allArtifacts;
 		[SerializeField]
@@ -20,16 +22,19 @@ namespace NUI
 		public void OnClickArtifactCard1()
 		{
 			AddArtifact(artifactCard1.artifact);
+			OnClickArtifactCardEvent.Raise();
 		}
 
 		public void OnClickArtifactCard2()
 		{
 			AddArtifact(artifactCard2.artifact);
+			OnClickArtifactCardEvent.Raise();
 		}
 
 		public void OnClickArtifactCard3()
 		{
 			AddArtifact(artifactCard3.artifact);
+			OnClickArtifactCardEvent.Raise();
 		}
 
 		private void AddArtifact(ArtifactData artifact)
@@ -57,9 +62,23 @@ namespace NUI
 			artifactCard2 = transform.GetChild(1).GetComponent<ArtifactCardScript>();
 			artifactCard3 = transform.GetChild(2).GetComponent<ArtifactCardScript>();
 
-			//PickThreeArtifactを実行
-			PickThreeArtifact();
+			artifactCard1.gameObject.SetActive(false);
+			artifactCard2.gameObject.SetActive(false);
+			artifactCard3.gameObject.SetActive(false);
 		}
+		void Update()
+		{
+			if (GameManager.instance.state == GameManager.GameState.OpenArtifact)
+			{
+				//PickThreeArtifactを実行
+				PickThreeArtifact();
 
+				artifactCard1.gameObject.SetActive(true);
+				artifactCard2.gameObject.SetActive(true);
+				artifactCard3.gameObject.SetActive(true);
+
+				GameManager.instance.state = GameManager.GameState.SelectArtifact;
+			}
+		}
 	}
 }

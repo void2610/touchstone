@@ -5,6 +5,7 @@ namespace NUI
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using NManager;
 
 	public class MoveMouseCursorScript : MonoBehaviour
 	{
@@ -29,16 +30,19 @@ namespace NUI
 			// マウス位置座標をスクリーン座標からワールド座標に変換する
 			screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
 			// ワールド座標に変換されたマウス座標を代入
-			cursor.transform.position = screenToWorldPointPosition;
-
-			if (time >= 2)
+			if (GameManager.instance.state != GameManager.GameState.GameOver && GameManager.instance.state != GameManager.GameState.Other)
 			{
-				cursor.transform.rotation = new Quaternion(cursor.transform.rotation.x, cursor.transform.rotation.y, 0, cursor.transform.rotation.w);
-				time = 0;
-			}
+				cursor.transform.position = screenToWorldPointPosition;
 
-			cursor.transform.rotation = new Quaternion(cursor.transform.rotation.x, cursor.transform.rotation.y, cursor.transform.rotation.z + 0.01f, cursor.transform.rotation.w);
-			Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+				if (time >= 2)
+				{
+					cursor.transform.rotation = new Quaternion(cursor.transform.rotation.x, cursor.transform.rotation.y, 0, cursor.transform.rotation.w);
+					time = 0;
+				}
+
+				cursor.transform.rotation = new Quaternion(cursor.transform.rotation.x, cursor.transform.rotation.y, cursor.transform.rotation.z + 0.01f, cursor.transform.rotation.w);
+				Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+			}
 		}
 	}
 }

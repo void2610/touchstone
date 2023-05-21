@@ -4,6 +4,7 @@ namespace NManager
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using NCharacter;
+	using NManager;
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
 	using UnityEngine.UI;
@@ -51,7 +52,11 @@ namespace NManager
 			{
 				ResetScore();
 			}
-			sText.GetComponent<Text>().text = "Score: " + score.ToString();
+
+			if (GameManager.instance.state != GameManager.GameState.GameOver && GameManager.instance.state != GameManager.GameState.Other)
+			{
+				sText.GetComponent<Text>().text = "Score: " + score.ToString();
+			}
 		}
 	}
 }

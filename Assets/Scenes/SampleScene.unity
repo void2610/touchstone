@@ -1720,6 +1720,8 @@ GameObject:
   - component: {fileID: 1017836013}
   - component: {fileID: 1017836014}
   - component: {fileID: 1017836015}
+  - component: {fileID: 1017836016}
+  - component: {fileID: 1017836017}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1845,6 +1847,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c47a249b0d8d654ba396cac97f6a8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1017836016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017836006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e50831aca4eb114b882c525b27c1b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c19bb122286b1ed42b35529440e50c30, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1017836015}
+        m_TargetAssemblyTypeName: NManager.GameManager, Assembly-CSharp
+        m_MethodName: OnPlayerDeathEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1017836017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017836006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e50831aca4eb114b882c525b27c1b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: bea8e0a90982e074ebc413f5cf0f7ffd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1017836015}
+        m_TargetAssemblyTypeName: NManager.GameManager, Assembly-CSharp
+        m_MethodName: OnClickArtifactCardEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1090723332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,6 +2680,8 @@ MonoBehaviour:
   direction: 1
   firstLScale: {x: 0, y: 0}
   isInvincible: 0
+  hpSO: {fileID: 11400000, guid: c8ade0a9d0eca874aa7420c2df8790df, type: 2}
+  deathEvent: {fileID: 11400000, guid: c19bb122286b1ed42b35529440e50c30, type: 2}
   speed: 15
   jumpForce: 1000
   jp: 0
@@ -3104,6 +3164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74714d66c437156449092e56d1c8efd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnClickArtifactCardEvent: {fileID: 11400000, guid: bea8e0a90982e074ebc413f5cf0f7ffd, type: 2}
   allArtifacts: {fileID: 11400000, guid: 42167ecac69e573478b58bf41516b4c6, type: 2}
   obtainedArtifacts: {fileID: 11400000, guid: f2a6668e61ed5c74490829595793ae05, type: 2}
 --- !u!1 &1812647247
