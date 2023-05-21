@@ -9,6 +9,9 @@ namespace NManager
 
 	public class GameManager : MonoBehaviour
 	{
+
+		public static GameManager instance = null;
+
 		public enum GameState
 		{
 			Playing,
@@ -18,10 +21,11 @@ namespace NManager
 			GameOver,
 			Other
 		}
+		public GameState state { get; set; } = GameState.Playing;
 		private Player player;
 		private GameObject playerObj;
 		private ScoreManager sm;
-		public GameState state { get; set; } = GameState.Playing;
+
 
 		public void OnPlayerDeathEvent()
 		{
@@ -55,6 +59,20 @@ namespace NManager
 			yield return new WaitForSeconds(1);
 			SceneManager.LoadScene("GameOverScene");
 		}
+
+		private void Awake()
+		{
+			if (instance == null)
+			{
+				instance = this;
+				DontDestroyOnLoad(this.gameObject);
+			}
+			else
+			{
+				Destroy(this.gameObject);
+			}
+		}
+
 		void Start()
 		{
 			playerObj = GameObject.Find("Player");
@@ -62,7 +80,6 @@ namespace NManager
 			sm = GameObject.Find("GameController").GetComponent<ScoreManager>();
 		}
 
-		// Update is called once per frame
 		void Update()
 		{
 			switch (state)
