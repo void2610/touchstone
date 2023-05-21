@@ -72,7 +72,7 @@ namespace NManager
 			if (instance == null)
 			{
 				instance = this;
-				DontDestroyOnLoad(this.gameObject);
+				//DontDestroyOnLoad(this.gameObject);
 			}
 			else
 			{
