@@ -770,6 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d291855c22a7d4a47a890e77e65c42ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obtainedArtifacts: {fileID: 11400000, guid: f2a6668e61ed5c74490829595793ae05, type: 2}
   titleText: {fileID: 1365203127}
   startButton: {fileID: 1349387461}
   settingButton: {fileID: 1357264088}

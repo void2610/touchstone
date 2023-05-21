@@ -8,6 +8,7 @@ namespace NCharacter
 
 	public class Player : Character
 	{
+		public GameEvent deathEvent;
 		public float speed;
 
 		public float jumpForce = 500f;
@@ -46,6 +47,10 @@ namespace NCharacter
 		public override void Update()
 		{
 			base.Update();
+			if (hp <= 0)
+			{
+				deathEvent.Raise();
+			}
 			jp = jrs.jumpCount;
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
 			{

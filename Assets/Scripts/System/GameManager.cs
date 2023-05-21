@@ -23,6 +23,11 @@ namespace NManager
 		private ScoreManager sm;
 		public GameState state { get; set; } = GameState.Playing;
 
+		public void OnPlayerDeathEvent()
+		{
+			state = GameState.GameOver;
+		}
+
 		private IEnumerator StageClear()
 		{
 			state = GameState.Other;
@@ -60,12 +65,6 @@ namespace NManager
 		// Update is called once per frame
 		void Update()
 		{
-			if (player.hp <= 0)
-			{
-				state = GameState.GameOver;
-			}
-
-
 			switch (state)
 			{
 				case GameState.Playing:
