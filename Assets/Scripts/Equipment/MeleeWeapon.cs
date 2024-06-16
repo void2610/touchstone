@@ -19,25 +19,6 @@ namespace NEquipment
 		private float attackCoolTime = 0;
 		private float attackCoolTimeLength = 0.5f;
 
-
-		public IEnumerator ShowDamageText(int damage, Vector3 position)
-		{
-			//position = new Vector3(position.x, position.y, 0);
-			GameObject dt = GameObject.Instantiate(damegeText, position, Quaternion.identity);
-			GameObject canvas = GameObject.Find("WorldCanvas");
-			dt.GetComponent<Text>().text = damage.ToString();
-			dt.transform.SetParent(canvas.transform, false);
-
-			for (int i = 0; i < 50; i++)
-			{
-				float up = (50 - i) * 0.0005f;
-				dt.transform.position += new Vector3(0, up, 0);
-				yield return new WaitForSeconds(0.001f);
-			}
-			yield return new WaitForSeconds(0.8f);
-			Destroy(dt);
-		}
-
 		public override IEnumerator Action()
 		{
 			activeStartTime = Time.time;
@@ -54,8 +35,9 @@ namespace NEquipment
 			yield break;
 		}
 
-		public virtual void Effect()
+		protected override void Effect()
 		{
+			base.Effect();
 			if (Mathf.Abs(activeStartAngle) < 90)
 			{
 				angle = activeStartAngle - animationCurve.Evaluate(((Time.time - activeStartTime) / activeTimeLength)) * attackDegree;
@@ -70,19 +52,21 @@ namespace NEquipment
 			return;
 		}
 
-		public virtual void OnActionStart()
+		protected override void OnActionStart()
 		{
+			base.OnActionStart();
 		}
 
-		public virtual void Start()
+		protected override void Start()
 		{
 			base.Start();
 			gauge = GameObject.Find("WeaponGauge");
 			damegeText = Resources.Load<GameObject>("Prefabs/DamegeText");
 		}
 
-		public virtual void Update()
+		protected override void Update()
 		{
+			base.Update();
 			MoveWeaponPosition();
 
 			if (Input.GetButtonDown(actionKey) && isEnable && !isCooling)
@@ -105,8 +89,9 @@ namespace NEquipment
 			}
 		}
 
-		public virtual void FixedUpdate()
+		protected override void FixedUpdate()
 		{
+			base.FixedUpdate();
 			if (isActive && isEnable && !isCooling)
 			{
 				// 装備の効果を発揮する処理
@@ -120,7 +105,7 @@ namespace NEquipment
 		}
 
 		//敵に武器が当たったとき
-		public void OnTriggerStay2D(Collider2D other)
+		protected void OnTriggerStay2D(Collider2D other)
 		{
 			if (other.gameObject.GetComponent<Character>() == null)
 			{

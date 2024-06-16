@@ -12,7 +12,7 @@ namespace NEquipment
 		private Tilemap tm;
 		private int radius = 5;
 
-		public void Awake()
+		protected override void Awake()
 		{
 			name = "Bomb";
 			actionKey = "Fire3";
@@ -23,7 +23,7 @@ namespace NEquipment
 			activeTimeLength = 3f;
 		}
 
-		private IEnumerator Exprosion()
+		protected IEnumerator Exprosion()
 		{
 			yield return new WaitForSeconds(4);
 
@@ -47,7 +47,7 @@ namespace NEquipment
 			this.GetComponent<Rigidbody2D>().gravityScale = 0;
 		}
 
-		public override void OnActionStart()
+		protected override void OnActionStart()
 		{
 
 			throwPower = 5;
@@ -56,20 +56,20 @@ namespace NEquipment
 			StartCoroutine(Exprosion());
 		}
 
-		public override void Effect()
+		protected override void Effect()
 		{
 			bombAngle = new Vector3(Mathf.Cos(getMouseAngle() * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(getMouseAngle() * Mathf.Deg2Rad), 0);
 			this.transform.position = player.transform.position + bombAngle * 1.8f;
 			throwPower += 0.15f;
 		}
 
-		public override void OnActionEnd()
+		protected override void OnActionEnd()
 		{
 			this.GetComponent<Rigidbody2D>().gravityScale = 1;
 			this.GetComponent<Rigidbody2D>().AddForce(bombAngle * throwPower, ForceMode2D.Impulse);
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
 			this.transform.position = new Vector3(0, 0, -10);

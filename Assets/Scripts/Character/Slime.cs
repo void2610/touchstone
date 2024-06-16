@@ -18,17 +18,17 @@ namespace NCharacter
 
 		private bool isMoving = true; // 移動中かどうか
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
-			name = "Slime";
+			characterName = "Slime";
 			maxHp = 1;
 			hp = 1;
 			atk = 1;
 			killScore = 1;
 		}
 
-		public override void Update()
+		protected override void Update()
 		{
 			base.Update();
 			if (isMoving)

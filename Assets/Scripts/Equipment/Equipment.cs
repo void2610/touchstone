@@ -11,7 +11,7 @@ namespace NEquipment
 		/// <summary>
 		/// 装備の名前
 		/// </summary>
-		public string name;
+		public string equipmentName;
 
 		/// <summary>
 		/// 装備を使用するためのキー
@@ -70,20 +70,20 @@ namespace NEquipment
 
 		public GameObject player;
 
-		public void CutHP(Character target, int atk)
+		protected void CutHP(Character target, int atk)
 		{
 			target.hp -= atk;
-			Debug.Log(target.name + "のHPが" + atk + "削れた");
+			Debug.Log(target.characterName + "のHPが" + atk + "削れた");
 		}
 
-		public float getMouseAngle()
+		protected float getMouseAngle()
 		{
 			Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;
 			float res = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 			return res;
 		}
 
-		public Vector2 getMousePosition()
+		protected Vector2 getMousePosition()
 		{
 			Vector2 res = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			return res;
@@ -94,29 +94,33 @@ namespace NEquipment
 			yield break;
 		}
 
-		public virtual void OnActionStart()
+		protected virtual void OnActionStart()
 		{
 		}
 
-		public virtual void Effect()
+		protected virtual void Effect()
 		{
 		}
 
-		public virtual void OnActionEnd()
+		protected virtual void OnActionEnd()
 		{
 		}
 
-		public virtual void Start()
+		protected virtual void Awake()
+		{
+		}
+
+		protected virtual void Start()
 		{
 			player = GameObject.Find("Player");
 
 		}
 
-		public virtual void Update()
+		protected virtual void Update()
 		{
 		}
 
-		public virtual void FixedUpdate()
+		protected virtual void FixedUpdate()
 		{
 		}
 	}

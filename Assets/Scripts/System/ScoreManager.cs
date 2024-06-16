@@ -53,7 +53,7 @@ namespace NManager
 			sText = GameObject.Find("ScoreText");
 			PlayerPrefs.SetInt("score", 0);
 
-			if (PlayerPrefs.GetInt("highScore") == null)
+			if (!PlayerPrefs.HasKey("highScore"))
 			{
 				PlayerPrefs.SetInt("highScore", 0);
 			}

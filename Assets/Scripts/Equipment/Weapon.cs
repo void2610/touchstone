@@ -22,14 +22,14 @@ namespace NEquipment
 
 		private GameObject damageText;
 
-		public void MoveWeaponAngle()
+		protected void MoveWeaponAngle()
 		{
 			difference = Camera.main.ScreenToWorldPoint(mousePosition) - playerPosition;
 			angle = getMouseAngle();
 			transform.eulerAngles = new Vector3(0f, 0f, angle - 45);
 		}
 
-		public void MoveWeaponPosition()
+		protected void MoveWeaponPosition()
 		{
 			playerPosition = player.transform.position;
 			playerPosition.x -= 0.4f;
@@ -46,7 +46,7 @@ namespace NEquipment
 			this.transform.position = new Vector3(Mathf.Cos(radian) * moveRadius + 10, Mathf.Sin(radian) * moveRadius - 25, 0).normalized + playerPosition;
 		}
 
-		public IEnumerator ChangeColortoRed(GameObject target)
+		protected IEnumerator ChangeColortoRed(GameObject target)
 		{
 			target.GetComponent<SpriteRenderer>().color = Color.red;
 			yield return new WaitForSeconds(0.3f);
@@ -57,31 +57,22 @@ namespace NEquipment
 			yield return null;
 		}
 
-		public void ShowDamageText(int damage, Vector3 position)
-		{
-			GameObject dt = GameObject.Instantiate(damageText, position, Quaternion.identity);
-			GameObject canvas = GameObject.Find("WorldCanvas");
-			dt.GetComponent<Text>().text = damage.ToString();
-			dt.transform.SetParent(canvas.transform, false);
-		}
-
-		public IEnumerator HitStop()
+		protected IEnumerator HitStop()
 		{
 			Time.timeScale = 0f;
 			yield return new WaitForSecondsRealtime(0.1f);
 			Time.timeScale = 1;
 		}
 
-		public void ProvideDamage(GameObject target)
+		protected void ProvideDamage(GameObject target)
 		{
 			target.GetComponent<Character>().hp -= attackPower;
-			ShowDamageText(attackPower, target.transform.position);
 			StartCoroutine(ChangeColortoRed(target));
 
 			Debug.Log(target.name + "を攻撃した");
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
 			damageText = Resources.Load<GameObject>("Prefabs/DamageText");

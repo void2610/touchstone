@@ -29,6 +29,7 @@ namespace NManager
 		[SerializeField]
 		public EquipmentDataList allEquipmentDataList;
 
+
 		public enum GameState
 		{
 			Playing,

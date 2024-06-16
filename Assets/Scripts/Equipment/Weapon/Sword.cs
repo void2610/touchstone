@@ -6,7 +6,7 @@ namespace NEquipment
 
 	public class Sword : MeleeWeapon
 	{
-		public void Awake()
+		protected override void Awake()
 		{
 			name = "Sword";
 			actionKey = "Fire1";
@@ -19,7 +19,7 @@ namespace NEquipment
 			moveRadius = 60;
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
 		}

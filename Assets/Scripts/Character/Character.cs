@@ -7,7 +7,7 @@ namespace NCharacter
 
 	public class Character : MonoBehaviour
 	{
-		public string name;
+		public string characterName;
 
 		public int maxHp;
 
@@ -29,8 +29,7 @@ namespace NCharacter
 			if (target.isInvincible == false)
 			{
 				target.hp -= atk;
-				Debug.Log(target.name + "のHPが" + atk + "削れた");
-				if (target.name == "Player")
+				if (target.characterName == "Player")
 				{
 					StartCoroutine(StartDamageCooldown(target));
 				}
@@ -41,7 +40,6 @@ namespace NCharacter
 		public IEnumerator StartDamageCooldown(Character target)
 		{
 			target.isInvincible = true;
-			Debug.Log("無敵");
 			yield return new WaitForSeconds(0.5f);
 			target.isInvincible = false;
 		}
@@ -58,20 +56,20 @@ namespace NCharacter
 			return result;
 		}
 
-		public virtual void Awake()
+		protected virtual void Awake()
 		{
-			name = "NoName";
+			characterName = "NoName";
 			hp = 1;
 			atk = 1;
 			killScore = 1;
 		}
 
-		public virtual void Start()
+		protected virtual void Start()
 		{
 			firstLScale = this.gameObject.transform.localScale;
 		}
 
-		public virtual void Update()
+		protected virtual void Update()
 		{
 			if (direction == 1)
 			{
@@ -83,7 +81,7 @@ namespace NCharacter
 			}
 		}
 
-		public virtual void FixedUpdate()
+		protected virtual void FixedUpdate()
 		{
 		}
 	}

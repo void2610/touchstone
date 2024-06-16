@@ -7,7 +7,7 @@ namespace NEquipment
 
 	public class Guard : Skill
 	{
-		public void Awake()
+		protected override void Awake()
 		{
 			name = "Dash";
 			actionKey = "Fire2";
@@ -18,7 +18,7 @@ namespace NEquipment
 			activeTimeLength = 3f;
 		}
 
-		public override void Effect()
+		protected override void Effect()
 		{
 			player.GetComponent<Player>().isInvincible = true;
 			player.GetComponent<Player>().isMovable = false;
@@ -33,14 +33,14 @@ namespace NEquipment
 			}
 		}
 
-		public override void OnActionEnd()
+		protected override void OnActionEnd()
 		{
 			player.GetComponent<Player>().isInvincible = false;
 			player.GetComponent<Player>().isMovable = true;
 			this.transform.position = new Vector3(0, 0, -10);
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			this.transform.position = new Vector3(0, 0, -10);
 			base.Start();

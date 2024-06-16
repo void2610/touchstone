@@ -47,17 +47,17 @@ namespace NCharacter
 			}
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
-			name = "Enemy";
+			characterName = "Enemy";
 			hp = 1;
 			atk = 1;
 			killScore = 1;
 			damageText = Resources.Load<GameObject>("Prefabs/DamageText");
 		}
 
-		public override void FixedUpdate()
+		protected override void FixedUpdate()
 		{
 			base.FixedUpdate();
 			if (hp <= 0)

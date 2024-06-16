@@ -26,7 +26,7 @@ namespace NCharacter
 
 		JumpResetScript jrs;
 
-		public void Awake()
+		protected override void Awake()
 		{
 			base.Awake();
 			name = "Player";
@@ -35,7 +35,7 @@ namespace NCharacter
 			atk = 1;
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
 
@@ -45,7 +45,7 @@ namespace NCharacter
 			direction = 1;
 		}
 
-		public override void Update()
+		protected override void Update()
 		{
 			base.Update();
 			hpSO.RuntimeValue = hp;
@@ -64,7 +64,7 @@ namespace NCharacter
 			}
 		}
 
-		public override void FixedUpdate()
+		protected override void FixedUpdate()
 		{
 			base.FixedUpdate();
 

@@ -6,7 +6,7 @@ namespace NEquipment
 
 	public class Hammer : MeleeWeapon
 	{
-		public void Awake()
+		protected override void Awake()
 		{
 			name = "Hammer";
 			actionKey = "Fire1";
@@ -19,7 +19,7 @@ namespace NEquipment
 			moveRadius = 90;
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
 		}

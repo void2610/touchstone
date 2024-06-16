@@ -27,7 +27,7 @@ namespace NEquipment
 			}
 		}
 
-		public IEnumerator CoolTime()
+		protected IEnumerator CoolTime()
 		{
 			isCooling = true;
 			coolStartTime = Time.time;
@@ -36,15 +36,22 @@ namespace NEquipment
 			yield break;
 		}
 
-		public virtual void Effect()
+		protected override void Effect()
 		{
+			base.Effect();
 		}
 
-		public virtual void OnActionEnd()
+		protected override void OnActionEnd()
 		{
+			base.OnActionEnd();
 		}
 
-		public virtual void Start()
+		protected override void Awake()
+		{
+			base.Awake();
+		}
+
+		protected override void Start()
 		{
 			base.Start();
 			if (actionKey == "Fire2")
@@ -57,7 +64,7 @@ namespace NEquipment
 			}
 		}
 
-		public virtual void Update()
+		protected override void Update()
 		{
 			angle = getMouseAngle();
 			if (Input.GetButton(actionKey) && isEnable && !isCooling && !isActive)
@@ -80,7 +87,7 @@ namespace NEquipment
 			}
 		}
 
-		public virtual void FixedUpdate()
+		protected override void FixedUpdate()
 		{
 			if (isActive)
 			{

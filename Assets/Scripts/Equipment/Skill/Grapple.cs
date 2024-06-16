@@ -6,15 +6,15 @@ namespace NEquipment
 
 	public class Grapple : Skill
 	{
-		private float hookLength = 10;
+		// private float hookLength = 10;
 		private Vector2 playerPosition;
 		private Vector2 direction;
-		private float frequency = 0;
+		// private float frequency = 0;
 		private Rigidbody2D rb;
 		private SpringJoint2D joint;
 		private LineRenderer lineRenderer;
 
-		public void Awake()
+		protected override void Awake()
 		{
 			name = "Grapple";
 			actionKey = "Fire2";
@@ -25,11 +25,11 @@ namespace NEquipment
 			activeTimeLength = 3f;
 		}
 
-		public override void Effect()
+		protected override void Effect()
 		{
 		}
 
-		public override void OnActionStart()
+		protected override void OnActionStart()
 		{
 			playerPosition = player.GetComponent<Rigidbody2D>().position;
 			direction = activeStartPosition - playerPosition;
@@ -40,7 +40,7 @@ namespace NEquipment
 			joint.connectedAnchor = activeStartPosition;
 		}
 
-		public override void OnActionEnd()
+		protected override void OnActionEnd()
 		{
 			joint.enabled = false;
 			lineRenderer.enabled = false;
@@ -49,7 +49,7 @@ namespace NEquipment
 			lineRenderer.SetPosition(1, Vector2.zero);
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
 			rb = this.GetComponent<Rigidbody2D>();
@@ -61,7 +61,7 @@ namespace NEquipment
 
 			GameObject.Find("Player").GetComponent<SpringJoint2D>().enabled = false;
 		}
-		public override void FixedUpdate()
+		protected override void FixedUpdate()
 		{
 			base.FixedUpdate();
 			if (joint.enabled)
