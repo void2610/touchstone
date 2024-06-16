@@ -5,7 +5,7 @@ namespace NArtifact
 	using UnityEngine;
 	using UnityEngine.UI;
 
-	[CreateAssetMenu(fileName = "ArtifactData", menuName = "ScriptableObject/ArtifactData")]
+	[CreateAssetMenu(fileName = "ArtifactData", menuName = "Scriptable Object/ArtifactData")]
 	public class ArtifactData : ScriptableObject
 	{
 		public string artifactName;

@@ -5,14 +5,13 @@ namespace NTitle
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
 	using UnityEngine.UI;
-	using NArtifact;
+	using NEquipment;
 	using TMPro;
 
 	public class TitleMenu : MonoBehaviour
 	{
 		[SerializeField]
-		private ArtifactList obtainedArtifacts;
-
+		private EquipmentDataList allEquipments;
 		[SerializeField]
 		private List<CanvasGroup> canvasGroups = new List<CanvasGroup>();
 		[SerializeField]
@@ -24,6 +23,7 @@ namespace NTitle
 
 		private int state = 0;
 		//0:タイトル画面 1:装備編成画面 2:設定画面 3:weapon 4:skill1 5:skill2
+		private int selectEquip = 0;
 
 		public void OnClickStartButton()
 		{
@@ -54,22 +54,22 @@ namespace NTitle
 			SceneManager.LoadScene("SampleScene");
 			PlayerPrefs.SetInt("PlayerHp", 10);
 			PlayerPrefs.SetInt("PlayerMaxHp", 10);
-			obtainedArtifacts.ResetToInitial();
 		}
 
-		public void OnClickWeaponButton()
+		public void OnClickEquip1Button()
 		{
+			selectEquip = 1;
 			ChangeState(3);
 		}
-
-		public void OnClickSkillButton()
+		public void OnClickEquip2Button()
 		{
-			ChangeState(4);
+			selectEquip = 2;
+			ChangeState(3);
 		}
-
-		public void OnClickUtilityButton()
+		public void OnClickEquip3Button()
 		{
-			ChangeState(5);
+			selectEquip = 3;
+			ChangeState(3);
 		}
 
 		private void ChangeCanvas(int s)
@@ -99,17 +99,13 @@ namespace NTitle
 
 		void Start()
 		{
-			PlayerPrefs.SetString("NowEquipWeapon", "Sword");
-			PlayerPrefs.SetString("NowEquipSkill1", "Grapple");
-			PlayerPrefs.SetString("NowEquipSkill2", "Dash");
+			PlayerPrefs.SetInt("NowEquip1", 0);
+			PlayerPrefs.SetInt("NowEquip2", 1);
+			PlayerPrefs.SetInt("NowEquip3", 2);
 
-			var s1 = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + PlayerPrefs.GetString("NowEquipWeapon", "Sword"));
-			var s2 = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipSkill1", "Grapple"));
-			var s3 = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipUSkill2", "Dash"));
-
-			e1.SetItem(PlayerPrefs.GetString("NowEquipWeapon", "Sword"), s1);
-			e2.SetItem(PlayerPrefs.GetString("NowEquipSkill1", "Grapple"), s2);
-			e3.SetItem(PlayerPrefs.GetString("NowEquipSkill2", "Dash"), s3);
+			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
+			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 0)]);
+			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 0)]);
 			ChangeState(0);
 		}
 	}
