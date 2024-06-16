@@ -1,4 +1,4 @@
-namespace NMenu
+namespace NTitle
 {
 	using System.Collections;
 	using System.Collections.Generic;
@@ -16,11 +16,11 @@ namespace NMenu
 		[SerializeField]
 		private List<CanvasGroup> canvasGroups = new List<CanvasGroup>();
 		[SerializeField]
-		private GameObject nowWeapon;
+		private EquipmentContainer e1;
 		[SerializeField]
-		private GameObject nowSkill;
+		private EquipmentContainer e2;
 		[SerializeField]
-		private GameObject nowUtility;
+		private EquipmentContainer e3;
 
 		private int state = 0;
 		//0:タイトル画面 1:装備編成画面 2:設定画面 3:weapon 4:skill1 5:skill2
@@ -72,28 +72,6 @@ namespace NMenu
 			ChangeState(5);
 		}
 
-		public void OnClickSetWeaponButton(Button b)
-		{
-			PlayerPrefs.SetString("NowEquipWeapon", b.name);
-			nowWeapon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + b.name);
-			ChangeState(1);
-		}
-
-		public void OnClickSetSkill1Button(Button b)
-		{
-			PlayerPrefs.SetString("NowEquipSkill1", b.name);
-			nowSkill.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + b.name);
-			ChangeState(1);
-		}
-
-		public void OnClickSetSkill2Button(Button b)
-		{
-			Debug.Log(b.name);
-			PlayerPrefs.SetString("NowEquipSkill2", b.name);
-			nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + b.name);
-			ChangeState(1);
-		}
-
 		private void ChangeCanvas(int s)
 		{
 			for (int i = 0; i < canvasGroups.Count; i++)
@@ -125,10 +103,13 @@ namespace NMenu
 			PlayerPrefs.SetString("NowEquipSkill1", "Grapple");
 			PlayerPrefs.SetString("NowEquipSkill2", "Dash");
 
-			nowWeapon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + PlayerPrefs.GetString("NowEquipWeapon", "Sword"));
-			nowSkill.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipSkill1", "Grapple"));
-			nowUtility.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipUSkill2", "Dash"));
+			var s1 = Resources.Load<Sprite>("Pictures/Equipment/Weapon/" + PlayerPrefs.GetString("NowEquipWeapon", "Sword"));
+			var s2 = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipSkill1", "Grapple"));
+			var s3 = Resources.Load<Sprite>("Pictures/Equipment/Skill/" + PlayerPrefs.GetString("NowEquipUSkill2", "Dash"));
 
+			e1.SetItem(PlayerPrefs.GetString("NowEquipWeapon", "Sword"), s1);
+			e2.SetItem(PlayerPrefs.GetString("NowEquipSkill1", "Grapple"), s2);
+			e3.SetItem(PlayerPrefs.GetString("NowEquipSkill2", "Dash"), s3);
 			ChangeState(0);
 		}
 	}
