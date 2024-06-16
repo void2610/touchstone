@@ -72,6 +72,27 @@ namespace NTitle
 			ChangeState(3);
 		}
 
+		public void OnClickEquipButton(int i)
+		{
+			Debug.Log(i);
+			if (selectEquip == 1)
+			{
+				PlayerPrefs.SetInt("NowEquip1", i);
+				e1.SetItem(allEquipments.list[i]);
+			}
+			else if (selectEquip == 2)
+			{
+				PlayerPrefs.SetInt("NowEquip2", i);
+				e2.SetItem(allEquipments.list[i]);
+			}
+			else if (selectEquip == 3)
+			{
+				PlayerPrefs.SetInt("NowEquip3", i);
+				e3.SetItem(allEquipments.list[i]);
+			}
+			ChangeState(1);
+		}
+
 		private void ChangeCanvas(int s)
 		{
 			for (int i = 0; i < canvasGroups.Count; i++)
