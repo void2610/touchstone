@@ -12,6 +12,11 @@ namespace NTitle
 		private Image icon;
 		private Text nameText;
 
+		public void SwitchText(bool b)
+		{
+			nameText.enabled = b;
+		}
+
 		public void SetItem(EquipmentData e)
 		{
 			icon = transform.Find("Icon").GetComponent<Image>();

@@ -74,7 +74,6 @@ namespace NTitle
 
 		public void OnClickEquipButton(int i)
 		{
-			Debug.Log(i);
 			if (selectEquip == 1)
 			{
 				PlayerPrefs.SetInt("NowEquip1", i);
@@ -120,9 +119,12 @@ namespace NTitle
 
 		void Start()
 		{
-			PlayerPrefs.SetInt("NowEquip1", 0);
-			PlayerPrefs.SetInt("NowEquip2", 1);
-			PlayerPrefs.SetInt("NowEquip3", 2);
+			if (!PlayerPrefs.HasKey("NowEquip1"))
+			{
+				PlayerPrefs.SetInt("NowEquip1", 0);
+				PlayerPrefs.SetInt("NowEquip2", 1);
+				PlayerPrefs.SetInt("NowEquip3", 2);
+			}
 
 			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 0)]);

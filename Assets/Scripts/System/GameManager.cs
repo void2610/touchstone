@@ -1,16 +1,33 @@
 namespace NManager
 {
+	using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using UnityEngine;
 	using NCharacter;
+	using NEquipment;
 	using UnityEngine.SceneManagement;
 
 	public class GameManager : MonoBehaviour
 	{
-
 		public static GameManager instance = null;
+
+		private void Awake()
+		{
+			if (instance == null)
+			{
+				instance = this;
+				DontDestroyOnLoad(this.gameObject);
+			}
+			else
+			{
+				Destroy(this.gameObject);
+			}
+		}
+
+		[SerializeField]
+		public EquipmentDataList allEquipmentDataList;
 
 		public enum GameState
 		{
@@ -22,11 +39,10 @@ namespace NManager
 			GameOver,
 			Other
 		}
+
 		public GameState state { get; set; } = GameState.Playing;
 		private Player player;
 		private GameObject playerObj;
-		private ScoreManager sm;
-
 
 		public void OnPlayerDeathEvent()
 		{
@@ -36,13 +52,11 @@ namespace NManager
 		{
 			state = GameState.Other;
 			StartCoroutine(LoadNextScene());
-			Debug.Log("aaa");
-
 		}
 		public IEnumerator LoadNextScene()
 		{
-			sm.score += 20 * player.hp;
-			sm.SaveScore();
+			ScoreManager.instance.score += 20 * player.hp;
+			ScoreManager.instance.SaveScore();
 			Debug.Log("LoadNextScene");
 			yield return new WaitForSeconds(1);
 			SceneManager.LoadScene("SampleScene");
@@ -62,29 +76,15 @@ namespace NManager
 			state = GameState.Other;
 			player.isMovable = false;
 			playerObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-			sm.SaveScore();
+			ScoreManager.instance.SaveScore();
 			yield return new WaitForSeconds(1);
 			SceneManager.LoadScene("GameOverScene");
-		}
-
-		private void Awake()
-		{
-			if (instance == null)
-			{
-				instance = this;
-				//DontDestroyOnLoad(this.gameObject);
-			}
-			else
-			{
-				Destroy(this.gameObject);
-			}
 		}
 
 		void Start()
 		{
 			playerObj = GameObject.Find("Player");
 			player = playerObj.GetComponent<Player>();
-			sm = GameObject.Find("GameController").GetComponent<ScoreManager>();
 		}
 
 		void Update()
@@ -92,21 +92,21 @@ namespace NManager
 			switch (state)
 			{
 				case GameState.Playing:
-				break;
+					break;
 				case GameState.Paused:
-				break;
+					break;
 				case GameState.Clear:
-				StartCoroutine(StageClear());
-				break;
+					StartCoroutine(StageClear());
+					break;
 				case GameState.OpenArtifact:
-				break;
+					break;
 				case GameState.SelectArtifact:
-				break;
+					break;
 				case GameState.GameOver:
-				StartCoroutine(PlayerDeath());
-				break;
+					StartCoroutine(PlayerDeath());
+					break;
 				default:
-				break;
+					break;
 			}
 		}
 	}

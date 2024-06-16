@@ -10,7 +10,6 @@ namespace NCharacter
 	{
 		private GameObject damageText;
 		private Character target = null;
-		private ScoreManager sm;
 
 		public void ShowDamageText(int damage, Vector3 position)
 		{
@@ -56,7 +55,6 @@ namespace NCharacter
 			atk = 1;
 			killScore = 1;
 			damageText = Resources.Load<GameObject>("Prefabs/DamageText");
-			sm = GameObject.Find("GameController").GetComponent<ScoreManager>();
 		}
 
 		public override void FixedUpdate()
@@ -64,7 +62,7 @@ namespace NCharacter
 			base.FixedUpdate();
 			if (hp <= 0)
 			{
-				sm.score += killScore;
+				ScoreManager.instance.score += killScore;
 				Destroy(this.gameObject);
 			}
 		}

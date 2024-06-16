@@ -11,6 +11,21 @@ namespace NManager
 
 	public class ScoreManager : MonoBehaviour
 	{
+		public static ScoreManager instance = null;
+
+		private void Awake()
+		{
+			if (instance == null)
+			{
+				instance = this;
+				DontDestroyOnLoad(this.gameObject);
+			}
+			else
+			{
+				Destroy(this.gameObject);
+			}
+		}
+
 		public int score = 0;
 		private GameObject sText;
 		private Character player;
