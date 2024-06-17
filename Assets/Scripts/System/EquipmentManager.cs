@@ -5,7 +5,7 @@ namespace NManager
 	using System.Collections.Generic;
 	using UnityEngine;
 	using NEquipment;
-	using NTitle;
+	using NUI;
 
 	public class EquipmentManager : MonoBehaviour
 	{
@@ -19,7 +19,9 @@ namespace NManager
 			for (int i = 0; i < n; i++)
 			{
 				equipmentList.Add(GameManager.instance.allEquipmentDataList.list[PlayerPrefs.GetInt("NowEquip" + (i + 1).ToString())]);
-				equipmentObjList.Add(GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Equipment/" + equipmentList[i].equipmentName)));
+				GameObject g = Instantiate((GameObject)Resources.Load("Prefabs/Equipment/" + equipmentList[i].equipmentName));
+				g.GetComponent<Skill>().Init(equipmentContainers[i].gauge);
+				equipmentObjList.Add(g);
 				equipmentObjList[i].GetComponent<Equipment>().actionKey = "Fire" + (i + 1).ToString();
 				equipmentContainers[i].SetItem(equipmentList[i]);
 			}

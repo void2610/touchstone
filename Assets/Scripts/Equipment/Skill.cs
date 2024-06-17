@@ -7,7 +7,7 @@ namespace NEquipment
 
 	public class Skill : Equipment
 	{
-		public GameObject gauge;
+		public Image gauge;
 
 
 		//長押しでactiveTimeLengthの時間まで有効、長押しを離したらクールタイムが始まる
@@ -46,6 +46,12 @@ namespace NEquipment
 			base.OnActionEnd();
 		}
 
+		public void Init(Image gauge)
+		{
+			base.Init();
+			this.gauge = gauge;
+		}
+
 		protected override void Awake()
 		{
 			base.Awake();
@@ -54,14 +60,6 @@ namespace NEquipment
 		protected override void Start()
 		{
 			base.Start();
-			if (actionKey == "Fire2")
-			{
-				gauge = GameObject.Find("Skill1Gauge");
-			}
-			else if (actionKey == "Fire3")
-			{
-				gauge = GameObject.Find("Skill2Gauge");
-			}
 		}
 
 		protected override void Update()
@@ -80,6 +78,8 @@ namespace NEquipment
 				OnActionEnd();
 				StartCoroutine(CoolTime());
 			}
+
+
 
 			if (isCooling)
 			{

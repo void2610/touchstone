@@ -32,7 +32,7 @@ namespace NTitle
                 Vector3 pos = new Vector3((i % column) * alignX, -(i / column) * alignY, 0);
                 GameObject container = Instantiate(equipmentContainerPrefab, this.transform.position + pos, Quaternion.identity, this.transform);
                 container.transform.localScale = new Vector3(containerSize, containerSize, containerSize);
-                container.GetComponent<EquipmentContainer>().SetItem(equipmentDataList.list[i]);
+                container.GetComponent<TitleEquipmentContainer>().SetItem(equipmentDataList.list[i]);
                 int temp = i;
                 container.GetComponent<Button>().onClick.AddListener(() =>
                 {

@@ -6,7 +6,7 @@ namespace NTitle
 	using UnityEngine.UI;
 	using NEquipment;
 
-	public class EquipmentContainer : MonoBehaviour
+	public class TitleEquipmentContainer : MonoBehaviour
 	{
 		private EquipmentData equipmentData;
 		private Image icon;

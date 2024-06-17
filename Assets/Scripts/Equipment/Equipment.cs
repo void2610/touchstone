@@ -106,6 +106,10 @@ namespace NEquipment
 		{
 		}
 
+		public virtual void Init()
+		{
+		}
+
 		protected virtual void Awake()
 		{
 		}

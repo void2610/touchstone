@@ -15,11 +15,11 @@ namespace NTitle
 		[SerializeField]
 		private List<CanvasGroup> canvasGroups = new List<CanvasGroup>();
 		[SerializeField]
-		private EquipmentContainer e1;
+		private TitleEquipmentContainer e1;
 		[SerializeField]
-		private EquipmentContainer e2;
+		private TitleEquipmentContainer e2;
 		[SerializeField]
-		private EquipmentContainer e3;
+		private TitleEquipmentContainer e3;
 
 		private int state = 0;
 		//0:タイトル画面 1:装備編成画面 2:設定画面 3:weapon 4:skill1 5:skill2
