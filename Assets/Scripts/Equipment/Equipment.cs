@@ -70,6 +70,15 @@ namespace NEquipment
 
 		public GameObject player;
 
+		public Image gauge;
+
+		public void Init(GameObject player, Image gauge)
+		{
+			Debug.Log("Init");
+			this.player = player;
+			this.gauge = gauge;
+		}
+
 		protected void CutHP(Character target, int atk)
 		{
 			target.hp -= atk;
@@ -89,9 +98,30 @@ namespace NEquipment
 			return res;
 		}
 
+		protected virtual IEnumerator CoolTime()
+		{
+			isCooling = true;
+			coolStartTime = Time.time;
+			yield return new WaitForSeconds(coolTimeLength);
+			isCooling = false;
+			yield break;
+		}
+
+		//長押しでactiveTimeLengthの時間まで有効、長押しを離したらクールタイムが始まる
 		public virtual IEnumerator Action()
 		{
-			yield break;
+			activeStartTime = Time.time;
+			isActive = true;
+			activeStartAngle = angle;
+			activeStartPosition = getMousePosition();
+			OnActionStart();
+			yield return new WaitForSeconds(activeTimeLength);
+			if (isActive)
+			{
+				isActive = false;
+				OnActionEnd();
+				StartCoroutine(CoolTime());
+			}
 		}
 
 		protected virtual void OnActionStart()
@@ -103,10 +133,6 @@ namespace NEquipment
 		}
 
 		protected virtual void OnActionEnd()
-		{
-		}
-
-		public virtual void Init()
 		{
 		}
 
@@ -122,10 +148,33 @@ namespace NEquipment
 
 		protected virtual void Update()
 		{
+			angle = getMouseAngle();
+			if (Input.GetButton(actionKey) && isEnable && !isCooling && !isActive)
+			{
+				StartCoroutine(Action());
+			}
+
+			if (isActive && Input.GetButtonUp(actionKey))
+			{
+				//長押しを離したらクールタイムが始まる
+				isActive = false;
+				activeStartTime = 0;
+				OnActionEnd();
+				StartCoroutine(CoolTime());
+			}
+
+			if (isCooling)
+			{
+				gauge.fillAmount = 1 - ((Time.time - coolStartTime) / coolTimeLength);
+			}
 		}
 
 		protected virtual void FixedUpdate()
 		{
+			if (isActive)
+			{
+				Effect();
+			}
 		}
 	}
 }

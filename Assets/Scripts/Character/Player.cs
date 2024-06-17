@@ -38,7 +38,7 @@ namespace NCharacter
 		protected override void Start()
 		{
 			base.Start();
-
+			GameManager.instance.SetPlayer(this.gameObject);
 			rb = this.GetComponent<Rigidbody2D>();
 			animator = GetComponent<Animator>();
 			jrs = GameObject.Find("Leg").GetComponent<JumpResetScript>();

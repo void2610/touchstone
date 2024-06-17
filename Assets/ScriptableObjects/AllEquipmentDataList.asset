@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: AllEquipmentDataList
   m_EditorClassIdentifier: 
   list:
-  - {fileID: 11400000, guid: 182f8e7c6910245e1a993c24a960ae39, type: 2}
   - {fileID: 11400000, guid: 06237fe857de84fdbbb985453a2a0c59, type: 2}
   - {fileID: 11400000, guid: 97311516f084a4dc48cfa7f54403c09e, type: 2}
-  - {fileID: 11400000, guid: 10989d5deb8114e5690671bafef9cc60, type: 2}
   - {fileID: 11400000, guid: a3afa1a48f5574ae39254c038079617a, type: 2}

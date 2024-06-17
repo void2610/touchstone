@@ -42,8 +42,14 @@ namespace NManager
 		}
 
 		public GameState state { get; set; } = GameState.Playing;
-		private Player player;
-		private GameObject playerObj;
+		public Player player { get; private set; }
+		public GameObject playerObj { get; private set; }
+
+		public void SetPlayer(GameObject p)
+		{
+			playerObj = p;
+			player = p.GetComponent<Player>();
+		}
 
 		public void OnPlayerDeathEvent()
 		{
@@ -84,8 +90,6 @@ namespace NManager
 
 		void Start()
 		{
-			playerObj = GameObject.Find("Player");
-			player = playerObj.GetComponent<Player>();
 		}
 
 		void Update()

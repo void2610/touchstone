@@ -5,7 +5,7 @@ namespace NEquipment
 	using UnityEngine;
 	using NCharacter;
 
-	public class Guard : Skill
+	public class Guard : Equipment
 	{
 		protected override void Awake()
 		{

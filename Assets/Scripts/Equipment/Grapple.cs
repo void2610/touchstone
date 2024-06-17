@@ -4,7 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 
-	public class Grapple : Skill
+	public class Grapple : Equipment
 	{
 		// private float hookLength = 10;
 		private Vector2 playerPosition;

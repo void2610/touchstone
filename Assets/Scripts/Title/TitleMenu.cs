@@ -22,7 +22,7 @@ namespace NTitle
 		private TitleEquipmentContainer e3;
 
 		private int state = 0;
-		//0:タイトル画面 1:装備編成画面 2:設定画面 3:weapon 4:skill1 5:skill2
+		//0:タイトル画面 1:装備編成画面 2:設定画面 3:装備選択画面
 		private int selectEquip = 0;
 
 		public void OnClickStartButton()
@@ -130,6 +130,15 @@ namespace NTitle
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 0)]);
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 0)]);
 			ChangeState(0);
+		}
+
+		void Update()
+		{
+			if (Input.GetKeyDown(KeyCode.N))
+			{
+				PlayerPrefs.DeleteAll();
+				Debug.Log("DeleteAll");
+			}
 		}
 	}
 }

@@ -23,7 +23,7 @@ namespace NUI
 			nameText.text = e.equipmentName;
 		}
 
-		private void Start()
+		private void Awake()
 		{
 			icon = transform.Find("Icon").GetComponent<Image>();
 			nameText = transform.Find("Name").GetComponent<Text>();

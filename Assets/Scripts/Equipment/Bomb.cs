@@ -5,7 +5,7 @@ namespace NEquipment
 	using UnityEngine;
 	using UnityEngine.Tilemaps;
 
-	public class Bomb : Skill
+	public class Bomb : Equipment
 	{
 		private Vector3 bombAngle;
 		private float throwPower = 5;
