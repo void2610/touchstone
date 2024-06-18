@@ -78,12 +78,6 @@ namespace NEquipment
 			this.gauge = gauge;
 		}
 
-		protected void CutHP(Character target, int atk)
-		{
-			target.hp -= atk;
-			Debug.Log(target.characterName + "のHPが" + atk + "削れた");
-		}
-
 		protected float getMouseAngle()
 		{
 			Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;

@@ -6,51 +6,38 @@ namespace NCharacter
 	using NManager;
 	using UnityEngine;
 
-	public class Player : Character
+	public class Player : MonoBehaviour
 	{
-		public float speed;
-
-		public float jumpForce = 500f;
-
-		public int jp = 0;
-
+		public bool isInvincible { get; set; } = false;
+		public int maxHp { get; private set; } = 10;
+		public int hp { get; private set; }
 		public bool isMovable = true;
-
+		private float speed;
+		private float jumpForce = 500f;
+		private int jp = 0;
+		private int direction;
 		private Rigidbody2D rb;
-
 		private Vector2 speedLimit = new Vector2(5, 30);
+		private Animator animator;
+		private JumpResetScript jrs;
 
-		Animator animator;
-
-		JumpResetScript jrs;
-
-		protected override void Awake()
+		private void Awake()
 		{
-			base.Awake();
-			name = "Player";
-			maxHp = PlayerPrefs.GetInt("PlayerMaxHp", 10);
-			hp = PlayerPrefs.GetInt("PlayerHp", 10);
-			atk = 1;
 			GameManager.instance.SetPlayer(this.gameObject);
+			direction = 1;
+			hp = maxHp;
+			speed = 15;
 		}
 
-		protected override void Start()
+		private void Start()
 		{
-			base.Start();
-
 			rb = this.GetComponent<Rigidbody2D>();
 			animator = GetComponent<Animator>();
 			jrs = GameObject.Find("Leg").GetComponent<JumpResetScript>();
-			direction = 1;
 		}
 
-		protected override void Update()
+		private void Update()
 		{
-			base.Update();
-			// if (hp <= 0)
-			// {
-			// 	deathEvent.Raise();
-			// }
 			jp = jrs.jumpCount;
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
 			{
@@ -62,10 +49,8 @@ namespace NCharacter
 			}
 		}
 
-		protected override void FixedUpdate()
+		private void FixedUpdate()
 		{
-			base.FixedUpdate();
-
 			if (isMovable)
 			{
 				//右入力で右向きに動く

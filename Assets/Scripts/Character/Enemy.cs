@@ -6,10 +6,15 @@ namespace NCharacter
 	using UnityEngine.UI;
 	using NManager;
 
-	public class Enemy : Character
+	public abstract class Enemy : MonoBehaviour
 	{
+		public string enemyName { get; protected set; }
+		public int maxHp { get; protected set; }
+		public int hp { get; protected set; }
+		public int atk { get; protected set; }
+		public int killScore { get; protected set; }
+		protected int direction = 1; //-1 = 左  1 = 右
 		private GameObject damageText;
-		private Character target = null;
 
 		public void ShowDamageText(int damage, Vector3 position)
 		{
@@ -39,27 +44,21 @@ namespace NCharacter
 		{
 		}
 
-		public void OnDestroy()
+		protected virtual void OnDestroy()
 		{
-			if (target != null)
-			{
-				target.GetComponent<SpriteRenderer>().color = Color.white;
-			}
 		}
 
-		protected override void Start()
+		protected virtual void Start()
 		{
-			base.Start();
-			characterName = "Enemy";
-			hp = 1;
-			atk = 1;
-			killScore = 1;
 			damageText = Resources.Load<GameObject>("Prefabs/DamageText");
 		}
 
-		protected override void FixedUpdate()
+		protected virtual void Update()
 		{
-			base.FixedUpdate();
+		}
+
+		protected virtual void FixedUpdate()
+		{
 			if (hp <= 0)
 			{
 				ScoreManager.instance.score += killScore;
@@ -67,18 +66,15 @@ namespace NCharacter
 			}
 		}
 
-		void OnCollisionEnter2D(Collision2D other) //敵に触れた時の処理
+		protected virtual void OnCollisionEnter2D(Collision2D other)
 		{
-			target = null;
-			if (other.gameObject.tag == "PlayerTrigger")
+			Player player = other.gameObject.GetComponent<Player>();
+			if (player != null)
 			{
-				target = SearchCharacter(other.gameObject);
-
-				if (!target.isInvincible)
+				if (!player.isInvincible)
 				{
 					StartCoroutine(ChangeColortoRed(other.gameObject));
-					CutHP(target);
-					ShowDamageText(atk, target.transform.position);
+					ShowDamageText(atk, player.transform.position);
 					StartCoroutine(HitStop());
 				}
 			}

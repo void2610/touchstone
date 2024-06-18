@@ -28,7 +28,6 @@ namespace NManager
 
 		public int score = 0;
 		private GameObject sText;
-		private Character player;
 
 		public void ResetScore()
 		{
@@ -49,7 +48,6 @@ namespace NManager
 
 		void Start()
 		{
-			player = GameObject.Find("Player").GetComponent<Character>();
 			sText = GameObject.Find("ScoreText");
 			PlayerPrefs.SetInt("score", 0);
 

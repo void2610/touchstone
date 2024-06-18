@@ -21,7 +21,7 @@ namespace NCharacter
 		protected override void Start()
 		{
 			base.Start();
-			characterName = "Slime";
+			enemyName = "Slime";
 			maxHp = 1;
 			hp = 1;
 			atk = 1;
