@@ -15,8 +15,9 @@ namespace NMap
         private bool isRandomedSeed = false;
         [SerializeField]
         private int seed = 42;
+        private GameObject mapContainer;
         private Transform player;
-        private float pHight = 0;
+        private float pAltitude = 0;
         private int nextHight = 0;
         private int mapHight = 40;
 
@@ -24,12 +25,13 @@ namespace NMap
         {
             int index = Random.Range(0, mapPrefabs.Count);
             GameObject map = Instantiate(mapPrefabs[index], new Vector3(0, nextHight, 0), Quaternion.identity);
-            map.transform.SetParent(this.transform);
+            map.transform.SetParent(mapContainer.transform);
             nextHight += mapHight;
         }
 
         void Start()
         {
+            mapContainer = new GameObject("MapContainer");
             player = GameManager.instance.player.transform;
             if (isRandomedSeed)
             {
@@ -40,9 +42,9 @@ namespace NMap
 
         void Update()
         {
-            pHight = Mathf.Max(pHight, player.position.y);
+            pAltitude = Mathf.Max(pAltitude, player.position.y);
 
-            if (pHight + 20 > nextHight)
+            if (pAltitude + 20 > nextHight)
             {
                 SetMap();
             }
