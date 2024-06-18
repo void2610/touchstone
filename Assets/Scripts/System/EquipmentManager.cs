@@ -22,7 +22,6 @@ namespace NManager
 				equipmentList.Add(GameManager.instance.allEquipmentDataList.list[PlayerPrefs.GetInt("NowEquip" + (i + 1).ToString())]);
 				GameObject g = Instantiate((GameObject)Resources.Load("Prefabs/Equipment/" + equipmentList[i].equipmentName));
 				g.GetComponent<Equipment>().Init(p, equipmentContainers[i].gauge);
-				Debug.Log(equipmentContainers[i].gauge);
 				equipmentObjList.Add(g);
 				equipmentObjList[i].GetComponent<Equipment>().actionKey = "Fire" + (i + 1).ToString();
 				equipmentContainers[i].SetItem(equipmentList[i]);

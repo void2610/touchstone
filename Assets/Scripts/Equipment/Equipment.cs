@@ -74,7 +74,6 @@ namespace NEquipment
 
 		public void Init(GameObject player, Image gauge)
 		{
-			Debug.Log("Init");
 			this.player = player;
 			this.gauge = gauge;
 		}
