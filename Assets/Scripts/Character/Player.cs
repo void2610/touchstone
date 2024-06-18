@@ -31,12 +31,13 @@ namespace NCharacter
 			maxHp = PlayerPrefs.GetInt("PlayerMaxHp", 10);
 			hp = PlayerPrefs.GetInt("PlayerHp", 10);
 			atk = 1;
+			GameManager.instance.SetPlayer(this.gameObject);
 		}
 
 		protected override void Start()
 		{
 			base.Start();
-			GameManager.instance.SetPlayer(this.gameObject);
+
 			rb = this.GetComponent<Rigidbody2D>();
 			animator = GetComponent<Animator>();
 			jrs = GameObject.Find("Leg").GetComponent<JumpResetScript>();
