@@ -704,6 +704,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8802f3f68097d124ab9247e3c7718fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionKeys:
+  - Fire1
+  - Fire2
+  - Fire3
   equipmentContainers:
   - {fileID: 5771874634429878291}
   - {fileID: 415251975}
@@ -721,7 +725,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allEquipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
-  player: {fileID: 0}
 --- !u!114 &1017836018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,6 +1181,7 @@ GameObject:
   - component: {fileID: 1471282076}
   - component: {fileID: 1471282077}
   - component: {fileID: 1471282078}
+  - component: {fileID: 1471282079}
   m_Layer: 0
   m_Name: Player
   m_TagString: PlayerTrigger
@@ -1383,6 +1387,19 @@ SpringJoint2D:
   m_Distance: 0.005
   m_DampingRatio: 1
   m_Frequency: 1
+--- !u!114 &1471282079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471282070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ab5df4ce4f348adbcbd2e5b8b0101a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sandParticle: {fileID: 1783607878392164987, guid: 1af85b9d788d14f0395ad6992b1c6224, type: 3}
 --- !u!1 &1667344536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,7 +1495,7 @@ GameObject:
   - component: {fileID: 2107668654}
   m_Layer: 3
   m_Name: FirstTileMap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37387,7 +37404,7 @@ GameObject:
   - component: {fileID: 4407994625355671546}
   m_Layer: 3
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
