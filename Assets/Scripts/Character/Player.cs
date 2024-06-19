@@ -65,7 +65,6 @@ namespace NCharacter
 
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
 			{
-				Debug.Log("Jump");
 				isJumping = true;
 			}
 
