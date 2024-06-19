@@ -42,7 +42,7 @@ namespace NManager
 		}
 
 		public GameState state { get; set; } = GameState.Playing;
-		public Player player;
+		public Player player { get; private set; }
 		public GameObject playerObj { get; private set; }
 
 		public void SetPlayer(GameObject p)
