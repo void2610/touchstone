@@ -12,44 +12,66 @@ namespace NCharacter
 		public int maxHp { get; private set; } = 10;
 		public int hp { get; private set; }
 		public bool isMovable { get; set; } = true;
-		private float speed;
-		private float jumpForce = 12f;
+		private int maxJumpCnt = 2;
+		private float speed = 15;
+		private float jumpForce = 15f;
 		private int jumpCnt = 0;
-		private int direction;
+		private int direction = 1;
+		private bool isJumping = false;
+		private float defaultScaleX;
 		private Rigidbody2D rb;
-		private Vector2 speedLimit = new Vector2(5, 30);
 		private Animator animator;
+
+		public void Jump()
+		{
+			if (jumpCnt < maxJumpCnt - 1)
+			{
+				rb.velocity = new Vector2(rb.velocity.x, 0);
+				rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+				jumpCnt++;
+			}
+		}
 
 		private void Awake()
 		{
 			GameManager.instance.SetPlayer(this.gameObject);
-			direction = 1;
 			hp = maxHp;
-			speed = 15;
 		}
 
 		private void Start()
 		{
 			rb = this.GetComponent<Rigidbody2D>();
 			animator = GetComponent<Animator>();
+			defaultScaleX = transform.localScale.x;
 		}
 
 		private void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+			if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
 			{
-				if (jumpCnt < 1)
-				{
-					rb.velocity = new Vector2(rb.velocity.x, 0);
-					rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-					jumpCnt++;
-				}
+				direction = 1;
+				animator.SetInteger("PlayerState", 1);
+			}
+			else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+			{
+				direction = -1;
+				animator.SetInteger("PlayerState", 1);
+			}
+			else
+			{
+				direction = 0;
+				animator.SetInteger("PlayerState", 0);
 			}
 
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, LayerMask.GetMask("Ground"));
-			if (hit.collider != null)
+			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
 			{
-				jumpCnt = 0;
+				Debug.Log("Jump");
+				isJumping = true;
+			}
+
+			if (direction != 0)
+			{
+				transform.localScale = new Vector3(direction, 1, 1) * defaultScaleX;
 			}
 		}
 
@@ -57,51 +79,21 @@ namespace NCharacter
 		{
 			if (isMovable)
 			{
-				//右入力で右向きに動く
-				if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-				{
-					direction = 1;
-					if (Math.Abs(rb.velocity.x) < 100000)
-					{
-						rb.velocity = new Vector2(speed * direction, rb.velocity.y);
-					}
-				}
-				else
-				{
-					if (jumpCnt < 1)
-					{
-						animator.SetInteger("PlayerState", 0);
-					}
-				}
+				rb.velocity = new Vector2(speed * direction, rb.velocity.y);
 
-				//左入力で左向きに動く
-				if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+				if (isJumping)
 				{
-					direction = -1;
-					if (Math.Abs(rb.velocity.x) < 100)
-					{
-						rb.velocity = new Vector2(speed * direction, rb.velocity.y);
-					}
+					Jump();
+					isJumping = false;
 				}
-				else
-				{
-					if (this.jumpCnt < 1)
-					{
-						animator.SetInteger("PlayerState", 0);
-					}
-				}
-				if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-				{
-					rb.velocity = new Vector2(0, rb.velocity.y);
-				}
+			}
 
-				if (MathF.Abs(rb.velocity.x) > 0.1f)
-				{
-					if (jumpCnt < 1)
-					{
-						animator.SetInteger("PlayerState", 1);
-					}
-				}
+
+
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, LayerMask.GetMask("Ground"));
+			if (hit.collider != null)
+			{
+				jumpCnt = 0;
 			}
 		}
 	}
