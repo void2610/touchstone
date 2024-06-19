@@ -3,34 +3,33 @@ namespace NEquipment
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using UnityEngine.UI;
 
 	public class Grapple : Equipment
 	{
 		// private float hookLength = 10;
 		private Vector2 playerPosition;
 		private Vector2 direction;
-		// private float frequency = 0;
 		private Rigidbody2D rb;
 		private SpringJoint2D joint;
 		private LineRenderer lineRenderer;
 
 		protected override void Awake()
 		{
-			name = "Grapple";
-			actionKey = "Fire2";
-			isCooling = false;
+			base.Awake();
+			equipmentName = "Grapple";
 			coolTimeLength = 1.0f;
-			isEnable = true;
-			isActive = false;
 			activeTimeLength = 3f;
 		}
 
 		protected override void Effect()
 		{
+			base.Effect();
 		}
 
 		protected override void OnActionStart()
 		{
+			base.OnActionStart();
 			playerPosition = player.GetComponent<Rigidbody2D>().position;
 			direction = activeStartPosition - playerPosition;
 
@@ -42,6 +41,7 @@ namespace NEquipment
 
 		protected override void OnActionEnd()
 		{
+			base.OnActionEnd();
 			joint.enabled = false;
 			lineRenderer.enabled = false;
 			rb.velocity = Vector2.zero;
@@ -59,7 +59,7 @@ namespace NEquipment
 			lineRenderer = this.GetComponent<LineRenderer>();
 			lineRenderer.positionCount = 2;
 
-			GameObject.Find("Player").GetComponent<SpringJoint2D>().enabled = false;
+			player.GetComponent<SpringJoint2D>().enabled = false;
 		}
 		protected override void FixedUpdate()
 		{

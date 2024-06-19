@@ -26,7 +26,7 @@ namespace NEquipment
 		/// <summary>
 		/// クールタイム中かどうか
 		/// </summary>
-		public bool isCooling;
+		public bool isCooling = false;
 
 		/// <summary>
 		/// クールタイムの開始時間
@@ -36,7 +36,7 @@ namespace NEquipment
 		/// <summary>
 		/// 装備を使用可能かどうか
 		/// </summary>
-		public bool isEnable;
+		public bool isEnable = true;
 
 		/// <summary>
 		/// 装備が効果を発揮する時間の長さ
@@ -61,7 +61,7 @@ namespace NEquipment
 		/// <summary>
 		/// 装備が効果を発揮しているかどうか
 		/// </summary>
-		public bool isActive;
+		public bool isActive = false;
 
 		/// <summary>
 		/// マウスの角度
@@ -72,10 +72,11 @@ namespace NEquipment
 
 		public Image gauge;
 
-		public void Init(GameObject player, Image gauge)
+		public void Init(GameObject player, Image gauge, string actionKey)
 		{
 			this.player = player;
 			this.gauge = gauge;
+			this.actionKey = actionKey;
 		}
 
 		protected float getMouseAngle()
@@ -131,12 +132,11 @@ namespace NEquipment
 
 		protected virtual void Awake()
 		{
+			isEnable = true;
 		}
 
 		protected virtual void Start()
 		{
-			player = GameObject.Find("Player");
-
 		}
 
 		protected virtual void Update()

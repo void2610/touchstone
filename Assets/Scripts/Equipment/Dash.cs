@@ -3,6 +3,7 @@ namespace NEquipment
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using UnityEngine.UI;
 
 	public class Dash : Equipment
 	{
@@ -11,12 +12,8 @@ namespace NEquipment
 		protected override void Awake()
 		{
 			base.Awake();
-			name = "Dash";
-			actionKey = "Fire3";
-			isCooling = false;
+			equipmentName = "Dash";
 			coolTimeLength = 1.0f;
-			isEnable = true;
-			isActive = false;
 			activeTimeLength = 0.17f;
 		}
 
