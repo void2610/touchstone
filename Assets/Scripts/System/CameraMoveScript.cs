@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraMoveScript : MonoBehaviour
 {
+	[SerializeField]
+	float offset;
 	public GameObject player;
 	Vector2 plapos;
 	void Start()
@@ -15,14 +17,6 @@ public class CameraMoveScript : MonoBehaviour
 	void Update()
 	{
 		plapos = player.transform.position;
-		this.transform.position = new Vector3(plapos.x, plapos.y + 5, -10);
-		// if (plapos.x > 5 && plapos.x < 1300)
-		// {
-		// 	this.transform.position = new Vector3(plapos.x, this.transform.position.y, -10);
-		// }
-		// if (plapos.y < 6)
-		// {
-		// 	this.transform.position = new Vector3(this.transform.position.x, plapos.y + 1, -10);
-		// }
+		this.transform.position = new Vector3(plapos.x, plapos.y + offset, -10);
 	}
 }
