@@ -11,6 +11,7 @@ namespace NCharacter
 		public bool isInvincible { get; set; } = false;
 		public int maxHp { get; private set; } = 10;
 		public int hp { get; private set; }
+		public int atk { get; private set; } = 1;
 		public bool isMovable { get; set; } = true;
 		private int maxJumpCnt = 2;
 		private float speed = 15;
@@ -22,7 +23,22 @@ namespace NCharacter
 		private Rigidbody2D rb;
 		private Animator animator;
 
+		public void CutHp(int damage)
+		{
+			if (!isInvincible)
+			{
+				hp -= damage;
+			}
+		}
+
 		public void Jump()
+		{
+			rb.velocity = new Vector2(rb.velocity.x, 0);
+			rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+			jumpCnt = 0;
+		}
+
+		private void _Jump()
 		{
 			if (jumpCnt < maxJumpCnt - 1)
 			{
@@ -82,14 +98,14 @@ namespace NCharacter
 
 				if (isJumping)
 				{
-					Jump();
+					_Jump();
 					isJumping = false;
 				}
 			}
 
 
 
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, LayerMask.GetMask("Ground"));
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
 			if (hit.collider != null)
 			{
 				jumpCnt = 0;

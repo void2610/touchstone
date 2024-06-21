@@ -14,6 +14,7 @@ namespace NCharacter
 		public int atk { get; protected set; }
 		public int killScore { get; protected set; }
 		protected int direction = 1; //-1 = 左  1 = 右
+		protected Vector3 startPosition;
 		private GameObject damageText;
 
 		public void ShowDamageText(int damage, Vector3 position)
@@ -39,7 +40,6 @@ namespace NCharacter
 			Time.timeScale = 1;
 		}
 
-		//攻撃処理(この中でCutHPを呼ぶ)(キャラによって違う)
 		public virtual void Attack()
 		{
 		}
@@ -48,9 +48,14 @@ namespace NCharacter
 		{
 		}
 
+		protected virtual void Awake()
+		{
+		}
+
 		protected virtual void Start()
 		{
 			damageText = Resources.Load<GameObject>("Prefabs/DamageText");
+			startPosition = this.transform.position;
 		}
 
 		protected virtual void Update()
@@ -66,16 +71,19 @@ namespace NCharacter
 			}
 		}
 
-		protected virtual void OnCollisionEnter2D(Collision2D other)
+		protected virtual void OnTriggerEnter2D(Collider2D other)
 		{
 			Player player = other.gameObject.GetComponent<Player>();
 			if (player != null)
 			{
-				if (!player.isInvincible)
+				if (other.transform.position.y > this.transform.position.y + 0.5f)
 				{
-					StartCoroutine(ChangeColortoRed(other.gameObject));
-					ShowDamageText(atk, player.transform.position);
-					StartCoroutine(HitStop());
+					player.Jump();
+					this.hp -= player.atk;
+				}
+				else
+				{
+					player.CutHp(atk);
 				}
 			}
 		}
