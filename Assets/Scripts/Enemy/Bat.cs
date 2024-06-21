@@ -7,13 +7,10 @@ namespace NCharacter
 
     public class Bat : Enemy
     {
-        void attack()
-        {
-        }
-        private float moveDistance = 5f;  // 左右に移動する距離
-        private float floatDistance = 0.5f;  // 上下に動く距離
-        private float moveDuration = 1.5f;  // 左右に移動する時間
-        private float floatDuration = 0.5f;  // 上下に動く時間
+        private float moveDistance = 5f;
+        private float floatDistance = 0.5f;
+        private float moveDuration = 1.5f;
+        private float floatDuration = 0.5f;
 
         private Sequence moveSequence;
         private Sequence floatSequence;
@@ -27,13 +24,11 @@ namespace NCharacter
                         .Append(transform.DOMoveX(startPosition.x - moveDistance / 2, duration: moveDuration).SetEase(Ease.InOutSine))
                         .SetLoops(-1, LoopType.Yoyo);
 
-            // 上下に動くシーケンスを作成
             floatSequence = DOTween.Sequence();
             floatSequence.Append(transform.DOMoveY(startPosition.y + floatDistance, duration: floatDuration).SetEase(Ease.InOutSine))
                          .Append(transform.DOMoveY(startPosition.y - floatDistance, duration: floatDuration).SetEase(Ease.InOutSine))
                          .SetLoops(-1, LoopType.Yoyo);
 
-            // シーケンスを再生
             moveSequence.Play();
             floatSequence.Play();
         }
@@ -62,7 +57,6 @@ namespace NCharacter
         protected override void OnDestroy()
         {
             base.OnDestroy();
-
             moveSequence?.Kill();
             floatSequence?.Kill();
         }
