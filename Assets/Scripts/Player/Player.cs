@@ -31,6 +31,12 @@ namespace NCharacter
 			}
 		}
 
+		public void AddForce(Vector2 force)
+		{
+			rb.velocity = Vector2.zero;
+			rb.AddForce(force, ForceMode2D.Impulse);
+		}
+
 		public void Jump()
 		{
 			rb.velocity = new Vector2(rb.velocity.x, 0);

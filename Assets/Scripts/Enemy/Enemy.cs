@@ -5,6 +5,7 @@ namespace NCharacter
 	using UnityEngine;
 	using UnityEngine.UI;
 	using NManager;
+	using DG.Tweening;
 
 	public abstract class Enemy : MonoBehaviour
 	{
@@ -83,7 +84,8 @@ namespace NCharacter
 			Player player = other.gameObject.GetComponent<Player>();
 			if (player != null)
 			{
-				if (other.transform.position.y > this.transform.position.y + 0.5f)
+				Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
+				if (other.transform.position.y > this.transform.position.y)
 				{
 					player.Jump();
 					this.hp -= player.atk;
@@ -91,6 +93,8 @@ namespace NCharacter
 				else
 				{
 					player.CutHp(atk);
+					Vector3 dir = (player.transform.position - this.transform.position).normalized;
+					player.AddForce(new Vector2(dir.x, dir.y) * 30);
 				}
 			}
 		}
