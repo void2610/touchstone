@@ -17,6 +17,12 @@ namespace NEquipment
 			activeTimeLength = 0.17f;
 		}
 
+		protected override void OnActionStart()
+		{
+			base.OnActionStart();
+			player.GetComponent<PlayerParticles>().PlayDashParticle(activeTimeLength);
+		}
+
 		protected override void Effect()
 		{
 			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
