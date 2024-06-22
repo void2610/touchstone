@@ -16,6 +16,7 @@ namespace NCharacter
 		protected int direction = 1; //-1 = 左  1 = 右
 		protected Vector3 startPosition;
 		private GameObject damageText;
+		private bool isQuitting = false;
 		protected GameObject deathParticle;
 
 		public void ShowDamageText(int damage, Vector3 position)
@@ -47,7 +48,10 @@ namespace NCharacter
 
 		protected virtual void OnDestroy()
 		{
-			Instantiate(deathParticle, this.transform.position, Quaternion.identity);
+			if (!isQuitting)
+			{
+				Instantiate(deathParticle, this.transform.position, Quaternion.identity);
+			}
 		}
 
 		protected virtual void Awake()
@@ -89,6 +93,11 @@ namespace NCharacter
 					player.CutHp(atk);
 				}
 			}
+		}
+
+		private void OnApplicationQuit()
+		{
+			isQuitting = true;
 		}
 	}
 }
