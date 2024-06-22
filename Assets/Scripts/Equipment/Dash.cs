@@ -13,8 +13,8 @@ namespace NEquipment
 		{
 			base.Awake();
 			equipmentName = "Dash";
-			coolTimeLength = 1.0f;
-			activeTimeLength = 0.17f;
+			coolTimeLength = 3.5f;
+			activeTimeLength = 0.15f;
 		}
 
 		protected override void OnActionStart()

@@ -15,7 +15,7 @@ namespace NEquipment
 		{
 			base.Awake();
 			equipmentName = "Grapple";
-			coolTimeLength = 1.0f;
+			coolTimeLength = 5.5f;
 			activeTimeLength = 3f;
 		}
 
@@ -63,7 +63,7 @@ namespace NEquipment
 				lineRenderer.SetPosition(1, this.transform.position);
 
 				float sc = (Time.time - activeStartTime) / activeTimeLength;
-				joint.distance = Mathf.Lerp(joint.distance, 0, sc * 0.5f);
+				joint.distance = Mathf.Lerp(joint.distance, 0, sc * 0.1f);
 			}
 		}
 	}
