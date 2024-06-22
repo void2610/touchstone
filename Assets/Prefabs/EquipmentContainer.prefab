@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.83137256}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.74509805}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -184,10 +184,10 @@ Transform:
   m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8923464590290513061}
   - {fileID: 928999388680128257}
   - {fileID: 12405996447522626}
   - {fileID: 6992953618777443479}
+  - {fileID: 8923464590290513061}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-8456660105364237450
@@ -202,7 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37210421342d4fe0b7aa4d07b747846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gauge: {fileID: 0}
 --- !u!1 &8393388701974069900
 GameObject:
   m_ObjectHideFlags: 0
