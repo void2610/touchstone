@@ -17,7 +17,7 @@ public class PlayerParticles : MonoBehaviour
     public void PlayDashParticle(float dashTime)
     {
         dashParticleInstance.GetComponent<ParticleSystem>().Play();
-        Invoke("StopDashParticle", dashTime);
+        Invoke("StopDashParticle", dashTime + 0.5f);
     }
 
     private void Start()
