@@ -17,6 +17,6 @@ public class CameraMoveScript : MonoBehaviour
 	void Update()
 	{
 		plapos = player.transform.position;
-		this.transform.position = new Vector3(plapos.x, plapos.y + offset, -10);
+		this.transform.position = new Vector3(0, plapos.y + offset, -10);
 	}
 }
