@@ -8,6 +8,8 @@ namespace NCharacter
         private GameObject sandParticle;
         [SerializeField]
         private GameObject dashParticle;
+        [SerializeField]
+        private GameObject healParticle;
         private GameObject dashParticleInstance;
         private Vector3 legOffset = new Vector3(0, -1f, 0);
         private SpriteRenderer spriteRenderer;
@@ -21,6 +23,11 @@ namespace NCharacter
         {
             dashParticleInstance.GetComponent<ParticleSystem>().Play();
             Invoke("StopDashParticle", dashTime + 0.5f);
+        }
+
+        public void PlayHealParticle()
+        {
+            Instantiate(healParticle, this.transform.position, Quaternion.identity, this.transform);
         }
 
         private void ChangeColorToWhite()

@@ -24,6 +24,15 @@ namespace NCharacter
 		private Rigidbody2D rb;
 		private Animator animator;
 
+		public void Heal(int amount)
+		{
+			hp += amount;
+			if (hp > maxHp)
+			{
+				hp = maxHp;
+			}
+		}
+
 		public void CutHp(int damage)
 		{
 			if (isInvincible) return;
