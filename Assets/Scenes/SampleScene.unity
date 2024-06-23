@@ -826,6 +826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849072886}
+  - component: {fileID: 849072887}
   m_Layer: 0
   m_Name: Hearts
   m_TagString: Untagged
@@ -848,6 +849,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1090723336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &849072887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849072885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c534ccd7380de48b688df8cf43c939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hrt: {fileID: 21300000, guid: 5bed42d2bea563b4b9e128599070ffbf, type: 3}
+  halfHrt: {fileID: 21300000, guid: f7d0bed5bd2a25c4599ca6c37d0cbf1b, type: 3}
+  noneHrt: {fileID: 21300000, guid: 15985b10c46328941ace589045161322, type: 3}
+  noneHrtObj: {fileID: 1559704267697055118, guid: c726331a1ca3b454abd149ed32e1e275, type: 3}
 --- !u!1001 &1014070387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -916,7 +933,6 @@ GameObject:
   - component: {fileID: 1017836007}
   - component: {fileID: 1017836008}
   - component: {fileID: 1017836009}
-  - component: {fileID: 1017836010}
   - component: {fileID: 1017836012}
   - component: {fileID: 1017836015}
   - component: {fileID: 1017836018}
@@ -969,22 +985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 0}
   cursor: {fileID: 1245595017}
---- !u!114 &1017836010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017836006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c534ccd7380de48b688df8cf43c939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hrt: {fileID: 21300000, guid: 5bed42d2bea563b4b9e128599070ffbf, type: 3}
-  halfHrt: {fileID: 21300000, guid: f7d0bed5bd2a25c4599ca6c37d0cbf1b, type: 3}
-  noneHrt: {fileID: 21300000, guid: 15985b10c46328941ace589045161322, type: 3}
-  noneHrtObj: {fileID: 2751913646346880154, guid: 7cf392bd1039e5a488f52a6f69e783c9, type: 3}
 --- !u!114 &1017836012
 MonoBehaviour:
   m_ObjectHideFlags: 0

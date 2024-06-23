@@ -70,41 +70,10 @@ namespace NManager
 			player = p.GetComponent<Player>();
 		}
 
-		public void OnPlayerDeathEvent()
+		public void GameOver()
 		{
 			state = GameState.GameOver;
-		}
-		public void OnClickArtifactCardEvent()
-		{
-			state = GameState.Other;
-			StartCoroutine(LoadNextScene());
-		}
-		public IEnumerator LoadNextScene()
-		{
-			ScoreManager.instance.score += 20 * player.hp;
-			ScoreManager.instance.SaveScore();
-			Debug.Log("LoadNextScene");
-			yield return new WaitForSeconds(1);
-			SceneManager.LoadScene("SampleScene");
-		}
-
-		private IEnumerator StageClear()
-		{
-			state = GameState.Other;
 			player.isMovable = false;
-			playerObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-			yield return new WaitForSeconds(1);
-			state = GameState.OpenArtifact;
-		}
-
-		private IEnumerator PlayerDeath()
-		{
-			state = GameState.Other;
-			player.isMovable = false;
-			playerObj.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-			ScoreManager.instance.SaveScore();
-			yield return new WaitForSeconds(1);
-			SceneManager.LoadScene("GameOverScene");
 		}
 
 		void Start()
@@ -119,15 +88,7 @@ namespace NManager
 					break;
 				case GameState.Paused:
 					break;
-				case GameState.Clear:
-					StartCoroutine(StageClear());
-					break;
-				case GameState.OpenArtifact:
-					break;
-				case GameState.SelectArtifact:
-					break;
 				case GameState.GameOver:
-					StartCoroutine(PlayerDeath());
 					break;
 				default:
 					break;
