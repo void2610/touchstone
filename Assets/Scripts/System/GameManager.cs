@@ -18,7 +18,6 @@ namespace NManager
 			if (instance == null)
 			{
 				instance = this;
-				DontDestroyOnLoad(this.gameObject);
 
 				if (isRandomedSeed)
 				{
@@ -41,9 +40,6 @@ namespace NManager
 		{
 			Playing,
 			Paused,
-			Clear,
-			OpenArtifact,
-			SelectArtifact,
 			GameOver,
 			Other
 		}
@@ -61,7 +57,7 @@ namespace NManager
 
 		public void SetMaxAltitude(float altitude)
 		{
-			maxAltitude = Mathf.Max(maxAltitude, altitude);
+			maxAltitude = Mathf.Max(maxAltitude, altitude) - 0.15f;
 		}
 
 		public void SetPlayer(GameObject p)
@@ -74,6 +70,9 @@ namespace NManager
 		{
 			state = GameState.GameOver;
 			player.isMovable = false;
+			this.GetComponent<UIManager>().ChangeUIState(GameState.GameOver);
+			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
+			Cursor.visible = true;
 		}
 
 		void Start()

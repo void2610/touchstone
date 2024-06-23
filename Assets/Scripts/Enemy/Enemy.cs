@@ -49,7 +49,7 @@ namespace NCharacter
 
 		protected virtual void OnDestroy()
 		{
-			if (!isQuitting)
+			if (!isQuitting && GameManager.instance.state == GameManager.GameState.Playing)
 			{
 				Instantiate(deathParticle, this.transform.position, Quaternion.identity);
 			}
@@ -74,7 +74,6 @@ namespace NCharacter
 		{
 			if (hp <= 0)
 			{
-				ScoreManager.instance.score += killScore;
 				Destroy(this.gameObject);
 			}
 		}

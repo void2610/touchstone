@@ -7,6 +7,7 @@ namespace NUI
     public class AltitudeUI : MonoBehaviour
     {
         private Text altitudeText;
+        [SerializeField]
         private string prefix = "max: ";
         void Start()
         {

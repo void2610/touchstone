@@ -16,7 +16,16 @@ namespace NManager
 		private List<EquipmentData> equipmentList = new List<EquipmentData>();
 		private List<GameObject> equipmentObjList = new List<GameObject>();
 		private int n = 3;
-		void Start()
+
+		public void ChangeAllEquipmentEnabled(bool enabled)
+		{
+			foreach (GameObject g in equipmentObjList)
+			{
+				g.GetComponent<Equipment>().enabled = enabled;
+			}
+		}
+
+		private void Start()
 		{
 			GameObject p = GameManager.instance.playerObj;
 			for (int i = 0; i < n; i++)
