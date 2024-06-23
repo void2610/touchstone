@@ -4,6 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEngine.UI;
+	using NCharacter;
 
 	public class Dash : Equipment
 	{

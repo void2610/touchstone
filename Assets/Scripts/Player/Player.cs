@@ -28,6 +28,7 @@ namespace NCharacter
 		{
 			if (isInvincible) return;
 
+			this.GetComponent<PlayerParticles>().ChangeColorToRed();
 			hp -= damage;
 			if (hp <= 0)
 			{
