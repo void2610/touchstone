@@ -20,6 +20,7 @@ namespace NCharacter
 		private int direction = 1;
 		private bool isJumping = false;
 		private float defaultScaleX;
+		private float maxAltitude = 0;
 		private Rigidbody2D rb;
 		private Animator animator;
 
@@ -93,6 +94,12 @@ namespace NCharacter
 			if (direction != 0)
 			{
 				transform.localScale = new Vector3(direction, 1, 1) * defaultScaleX;
+			}
+
+			if (transform.position.y > maxAltitude)
+			{
+				maxAltitude = transform.position.y;
+				GameManager.instance.SetMaxAltitude(maxAltitude);
 			}
 		}
 

@@ -25,6 +25,7 @@ namespace NManager
 					seed = (int)DateTime.Now.Ticks;
 				}
 				UnityEngine.Random.InitState(seed);
+				DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 200, sequencesCapacity: 200);
 			}
 			else
 			{
@@ -56,6 +57,12 @@ namespace NManager
 
 		public Player player { get; private set; }
 		public GameObject playerObj { get; private set; }
+		public float maxAltitude { get; set; } = 0;
+
+		public void SetMaxAltitude(float altitude)
+		{
+			maxAltitude = Mathf.Max(maxAltitude, altitude);
+		}
 
 		public void SetPlayer(GameObject p)
 		{

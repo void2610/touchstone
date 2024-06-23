@@ -27,7 +27,6 @@ namespace NManager
 		}
 
 		public int score = 0;
-		private GameObject sText;
 
 		public void ResetScore()
 		{
@@ -48,7 +47,6 @@ namespace NManager
 
 		void Start()
 		{
-			sText = GameObject.Find("ScoreText");
 			PlayerPrefs.SetInt("score", 0);
 
 			if (!PlayerPrefs.HasKey("highScore"))
@@ -64,11 +62,6 @@ namespace NManager
 			if (Input.GetKey(KeyCode.P))
 			{
 				ResetScore();
-			}
-
-			if (GameManager.instance.state != GameManager.GameState.GameOver && GameManager.instance.state != GameManager.GameState.Other)
-			{
-				sText.GetComponent<Text>().text = "Score: " + score.ToString();
 			}
 		}
 	}
