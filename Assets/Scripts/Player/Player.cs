@@ -15,7 +15,7 @@ namespace NCharacter
 		public bool isMovable { get; set; } = true;
 		private int maxJumpCnt = 2;
 		private float speed = 15;
-		private float jumpForce = 15f;
+		private float jumpForce = 17.5f;
 		private int jumpCnt = 0;
 		private int direction = 1;
 		private bool isJumping = false;

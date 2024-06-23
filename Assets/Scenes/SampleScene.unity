@@ -46086,7 +46086,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Altitude: 00'
+  m_Text: 'max: 00'
 --- !u!222 &8397435885287738551
 CanvasRenderer:
   m_ObjectHideFlags: 0

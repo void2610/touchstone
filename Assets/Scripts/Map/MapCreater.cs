@@ -12,7 +12,7 @@ namespace NMap
         [SerializeField]
         private List<GameObject> enemyPrefabs;
 
-        private float offset = 20f;
+        private float offset = 15f;
         void Start()
         {
             for (int i = 0; i < enemyNum; i++)

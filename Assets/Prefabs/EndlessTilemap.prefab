@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d8ffb207e274c05a97e308a45802f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: {x: 30, y: 25}
-  enemyNum: 8
+  mapSize: {x: 30, y: 35}
+  enemyNum: 6
   enemyPrefabs:
   - {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
 --- !u!1 &6452555348443374193
