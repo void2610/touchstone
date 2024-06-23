@@ -95,6 +95,7 @@ namespace NCharacter
 					player.CutHp(atk);
 					Vector3 dir = (player.transform.position - this.transform.position).normalized;
 					player.AddForce(new Vector2(dir.x, dir.y) * 30);
+					player.gameObject.GetComponent<PlayerParticles>().ChangeColorToRed();
 				}
 			}
 		}

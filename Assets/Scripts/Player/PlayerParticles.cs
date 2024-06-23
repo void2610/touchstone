@@ -8,8 +8,9 @@ public class PlayerParticles : MonoBehaviour
     private GameObject dashParticle;
     private GameObject dashParticleInstance;
     private Vector3 legOffset = new Vector3(0, -1f, 0);
+    private SpriteRenderer spriteRenderer;
 
-    public void StopDashParticle()
+    private void StopDashParticle()
     {
         dashParticleInstance.GetComponent<ParticleSystem>().Stop();
     }
@@ -20,8 +21,20 @@ public class PlayerParticles : MonoBehaviour
         Invoke("StopDashParticle", dashTime + 0.5f);
     }
 
+    private void ChangeColorToWhite()
+    {
+        spriteRenderer.color = Color.white;
+    }
+
+    public void ChangeColorToRed(float time = 0.3f)
+    {
+        spriteRenderer.color = Color.red;
+        Invoke("ChangeColorToWhite", time);
+    }
+
     private void Start()
     {
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
         dashParticleInstance = Instantiate(dashParticle, transform.position + legOffset, Quaternion.identity, this.transform);
         dashParticleInstance.GetComponent<ParticleSystem>().Stop();
     }
