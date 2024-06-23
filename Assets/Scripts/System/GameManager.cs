@@ -4,6 +4,7 @@ namespace NManager
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
+	using unityroom.Api;
 	using UnityEngine;
 	using NCharacter;
 	using NEquipment;
@@ -73,6 +74,7 @@ namespace NManager
 			this.GetComponent<UIManager>().ChangeUIState(GameState.GameOver);
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			Cursor.visible = true;
+			UnityroomApiClient.Instance.SendScore(1, maxAltitude, ScoreboardWriteMode.Always);
 		}
 
 		void Start()

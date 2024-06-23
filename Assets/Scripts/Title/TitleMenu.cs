@@ -45,7 +45,7 @@ namespace NTitle
 			//ゲーム終了
 			Application.Quit();
 			//エディターでプレイモードを終了
-			UnityEditor.EditorApplication.isPlaying = false;
+			// UnityEditor.EditorApplication.isPlaying = false;
 		}
 
 		public void OnClickEntryButton()

@@ -18,25 +18,19 @@ namespace NEquipment
 			activeTimeLength = 3f;
 		}
 
-		protected override void Effect()
+		protected override void OnActionStart()
 		{
 			player.GetComponent<Player>().isInvincible = true;
-			player.GetComponent<Player>().isMovable = false;
-			player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, player.GetComponent<Rigidbody2D>().velocity.y, 0);
-			if (player.transform.localScale.x > 0)
-			{
-				this.transform.position = player.transform.position + new Vector3(1.5f, -0.4f, 0);
-			}
-			else
-			{
-				this.transform.position = player.transform.position + new Vector3(-1.5f, -0.4f, 0);
-			}
+		}
+
+		protected override void Effect()
+		{
+
 		}
 
 		protected override void OnActionEnd()
 		{
 			player.GetComponent<Player>().isInvincible = false;
-			player.GetComponent<Player>().isMovable = true;
 			this.transform.position = new Vector3(0, 0, -10);
 		}
 
@@ -44,6 +38,22 @@ namespace NEquipment
 		{
 			this.transform.position = new Vector3(0, 0, -10);
 			base.Start();
+		}
+
+		protected override void Update()
+		{
+			base.Update();
+			if (isActive)
+			{
+				if (player.transform.localScale.x > 0)
+				{
+					this.transform.position = player.transform.position + new Vector3(1.5f, -0.4f, 0);
+				}
+				else
+				{
+					this.transform.position = player.transform.position + new Vector3(-1.5f, -0.4f, 0);
+				}
+			}
 		}
 	}
 }
