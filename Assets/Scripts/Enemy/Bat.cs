@@ -14,6 +14,7 @@ namespace NCharacter
 
         private Sequence moveSequence;
         private Sequence floatSequence;
+        private Sequence rotateSequence;
 
         void StartMovement()
         {
@@ -29,8 +30,13 @@ namespace NCharacter
                          .Append(transform.DOMoveY(startPosition.y - floatDistance, duration: floatDuration).SetEase(Ease.InOutSine))
                          .SetLoops(-1, LoopType.Yoyo);
 
+            rotateSequence = DOTween.Sequence();
+            rotateSequence.Append(transform.DORotate(new Vector3(180, 180, 180), duration: 3f).SetEase(Ease.Linear))
+                          .SetLoops(-1, LoopType.Incremental);
+
             moveSequence.Play();
             floatSequence.Play();
+            rotateSequence.Play();
         }
 
         protected override void Awake()
@@ -59,6 +65,7 @@ namespace NCharacter
             base.OnDestroy();
             moveSequence?.Kill();
             floatSequence?.Kill();
+            rotateSequence?.Kill();
         }
     }
 }
