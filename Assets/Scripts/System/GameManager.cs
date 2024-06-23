@@ -19,6 +19,12 @@ namespace NManager
 			{
 				instance = this;
 				DontDestroyOnLoad(this.gameObject);
+
+				if (isRandomedSeed)
+				{
+					seed = (int)DateTime.Now.Ticks;
+				}
+				UnityEngine.Random.InitState(seed);
 			}
 			else
 			{
@@ -42,6 +48,12 @@ namespace NManager
 		}
 
 		public GameState state { get; set; } = GameState.Playing;
+
+		[SerializeField]
+		private bool isRandomedSeed = false;
+		[SerializeField]
+		private int seed = 42;
+
 		public Player player { get; private set; }
 		public GameObject playerObj { get; private set; }
 

@@ -11,12 +11,9 @@ namespace NMap
     {
         [SerializeField]
         private List<GameObject> mapPrefabs;
-        [SerializeField]
-        private bool isRandomedSeed = false;
-        [SerializeField]
-        private int seed = 42;
         private GameObject mapContainer;
         private Transform player;
+        private int startHight = 40;
         private float pAltitude = 0;
         private int nextHight = 0;
         private int mapHight = 40;
@@ -33,18 +30,14 @@ namespace NMap
         {
             mapContainer = new GameObject("MapContainer");
             player = GameManager.instance.player.transform;
-            if (isRandomedSeed)
-            {
-                seed = System.DateTime.Now.Millisecond;
-            }
-            Random.InitState(seed);
+            nextHight = startHight;
         }
 
         void Update()
         {
             pAltitude = Mathf.Max(pAltitude, player.position.y);
 
-            if (pAltitude + 20 > nextHight)
+            if (pAltitude + 60 > nextHight)
             {
                 SetMap();
             }

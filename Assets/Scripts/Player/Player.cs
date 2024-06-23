@@ -37,10 +37,10 @@ namespace NCharacter
 			rb.AddForce(force, ForceMode2D.Impulse);
 		}
 
-		public void Jump()
+		public void JumpByEnemy()
 		{
 			rb.velocity = new Vector2(rb.velocity.x, 0);
-			rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+			rb.AddForce(Vector2.up * jumpForce * 1.5f, ForceMode2D.Impulse);
 			jumpCnt = 0;
 		}
 

@@ -87,7 +87,7 @@ namespace NCharacter
 				Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
 				if (other.transform.position.y > this.transform.position.y)
 				{
-					player.Jump();
+					player.JumpByEnemy();
 					this.hp -= player.atk;
 				}
 				else
