@@ -112,12 +112,12 @@ namespace NCharacter
 				{
 					transform.localScale = new Vector3(direction, 1, 1) * defaultScaleX;
 				}
-			}
 
-			if (transform.position.y > maxAltitude)
-			{
-				maxAltitude = transform.position.y;
-				GameManager.instance.SetMaxAltitude(maxAltitude);
+				if (transform.position.y > maxAltitude)
+				{
+					maxAltitude = transform.position.y;
+					GameManager.instance.SetMaxAltitude(maxAltitude);
+				}
 			}
 		}
 

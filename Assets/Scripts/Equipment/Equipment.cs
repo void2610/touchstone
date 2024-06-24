@@ -79,6 +79,17 @@ namespace NEquipment
 			this.actionKey = actionKey;
 		}
 
+		public void Enable()
+		{
+			isEnable = true;
+		}
+
+		public void Disable()
+		{
+			OnActionEnd();
+			isEnable = false;
+		}
+
 		protected float getMouseAngle()
 		{
 			Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - player.transform.position;

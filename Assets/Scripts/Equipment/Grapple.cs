@@ -15,7 +15,7 @@ namespace NEquipment
 		{
 			base.Awake();
 			equipmentName = "Grapple";
-			coolTimeLength = 5.5f;
+			coolTimeLength = 7.5f;
 			activeTimeLength = 3f;
 		}
 

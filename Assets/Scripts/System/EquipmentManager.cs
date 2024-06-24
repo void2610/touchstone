@@ -21,7 +21,7 @@ namespace NManager
 		{
 			foreach (GameObject g in equipmentObjList)
 			{
-				g.GetComponent<Equipment>().enabled = enabled;
+				g.GetComponent<Equipment>().Disable();
 			}
 		}
 
