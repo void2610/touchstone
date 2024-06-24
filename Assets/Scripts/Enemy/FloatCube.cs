@@ -5,7 +5,7 @@ namespace NCharacter
     using UnityEngine;
     using DG.Tweening;
 
-    public class Bat : Enemy
+    public class FloatCube : Enemy
     {
         private float moveDistance = 5f;
         private float floatDistance = 0.5f;
@@ -14,7 +14,6 @@ namespace NCharacter
 
         private Sequence moveSequence;
         private Sequence floatSequence;
-        private Sequence rotateSequence;
 
         void StartMovement()
         {
@@ -37,7 +36,7 @@ namespace NCharacter
         protected override void Awake()
         {
             base.Awake();
-            enemyName = "Bat";
+            enemyName = "FloatCube";
             maxHp = 1;
             hp = 1;
             atk = 1;
@@ -48,12 +47,6 @@ namespace NCharacter
         {
             base.Start();
             Invoke(nameof(StartMovement), Random.Range(0.1f, 1.5f));
-
-            rotateSequence = DOTween.Sequence();
-            rotateSequence.Append(transform.DORotate(new Vector3(180, 180, 180), duration: 3f).SetEase(Ease.Linear))
-                          .SetLoops(-1, LoopType.Incremental);
-
-            rotateSequence.Play();
         }
 
         protected override void Update()
@@ -66,7 +59,6 @@ namespace NCharacter
             base.OnDestroy();
             moveSequence?.Kill();
             floatSequence?.Kill();
-            rotateSequence?.Kill();
         }
     }
 }
