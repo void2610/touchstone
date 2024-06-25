@@ -137,6 +137,7 @@ namespace NCharacter
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
 			if (hit.collider != null)
 			{
+				Debug.Log(hit.collider.name);
 				jumpCnt = 0;
 			}
 		}
