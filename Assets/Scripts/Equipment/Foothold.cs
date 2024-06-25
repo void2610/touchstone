@@ -10,6 +10,13 @@ namespace NEquipment
     {
         [SerializeField]
         private GameObject footholdPrefab;
+        private GameObject footholdInstance;
+
+        private void PlayParticleSystem()
+        {
+            footholdInstance.GetComponent<ParticleSystem>().Play();
+        }
+
         protected override void Awake()
         {
             base.Awake();
@@ -21,8 +28,15 @@ namespace NEquipment
         protected override void OnActionStart()
         {
             base.OnActionStart();
-            GameObject foothold = Instantiate(footholdPrefab, player.transform.position + Vector3.down * 3, Quaternion.Euler(0, 0, 90));
-            Destroy(foothold, activeTimeLength);
+            footholdInstance = Instantiate(footholdPrefab, player.transform.position + Vector3.down * 3, Quaternion.Euler(0, 0, 90));
+            Invoke("PlayParticleSystem", activeTimeLength - 1f);
+            Destroy(footholdInstance, activeTimeLength);
+
+        }
+
+        protected override void OnActionEnd()
+        {
+            base.OnActionEnd();
         }
     }
 }
