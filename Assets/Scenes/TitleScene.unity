@@ -2090,8 +2090,8 @@ MonoBehaviour:
   titleMenu: {fileID: 288673205}
   equipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
   equipmentContainerPrefab: {fileID: 5771874635582306405, guid: e763e45317aa74c0289e9ed1e0b983e0, type: 3}
-  alignX: 125
-  alignY: 150
+  alignX: 300
+  alignY: 300
   column: 3
   containerSize: 0.6
 --- !u!1 &1357264088
