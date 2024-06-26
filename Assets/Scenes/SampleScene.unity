@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f3ae418f6924494958818b50ce9edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 'retult: '
+  prefix: 'result: '
 --- !u!222 &649797946
 CanvasRenderer:
   m_ObjectHideFlags: 0
