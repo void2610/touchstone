@@ -235,8 +235,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1448571488558397813}
   - component: {fileID: 1280230776356545046}
-  - component: {fileID: -3732179616613526012}
   - component: {fileID: 6308108370148843883}
+  - component: {fileID: 4830447047995573140}
   m_Layer: 0
   m_Name: TitleEquipmentContainer
   m_TagString: Untagged
@@ -280,7 +280,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 90, y: -5, z: 0}
---- !u!114 &-3732179616613526012
+--- !u!222 &6308108370148843883
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5771874635582306405}
+  m_CullTransparentMesh: 1
+--- !u!114 &4830447047995573140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,14 +332,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!222 &6308108370148843883
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5771874635582306405}
-  m_CullTransparentMesh: 1
 --- !u!1 &6098396140450261696
 GameObject:
   m_ObjectHideFlags: 0
