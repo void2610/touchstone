@@ -14,6 +14,11 @@ namespace NManager
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
+        public void GoToTitle()
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
+
         [SerializeField]
         private List<CanvasGroup> canvasGroups;
 
