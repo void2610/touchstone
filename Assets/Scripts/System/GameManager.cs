@@ -75,6 +75,7 @@ namespace NManager
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			Cursor.visible = true;
 			UnityroomApiClient.Instance.SendScore(1, maxAltitude, ScoreboardWriteMode.Always);
+			PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins", 0) + (int)(maxAltitude / 100));
 		}
 
 		void Start()
