@@ -50,15 +50,15 @@ namespace NTitle
 		{
 			icon = transform.Find("Icon").GetComponent<Image>();
 			nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
-			descriptionText = transform.Find("Description").GetComponent<TextMeshProUGUI>();
+			descriptionBG = transform.Find("DescriptionBG").GetComponent<Image>();
+			descriptionText = descriptionBG.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 			descriptionText.enabled = false;
-			descriptionBG = descriptionText.gameObject.transform.GetChild(0).GetComponent<Image>();
 			descriptionBG.enabled = false;
 		}
 
 		private void Update()
 		{
-			descriptionText.transform.position = Vector3.Lerp(descriptionText.transform.position, Input.mousePosition + offset, Time.deltaTime * 10);
+			descriptionBG.transform.position = Vector3.Lerp(descriptionBG.transform.position, Input.mousePosition + offset, Time.deltaTime * 10);
 		}
 	}
 }
