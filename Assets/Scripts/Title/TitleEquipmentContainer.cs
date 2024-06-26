@@ -9,8 +9,7 @@ namespace NTitle
 
 	public class TitleEquipmentContainer : MonoBehaviour
 	{
-		[SerializeField]
-		private Vector3 offset;
+		private Vector3 windowOffset = new Vector3(100, -45, 0);
 		private EquipmentData equipmentData;
 		private Image icon;
 		private TextMeshProUGUI nameText;
@@ -58,7 +57,8 @@ namespace NTitle
 
 		private void Update()
 		{
-			descriptionBG.transform.position = Vector3.Lerp(descriptionBG.transform.position, Input.mousePosition + offset, Time.deltaTime * 10);
+			descriptionBG.transform.position = Vector3.Lerp(descriptionBG.transform.position, Input.mousePosition + windowOffset, Time.deltaTime * 10);
+			descriptionBG.transform.localScale = Vector3.one / descriptionBG.transform.parent.localScale.x;
 		}
 	}
 }
