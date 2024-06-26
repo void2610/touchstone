@@ -31,7 +31,6 @@ namespace NEquipment
             footholdInstance = Instantiate(footholdPrefab, player.transform.position + Vector3.down * 3, Quaternion.Euler(0, 0, 90));
             Invoke("PlayParticleSystem", activeTimeLength - 1f);
             Destroy(footholdInstance, activeTimeLength);
-
         }
 
         protected override void OnActionEnd()
