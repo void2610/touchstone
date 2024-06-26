@@ -32,7 +32,7 @@ namespace NTitle
             float adjustedAlignX = alignX * (screenWidth / 1920f); // Assuming 1920 is the reference width
             float adjustedAlignY = alignY * (screenHeight / 1080f); // Assuming 1080 is the reference height
 
-            for (int i = 0; i < equipmentDataList.list.Count; i++)
+            for (int i = equipmentDataList.list.Count - 1; i >= 0; i--)
             {
                 Vector3 pos = new Vector3((i % column) * adjustedAlignX, -(i / column) * adjustedAlignY, 0);
                 GameObject container = Instantiate(equipmentContainerPrefab, this.transform.position + pos, Quaternion.identity, this.transform);
