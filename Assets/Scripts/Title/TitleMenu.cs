@@ -92,6 +92,13 @@ namespace NTitle
 			ChangeState(1);
 		}
 
+		public void ResetPlayerPrefs()
+		{
+			PlayerPrefs.DeleteAll();
+			Debug.Log("DeleteAll");
+			InitPlayerPrefs();
+		}
+
 		private void ChangeCanvas(int s)
 		{
 			for (int i = 0; i < canvasGroups.Count; i++)
@@ -150,16 +157,6 @@ namespace NTitle
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
 			ChangeState(0);
-		}
-
-		void Update()
-		{
-			if (Input.GetKeyDown(KeyCode.N))
-			{
-				PlayerPrefs.DeleteAll();
-				Debug.Log("DeleteAll");
-				InitPlayerPrefs();
-			}
 		}
 	}
 }
