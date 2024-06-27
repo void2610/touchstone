@@ -71,6 +71,7 @@ namespace NManager
 		{
 			state = GameState.GameOver;
 			int gainedCoins = (int)(maxAltitude / 10);
+			int currentCoins = PlayerPrefs.GetInt("Coins", 0);
 			player.isMovable = false;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.GameOver);
 			this.GetComponent<UIManager>().SetResultText("max: " + maxAltitude.ToString("F2"));
@@ -78,7 +79,8 @@ namespace NManager
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			Cursor.visible = true;
 			UnityroomApiClient.Instance.SendScore(1, maxAltitude, ScoreboardWriteMode.Always);
-			PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins", 0) + gainedCoins);
+			UnityroomApiClient.Instance.SendScore(2, currentCoins + gainedCoins, ScoreboardWriteMode.Always);
+			PlayerPrefs.SetInt("Coins", currentCoins + gainedCoins);
 		}
 
 		void Start()

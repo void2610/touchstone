@@ -934,7 +934,7 @@ GameObject:
   - component: {fileID: 845039563}
   - component: {fileID: 845039562}
   m_Layer: 5
-  m_Name: GainedGemUI
+  m_Name: GainedCoinUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1174,7 +1174,7 @@ GameObject:
   - component: {fileID: 861192354}
   - component: {fileID: 861192353}
   m_Layer: 5
-  m_Name: Gem
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
