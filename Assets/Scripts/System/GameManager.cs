@@ -70,12 +70,15 @@ namespace NManager
 		public void GameOver()
 		{
 			state = GameState.GameOver;
+			int gainedCoins = (int)(maxAltitude / 10);
 			player.isMovable = false;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.GameOver);
+			this.GetComponent<UIManager>().SetResultText("max: " + maxAltitude.ToString("F2"));
+			this.GetComponent<UIManager>().SetGaindCoinText("coins +" + gainedCoins.ToString());
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			Cursor.visible = true;
 			UnityroomApiClient.Instance.SendScore(1, maxAltitude, ScoreboardWriteMode.Always);
-			PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins", 0) + (int)(maxAltitude / 100));
+			PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins", 0) + gainedCoins);
 		}
 
 		void Start()

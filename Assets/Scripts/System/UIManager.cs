@@ -9,6 +9,13 @@ namespace NManager
 
     public class UIManager : MonoBehaviour
     {
+        [SerializeField]
+        private List<CanvasGroup> canvasGroups;
+        [SerializeField]
+        private TextMeshProUGUI resultText;
+        [SerializeField]
+        private TextMeshProUGUI gaindCoinText;
+
         public void Retry()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -19,8 +26,15 @@ namespace NManager
             SceneManager.LoadScene("TitleScene");
         }
 
-        [SerializeField]
-        private List<CanvasGroup> canvasGroups;
+        public void SetResultText(string text)
+        {
+            resultText.text = text;
+        }
+
+        public void SetGaindCoinText(string text)
+        {
+            gaindCoinText.text = text;
+        }
 
         private void ChangeCanvasGroupEnabled(CanvasGroup c, bool enabled)
         {
