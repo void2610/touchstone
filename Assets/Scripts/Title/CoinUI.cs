@@ -9,12 +9,12 @@ namespace NTitle
         void Start()
         {
             coinText = GetComponent<TextMeshProUGUI>();
-            coinText.text = "Coins: 0";
+            coinText.text = ":0";
         }
 
         void Update()
         {
-            coinText.text = "Coins: " + PlayerPrefs.GetInt("Coins", 0);
+            coinText.text = ":" + PlayerPrefs.GetInt("Coins", 0);
         }
     }
 }

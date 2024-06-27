@@ -74,7 +74,7 @@ namespace NManager
 			player.isMovable = false;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.GameOver);
 			this.GetComponent<UIManager>().SetResultText("max: " + maxAltitude.ToString("F2"));
-			this.GetComponent<UIManager>().SetGaindCoinText("coins +" + gainedCoins.ToString());
+			this.GetComponent<UIManager>().SetGaindCoinText("+" + gainedCoins.ToString());
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			Cursor.visible = true;
 			UnityroomApiClient.Instance.SendScore(1, maxAltitude, ScoreboardWriteMode.Always);
