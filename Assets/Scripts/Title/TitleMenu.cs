@@ -129,6 +129,10 @@ namespace NTitle
 			}
 			PlayerPrefs.SetInt("Equip0", 1);
 			PlayerPrefs.SetInt("Equip1", 1);
+
+			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
+			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
+			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
 			Debug.Log("Init PlayerPrefs");
 		}
 

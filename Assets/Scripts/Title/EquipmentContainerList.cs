@@ -47,13 +47,7 @@ namespace NTitle
                     }
                     else
                     {
-                        if (PlayerPrefs.GetInt("Coin", 0) >= equipmentDataList.list[temp].equipmentPrice)
-                        {
-                            PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) - equipmentDataList.list[temp].equipmentPrice);
-                            Debug.Log("Price:" + equipmentDataList.list[temp].equipmentPrice);
-                            Debug.Log("Coin:" + PlayerPrefs.GetInt("Coin", 0));
-                            PlayerPrefs.SetInt("Equip" + equipmentDataList.list[temp].equipmentID, 1);
-                        }
+                        container.GetComponent<TitleEquipmentContainer>().BuyItem();
                     }
                 });
             }

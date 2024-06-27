@@ -14,7 +14,7 @@ namespace NTitle
 
         void Update()
         {
-            coinText.text = ":" + PlayerPrefs.GetInt("Coins", 0);
+            coinText.text = ":" + PlayerPrefs.GetInt("Coin", 0);
         }
     }
 }

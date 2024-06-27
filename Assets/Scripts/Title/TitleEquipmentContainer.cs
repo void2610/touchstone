@@ -15,6 +15,7 @@ namespace NTitle
 		private TextMeshProUGUI nameText;
 		private TextMeshProUGUI descriptionText;
 		private Image descriptionBG;
+		private TextMeshProUGUI priceText;
 		private bool isBought = false;
 
 		public void OnPointerEnter()
@@ -41,10 +42,24 @@ namespace NTitle
 			nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
 
 			equipmentData = e;
-			icon.sprite = e.equipmentIcon;
-			nameText.text = e.equipmentName;
-			descriptionText.text = e.equipmentDescription;
-			isBought = PlayerPrefs.GetInt("Equip" + e.equipmentID, 0) == 1;
+			icon.sprite = equipmentData.equipmentIcon;
+			nameText.text = equipmentData.equipmentName;
+			descriptionText.text = equipmentData.equipmentDescription;
+			priceText.text = ":" + equipmentData.equipmentPrice.ToString();
+			isBought = PlayerPrefs.GetInt("Equip" + equipmentData.equipmentID, 0) == 1;
+			priceText.gameObject.SetActive(!isBought);
+		}
+
+		public void BuyItem()
+		{
+			if (PlayerPrefs.GetInt("Coin", 0) >= equipmentData.equipmentPrice)
+			{
+				PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) - equipmentData.equipmentPrice);
+				PlayerPrefs.SetInt("Equip" + equipmentData.equipmentID, 1);
+
+				isBought = true;
+				priceText.gameObject.SetActive(false);
+			}
 		}
 
 		private void Awake()
@@ -52,6 +67,7 @@ namespace NTitle
 			icon = transform.Find("Icon").GetComponent<Image>();
 			nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
 			descriptionBG = transform.Find("DescriptionBG").GetComponent<Image>();
+			priceText = transform.Find("Price").GetComponent<TextMeshProUGUI>();
 			descriptionText = descriptionBG.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 			descriptionText.enabled = false;
 			descriptionBG.enabled = false;
@@ -61,6 +77,9 @@ namespace NTitle
 		{
 			descriptionBG.transform.position = Vector3.Lerp(descriptionBG.transform.position, Input.mousePosition + windowOffset, Time.deltaTime * 10);
 			descriptionBG.transform.localScale = Vector3.one / descriptionBG.transform.parent.localScale.x;
+
+			isBought = PlayerPrefs.GetInt("Equip" + equipmentData.equipmentID, 0) == 1;
+			priceText.gameObject.SetActive(!isBought);
 		}
 	}
 }
