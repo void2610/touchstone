@@ -15,6 +15,7 @@ namespace NTitle
 		private TextMeshProUGUI nameText;
 		private TextMeshProUGUI descriptionText;
 		private Image descriptionBG;
+		private bool isBought = false;
 
 		public void OnPointerEnter()
 		{
@@ -43,6 +44,7 @@ namespace NTitle
 			icon.sprite = e.equipmentIcon;
 			nameText.text = e.equipmentName;
 			descriptionText.text = e.equipmentDescription;
+			isBought = PlayerPrefs.GetInt("Equip" + e.equipmentID, 0) == 1;
 		}
 
 		private void Awake()

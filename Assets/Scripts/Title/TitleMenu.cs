@@ -117,18 +117,34 @@ namespace NTitle
 			ChangeCanvas(s);
 		}
 
+		private void InitPlayerPrefs()
+		{
+			PlayerPrefs.SetInt("Coin", 0);
+			PlayerPrefs.SetInt("NowEquip1", 0);
+			PlayerPrefs.SetInt("NowEquip2", 1);
+			PlayerPrefs.SetInt("NowEquip3", 1);
+			for (int i = 0; i < allEquipments.list.Count; i++)
+			{
+				PlayerPrefs.SetInt("Equip" + i, 0);
+			}
+			PlayerPrefs.SetInt("Equip0", 1);
+			PlayerPrefs.SetInt("Equip1", 1);
+			Debug.Log("Init PlayerPrefs");
+		}
+
+		void Awake()
+		{
+			allEquipments.Init();
+			if (PlayerPrefs.HasKey("NowEquip1") == false)
+			{
+				InitPlayerPrefs();
+			}
+		}
 		void Start()
 		{
-			if (!PlayerPrefs.HasKey("NowEquip1"))
-			{
-				PlayerPrefs.SetInt("NowEquip1", 0);
-				PlayerPrefs.SetInt("NowEquip2", 1);
-				PlayerPrefs.SetInt("NowEquip3", 2);
-			}
-
 			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
-			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 0)]);
-			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 0)]);
+			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
+			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
 			ChangeState(0);
 		}
 
@@ -138,6 +154,7 @@ namespace NTitle
 			{
 				PlayerPrefs.DeleteAll();
 				Debug.Log("DeleteAll");
+				InitPlayerPrefs();
 			}
 		}
 	}
