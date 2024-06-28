@@ -4,6 +4,7 @@ namespace NTitle
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEngine.UI;
+	using unityroom.Api;
 	using TMPro;
 	using NEquipment;
 
@@ -54,9 +55,10 @@ namespace NTitle
 		{
 			if (PlayerPrefs.GetInt("Coin", 0) >= equipmentData.equipmentPrice)
 			{
-				PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin", 0) - equipmentData.equipmentPrice);
+				int coin = PlayerPrefs.GetInt("Coin", 0);
+				PlayerPrefs.SetInt("Coin", coin - equipmentData.equipmentPrice);
 				PlayerPrefs.SetInt("Equip" + equipmentData.equipmentID, 1);
-
+				UnityroomApiClient.Instance.SendScore(2, coin - equipmentData.equipmentPrice, ScoreboardWriteMode.Always);
 				isBought = true;
 				priceText.gameObject.SetActive(false);
 			}
