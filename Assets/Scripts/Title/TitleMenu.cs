@@ -127,6 +127,7 @@ namespace NTitle
 		private void InitPlayerPrefs()
 		{
 			PlayerPrefs.SetInt("Coin", 0);
+			UnityroomApiClient.Instance.SendScore(2, 0, ScoreboardWriteMode.Always);
 			PlayerPrefs.SetInt("NowEquip1", 0);
 			PlayerPrefs.SetInt("NowEquip2", 1);
 			PlayerPrefs.SetInt("NowEquip3", 1);
