@@ -35,7 +35,7 @@ namespace NTitle
             }
             set
             {
-                bgmAudioSource.volume = Mathf.Clamp01(value * 0.1f);
+                bgmAudioSource.volume = Mathf.Clamp01(value);
             }
         }
 
@@ -51,7 +51,7 @@ namespace NTitle
             }
         }
 
-        public void PlayBgm(AudioClip clip, float volume = 1.0f)
+        public void PlayBgm(AudioClip clip, float volume = -1.0f)
         {
             bgmAudioSource.clip = clip;
 
@@ -59,8 +59,10 @@ namespace NTitle
             {
                 return;
             }
-
-            bgmAudioSource.volume = volume;
+            if (volume > 0)
+            {
+                bgmAudioSource.volume = volume;
+            }
             bgmAudioSource.Play();
         }
 
@@ -69,20 +71,24 @@ namespace NTitle
             bgmAudioSource.Stop();
         }
 
-        public void PlaySe(AudioClip clip, float volume = 1.0f)
+        public void PlaySe(AudioClip clip, float volume = -1.0f)
         {
             if (clip == null)
             {
                 return;
             }
-
-            seAudioSource.volume = volume;
+            if (volume > 0)
+            {
+                seAudioSource.volume = volume;
+            }
             seAudioSource.PlayOneShot(clip);
         }
 
         private void Start()
         {
-            PlayBgm(bgmAudioClip, 1f);
+            BgmVolume = 0.5f;
+            SeVolume = 0.5f;
+            PlayBgm(bgmAudioClip);
         }
 
     }
