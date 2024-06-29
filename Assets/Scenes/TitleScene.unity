@@ -3690,7 +3690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmAudioSource: {fileID: 1473492719}
   seAudioSource: {fileID: 1473492718}
-  bgmAudioClip: {fileID: 8300000, guid: 81909652b2d1e42b88b3ec193f75ef72, type: 3}
+  bgmAudioClip: {fileID: 8300000, guid: 4c7b19c02815f4531974357fafe64795, type: 3}
 --- !u!4 &1473492721
 Transform:
   m_ObjectHideFlags: 0
