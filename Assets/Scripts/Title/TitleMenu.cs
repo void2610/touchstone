@@ -21,6 +21,8 @@ namespace NTitle
 		private TitleEquipmentContainer e2;
 		[SerializeField]
 		private TitleEquipmentContainer e3;
+		[SerializeField]
+		private AudioClip buttonSE;
 
 		private int state = 0;
 		//0:タイトル画面 1:装備編成画面 2:設定画面 3:装備選択画面
@@ -28,21 +30,25 @@ namespace NTitle
 
 		public void OnClickStartButton()
 		{
+			SoundManager.instance.PlaySe(buttonSE);
 			ChangeState(1);
 		}
 
 		public void OnClickSettingButton()
 		{
+			SoundManager.instance.PlaySe(buttonSE);
 			ChangeState(2);
 		}
 
 		public void OnClickBackButton()
 		{
+			SoundManager.instance.PlaySe(buttonSE);
 			ChangeState(0);
 		}
 
 		public void OnClickQuitButton()
 		{
+			SoundManager.instance.PlaySe(buttonSE);
 			//ゲーム終了
 			Application.Quit();
 			//エディターでプレイモードを終了
@@ -52,6 +58,8 @@ namespace NTitle
 		public void OnClickEntryButton()
 		{
 			//ゲームシーンへ
+			SoundManager.instance.PlaySe(buttonSE);
+			SoundManager.instance.StopBgm();
 			SceneManager.LoadScene("SampleScene");
 			PlayerPrefs.SetInt("PlayerHp", 10);
 			PlayerPrefs.SetInt("PlayerMaxHp", 10);
@@ -60,16 +68,19 @@ namespace NTitle
 		public void OnClickEquip1Button()
 		{
 			selectEquip = 1;
+			SoundManager.instance.PlaySe(buttonSE);
 			ChangeState(3);
 		}
 		public void OnClickEquip2Button()
 		{
 			selectEquip = 2;
+			SoundManager.instance.PlaySe(buttonSE);
 			ChangeState(3);
 		}
 		public void OnClickEquip3Button()
 		{
 			selectEquip = 3;
+			SoundManager.instance.PlaySe(buttonSE);
 			ChangeState(3);
 		}
 
@@ -90,11 +101,13 @@ namespace NTitle
 				PlayerPrefs.SetInt("NowEquip3", i);
 				e3.SetItem(allEquipments.list[i]);
 			}
+			SoundManager.instance.PlaySe(buttonSE);
 			ChangeState(1);
 		}
 
 		public void ResetPlayerPrefs()
 		{
+			SoundManager.instance.PlaySe(buttonSE);
 			PlayerPrefs.DeleteAll();
 			Debug.Log("DeleteAll");
 			InitPlayerPrefs();

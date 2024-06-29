@@ -1018,6 +1018,7 @@ MonoBehaviour:
   e1: {fileID: 188136357}
   e2: {fileID: 485355935}
   e3: {fileID: 1965402226}
+  buttonSE: {fileID: 8300000, guid: 4dd14f49193254c938f786f07cb17aad, type: 3}
 --- !u!1 &426056897
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,7 +2857,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2950,7 +2951,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
