@@ -5,6 +5,7 @@ namespace NTitle
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
 	using UnityEngine.UI;
+	using unityroom.Api;
 	using NEquipment;
 	using TMPro;
 
