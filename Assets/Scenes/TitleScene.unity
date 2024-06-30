@@ -1018,6 +1018,8 @@ MonoBehaviour:
   e1: {fileID: 188136357}
   e2: {fileID: 485355935}
   e3: {fileID: 1965402226}
+  bgmSlider: {fileID: 1804223097}
+  seSlider: {fileID: 797752506}
   buttonSE: {fileID: 8300000, guid: 4dd14f49193254c938f786f07cb17aad, type: 3}
 --- !u!1 &426056897
 GameObject:

@@ -22,6 +22,10 @@ namespace NTitle
 		[SerializeField]
 		private TitleEquipmentContainer e3;
 		[SerializeField]
+		private Slider bgmSlider;
+		[SerializeField]
+		private Slider seSlider;
+		[SerializeField]
 		private AudioClip buttonSE;
 
 		private int state = 0;
@@ -140,6 +144,8 @@ namespace NTitle
 
 		private void InitPlayerPrefs()
 		{
+			PlayerPrefs.SetFloat("BgmVolume", 0.5f);
+			PlayerPrefs.SetFloat("SeVolume", 0.5f);
 			PlayerPrefs.SetInt("Coin", 0);
 			UnityroomApiClient.Instance.SendScore(2, 0, ScoreboardWriteMode.Always);
 			PlayerPrefs.SetInt("NowEquip1", 0);
@@ -165,6 +171,8 @@ namespace NTitle
 			{
 				InitPlayerPrefs();
 			}
+			bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
+			seSlider.value = PlayerPrefs.GetFloat("SeVolume", 0.5f);
 		}
 		void Start()
 		{

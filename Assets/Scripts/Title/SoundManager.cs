@@ -36,6 +36,7 @@ namespace NTitle
             set
             {
                 bgmAudioSource.volume = Mathf.Clamp01(value);
+                PlayerPrefs.SetFloat("BgmVolume", value);
             }
         }
 
@@ -48,6 +49,7 @@ namespace NTitle
             set
             {
                 seAudioSource.volume = Mathf.Clamp01(value);
+                PlayerPrefs.SetFloat("SeVolume", value);
             }
         }
 
