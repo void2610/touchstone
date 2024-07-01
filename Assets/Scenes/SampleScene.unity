@@ -10450,6 +10450,7 @@ MonoBehaviour:
   sandParticle: {fileID: 1783607878392164987, guid: 1af85b9d788d14f0395ad6992b1c6224, type: 3}
   dashParticle: {fileID: 7664369536706580448, guid: b1ee818f2a9ce4428909afe821989a4f, type: 3}
   healParticle: {fileID: 443494868773313826, guid: 6371796b4ed214a66b6b0f8620c4ee3e, type: 3}
+  jetParticle: {fileID: 1184402375121695562, guid: 5eb0903407a1b4e028e4931a86cb1978, type: 3}
 --- !u!1 &1534958803
 GameObject:
   m_ObjectHideFlags: 0

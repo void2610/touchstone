@@ -16,6 +16,12 @@ namespace NEquipment
             activeTimeLength = 3f;
         }
 
+        protected override void OnActionStart()
+        {
+            base.OnActionStart();
+            player.GetComponent<PlayerParticles>().PlayJetParticle();
+        }
+
         protected override void Effect()
         {
             base.Effect();

@@ -10,6 +10,8 @@ namespace NCharacter
         private GameObject dashParticle;
         [SerializeField]
         private GameObject healParticle;
+        [SerializeField]
+        private GameObject jetParticle;
         private GameObject dashParticleInstance;
         private Vector3 legOffset = new Vector3(0, -1f, 0);
         private SpriteRenderer spriteRenderer;
@@ -28,6 +30,11 @@ namespace NCharacter
         public void PlayHealParticle()
         {
             Instantiate(healParticle, this.transform.position, Quaternion.identity, this.transform);
+        }
+
+        public void PlayJetParticle()
+        {
+            Instantiate(jetParticle, this.transform.position, Quaternion.identity, this.transform);
         }
 
         private void ChangeColorToWhite()
