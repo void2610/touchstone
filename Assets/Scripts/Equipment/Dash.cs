@@ -16,6 +16,7 @@ namespace NEquipment
 			equipmentName = "Dash";
 			coolTimeLength = 3.5f;
 			activeTimeLength = 0.15f;
+			isHold = false;
 		}
 
 		protected override void OnActionStart()

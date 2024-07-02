@@ -14,6 +14,7 @@ namespace NEquipment
             equipmentName = "Heal";
             coolTimeLength = 20f;
             activeTimeLength = 0.15f;
+            isHold = false;
         }
 
         protected override void OnActionStart()

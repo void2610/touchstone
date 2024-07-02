@@ -23,6 +23,7 @@ namespace NEquipment
             equipmentName = "Foothold";
             coolTimeLength = 30f;
             activeTimeLength = 10f;
+            isHold = false;
         }
 
         protected override void OnActionStart()

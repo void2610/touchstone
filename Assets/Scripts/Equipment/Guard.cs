@@ -16,6 +16,7 @@ namespace NEquipment
 			isEnable = true;
 			isActive = false;
 			activeTimeLength = 3f;
+			isHold = false;
 		}
 
 		protected override void OnActionStart()
