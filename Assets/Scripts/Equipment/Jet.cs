@@ -14,6 +14,7 @@ namespace NEquipment
             equipmentName = "Jet";
             coolTimeLength = 10f;
             activeTimeLength = 3f;
+            isHold = false;
         }
 
         protected override void OnActionStart()
@@ -25,8 +26,15 @@ namespace NEquipment
         protected override void Effect()
         {
             base.Effect();
+            //TODO: 2つ以上同時発動した時に対応
             Vector2 now = player.GetComponent<Rigidbody2D>().velocity;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(now, new Vector2(now.x, 15), 0.1f);
+        }
+
+        protected override void OnActionEnd()
+        {
+            base.OnActionEnd();
+            player.GetComponent<PlayerParticles>().StopJetParticle();
         }
     }
 }

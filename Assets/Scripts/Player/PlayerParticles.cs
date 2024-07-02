@@ -13,6 +13,7 @@ namespace NCharacter
         [SerializeField]
         private GameObject jetParticle;
         private GameObject dashParticleInstance;
+        private GameObject jetParticleInstance;
         private Vector3 legOffset = new Vector3(0, -1f, 0);
         private SpriteRenderer spriteRenderer;
 
@@ -34,7 +35,12 @@ namespace NCharacter
 
         public void PlayJetParticle()
         {
-            Instantiate(jetParticle, this.transform.position, Quaternion.identity, this.transform);
+            jetParticleInstance.GetComponent<ParticleSystem>().Play();
+        }
+
+        public void StopJetParticle()
+        {
+            jetParticleInstance.GetComponent<ParticleSystem>().Stop();
         }
 
         private void ChangeColorToWhite()
@@ -53,6 +59,8 @@ namespace NCharacter
             spriteRenderer = this.GetComponent<SpriteRenderer>();
             dashParticleInstance = Instantiate(dashParticle, transform.position + legOffset, Quaternion.identity, this.transform);
             dashParticleInstance.GetComponent<ParticleSystem>().Stop();
+            jetParticleInstance = Instantiate(jetParticle, transform.position + legOffset, Quaternion.identity, this.transform);
+            jetParticleInstance.GetComponent<ParticleSystem>().Stop();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
