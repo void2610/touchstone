@@ -19,6 +19,11 @@ namespace NEquipment
 		public string actionKey;
 
 		/// <summary>
+		/// 長押しかどうか
+		/// </summary>
+		public bool isHold = true;
+
+		/// <summary>
 		/// クールタイムの長さ
 		/// </summary>
 		public float coolTimeLength;
@@ -158,9 +163,9 @@ namespace NEquipment
 				StartCoroutine(Action());
 			}
 
-			if (isActive && Input.GetButtonUp(actionKey))
+			//isHoldで、長押しでactiveTimeLengthの時間まで有効、長押しを離したらクールタイムが始まる
+			if (isHold && isActive && Input.GetButtonUp(actionKey))
 			{
-				//長押しを離したらクールタイムが始まる
 				isActive = false;
 				activeStartTime = 0;
 				OnActionEnd();
