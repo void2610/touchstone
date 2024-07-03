@@ -146,7 +146,7 @@ namespace NTitle
 		{
 			PlayerPrefs.SetFloat("BgmVolume", 0.5f);
 			PlayerPrefs.SetFloat("SeVolume", 0.5f);
-			PlayerPrefs.SetInt("Coin", 0);
+
 			UnityroomApiClient.Instance.SendScore(2, 0, ScoreboardWriteMode.Always);
 			PlayerPrefs.SetInt("NowEquip1", 0);
 			PlayerPrefs.SetInt("NowEquip2", 1);
@@ -162,6 +162,15 @@ namespace NTitle
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
 			Debug.Log("Init PlayerPrefs");
+
+			if (Application.isEditor)
+			{
+				PlayerPrefs.SetInt("Coin", 100);
+			}
+			else
+			{
+				PlayerPrefs.SetInt("Coin", 0);
+			}
 		}
 
 		void Awake()
