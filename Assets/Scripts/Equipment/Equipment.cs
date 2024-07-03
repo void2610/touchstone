@@ -21,7 +21,7 @@ namespace NEquipment
 		/// <summary>
 		/// 長押しかどうか
 		/// </summary>
-		public bool isHold = true;
+		protected bool isHold = true;
 
 		/// <summary>
 		/// クールタイムの長さ
@@ -163,7 +163,6 @@ namespace NEquipment
 				StartCoroutine(Action());
 			}
 
-			//isHoldで、長押しでactiveTimeLengthの時間まで有効、長押しを離したらクールタイムが始まる
 			if (isHold && isActive && Input.GetButtonUp(actionKey))
 			{
 				isActive = false;
