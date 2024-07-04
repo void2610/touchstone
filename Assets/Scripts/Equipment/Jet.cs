@@ -12,7 +12,7 @@ namespace NEquipment
         {
             base.Awake();
             equipmentName = "Jet";
-            coolTimeLength = 10f;
+            coolTimeLength = 15f;
             activeTimeLength = 3f;
             isHold = false;
         }
