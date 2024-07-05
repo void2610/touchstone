@@ -7,13 +7,8 @@ namespace NUI
 
     public class AltitudeMarker : MonoBehaviour
     {
-        private Vector3 defaultPosition;
-        void Start()
-        {
-            defaultPosition = transform.position;
-        }
+        private Vector3 defaultPosition => this.transform.position;
 
-        // Update is called once per frame
         void Update()
         {
             float a = GameManager.instance.maxAltitude;

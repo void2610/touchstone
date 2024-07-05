@@ -21,8 +21,8 @@ namespace NCharacter
 		private bool isJumping = false;
 		private float defaultScaleX;
 		private float maxAltitude = 0;
-		private Rigidbody2D rb;
-		private Animator animator;
+		private Rigidbody2D rb => this.GetComponent<Rigidbody2D>();
+		private Animator animator => this.GetComponent<Animator>();
 
 		public void Heal(int amount)
 		{
@@ -78,8 +78,6 @@ namespace NCharacter
 
 		private void Start()
 		{
-			rb = this.GetComponent<Rigidbody2D>();
-			animator = GetComponent<Animator>();
 			defaultScaleX = transform.localScale.x;
 		}
 

@@ -7,20 +7,17 @@ namespace NUI
 
     public class AltitudeUI : MonoBehaviour
     {
-        private TextMeshProUGUI altitudeText;
+        private TextMeshProUGUI altitudeText => this.GetComponent<TextMeshProUGUI>();
         [SerializeField]
         private string prefix = "max: ";
         void Start()
         {
-            altitudeText = gameObject.GetComponent<TextMeshProUGUI>();
             altitudeText.text = prefix + "0.0";
         }
 
-        // Update is called once per frame
         void Update()
         {
-            float a = GameManager.instance.maxAltitude;
-            altitudeText.text = prefix + a.ToString("F2");
+            altitudeText.text = prefix + GameManager.instance.maxAltitude.ToString("F2");
         }
     }
 }

@@ -35,10 +35,5 @@ namespace NEquipment
 		{
 			player.GetComponent<Rigidbody2D>().velocity *= 0.5f;
 		}
-
-		protected override void Start()
-		{
-			base.Start();
-		}
 	}
 }

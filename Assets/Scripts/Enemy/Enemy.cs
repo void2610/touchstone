@@ -15,33 +15,9 @@ namespace NCharacter
 		public int atk { get; protected set; }
 		public int killScore { get; protected set; }
 		protected int direction = 1; //-1 = 左  1 = 右
-		protected Vector3 startPosition;
-		private GameObject damageText;
+		protected Vector3 startPosition => this.transform.position;
 		private bool isQuitting = false;
-		protected GameObject deathParticle;
-
-		public void ShowDamageText(int damage, Vector3 position)
-		{
-			GameObject dt = GameObject.Instantiate(damageText, position, Quaternion.identity);
-			GameObject canvas = GameObject.Find("WorldCanvas");
-			dt.GetComponent<Text>().text = damage.ToString();
-			dt.transform.SetParent(canvas.transform, false);
-		}
-
-		public IEnumerator ChangeColortoRed(GameObject tar)
-		{
-			tar.GetComponent<SpriteRenderer>().color = Color.red;
-			yield return new WaitForSeconds(0.3f);
-			tar.GetComponent<SpriteRenderer>().color = Color.white;
-			yield break;
-		}
-
-		public IEnumerator HitStop()
-		{
-			Time.timeScale = 0f;
-			yield return new WaitForSecondsRealtime(0.1f);
-			Time.timeScale = 1;
-		}
+		protected GameObject deathParticle => Resources.Load<GameObject>("Prefabs/Particle/EnemyDeathParticle");
 
 		public virtual void Attack()
 		{
@@ -61,9 +37,6 @@ namespace NCharacter
 
 		protected virtual void Start()
 		{
-			damageText = Resources.Load<GameObject>("Prefabs/DamageText");
-			deathParticle = Resources.Load<GameObject>("Prefabs/Particle/EnemyDeathParticle");
-			startPosition = this.transform.position;
 		}
 
 		protected virtual void Update()

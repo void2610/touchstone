@@ -11,14 +11,11 @@ namespace NUI
 	{
 		public Image gauge { get; private set; }
 		private EquipmentData equipmentData;
-		private Image icon;
-		private TextMeshProUGUI nameText;
+		private Image icon => transform.Find("Icon").GetComponent<Image>();
+		private TextMeshProUGUI nameText => transform.Find("Name").GetComponent<TextMeshProUGUI>();
 
 		public void SetItem(EquipmentData e)
 		{
-			icon = transform.Find("Icon").GetComponent<Image>();
-			nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
-
 			equipmentData = e;
 			icon.sprite = e.equipmentIcon;
 			nameText.text = e.equipmentName;
@@ -26,8 +23,6 @@ namespace NUI
 
 		private void Awake()
 		{
-			icon = transform.Find("Icon").GetComponent<Image>();
-			nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
 			gauge = transform.Find("Gauge").gameObject.GetComponent<Image>();
 			gauge.fillAmount = 0;
 		}

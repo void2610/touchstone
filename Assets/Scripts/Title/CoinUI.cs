@@ -5,12 +5,7 @@ namespace NTitle
 
     public class CoinUI : MonoBehaviour
     {
-        private TextMeshProUGUI coinText;
-        void Start()
-        {
-            coinText = GetComponent<TextMeshProUGUI>();
-            coinText.text = ":0";
-        }
+        private TextMeshProUGUI coinText => this.GetComponent<TextMeshProUGUI>();
 
         void Update()
         {

@@ -13,14 +13,12 @@ namespace NManager
 		float offsetY;
 		public GameObject player;
 		private Vector3 basePosition;
-		private Vector3 shakeOffset;
+		private Vector3 shakeOffset = Vector3.zero;
 
 		private void Start()
 		{
 			// 初期位置を設定
-			Vector2 pos = player.transform.position;
-			basePosition = new Vector3(offsetX, pos.y + offsetY, -10);
-			shakeOffset = Vector3.zero;
+			basePosition = new Vector3(offsetX, player.transform.position.y + offsetY, -10);
 			this.transform.position = basePosition;
 		}
 

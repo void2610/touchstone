@@ -27,10 +27,8 @@ namespace NTitle
 
         private void Start()
         {
-            float screenWidth = Screen.width;
-            float screenHeight = Screen.height;
-            float adjustedAlignX = alignX * (screenWidth / 1920f); // Assuming 1920 is the reference width
-            float adjustedAlignY = alignY * (screenHeight / 1080f); // Assuming 1080 is the reference height
+            float adjustedAlignX = alignX * (Screen.width / 1920f);
+            float adjustedAlignY = alignY * (Screen.height / 1080f);
 
             for (int i = equipmentDataList.list.Count - 1; i >= 0; i--)
             {

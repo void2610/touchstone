@@ -12,11 +12,11 @@ namespace NTitle
 	{
 		private Vector3 windowOffset = new Vector3(100, -45, 0);
 		private EquipmentData equipmentData;
-		private Image icon;
-		private TextMeshProUGUI nameText;
-		private TextMeshProUGUI descriptionText;
-		private Image descriptionBG;
-		private TextMeshProUGUI priceText;
+		private Image icon => transform.Find("Icon").GetComponent<Image>();
+		private TextMeshProUGUI nameText => transform.Find("Name").GetComponent<TextMeshProUGUI>();
+		private Image descriptionBG => transform.Find("DescriptionBG").GetComponent<Image>();
+		private TextMeshProUGUI descriptionText => descriptionBG.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+		private TextMeshProUGUI priceText => transform.Find("Price").GetComponent<TextMeshProUGUI>();
 		private bool isBought = false;
 
 		public void OnPointerEnter()
@@ -39,9 +39,6 @@ namespace NTitle
 
 		public void SetItem(EquipmentData e)
 		{
-			icon = transform.Find("Icon").GetComponent<Image>();
-			nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
-
 			equipmentData = e;
 			icon.sprite = equipmentData.equipmentIcon;
 			nameText.text = equipmentData.equipmentName;
@@ -66,11 +63,6 @@ namespace NTitle
 
 		private void Awake()
 		{
-			icon = transform.Find("Icon").GetComponent<Image>();
-			nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
-			descriptionBG = transform.Find("DescriptionBG").GetComponent<Image>();
-			priceText = transform.Find("Price").GetComponent<TextMeshProUGUI>();
-			descriptionText = descriptionBG.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 			descriptionText.enabled = false;
 			descriptionBG.enabled = false;
 		}

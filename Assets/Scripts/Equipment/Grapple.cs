@@ -7,8 +7,8 @@ namespace NEquipment
 
 	public class Grapple : Equipment
 	{
-		private SpringJoint2D joint;
-		private LineRenderer lineRenderer;
+		private SpringJoint2D joint => this.GetComponent<SpringJoint2D>();
+		private LineRenderer lineRenderer => this.GetComponent<LineRenderer>();
 		private float startDistance = 0;
 
 		protected override void Awake()
@@ -47,11 +47,8 @@ namespace NEquipment
 		protected override void Start()
 		{
 			base.Start();
-			joint = this.GetComponent<SpringJoint2D>();
 			joint.connectedBody = player.GetComponent<Rigidbody2D>();
 			joint.enabled = false;
-
-			lineRenderer = this.GetComponent<LineRenderer>();
 			lineRenderer.positionCount = 2;
 		}
 		protected override void FixedUpdate()
