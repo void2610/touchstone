@@ -28,7 +28,7 @@ namespace NEquipment
 		protected override void Effect()
 		{
 			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
-			player.GetComponent<Rigidbody2D>().velocity = moveAngle * 40;
+			player.GetComponent<Rigidbody2D>().velocity = moveAngle * intensity * 40;
 		}
 
 		protected override void OnActionEnd()

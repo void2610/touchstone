@@ -21,9 +21,9 @@ namespace NEquipment
 
         public void ModifyEquipment(Equipment e1, Equipment e2, Equipment e3)
         {
-            e1.activeTimeLength *= 1.5f;
-            e2.activeTimeLength *= 1.5f;
-            e3.activeTimeLength *= 1.5f;
+            e1.intensity *= 1.5f;
+            e2.intensity *= 1.5f;
+            e3.intensity *= 1.5f;
         }
     }
 }

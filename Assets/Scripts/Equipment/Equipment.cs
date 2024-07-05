@@ -24,6 +24,11 @@ namespace NEquipment
 		protected bool isHold = true;
 
 		/// <summary>
+		/// 装備の威力
+		/// </summary>
+		public float intensity = 1.0f;
+
+		/// <summary>
 		/// クールタイムの長さ
 		/// </summary>
 		public float coolTimeLength;

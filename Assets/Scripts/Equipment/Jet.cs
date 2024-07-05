@@ -30,7 +30,7 @@ namespace NEquipment
             base.Effect();
             //TODO: 2つ以上同時発動した時に対応
             Vector2 now = player.GetComponent<Rigidbody2D>().velocity;
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(now, new Vector2(now.x, 15), 0.1f);
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.Lerp(now, new Vector2(now.x, 15.0f * intensity), 0.1f);
             this.transform.position = player.transform.position;
         }
 

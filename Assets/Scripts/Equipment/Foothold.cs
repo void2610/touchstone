@@ -30,6 +30,7 @@ namespace NEquipment
         {
             base.OnActionStart();
             footholdInstance = Instantiate(footholdPrefab, player.transform.position + Vector3.down * 3, Quaternion.Euler(0, 0, 90));
+            footholdInstance.transform.localScale *= intensity;
             Invoke("PlayParticleSystem", activeTimeLength - 1f);
             Destroy(footholdInstance, activeTimeLength);
         }
