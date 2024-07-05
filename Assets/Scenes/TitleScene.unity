@@ -2999,7 +2999,7 @@ Transform:
   m_GameObject: {fileID: 1351141075}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -750, y: 160, z: 0}
+  m_LocalPosition: {x: -679, y: 160, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3022,7 +3022,7 @@ MonoBehaviour:
   equipmentContainerPrefab: {fileID: 5771874635582306405, guid: e763e45317aa74c0289e9ed1e0b983e0, type: 3}
   alignX: 300
   alignY: 300
-  column: 3
+  column: 5
   containerSize: 0.6
 --- !u!1 &1357264088
 GameObject:

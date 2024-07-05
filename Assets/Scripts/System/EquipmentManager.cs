@@ -6,6 +6,7 @@ namespace NManager
 	using UnityEngine;
 	using NEquipment;
 	using NUI;
+	using NInterface;
 
 	public class EquipmentManager : MonoBehaviour
 	{
@@ -35,6 +36,15 @@ namespace NManager
 				g.GetComponent<Equipment>().Init(p, equipmentContainers[i].gauge, actionKeys[i]);
 				equipmentObjList.Add(g);
 				equipmentContainers[i].SetItem(equipmentList[i]);
+			}
+
+			for (int i = 0; i < n; i++)
+			{
+				//インターフェースを実装しているかどうか
+				if (equipmentObjList[i].GetComponent<IEquipmentModifiable>() != null)
+				{
+					equipmentObjList[i].GetComponent<IEquipmentModifiable>().ModifyEquipment(equipmentObjList[0].GetComponent<Equipment>(), equipmentObjList[1].GetComponent<Equipment>(), equipmentObjList[2].GetComponent<Equipment>());
+				}
 			}
 		}
 	}
