@@ -21,7 +21,7 @@ namespace NEquipment
         {
             base.Awake();
             equipmentName = "Foothold";
-            coolTimeLength = 30f;
+            coolTimeLength = 20f;
             activeTimeLength = 10f;
             isHold = false;
         }

@@ -165,7 +165,7 @@ namespace NTitle
 
 			if (Application.isEditor)
 			{
-				PlayerPrefs.SetInt("Coin", 100);
+				PlayerPrefs.SetInt("Coin", 10000);
 			}
 			else
 			{
