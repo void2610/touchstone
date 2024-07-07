@@ -9,6 +9,7 @@ namespace NCharacter
 	public class Player : MonoBehaviour
 	{
 		public bool isInvincible { get; set; } = false;
+		public bool isThunder { get; set; } = false;
 		public int maxHp { get; private set; } = 3;
 		public int hp { get; private set; }
 		public int atk { get; private set; } = 1;
@@ -53,10 +54,10 @@ namespace NCharacter
 			rb.AddForce(force, ForceMode2D.Impulse);
 		}
 
-		public void JumpByEnemy()
+		public void JumpByEnemy(float f)
 		{
 			rb.velocity = new Vector2(rb.velocity.x, 0);
-			rb.AddForce(Vector2.up * jumpForce * 1.5f, ForceMode2D.Impulse);
+			rb.AddForce(Vector2.up * jumpForce * f, ForceMode2D.Impulse);
 			jumpCnt = 0;
 		}
 
@@ -101,6 +102,11 @@ namespace NCharacter
 					animator.SetInteger("PlayerState", 0);
 				}
 
+				if (isThunder)
+				{
+					animator.SetInteger("PlayerState", 1);
+				}
+
 				if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
 				{
 					isJumping = true;
@@ -136,6 +142,38 @@ namespace NCharacter
 			if (hit.collider != null)
 			{
 				jumpCnt = 0;
+			}
+		}
+
+		protected virtual void OnTriggerEnter2D(Collider2D other)
+		{
+			if (isThunder)
+			{
+				Enemy enemy = other.GetComponent<Enemy>();
+				if (enemy != null)
+				{
+					JumpByEnemy(4.0f);
+					enemy.CutHp(this.atk);
+				}
+			}
+			else if (isMovable && !isInvincible)
+			{
+				Enemy enemy = other.GetComponent<Enemy>();
+				if (enemy != null)
+				{
+					Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
+					if (other.transform.position.y < this.transform.position.y)
+					{
+						JumpByEnemy(1.5f);
+						enemy.CutHp(this.atk);
+					}
+					else
+					{
+						this.CutHp(enemy.atk);
+						Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
+						this.AddForce(new Vector2(dir.x, dir.y) * 30);
+					}
+				}
 			}
 		}
 	}
