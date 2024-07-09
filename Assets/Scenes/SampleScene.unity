@@ -10802,6 +10802,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sandSE: {fileID: 8300000, guid: 89c7b2f0e64bb43c98fa2ab3679f5192, type: 3}
+  jumpSE: {fileID: 8300000, guid: 0998d3f7ba75645e9959c3e3f3850d33, type: 3}
+  damageSE: {fileID: 8300000, guid: 489125a3d0d144a4ebdad021bbbd1e49, type: 3}
   sandParticle: {fileID: 1783607878392164987, guid: 1af85b9d788d14f0395ad6992b1c6224, type: 3}
   dashParticle: {fileID: 7664369536706580448, guid: b1ee818f2a9ce4428909afe821989a4f, type: 3}
   healParticle: {fileID: 443494868773313826, guid: 6371796b4ed214a66b6b0f8620c4ee3e, type: 3}

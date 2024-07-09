@@ -157,6 +157,7 @@ namespace NCharacter
 				{
 					JumpByEnemy(2.5f * thunderIntensity);
 					enemy.CutHp((int)(this.atk * thunderIntensity));
+					this.GetComponent<PlayerParticles>().PlayJumpSe();
 				}
 			}
 			else if (isMovable && !isInvincible)
@@ -169,12 +170,14 @@ namespace NCharacter
 					{
 						JumpByEnemy(1.5f);
 						enemy.CutHp(this.atk);
+						this.GetComponent<PlayerParticles>().PlayJumpSe();
 					}
 					else
 					{
 						this.CutHp(enemy.atk);
 						Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
 						this.AddForce(new Vector2(dir.x, dir.y) * 30);
+						this.GetComponent<PlayerParticles>().PlayDamageSe();
 					}
 				}
 			}

@@ -8,6 +8,10 @@ namespace NCharacter
         [Header("Audios")]
         [SerializeField]
         private AudioClip sandSE;
+        [SerializeField]
+        private AudioClip jumpSE;
+        [SerializeField]
+        private AudioClip damageSE;
         [Header("Particles")]
         [SerializeField]
         private GameObject sandParticle;
@@ -18,6 +22,16 @@ namespace NCharacter
         private GameObject dashParticleInstance;
         private Vector3 legOffset = new Vector3(0, -1f, 0);
         private SpriteRenderer spriteRenderer;
+
+        public void PlayJumpSe()
+        {
+            SoundManager.instance.PlaySe(jumpSE);
+        }
+
+        public void PlayDamageSe()
+        {
+            SoundManager.instance.PlaySe(damageSE);
+        }
 
         private void StopDashParticle()
         {
