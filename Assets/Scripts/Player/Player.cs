@@ -9,7 +9,7 @@ namespace NCharacter
 	public class Player : MonoBehaviour
 	{
 		public bool isInvincible { get; set; } = false;
-		public bool isThunder { get; set; } = false;
+		public bool isThunder { get; private set; } = false;
 		public int maxHp { get; private set; } = 3;
 		public int hp { get; private set; }
 		public int atk { get; private set; } = 1;
@@ -22,6 +22,7 @@ namespace NCharacter
 		private bool isJumping = false;
 		private float defaultScaleX;
 		private float maxAltitude = 0;
+		private float thunderIntensity = 1;
 		private Rigidbody2D rb => this.GetComponent<Rigidbody2D>();
 		private Animator animator => this.GetComponent<Animator>();
 
@@ -59,6 +60,12 @@ namespace NCharacter
 			rb.velocity = new Vector2(rb.velocity.x, 0);
 			rb.AddForce(Vector2.up * jumpForce * f, ForceMode2D.Impulse);
 			jumpCnt = 0;
+		}
+
+		public void SetIsThunder(bool isThunder, float intensity = 1)
+		{
+			this.isThunder = isThunder;
+			this.thunderIntensity = intensity;
 		}
 
 		private void _Jump()
@@ -102,11 +109,6 @@ namespace NCharacter
 					animator.SetInteger("PlayerState", 0);
 				}
 
-				if (isThunder)
-				{
-					animator.SetInteger("PlayerState", 1);
-				}
-
 				if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
 				{
 					isJumping = true;
@@ -145,6 +147,7 @@ namespace NCharacter
 			}
 		}
 
+		//TODO デリゲートで動作を変えられるようにする
 		protected virtual void OnTriggerEnter2D(Collider2D other)
 		{
 			if (isThunder)
@@ -152,8 +155,8 @@ namespace NCharacter
 				Enemy enemy = other.GetComponent<Enemy>();
 				if (enemy != null)
 				{
-					JumpByEnemy(4.0f);
-					enemy.CutHp(this.atk);
+					JumpByEnemy(2.5f * thunderIntensity);
+					enemy.CutHp((int)(this.atk * thunderIntensity));
 				}
 			}
 			else if (isMovable && !isInvincible)
