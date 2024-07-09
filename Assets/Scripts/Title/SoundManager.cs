@@ -1,4 +1,4 @@
-namespace NTitle
+namespace NManager
 {
     using System.Collections;
     using System.Collections.Generic;

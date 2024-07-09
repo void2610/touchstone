@@ -8,6 +8,7 @@ namespace NTitle
 	using unityroom.Api;
 	using NEquipment;
 	using TMPro;
+	using NManager;
 
 	public class TitleMenu : MonoBehaviour
 	{

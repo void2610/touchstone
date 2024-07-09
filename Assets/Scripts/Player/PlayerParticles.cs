@@ -1,9 +1,14 @@
 namespace NCharacter
 {
     using UnityEngine;
+    using NManager;
 
     public class PlayerParticles : MonoBehaviour
     {
+        [Header("Audios")]
+        [SerializeField]
+        private AudioClip sandSE;
+        [Header("Particles")]
         [SerializeField]
         private GameObject sandParticle;
         [SerializeField]
@@ -53,6 +58,7 @@ namespace NCharacter
             if (collision.gameObject.tag == "Ground")
             {
                 Destroy(Instantiate(sandParticle, transform.position + legOffset, Quaternion.identity), 3.0f);
+                SoundManager.instance.PlaySe(sandSE);
             }
         }
     }
