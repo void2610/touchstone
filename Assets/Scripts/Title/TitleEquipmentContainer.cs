@@ -7,9 +7,13 @@ namespace NTitle
 	using unityroom.Api;
 	using TMPro;
 	using NEquipment;
+	using NManager;
 
 	public class TitleEquipmentContainer : MonoBehaviour
 	{
+		[SerializeField]
+		private AudioClip shopSE;
+
 		private Vector3 windowOffset = new Vector3(100, -45, 0);
 		private EquipmentData equipmentData;
 		private Image icon => transform.Find("Icon").GetComponent<Image>();
@@ -46,6 +50,7 @@ namespace NTitle
 			priceText.text = ":" + equipmentData.equipmentPrice.ToString();
 			isBought = PlayerPrefs.GetInt("Equip" + equipmentData.equipmentID, 0) == 1;
 			priceText.gameObject.SetActive(!isBought);
+
 		}
 
 		public void BuyItem()
@@ -58,6 +63,7 @@ namespace NTitle
 				UnityroomApiClient.Instance.SendScore(2, coin - equipmentData.equipmentPrice, ScoreboardWriteMode.Always);
 				isBought = true;
 				priceText.gameObject.SetActive(false);
+				SoundManager.instance.PlaySe(shopSE);
 			}
 		}
 
