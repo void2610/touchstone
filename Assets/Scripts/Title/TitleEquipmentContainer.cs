@@ -11,9 +11,6 @@ namespace NTitle
 
 	public class TitleEquipmentContainer : MonoBehaviour
 	{
-		[SerializeField]
-		private AudioClip shopSE;
-
 		private Vector3 windowOffset = new Vector3(100, -45, 0);
 		private EquipmentData equipmentData;
 		private Image icon => transform.Find("Icon").GetComponent<Image>();
@@ -63,7 +60,7 @@ namespace NTitle
 				UnityroomApiClient.Instance.SendScore(2, coin - equipmentData.equipmentPrice, ScoreboardWriteMode.Always);
 				isBought = true;
 				priceText.gameObject.SetActive(false);
-				SoundManager.instance.PlaySe(shopSE);
+				SoundManager.instance.PlaySe("shop");
 			}
 		}
 

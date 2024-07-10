@@ -5,13 +5,6 @@ namespace NCharacter
 
     public class PlayerParticles : MonoBehaviour
     {
-        [Header("Audios")]
-        [SerializeField]
-        private AudioClip sandSE;
-        [SerializeField]
-        private AudioClip jumpSE;
-        [SerializeField]
-        private AudioClip damageSE;
         [Header("Particles")]
         [SerializeField]
         private GameObject sandParticle;
@@ -25,12 +18,12 @@ namespace NCharacter
 
         public void PlayJumpSe()
         {
-            SoundManager.instance.PlaySe(jumpSE);
+            SoundManager.instance.PlaySe("jump");
         }
 
         public void PlayDamageSe()
         {
-            SoundManager.instance.PlaySe(damageSE);
+            SoundManager.instance.PlaySe("damage");
         }
 
         private void StopDashParticle()
@@ -72,7 +65,7 @@ namespace NCharacter
             if (collision.gameObject.tag == "Ground")
             {
                 Destroy(Instantiate(sandParticle, transform.position + legOffset, Quaternion.identity), 3.0f);
-                SoundManager.instance.PlaySe(sandSE);
+                SoundManager.instance.PlaySe("sand");
             }
         }
     }

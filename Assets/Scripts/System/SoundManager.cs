@@ -57,6 +57,7 @@ namespace NManager
             set
             {
                 bgmVolume = value;
+                bgmAudioSource.volume = value;
                 PlayerPrefs.SetFloat("BgmVolume", value);
             }
         }
@@ -97,26 +98,40 @@ namespace NManager
         public void PlaySe(AudioClip clip, float volume = 1.0f)
         {
             var audioSource = GetUnusedAudioSource();
-            if (clip == null || audioSource == null)
+            if (clip == null)
             {
+                Debug.LogWarning("指定されたAudioClipが存在しません。");
+                return;
+            }
+            if (audioSource == null)
+            {
+                Debug.LogWarning("再生可能なAudioSourceがありません。");
                 return;
             }
 
             audioSource.clip = clip;
             audioSource.volume = volume * SeVolume;
+            audioSource.Play();
         }
 
         public void PlaySe(string name, float volume = 1.0f)
         {
             var soundData = soundDatas.FirstOrDefault(t => t.name == name);
             var audioSource = GetUnusedAudioSource();
-            if (soundData == null || audioSource == null)
+            if (soundData == null)
             {
+                Debug.LogWarning("指定された名前のSEが存在しません。");
+                return;
+            }
+            if (audioSource == null)
+            {
+                Debug.LogWarning("再生可能なAudioSourceがありません。");
                 return;
             }
 
             audioSource.clip = soundData.audioClip;
             audioSource.volume = soundData.volume * volume * SeVolume;
+            audioSource.Play();
         }
 
         private AudioSource GetUnusedAudioSource() => seAudioSourceList.FirstOrDefault(t => t.isPlaying == false);
