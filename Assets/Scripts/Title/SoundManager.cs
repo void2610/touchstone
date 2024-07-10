@@ -73,6 +73,7 @@ namespace NManager
             bgmAudioSource.Stop();
         }
 
+        // TODO: SEの間だけ音量を変えれるようにする
         public void PlaySe(AudioClip clip, float volume = -1.0f)
         {
             if (clip == null)

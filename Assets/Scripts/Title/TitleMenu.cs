@@ -65,9 +65,10 @@ namespace NTitle
 			//ゲームシーンへ
 			SoundManager.instance.PlaySe(buttonSE);
 			SoundManager.instance.StopBgm();
-			SceneManager.LoadScene("SampleScene");
 			PlayerPrefs.SetInt("PlayerHp", 10);
 			PlayerPrefs.SetInt("PlayerMaxHp", 10);
+
+			Initiate.Fade("SampleScene", Color.black, 1.0f);
 		}
 
 		public void OnClickEquip1Button()
