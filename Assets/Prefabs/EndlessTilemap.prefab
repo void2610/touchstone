@@ -67,6 +67,7 @@ MonoBehaviour:
   enemyNum: 6
   enemyPrefabs:
   - {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
+  - {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
 --- !u!1 &6452555348443374193
 GameObject:
   m_ObjectHideFlags: 0

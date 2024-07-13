@@ -47396,63 +47396,7 @@ MonoBehaviour:
   enemyNum: 5
   enemyPrefabs:
   - {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
---- !u!1001 &5005693647089520630
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.058552
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 182655797155024674, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
-      propertyPath: m_Name
-      value: MissileBall
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c793f2991e85247b1a42027510ee704c, type: 3}
+  - {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
 --- !u!1001 &5238527407755714711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47683,7 +47627,6 @@ SceneRoots:
   - {fileID: 1471282071}
   - {fileID: 1667344539}
   - {fileID: 1090723336}
-  - {fileID: 1017836007}
   - {fileID: 2025736588}
   - {fileID: 1439421145}
   - {fileID: 843285159}
@@ -47694,5 +47637,5 @@ SceneRoots:
   - {fileID: 1325893147}
   - {fileID: 4449177565880049363}
   - {fileID: 1062132930}
+  - {fileID: 1017836007}
   - {fileID: 1639040111}
-  - {fileID: 5005693647089520630}
