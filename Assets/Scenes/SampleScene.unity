@@ -47394,9 +47394,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 30}
   enemyNum: 5
-  enemyPrefabs:
-  - {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
-  - {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
+  enemies:
+  - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
+    weight: 1
+  - prefab: {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
+    weight: 0.3
 --- !u!1001 &5238527407755714711
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,15 +2,23 @@ namespace NMap
 {
     using UnityEngine;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class MapCreater : MonoBehaviour
     {
+        [System.Serializable]
+        internal class EnemyPrefabWithWeight
+        {
+            public GameObject prefab;
+            public float weight;
+        }
+
         [SerializeField]
         private Vector2Int mapSize;
         [SerializeField]
         private int enemyNum;
         [SerializeField]
-        private List<GameObject> enemyPrefabs;
+        private List<EnemyPrefabWithWeight> enemies;
 
         void Start()
         {
@@ -18,9 +26,19 @@ namespace NMap
             {
                 int x = Random.Range(0, mapSize.x);
                 int y = Random.Range(0, mapSize.y);
-                int enemyIndex = Random.Range(0, enemyPrefabs.Count);
-                GameObject enemy = Instantiate(enemyPrefabs[enemyIndex], this.transform.position + new Vector3(x - mapSize.x / 2, y - mapSize.y / 2, 0), Quaternion.identity);
-                enemy.transform.SetParent(this.transform);
+
+                // 重みを元に敵を選択
+                float totalWeight = enemies.Sum(enemy => enemy.weight);
+                float randomValue = Random.Range(0, totalWeight);
+                foreach (var enemy in enemies)
+                {
+                    randomValue -= enemy.weight;
+                    if (randomValue <= 0)
+                    {
+                        Instantiate(enemy.prefab, this.transform.position + new Vector3(x - mapSize.x / 2, y - mapSize.y / 2, 0), Quaternion.identity);
+                        break;
+                    }
+                }
             }
         }
     }
