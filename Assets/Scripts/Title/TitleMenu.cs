@@ -26,6 +26,8 @@ namespace NTitle
 		private Slider bgmSlider;
 		[SerializeField]
 		private Slider seSlider;
+		[SerializeField]
+		private AudioClip bgmAudioClip;
 
 		private int state = 0;
 		//0:タイトル画面 1:装備編成画面 2:設定画面 3:装備選択画面
@@ -189,6 +191,7 @@ namespace NTitle
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
 			ChangeState(0);
+			SoundManager.instance.PlayBgm(bgmAudioClip);
 		}
 	}
 }

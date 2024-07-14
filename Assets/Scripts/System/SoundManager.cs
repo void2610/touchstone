@@ -142,7 +142,6 @@ namespace NManager
         {
             BgmVolume = 0.5f;
             SeVolume = 0.5f;
-            PlayBgm(bgmAudioClip, 1.0f);
         }
     }
 }
