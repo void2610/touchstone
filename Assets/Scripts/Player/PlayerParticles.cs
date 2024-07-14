@@ -18,7 +18,7 @@ namespace NCharacter
 
         public void PlayJumpSe()
         {
-            SoundManager.instance.PlaySe("jump");
+            SoundManager.instance.PlaySe("kill");
         }
 
         public void PlayDamageSe()
