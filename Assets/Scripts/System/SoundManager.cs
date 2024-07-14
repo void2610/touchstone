@@ -95,7 +95,7 @@ namespace NManager
             bgmAudioSource.Stop();
         }
 
-        public void PlaySe(AudioClip clip, float volume = 1.0f)
+        public void PlaySe(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
         {
             var audioSource = GetUnusedAudioSource();
             if (clip == null)
@@ -111,10 +111,11 @@ namespace NManager
 
             audioSource.clip = clip;
             audioSource.volume = volume * SeVolume;
+            audioSource.pitch = pitch;
             audioSource.Play();
         }
 
-        public void PlaySe(string name, float volume = 1.0f)
+        public void PlaySe(string name, float volume = 1.0f, float pitch = 1.0f)
         {
             var soundData = soundDatas.FirstOrDefault(t => t.name == name);
             var audioSource = GetUnusedAudioSource();
@@ -131,6 +132,7 @@ namespace NManager
 
             audioSource.clip = soundData.audioClip;
             audioSource.volume = soundData.volume * volume * SeVolume;
+            audioSource.pitch = pitch;
             audioSource.Play();
         }
 

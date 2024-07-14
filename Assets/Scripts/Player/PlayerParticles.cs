@@ -15,10 +15,25 @@ namespace NCharacter
         private GameObject dashParticleInstance;
         private Vector3 legOffset = new Vector3(0, -1f, 0);
         private SpriteRenderer spriteRenderer;
+        private int killSePitch = 0;
+        private float killComboLimit = 1.5f;
+        private float lastKillTime = 0.0f;
 
         public void PlayJumpSe()
         {
-            SoundManager.instance.PlaySe("kill");
+            SoundManager.instance.PlaySe("kill_" + killSePitch);
+            if (Time.time - lastKillTime < killComboLimit)
+            {
+                if (killSePitch < 4)
+                {
+                    killSePitch++;
+                }
+            }
+            else
+            {
+                killSePitch = 0;
+            }
+            lastKillTime = Time.time;
         }
 
         public void PlayDamageSe()
