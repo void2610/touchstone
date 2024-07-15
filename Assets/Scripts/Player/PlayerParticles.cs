@@ -16,7 +16,7 @@ namespace NCharacter
         private Vector3 legOffset = new Vector3(0, -1f, 0);
         private SpriteRenderer spriteRenderer;
         private int killSePitch = 0;
-        private float killComboLimit = 1.5f;
+        private float killComboLimit = 1f;
         private float lastKillTime = 0.0f;
 
         public void PlayJumpSe()
