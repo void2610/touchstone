@@ -177,6 +177,7 @@ namespace NTitle
 
 		void Awake()
 		{
+			Time.timeScale = 1;
 			allEquipments.Init();
 			if (PlayerPrefs.HasKey("NowEquip1") == false)
 			{

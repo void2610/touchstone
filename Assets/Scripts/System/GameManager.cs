@@ -85,6 +85,9 @@ namespace NManager
 
 		void Start()
 		{
+			state = GameState.Playing;
+			Time.timeScale = 1;
+			Cursor.visible = false;
 		}
 
 		void Update()
@@ -92,6 +95,14 @@ namespace NManager
 			switch (state)
 			{
 				case GameState.Playing:
+					if (Input.GetKeyDown(KeyCode.P))
+					{
+						state = GameState.Paused;
+						this.GetComponent<UIManager>().ChangeUIState(GameState.Paused);
+						Cursor.visible = true;
+						Time.timeScale = 0;
+						player.isMovable = false;
+					}
 					break;
 				case GameState.Paused:
 					break;

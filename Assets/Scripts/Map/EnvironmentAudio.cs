@@ -12,8 +12,8 @@ namespace NMap
 
         void Start()
         {
-            bgmAudioSource.volume = 0.1f * SoundManager.instance.BgmVolume;
-            wdAudioSource.volume = 0.5f * SoundManager.instance.BgmVolume;
+            bgmAudioSource.volume = 0.2f * SoundManager.instance.BgmVolume;
+            wdAudioSource.volume = 0.75f * SoundManager.instance.BgmVolume;
 
 
             Invoke("PlayBgmAudioSource", 1f);

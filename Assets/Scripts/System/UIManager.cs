@@ -56,6 +56,7 @@ namespace NManager
                     ChangeCanvasGroupEnabled(canvasGroups[0], true);
                     break;
                 case GameManager.GameState.Paused:
+                    ChangeCanvasGroupEnabled(canvasGroups[2], true);
                     break;
                 case GameManager.GameState.GameOver:
                     ChangeCanvasGroupEnabled(canvasGroups[1], true);
