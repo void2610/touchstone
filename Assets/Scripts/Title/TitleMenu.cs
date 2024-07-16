@@ -188,6 +188,16 @@ namespace NTitle
 		}
 		void Start()
 		{
+			bgmSlider.onValueChanged.AddListener((value) =>
+			{
+				SoundManager.instance.BgmVolume = value;
+			});
+
+			seSlider.onValueChanged.AddListener((value) =>
+			{
+				SoundManager.instance.SeVolume = value;
+			});
+
 			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
