@@ -16,17 +16,19 @@ namespace NCharacter
         private Vector3 legOffset = new Vector3(0, -1f, 0);
         private SpriteRenderer spriteRenderer;
         private int killSePitch = 0;
-        private float killComboLimit = 1f;
+        private float killComboLimit = 1.5f;
         private float lastKillTime = 0.0f;
 
         public void PlayJumpSe()
         {
-            SoundManager.instance.PlaySe("kill_" + killSePitch);
+
             if (Time.time - lastKillTime < killComboLimit)
             {
                 if (killSePitch < 4)
                 {
+                    Debug.Log(killSePitch);
                     killSePitch++;
+
                 }
             }
             else
@@ -34,6 +36,7 @@ namespace NCharacter
                 killSePitch = 0;
             }
             lastKillTime = Time.time;
+            SoundManager.instance.PlaySe("kill_" + killSePitch);
         }
 
         public void PlayDamageSe()
