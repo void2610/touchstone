@@ -67,6 +67,29 @@ namespace NManager
 			player = p.GetComponent<Player>();
 		}
 
+		public void Retry()
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
+
+		public void Pause()
+		{
+			state = GameState.Paused;
+			this.GetComponent<UIManager>().ChangeUIState(GameState.Paused);
+			Cursor.visible = true;
+			Time.timeScale = 0;
+			player.isMovable = false;
+		}
+
+		public void Resume()
+		{
+			state = GameState.Playing;
+			this.GetComponent<UIManager>().ChangeUIState(GameState.Playing);
+			Cursor.visible = false;
+			Time.timeScale = 1;
+			player.isMovable = true;
+		}
+
 		public void GameOver()
 		{
 			state = GameState.GameOver;
@@ -97,14 +120,14 @@ namespace NManager
 				case GameState.Playing:
 					if (Input.GetKeyDown(KeyCode.P))
 					{
-						state = GameState.Paused;
-						this.GetComponent<UIManager>().ChangeUIState(GameState.Paused);
-						Cursor.visible = true;
-						Time.timeScale = 0;
-						player.isMovable = false;
+						Pause();
 					}
 					break;
 				case GameState.Paused:
+					if (Input.GetKeyDown(KeyCode.P))
+					{
+						Resume();
+					}
 					break;
 				case GameState.GameOver:
 					break;

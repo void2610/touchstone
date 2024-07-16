@@ -16,11 +16,6 @@ namespace NManager
         [SerializeField]
         private TextMeshProUGUI gaindCoinText;
 
-        public void Retry()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
         public void GoToTitle()
         {
             SceneManager.LoadScene("TitleScene");

@@ -574,7 +574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Resume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 500a8e386be764cbbbfdd02c567aacfe, type: 2}
   m_sharedMaterial: {fileID: 1429157886967454845, guid: 500a8e386be764cbbbfdd02c567aacfe, type: 2}
@@ -2298,8 +2298,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1017836019}
-        m_TargetAssemblyTypeName: NManager.UIManager, Assembly-CSharp
+      - m_Target: {fileID: 1017836015}
+        m_TargetAssemblyTypeName: NManager.GameManager, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
@@ -11886,7 +11886,7 @@ GameObject:
   - component: {fileID: 1994785581}
   - component: {fileID: 1994785580}
   m_Layer: 5
-  m_Name: RetryButton
+  m_Name: ResumeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11956,9 +11956,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1017836019}
-        m_TargetAssemblyTypeName: NManager.UIManager, Assembly-CSharp
-        m_MethodName: Retry
+      - m_Target: {fileID: 1017836015}
+        m_TargetAssemblyTypeName: NManager.GameManager, Assembly-CSharp
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
