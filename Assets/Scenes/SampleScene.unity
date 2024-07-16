@@ -150,6 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b5f5568bbfd4e2cab3575021eafdd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wdAudioClips:
+  - {fileID: 8300000, guid: 25cc8c0ad66f94ffeb80c1d79a5c81ac, type: 3}
+  - {fileID: 8300000, guid: fcb458660a8ca4614932c30c38af3b2a, type: 3}
+  - {fileID: 8300000, guid: bb3db27e03eb14596b75480f81a8b484, type: 3}
+  - {fileID: 8300000, guid: 9b076432b0ad741ad8ef55d79fab4c66, type: 3}
+  - {fileID: 8300000, guid: 02426a57a7e3b43608aa5c2cef277d36, type: 3}
 --- !u!4 &11745443
 Transform:
   m_ObjectHideFlags: 0
@@ -273,7 +279,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 6418180475301049370, guid: 88beda0863a18469087e6853e5e9cc06, type: 2}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -5,6 +5,7 @@ namespace NTitle
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
 	using UnityEngine.UI;
+	using UnityEngine.EventSystems;
 	using unityroom.Api;
 	using NEquipment;
 	using TMPro;
@@ -197,6 +198,14 @@ namespace NTitle
 			{
 				SoundManager.instance.SeVolume = value;
 			});
+			var trigger = seSlider.gameObject.AddComponent<EventTrigger>();
+			var entry = new EventTrigger.Entry();
+			entry.eventID = EventTriggerType.PointerUp;
+			entry.callback.AddListener(new UnityEngine.Events.UnityAction<BaseEventData>((data) =>
+			{
+				SoundManager.instance.PlaySe("button");
+			}));
+			trigger.triggers.Add(entry);
 
 			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
