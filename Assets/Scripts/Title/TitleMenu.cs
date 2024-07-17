@@ -37,6 +37,14 @@ namespace NTitle
 		public void OnClickStartButton()
 		{
 			SoundManager.instance.PlaySe("button");
+			SoundManager.instance.StopBgm();
+			Initiate.Fade("SampleScene", Color.black, 1.0f);
+
+		}
+
+		public void OnClickEndlessButton()
+		{
+			SoundManager.instance.PlaySe("button");
 			ChangeState(1);
 		}
 
@@ -66,10 +74,7 @@ namespace NTitle
 			//ゲームシーンへ
 			SoundManager.instance.PlaySe("button");
 			SoundManager.instance.StopBgm();
-			PlayerPrefs.SetInt("PlayerHp", 10);
-			PlayerPrefs.SetInt("PlayerMaxHp", 10);
-
-			Initiate.Fade("SampleScene", Color.black, 1.0f);
+			Initiate.Fade("EndlessScene", Color.black, 1.0f);
 		}
 
 		public void OnClickEquip1Button()

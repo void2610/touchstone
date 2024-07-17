@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 50}
   offset: 0
-  enemyNum: 9
+  enemyNum: 8
   enemies:
   - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
     weight: 1
