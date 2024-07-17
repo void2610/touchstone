@@ -30,9 +30,7 @@ namespace NCharacter
             {
                 if (killSePitch < 4)
                 {
-                    Debug.Log(killSePitch);
                     killSePitch++;
-
                 }
             }
             else
