@@ -1980,8 +1980,8 @@ GameObject:
   - component: {fileID: 1017836009}
   - component: {fileID: 1017836012}
   - component: {fileID: 1017836015}
-  - component: {fileID: 1017836018}
   - component: {fileID: 1017836019}
+  - component: {fileID: 1017836020}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2053,20 +2053,6 @@ MonoBehaviour:
   allEquipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
   isRandomedSeed: 0
   seed: 42
---- !u!114 &1017836018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017836006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f88019db731d42c292299df844f5916, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapPrefabs:
-  - {fileID: 6251663239724963194, guid: b83a53ef17b91410eacdf3c8c82a3af6, type: 3}
 --- !u!114 &1017836019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2085,6 +2071,23 @@ MonoBehaviour:
   - {fileID: 1711021071}
   resultText: {fileID: 649797944}
   gaindCoinText: {fileID: 845039562}
+--- !u!114 &1017836020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017836006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a87b5b94e7ee4993a2efa7852b33edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapLength: 5
+  mapHight: 40
+  startHight: 45
+  mapPrefabs:
+  - {fileID: 6251663239724963194, guid: b83a53ef17b91410eacdf3c8c82a3af6, type: 3}
 --- !u!1 &1032762191
 GameObject:
   m_ObjectHideFlags: 0
@@ -11403,6 +11406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19675932436d2064295844b34f9ea1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
 --- !u!114 &1471282079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48155,6 +48159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 30}
+  offset: 0
   enemyNum: 5
   enemies:
   - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
