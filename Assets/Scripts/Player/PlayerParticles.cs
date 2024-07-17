@@ -1,10 +1,14 @@
 namespace NCharacter
 {
     using UnityEngine;
+    using System.Collections.Generic;
     using NManager;
 
     public class PlayerParticles : MonoBehaviour
     {
+        [Header("Audios")]
+        [SerializeField]
+        private List<AudioClip> killSeClips = new List<AudioClip>();
         [Header("Particles")]
         [SerializeField]
         private GameObject sandParticle;
@@ -36,7 +40,7 @@ namespace NCharacter
                 killSePitch = 0;
             }
             lastKillTime = Time.time;
-            SoundManager.instance.PlaySe("kill_" + killSePitch);
+            SoundManager.instance.PlaySe(killSeClips[killSePitch]);
         }
 
         public void PlayDamageSe()

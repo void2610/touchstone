@@ -3605,20 +3605,8 @@ MonoBehaviour:
   - name: damage
     audioClip: {fileID: 8300000, guid: 489125a3d0d144a4ebdad021bbbd1e49, type: 3}
     volume: 1
-  - name: kill_0
+  - name: kill
     audioClip: {fileID: 8300000, guid: 909cc5873de3b46b5aa3ddb885ba5d38, type: 3}
-    volume: 1
-  - name: kill_1
-    audioClip: {fileID: 8300000, guid: 436bcbd484f5e41dd9464a25bc76765c, type: 3}
-    volume: 1
-  - name: kill_2
-    audioClip: {fileID: 8300000, guid: db106cd523c3748c2986e2442e7db784, type: 3}
-    volume: 1
-  - name: kill_3
-    audioClip: {fileID: 8300000, guid: 7b1295933fd85457e870116736ff40b7, type: 3}
-    volume: 1
-  - name: kill_4
-    audioClip: {fileID: 8300000, guid: f2221b202cfc5421cb2a55798198cd8b, type: 3}
     volume: 1
   bgmAudioSource: {fileID: 1473492719}
   bgmAudioClip: {fileID: 8300000, guid: 4c7b19c02815f4531974357fafe64795, type: 3}

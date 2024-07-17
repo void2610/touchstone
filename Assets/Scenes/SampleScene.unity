@@ -11415,6 +11415,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ab5df4ce4f348adbcbd2e5b8b0101a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killSeClips:
+  - {fileID: 8300000, guid: 909cc5873de3b46b5aa3ddb885ba5d38, type: 3}
+  - {fileID: 8300000, guid: 436bcbd484f5e41dd9464a25bc76765c, type: 3}
+  - {fileID: 8300000, guid: db106cd523c3748c2986e2442e7db784, type: 3}
+  - {fileID: 8300000, guid: 7b1295933fd85457e870116736ff40b7, type: 3}
+  - {fileID: 8300000, guid: f2221b202cfc5421cb2a55798198cd8b, type: 3}
   sandParticle: {fileID: 1783607878392164987, guid: 1af85b9d788d14f0395ad6992b1c6224, type: 3}
   dashParticle: {fileID: 7664369536706580448, guid: b1ee818f2a9ce4428909afe821989a4f, type: 3}
   healParticle: {fileID: 443494868773313826, guid: 6371796b4ed214a66b6b0f8620c4ee3e, type: 3}
