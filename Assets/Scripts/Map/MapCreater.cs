@@ -16,6 +16,8 @@ namespace NMap
         [SerializeField]
         private Vector2Int mapSize;
         [SerializeField]
+        private float offset;
+        [SerializeField]
         private int enemyNum;
         [SerializeField]
         private List<EnemyPrefabWithWeight> enemies;
@@ -35,7 +37,7 @@ namespace NMap
                     randomValue -= enemy.weight;
                     if (randomValue <= 0)
                     {
-                        Instantiate(enemy.prefab, this.transform.position + new Vector3(x - mapSize.x / 2, y - mapSize.y / 2, 0), Quaternion.identity);
+                        Instantiate(enemy.prefab, this.transform.position + new Vector3(x - mapSize.x / 2, y - mapSize.y / 2 + offset, 0), Quaternion.identity);
                         break;
                     }
                 }

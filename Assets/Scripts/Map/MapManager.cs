@@ -10,37 +10,43 @@ namespace NMap
     public class MapManager : MonoBehaviour
     {
         [SerializeField]
+        private int mapLength = 5;
+        [SerializeField]
+        private int mapHight = 40;
+        [SerializeField]
+        private float startHight = 80;
+        [SerializeField]
         private List<GameObject> mapPrefabs;
         private GameObject mapContainer;
         private Transform player;
-        private int startHight = 40;
-        private float pAltitude = 0;
-        private int nextHight = 0;
-        private int mapHight = 40;
 
-        private void SetMap()
+        private float pAltitude = 0;
+        private float nextHight = 0;
+        private int mapCount = 0;
+
+
+        private void SetMap(float h)
         {
             int index = Random.Range(0, mapPrefabs.Count);
             GameObject map = Instantiate(mapPrefabs[index], new Vector3(0, nextHight, 0), Quaternion.identity);
             map.transform.SetParent(mapContainer.transform);
-            nextHight += mapHight;
+            nextHight += h;
+            mapCount++;
         }
 
         void Start()
         {
+            nextHight = startHight;
             mapContainer = new GameObject("MapContainer");
             player = GameManager.instance.player.transform;
-            nextHight = startHight;
+            for (int i = 0; i < mapLength; i++)
+            {
+                SetMap(mapHight);
+            }
         }
 
         void Update()
         {
-            pAltitude = Mathf.Max(pAltitude, player.position.y);
-
-            if (pAltitude + 60 > nextHight)
-            {
-                SetMap();
-            }
         }
     }
 }

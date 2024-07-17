@@ -8,7 +8,7 @@ namespace NCharacter
 
 	public class Player : MonoBehaviour
 	{
-		public bool isInvincible { get; set; } = false;
+		public bool isInvincible = false;
 		public bool isThunder { get; private set; } = false;
 		public int maxHp { get; private set; } = 3;
 		public int hp { get; private set; }
