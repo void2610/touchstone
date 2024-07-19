@@ -48,14 +48,13 @@ namespace NCharacter
 
         private void StopDashParticle()
         {
-            dashParticleInstance.GetComponent<ParticleSystem>().Stop();
+            // dashParticleInstance.GetComponent<ParticleSystem>().Stop();
         }
 
         public void PlayDashParticle(Vector3 direction)
         {
             var p = Instantiate(dashParticle, this.transform.position, Quaternion.identity);
             p.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-            // Invoke("StopDashParticle", dashTime + 0.5f);
         }
 
         public void PlayHealParticle()

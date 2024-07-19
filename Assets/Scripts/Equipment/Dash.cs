@@ -5,6 +5,7 @@ namespace NEquipment
 	using UnityEngine;
 	using UnityEngine.UI;
 	using NCharacter;
+	using NManager;
 
 	public class Dash : Equipment
 	{
@@ -24,6 +25,7 @@ namespace NEquipment
 			base.OnActionStart();
 			var angle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
 			player.GetComponent<PlayerParticles>().PlayDashParticle(angle);
+			Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
 		}
 
 		protected override void Effect()

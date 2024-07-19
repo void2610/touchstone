@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8154230406289107430}
   - component: {fileID: 5745209617138771015}
   - component: {fileID: 2993073810273293835}
+  - component: {fileID: 7858885056235536093}
   m_Layer: 0
   m_Name: RippleDistortionParticle
   m_TagString: Untagged
@@ -4889,3 +4890,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7858885056235536093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530141316214896690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6913c00f50e3a4abdb96b05a595e1cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetComponent: {fileID: 8154230406289107430}
+  delay: 0.5
