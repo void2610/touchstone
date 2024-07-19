@@ -51,10 +51,11 @@ namespace NCharacter
             dashParticleInstance.GetComponent<ParticleSystem>().Stop();
         }
 
-        public void PlayDashParticle(float dashTime)
+        public void PlayDashParticle(Vector3 direction)
         {
-            dashParticleInstance.GetComponent<ParticleSystem>().Play();
-            Invoke("StopDashParticle", dashTime + 0.5f);
+            var p = Instantiate(dashParticle, this.transform.position, Quaternion.identity);
+            p.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            // Invoke("StopDashParticle", dashTime + 0.5f);
         }
 
         public void PlayHealParticle()
@@ -76,8 +77,8 @@ namespace NCharacter
         private void Start()
         {
             spriteRenderer = this.GetComponent<SpriteRenderer>();
-            dashParticleInstance = Instantiate(dashParticle, transform.position + legOffset, Quaternion.identity, this.transform);
-            dashParticleInstance.GetComponent<ParticleSystem>().Stop();
+            // dashParticleInstance = Instantiate(dashParticle, transform.position + legOffset, Quaternion.identity, this.transform);
+            // dashParticleInstance.GetComponent<ParticleSystem>().Stop();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

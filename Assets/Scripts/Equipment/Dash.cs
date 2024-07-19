@@ -22,7 +22,8 @@ namespace NEquipment
 		protected override void OnActionStart()
 		{
 			base.OnActionStart();
-			player.GetComponent<PlayerParticles>().PlayDashParticle(activeTimeLength);
+			var angle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
+			player.GetComponent<PlayerParticles>().PlayDashParticle(angle);
 		}
 
 		protected override void Effect()
