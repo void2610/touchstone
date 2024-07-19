@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RippleDistortion
-  m_Shader: {fileID: -6465566751694194690, guid: 389784b6e01ce444fb2f12e9d69e2525, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b333248103fb54563b1ee28d7fbb6f01, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -77,10 +77,12 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _Float: 0.05
-    - _Intensity: 2
+    - _Intensity: 0.5
     - _Mask: 0.415
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _TileScale: 2
+    - _Width: 0.157
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
