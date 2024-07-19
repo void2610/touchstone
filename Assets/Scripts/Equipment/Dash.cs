@@ -16,7 +16,7 @@ namespace NEquipment
 			base.Awake();
 			equipmentName = "Dash";
 			coolTimeLength = 3.5f;
-			activeTimeLength = 0.15f;
+			activeTimeLength = 0.5f;
 			isHold = false;
 		}
 
@@ -25,13 +25,14 @@ namespace NEquipment
 			base.OnActionStart();
 			var angle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
 			player.GetComponent<PlayerParticles>().PlayDashParticle(angle);
-			Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
+			player.GetComponent<AfterImageEffect>().isCreateAfterImage = true;
+			Camera.main.GetComponent<CameraMoveScript>().ShakeCamera(strength: 0.5f);
 		}
 
 		protected override void Effect()
 		{
 			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
-			player.GetComponent<Rigidbody2D>().velocity = moveAngle * intensity * 40;
+			player.GetComponent<Rigidbody2D>().velocity = moveAngle * intensity * 30;
 		}
 
 		protected override void OnActionEnd()

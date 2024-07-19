@@ -11367,6 +11367,7 @@ GameObject:
   - component: {fileID: 1471282076}
   - component: {fileID: 1471282077}
   - component: {fileID: 1471282079}
+  - component: {fileID: 1471282080}
   m_Layer: 0
   m_Name: Player
   m_TagString: PlayerTrigger
@@ -11551,7 +11552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19675932436d2064295844b34f9ea1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInvincible: 1
+  isInvincible: 0
 --- !u!114 &1471282079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11573,6 +11574,22 @@ MonoBehaviour:
   sandParticle: {fileID: 1783607878392164987, guid: 1af85b9d788d14f0395ad6992b1c6224, type: 3}
   dashParticle: {fileID: 3530141316214896690, guid: be1f5e445e8294bbbaed0636b6ec159a, type: 3}
   healParticle: {fileID: 443494868773313826, guid: 6371796b4ed214a66b6b0f8620c4ee3e, type: 3}
+--- !u!114 &1471282080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471282070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a710cf0e4ec0a48c7a999b2bf38e648d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterImageLifetime: 0.7
+  afterImageInterval: 0.2
+  color: {r: 1, g: 1, b: 1, a: 1}
+  isCreateAfterImage: 0
 --- !u!1 &1534958803
 GameObject:
   m_ObjectHideFlags: 0
