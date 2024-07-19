@@ -4903,4 +4903,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetComponent: {fileID: 8154230406289107430}
-  delay: 0.5
+  delay: 0.35

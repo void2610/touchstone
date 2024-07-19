@@ -11587,7 +11587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afterImageLifetime: 0.7
-  afterImageInterval: 0.2
+  afterImageInterval: 0.1
   color: {r: 1, g: 1, b: 1, a: 1}
   isCreateAfterImage: 0
 --- !u!1 &1534958803

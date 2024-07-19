@@ -16,7 +16,7 @@ namespace NEquipment
 			base.Awake();
 			equipmentName = "Dash";
 			coolTimeLength = 3.5f;
-			activeTimeLength = 0.5f;
+			activeTimeLength = 0.3f;
 			isHold = false;
 		}
 
