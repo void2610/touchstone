@@ -17,6 +17,10 @@ namespace NMap
         private float startHight = 80;
         [SerializeField]
         private List<GameObject> mapPrefabs;
+        [SerializeField]
+        private GameObject goalPrefab;
+
+        public float mapEndAltitude => (mapCount + 1) * mapHight;
         private GameObject mapContainer;
         private Transform player;
 
@@ -27,8 +31,8 @@ namespace NMap
         private void SetMap(float h)
         {
             int index = Random.Range(0, mapPrefabs.Count);
-            GameObject map = Instantiate(mapPrefabs[index], new Vector3(0, nextHight, 0), Quaternion.identity);
-            map.transform.SetParent(mapContainer.transform);
+            var m = Instantiate(mapPrefabs[index], new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
+            m.GetComponent<MapCreater>().Create();
             nextHight += h;
             mapCount++;
         }
@@ -42,6 +46,8 @@ namespace NMap
             {
                 SetMap(mapHight);
             }
+            GameObject map = Instantiate(mapPrefabs[0], new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
+            Instantiate(goalPrefab, new Vector3(0, mapEndAltitude, 0), Quaternion.identity, mapContainer.transform);
         }
 
         void Update()

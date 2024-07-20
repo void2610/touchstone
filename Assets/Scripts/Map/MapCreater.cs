@@ -22,7 +22,10 @@ namespace NMap
         [SerializeField]
         private List<EnemyPrefabWithWeight> enemies;
 
-        void Start()
+        [Header("Setting")]
+        [SerializeField]
+        private bool createOnStart = false;
+        public void Create()
         {
             for (int i = 0; i < enemyNum; i++)
             {
@@ -41,6 +44,14 @@ namespace NMap
                         break;
                     }
                 }
+            }
+        }
+
+        private void Start()
+        {
+            if (createOnStart)
+            {
+                Create();
             }
         }
     }

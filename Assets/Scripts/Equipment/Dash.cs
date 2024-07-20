@@ -10,6 +10,7 @@ namespace NEquipment
 	public class Dash : Equipment
 	{
 		private Vector3 moveAngle;
+		private AfterImageEffect aie;
 
 		protected override void Awake()
 		{
@@ -20,12 +21,21 @@ namespace NEquipment
 			isHold = false;
 		}
 
+		protected override void Start()
+		{
+			base.Start();
+			aie = player.AddComponent<AfterImageEffect>();
+			aie.afterImageInterval = 0.1f;
+			aie.afterImageLifetime = 0.7f;
+			aie.afterImageColor = new Color(1f, 1f, 1f, 0.5f);
+		}
+
 		protected override void OnActionStart()
 		{
 			base.OnActionStart();
 			var angle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
 			player.GetComponent<PlayerParticles>().PlayDashParticle(angle);
-			player.GetComponent<AfterImageEffect>().isCreateAfterImage = true;
+			aie.isCreateAfterImage = true;
 			Camera.main.GetComponent<CameraMoveScript>().ShakeCamera(strength: 0.5f);
 		}
 
@@ -38,6 +48,7 @@ namespace NEquipment
 		protected override void OnActionEnd()
 		{
 			player.GetComponent<Rigidbody2D>().velocity *= 0.5f;
+			aie.isCreateAfterImage = false;
 		}
 	}
 }

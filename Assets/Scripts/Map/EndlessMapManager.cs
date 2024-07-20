@@ -10,8 +10,6 @@ namespace NMap
     public class EndlessMapManager : MonoBehaviour
     {
         [SerializeField]
-        private int mapLength = 5;
-        [SerializeField]
         private int mapHight = 40;
         [SerializeField]
         private float startHight = 80;
@@ -22,8 +20,6 @@ namespace NMap
 
         private float pAltitude = 0;
         private float nextHight = 0;
-        private int mapCount = 0;
-
 
         private void SetMap()
         {

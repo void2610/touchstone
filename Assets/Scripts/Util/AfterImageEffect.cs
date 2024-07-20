@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class AfterImageEffect : MonoBehaviour
 {
-    [SerializeField]
-    private float afterImageLifetime = 0.5f;
-    [SerializeField]
-    private float afterImageInterval = 0.1f;
-    [SerializeField]
-    private Color color = new Color(1f, 1f, 1f, 0.5f);
+    public float afterImageLifetime = 0.5f;
+    public float afterImageInterval = 0.1f;
+    public Color afterImageColor = new Color(1f, 1f, 1f, 0.5f);
     public bool isCreateAfterImage = false;
     private SpriteRenderer spriteRenderer;
 
@@ -35,7 +32,7 @@ public class AfterImageEffect : MonoBehaviour
         GameObject afterImage = new GameObject("AfterImage");
         SpriteRenderer sr = afterImage.AddComponent<SpriteRenderer>();
         sr.sprite = spriteRenderer.sprite;
-        sr.color = this.color;
+        sr.color = afterImageColor;
 
         afterImage.transform.position = this.transform.position;
         afterImage.transform.rotation = this.transform.rotation;

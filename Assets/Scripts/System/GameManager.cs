@@ -106,6 +106,11 @@ namespace NManager
 			PlayerPrefs.SetInt("Coin", currentCoins + gainedCoins);
 		}
 
+		public void ClearStage()
+		{
+			Initiate.Fade("ItemScene", Color.black, 1.0f);
+		}
+
 		void Start()
 		{
 			state = GameState.Playing;
