@@ -16,7 +16,7 @@ namespace NEquipment
 			base.Awake();
 			equipmentName = "Dash";
 			coolTimeLength = 3.5f;
-			activeTimeLength = 0.3f;
+			activeTimeLength = 0.15f;
 			isHold = false;
 		}
 
@@ -32,7 +32,7 @@ namespace NEquipment
 		protected override void Effect()
 		{
 			moveAngle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
-			player.GetComponent<Rigidbody2D>().velocity = moveAngle * intensity * 30;
+			player.GetComponent<Rigidbody2D>().velocity = moveAngle * intensity * 40;
 		}
 
 		protected override void OnActionEnd()

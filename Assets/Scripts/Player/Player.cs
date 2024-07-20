@@ -14,6 +14,7 @@ namespace NCharacter
 		public int hp { get; private set; }
 		public int atk { get; private set; } = 1;
 		public bool isMovable { get; set; } = true;
+		public float defaultScaleX { get; private set; }
 		private int maxJumpCnt = 2;
 		private float speed = 15;
 		private float jumpForce = 17.5f;
@@ -21,7 +22,6 @@ namespace NCharacter
 		private int direction = 1;
 		private float hitInterval = 0.5f;
 		private bool isJumping = false;
-		private float defaultScaleX;
 		private float maxAltitude = 0;
 		private float thunderIntensity = 1;
 		private Rigidbody2D rb => this.GetComponent<Rigidbody2D>();
@@ -115,9 +115,13 @@ namespace NCharacter
 					isJumping = true;
 				}
 
-				if (direction != 0)
+				if (rb.velocity.x < -0.01f)
 				{
-					transform.localScale = new Vector3(direction, 1, 1) * defaultScaleX;
+					transform.localScale = new Vector3(-1, 1, 1) * defaultScaleX;
+				}
+				else if (rb.velocity.x > 0.01f)
+				{
+					transform.localScale = new Vector3(1, 1, 1) * defaultScaleX;
 				}
 
 				if (transform.position.y > maxAltitude)
@@ -161,7 +165,7 @@ namespace NCharacter
 					this.GetComponent<PlayerParticles>().PlayJumpSe();
 				}
 			}
-			else if (isMovable && !isInvincible)
+			else
 			{
 				Enemy enemy = other.GetComponent<Enemy>();
 				if (enemy != null)
@@ -175,12 +179,15 @@ namespace NCharacter
 					}
 					else
 					{
-						this.CutHp(enemy.atk);
-						Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
-						this.AddForce(new Vector2(dir.x, dir.y) * 30);
-						this.GetComponent<PlayerParticles>().PlayDamageSe();
-						// 無敵時間
-						StartCoroutine(InvincibilityCoroutine());
+						if (isMovable && !isInvincible)
+						{
+							this.CutHp(enemy.atk);
+							Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
+							this.AddForce(new Vector2(dir.x, dir.y) * 30);
+							this.GetComponent<PlayerParticles>().PlayDamageSe();
+							// 無敵時間
+							StartCoroutine(InvincibilityCoroutine());
+						}
 					}
 				}
 			}

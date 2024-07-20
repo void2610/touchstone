@@ -81,8 +81,8 @@ Material:
     - _Mask: 0.415
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _TileScale: 2.5
-    - _Width: 0.7
+    - _TileScale: 1.5
+    - _Width: 0.8
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
