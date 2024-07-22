@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedCrystal
   m_EditorClassIdentifier: 
   equipmentID: 7
-  equipmentName: RedCrystal
+  equipmentName: Red Crystal
   equipmentDescription: "\u4ED6\u306E\u88C5\u5099\u306E\u5A01\u529B\u3092\u6052\u5E38\u7684\u306B\u4E0A\u6607\u3055\u305B\u308B"
   equipmentPrice: 200
   equipmentIcon: {fileID: 21300000, guid: 71a38b6a5f60e4a31928689dc108eb72, type: 3}
