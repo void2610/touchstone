@@ -96,6 +96,7 @@ namespace NManager
 			int gainedCoins = (int)(maxAltitude / 10);
 			int currentCoins = PlayerPrefs.GetInt("Coin", 0);
 			player.isMovable = false;
+			player.isInvincible = true;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.GameOver);
 			this.GetComponent<UIManager>().SetResultText("max: " + maxAltitude.ToString("F2"));
 			this.GetComponent<UIManager>().SetGaindCoinText("+" + gainedCoins.ToString());

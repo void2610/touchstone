@@ -9,7 +9,7 @@ namespace NCharacter
     public class MissileBall : Enemy
     {
         private float speed = 4f;
-        private float searchRange = 25.0f;
+        private float searchRange = 20.0f;
         private Transform player => GameManager.instance.player.transform;
         protected override void Awake()
         {

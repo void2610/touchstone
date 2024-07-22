@@ -155,20 +155,16 @@ namespace NCharacter
 		//TODO デリゲートで動作を変えられるようにする
 		protected virtual void OnTriggerEnter2D(Collider2D other)
 		{
-			if (isThunder)
+			Enemy enemy = other.GetComponent<Enemy>();
+			if (enemy != null)
 			{
-				Enemy enemy = other.GetComponent<Enemy>();
-				if (enemy != null)
+				if (isThunder)
 				{
 					JumpByEnemy(2.5f * thunderIntensity);
 					enemy.CutHp((int)(this.atk * thunderIntensity));
 					this.GetComponent<PlayerParticles>().PlayJumpSe();
 				}
-			}
-			else
-			{
-				Enemy enemy = other.GetComponent<Enemy>();
-				if (enemy != null && isMovable)
+				else
 				{
 					Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
 					if (other.transform.position.y < this.transform.position.y)
@@ -179,7 +175,7 @@ namespace NCharacter
 					}
 					else
 					{
-						if (!isInvincible)
+						if (!isInvincible && isMovable)
 						{
 							this.CutHp(enemy.atk);
 							Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
