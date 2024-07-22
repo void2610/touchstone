@@ -39,10 +39,12 @@ namespace NMap
 
         void Start()
         {
+            if (mapLength <= 0) return;
+
             nextHight = startHight;
             mapContainer = new GameObject("MapContainer");
             player = GameManager.instance.player.transform;
-            for (int i = 0; i < mapLength; i++)
+            for (int i = 0; i < mapLength -1; i++)
             {
                 SetMap(mapHight);
             }

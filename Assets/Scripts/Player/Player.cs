@@ -168,7 +168,7 @@ namespace NCharacter
 			else
 			{
 				Enemy enemy = other.GetComponent<Enemy>();
-				if (enemy != null)
+				if (enemy != null && isMovable)
 				{
 					Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
 					if (other.transform.position.y < this.transform.position.y)
@@ -179,7 +179,7 @@ namespace NCharacter
 					}
 					else
 					{
-						if (isMovable && !isInvincible)
+						if (!isInvincible)
 						{
 							this.CutHp(enemy.atk);
 							Vector3 dir = (this.transform.position - enemy.transform.position).normalized;

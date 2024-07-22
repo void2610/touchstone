@@ -2210,7 +2210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88019db731d42c292299df844f5916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapLength: 0
+  mapLength: 3
   mapHight: 50
   startHight: 75
   mapPrefabs:
@@ -78045,7 +78045,7 @@ GameObject:
   - component: {fileID: 4407994625355671546}
   - component: {fileID: 4449177565880049364}
   m_Layer: 3
-  m_Name: Grid
+  m_Name: FirstMap
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
