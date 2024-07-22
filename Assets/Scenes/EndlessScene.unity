@@ -2228,7 +2228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a87b5b94e7ee4993a2efa7852b33edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapLength: 5
   mapHight: 40
   startHight: 45
   mapPrefabs:
@@ -48311,6 +48310,7 @@ MonoBehaviour:
     weight: 1
   - prefab: {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
     weight: 0.3
+  createOnStart: 1
 --- !u!114 &5771874634429878291 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -8456660105364237450, guid: 0289cfbeffa8142d5bb84edc6c3856ca, type: 3}
