@@ -16,4 +16,4 @@ MonoBehaviour:
   equipmentName: GreenCrystal
   equipmentDescription: "\u4ED6\u306E\u88C5\u5099\u306E\u52B9\u679C\u6642\u9593\u3092\u6052\u5E38\u7684\u306B\u5897\u52A0\u3055\u305B\u308B"
   equipmentPrice: 100
-  equipmentIcon: {fileID: 6409830552331150148, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
+  equipmentIcon: {fileID: 21300000, guid: df9ab44b727834ac797c158f84e5cc18, type: 3}
