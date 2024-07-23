@@ -3867,6 +3867,9 @@ MonoBehaviour:
   - name: kill
     audioClip: {fileID: 8300000, guid: 909cc5873de3b46b5aa3ddb885ba5d38, type: 3}
     volume: 1
+  - name: shield
+    audioClip: {fileID: 8300000, guid: 05fb231bf8b234f77ae27f871b3c68a3, type: 3}
+    volume: 1
   bgmAudioSource: {fileID: 1473492719}
   bgmAudioClip: {fileID: 8300000, guid: 4c7b19c02815f4531974357fafe64795, type: 3}
 --- !u!4 &1473492721

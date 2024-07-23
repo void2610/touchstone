@@ -9,6 +9,7 @@ namespace NCharacter
 	public class Player : MonoBehaviour
 	{
 		public bool isInvincible = false;
+		public bool isShield = false;
 		public bool isThunder { get; private set; } = false;
 		public int maxHp { get; private set; } = 3;
 		public int hp { get; private set; }
@@ -164,19 +165,40 @@ namespace NCharacter
 					enemy.CutHp((int)(this.atk * thunderIntensity));
 					this.GetComponent<PlayerParticles>().PlayJumpSe();
 				}
+				else if (isShield)
+				{
+					if (isMovable)
+					{
+						Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
+						if (other.transform.position.y < this.transform.position.y)
+						{
+							JumpByEnemy(1.5f);
+							enemy.CutHp(this.atk);
+							this.GetComponent<PlayerParticles>().PlayJumpSe();
+						}
+						else
+						{
+
+							Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
+							this.AddForce(new Vector2(dir.x, dir.y) * 30);
+							SoundManager.instance.PlaySe("shield");
+						}
+					}
+				}
 				else
 				{
-					Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
-					if (other.transform.position.y < this.transform.position.y)
+					if (isMovable && !isInvincible)
 					{
-						JumpByEnemy(1.5f);
-						enemy.CutHp(this.atk);
-						this.GetComponent<PlayerParticles>().PlayJumpSe();
-					}
-					else
-					{
-						if (!isInvincible && isMovable)
+						Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
+						if (other.transform.position.y < this.transform.position.y)
 						{
+							JumpByEnemy(1.5f);
+							enemy.CutHp(this.atk);
+							this.GetComponent<PlayerParticles>().PlayJumpSe();
+						}
+						else
+						{
+
 							this.CutHp(enemy.atk);
 							Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
 							this.AddForce(new Vector2(dir.x, dir.y) * 30);

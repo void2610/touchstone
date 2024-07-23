@@ -21,7 +21,7 @@ namespace NEquipment
 
 		protected override void OnActionStart()
 		{
-			player.GetComponent<Player>().isInvincible = true;
+			player.GetComponent<Player>().isShield = true;
 		}
 
 		protected override void Effect()
@@ -31,7 +31,7 @@ namespace NEquipment
 
 		protected override void OnActionEnd()
 		{
-			player.GetComponent<Player>().isInvincible = false;
+			player.GetComponent<Player>().isShield = false;
 			this.transform.position = new Vector3(0, 0, -10);
 		}
 
