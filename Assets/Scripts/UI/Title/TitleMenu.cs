@@ -69,7 +69,15 @@ namespace NTitle
 			// UnityEditor.EditorApplication.isPlaying = false;
 		}
 
-		public void OnClickEntryButton()
+		public void OnClickMainEntryButton()
+		{
+			//ゲームシーンへ
+			SoundManager.instance.PlaySe("button");
+			SoundManager.instance.StopBgm();
+			Initiate.Fade("MainScene", Color.black, 1.0f);
+		}
+
+		public void OnClickEndlessEntryButton()
 		{
 			//ゲームシーンへ
 			SoundManager.instance.PlaySe("button");

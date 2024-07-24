@@ -2210,7 +2210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88019db731d42c292299df844f5916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapLength: 3
+  mapLength: 1
   mapHight: 50
   startHight: 75
   mapPrefabs:
@@ -21413,6 +21413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInvincible: 0
+  isShield: 0
 --- !u!114 &1471282079
 MonoBehaviour:
   m_ObjectHideFlags: 0

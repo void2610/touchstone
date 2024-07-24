@@ -110,6 +110,7 @@ namespace NManager
 		public void ClearStage()
 		{
 			Initiate.Fade("ItemScene", Color.black, 1.0f);
+			// SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
 		}
 
 		void Start()

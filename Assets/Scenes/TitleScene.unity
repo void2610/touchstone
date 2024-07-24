@@ -3060,7 +3060,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1349387464}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 288673205}
+        m_TargetAssemblyTypeName: NTitle.TitleMenu, Assembly-CSharp
+        m_MethodName: OnClickMainEntryButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1349387464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5426,8 +5438,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 288673205}
-        m_TargetAssemblyTypeName: TitleMenuScript, Assembly-CSharp
-        m_MethodName: OnClickEntryButton
+        m_TargetAssemblyTypeName: NTitle.TitleMenu, Assembly-CSharp
+        m_MethodName: OnClickEndlessEntryButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
