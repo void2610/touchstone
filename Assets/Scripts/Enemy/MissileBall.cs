@@ -9,7 +9,7 @@ namespace NCharacter
     public class MissileBall : Enemy
     {
         private float speed = 4f;
-        private float searchRange = 20.0f;
+        private float searchRange = 30.0f;
         private Transform player => GameManager.instance.player.transform;
         protected override void Awake()
         {
@@ -29,7 +29,7 @@ namespace NCharacter
         protected override void Update()
         {
             base.Update();
-            if(Vector3.Distance(this.transform.position, player.position) > searchRange) return;
+            if (Vector3.Distance(this.transform.position, player.position) > searchRange) return;
 
             Vector2 direction = (player.position - this.transform.position).normalized;
             // ゆっくりと角度をプレイヤーに向ける

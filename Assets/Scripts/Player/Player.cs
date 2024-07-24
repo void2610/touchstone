@@ -14,7 +14,8 @@ namespace NCharacter
 		public int maxHp { get; private set; } = 3;
 		public int hp { get; private set; }
 		public int atk { get; private set; } = 1;
-		public bool isMovable { get; set; } = true;
+		public bool isMovable = true;
+		public bool isOnGame = true;
 		public float defaultScaleX { get; private set; }
 		private int maxJumpCnt = 2;
 		private float speed = 15;
@@ -89,11 +90,12 @@ namespace NCharacter
 		private void Start()
 		{
 			defaultScaleX = transform.localScale.x;
+			isOnGame = true;
 		}
 
 		private void Update()
 		{
-			if (isMovable)
+			if (isMovable && isOnGame)
 			{
 				if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
 				{
@@ -135,15 +137,19 @@ namespace NCharacter
 
 		private void FixedUpdate()
 		{
-			if (isMovable)
+			if (isMovable && isOnGame)
 			{
 				rb.velocity = new Vector2(speed * direction, rb.velocity.y);
-
 				if (isJumping)
 				{
 					_Jump();
 					isJumping = false;
 				}
+			}
+
+			if (!isOnGame)
+			{
+				rb.velocity = Vector2.zero;
 			}
 
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
@@ -157,7 +163,7 @@ namespace NCharacter
 		protected virtual void OnTriggerEnter2D(Collider2D other)
 		{
 			Enemy enemy = other.GetComponent<Enemy>();
-			if (enemy != null && isMovable)
+			if (enemy != null && isMovable && isOnGame)
 			{
 				if (isThunder)
 				{

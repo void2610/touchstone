@@ -42,6 +42,7 @@ namespace NManager
 			Playing,
 			Paused,
 			GameOver,
+			Selecting,
 			Other
 		}
 
@@ -122,9 +123,11 @@ namespace NManager
 
 		public void ClearStage()
 		{
-			player.isInvincible = true;
-			Initiate.Fade("ItemScene", Color.black, 1.0f);
-			// SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
+			player.isMovable = false;
+			player.isOnGame = false;
+			// Initiate.Fade("ItemScene", Color.black, 1.0f);
+			state = GameState.Selecting;
+			SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
 		}
 
 		void Start()
@@ -151,6 +154,8 @@ namespace NManager
 					}
 					break;
 				case GameState.GameOver:
+					break;
+				case GameState.Selecting:
 					break;
 				default:
 					break;
