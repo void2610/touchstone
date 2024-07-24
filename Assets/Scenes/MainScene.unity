@@ -1118,8 +1118,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2.6666667
-    height: 2.4814816
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2196,8 +2196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allEquipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
-  isRandomedSeed: 0
-  seed: 42
+  isRandomedSeed: 1
+  seed: -1657294652
 --- !u!114 &1017836018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21414,6 +21414,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 0
   isShield: 0
+  isMovable: 1
+  isOnGame: 1
 --- !u!114 &1471282079
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,19 +27,14 @@ namespace NMap
         private float nextHight = 0;
         private int mapCount = 0;
 
-
-        private void SetMap(float h)
-        {
-            int index = GameManager.instance.RandomRange(0, mapPrefabs.Count);
-            var m = Instantiate(mapPrefabs[index], new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
-            m.GetComponent<MapCreater>().Create();
-            nextHight += h;
-            mapCount++;
-        }
-
-        void Start()
+        public void SetUp()
         {
             if (mapLength <= 0) return;
+
+            if (mapContainer != null)
+            {
+                Destroy(mapContainer);
+            }
 
             nextHight = startHight;
             mapContainer = new GameObject("MapContainer");
@@ -52,8 +47,13 @@ namespace NMap
             Instantiate(goalPrefab, new Vector3(0, mapEndAltitude, 0), Quaternion.identity, mapContainer.transform);
         }
 
-        void Update()
+        private void SetMap(float h)
         {
+            int index = GameManager.instance.RandomRange(0, mapPrefabs.Count);
+            var m = Instantiate(mapPrefabs[index], new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
+            m.GetComponent<MapCreater>().Create();
+            nextHight += h;
+            mapCount++;
         }
     }
 }

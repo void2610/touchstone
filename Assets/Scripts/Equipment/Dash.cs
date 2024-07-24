@@ -35,7 +35,7 @@ namespace NEquipment
 			base.OnActionStart();
 			var angle = new Vector3(Mathf.Cos(activeStartAngle * Mathf.Deg2Rad) * 1.4f, Mathf.Sin(activeStartAngle * Mathf.Deg2Rad), 0);
 			player.GetComponent<PlayerParticles>().PlayDashParticle(angle);
-			aie.isCreateAfterImage = true;
+			if (aie != null) aie.isCreateAfterImage = true;
 			Camera.main.GetComponent<CameraMoveScript>().ShakeCamera(strength: 0.5f);
 		}
 
@@ -48,7 +48,7 @@ namespace NEquipment
 		protected override void OnActionEnd()
 		{
 			player.GetComponent<Rigidbody2D>().velocity *= 0.5f;
-			aie.isCreateAfterImage = false;
+			if (aie != null) aie.isCreateAfterImage = false;
 		}
 	}
 }

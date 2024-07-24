@@ -28,47 +28,45 @@ namespace NUI
 
         public void OnClickTrash()
         {
-            Initiate.Fade("MainScene", Color.black, 1.0f);
+            SoundManager.instance.PlaySe("button");
+            GameManager.instance.SetUp();
         }
 
         public void OnClickEquip1()
         {
+            SoundManager.instance.PlaySe("button");
             PlayerPrefs.SetInt("NowEquip1", newEquip.GetComponent<SelectEquipmentContainer>().GetItem().equipmentID);
-            Initiate.Fade("MainScene", Color.black, 1.0f);
+            GameManager.instance.SetUp();
         }
 
         public void OnClickEquip2()
         {
+            SoundManager.instance.PlaySe("button");
             PlayerPrefs.SetInt("NowEquip2", newEquip.GetComponent<SelectEquipmentContainer>().GetItem().equipmentID);
-            Initiate.Fade("MainScene", Color.black, 1.0f);
+            GameManager.instance.SetUp();
         }
 
         public void OnClickEquip3()
         {
+            SoundManager.instance.PlaySe("button");
             PlayerPrefs.SetInt("NowEquip3", newEquip.GetComponent<SelectEquipmentContainer>().GetItem().equipmentID);
-            Initiate.Fade("MainScene", Color.black, 1.0f);
+            GameManager.instance.SetUp();
         }
 
         void Start()
         {
             Cursor.visible = true;
+            int newEquipID = GameManager.instance.RandomRange(0, allEquipments.list.Count);
 
             nowEquip1.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
             nowEquip2.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
             nowEquip3.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 2)]);
-            newEquip.GetComponent<SelectEquipmentContainer>().SetItem(allEquipments.list[GameManager.instance.RandomRange(0, allEquipments.list.Count)]);
+            newEquip.GetComponent<SelectEquipmentContainer>().SetItem(allEquipments.list[newEquipID]);
 
-            //背景色の透明度を0から1に変化させる
             backGround.GetComponent<Image>().DOFade(1.0f, 2.0f).OnComplete(() =>
             {
-                //キャンバスグループの透明度を1に変化させる
                 canvasGroup.alpha = 1.0f;
             });
-        }
-
-        void Update()
-        {
-
         }
     }
 }

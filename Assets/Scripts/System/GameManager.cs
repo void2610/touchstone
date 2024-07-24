@@ -8,6 +8,7 @@ namespace NManager
 	using UnityEngine;
 	using NCharacter;
 	using NEquipment;
+	using NMap;
 	using UnityEngine.SceneManagement;
 
 	public class GameManager : MonoBehaviour
@@ -23,6 +24,7 @@ namespace NManager
 				if (isRandomedSeed)
 				{
 					seed = (int)DateTime.Now.Ticks;
+					Debug.Log("seed: " + seed);
 				}
 				random = new System.Random(seed);
 				DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 200, sequencesCapacity: 200);
@@ -46,7 +48,8 @@ namespace NManager
 			Other
 		}
 
-		public GameState state { get; set; } = GameState.Playing;
+		[SerializeField]
+		public GameState state = GameState.Playing;
 
 		[SerializeField]
 		private bool isRandomedSeed = false;
@@ -106,6 +109,7 @@ namespace NManager
 
 		public void GameOver()
 		{
+			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			state = GameState.GameOver;
 			int gainedCoins = (int)(maxAltitude / 10);
 			int currentCoins = PlayerPrefs.GetInt("Coin", 0);
@@ -125,16 +129,32 @@ namespace NManager
 		{
 			player.isMovable = false;
 			player.isOnGame = false;
-			// Initiate.Fade("ItemScene", Color.black, 1.0f);
 			state = GameState.Selecting;
 			SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
+			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 		}
 
-		void Start()
+		public void SetUp()
 		{
 			state = GameState.Playing;
 			Time.timeScale = 1;
 			Cursor.visible = false;
+			player.isMovable = true;
+			player.isOnGame = true;
+			state = GameState.Playing;
+			if (SceneManager.GetSceneByName("ItemScene").isLoaded)
+			{
+				SceneManager.UnloadSceneAsync("ItemScene");
+			}
+			player.transform.position = new Vector3(0, 0, 0);
+			this.GetComponent<MapManager>().SetUp();
+			this.GetComponent<EquipmentManager>().SetUp();
+			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(true);
+		}
+
+		void Start()
+		{
+			this.SetUp();
 		}
 
 		void Update()
