@@ -1,4 +1,4 @@
-namespace NTitle
+namespace NUI
 {
 	using System.Collections;
 	using System.Collections.Generic;
@@ -41,6 +41,11 @@ namespace NTitle
 			icon.sprite = equipmentData.equipmentIcon;
 			nameText.text = equipmentData.equipmentName;
 			descriptionText.text = equipmentData.equipmentDescription;
+		}
+
+		public EquipmentData GetItem()
+		{
+			return equipmentData;
 		}
 
 		private void Awake()
