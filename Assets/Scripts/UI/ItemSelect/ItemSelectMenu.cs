@@ -7,7 +7,7 @@ namespace NUI
     using TMPro;
     using NEquipment;
 
-    public class ItemSellectMenu : MonoBehaviour
+    public class ItemSelectMenu : MonoBehaviour
     {
         [SerializeField]
         private EquipmentDataList allEquipments;

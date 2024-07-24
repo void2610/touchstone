@@ -9,7 +9,7 @@ namespace NTitle
 	using NEquipment;
 	using NManager;
 
-	public class SellectEquipmentContainer : MonoBehaviour
+	public class SelectEquipmentContainer : MonoBehaviour
 	{
 		private Vector3 windowOffset = new Vector3(100, -45, 0);
 		private EquipmentData equipmentData;
