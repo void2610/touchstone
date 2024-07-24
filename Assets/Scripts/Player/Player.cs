@@ -147,9 +147,13 @@ namespace NCharacter
 				}
 			}
 
-			if (!isOnGame)
+			if (isOnGame)
 			{
-				rb.velocity = Vector2.zero;
+				rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+			}
+			else
+			{
+				rb.constraints = RigidbodyConstraints2D.FreezeAll;
 			}
 
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
