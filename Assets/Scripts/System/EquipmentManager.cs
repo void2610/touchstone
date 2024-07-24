@@ -40,7 +40,6 @@ namespace NManager
 		{
 			for (int i = 0; i < n; i++)
 			{
-				Debug.Log(i);
 				if (equipmentObjList[i] != null)
 				{
 					Destroy(equipmentObjList[i]);
@@ -56,6 +55,7 @@ namespace NManager
 				g.GetComponent<Equipment>().Init(GameManager.instance.playerObj, equipmentContainers[i].gauge, actionKeys[i]);
 				equipmentObjList[i] = g;
 				equipmentContainers[i].SetItem(equipmentList[i]);
+				equipmentContainers[i].GetComponent<EquipmentContainer>().SetGauge(0);
 			}
 
 			for (int i = 0; i < n; i++)

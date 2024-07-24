@@ -21,6 +21,14 @@ namespace NUI
 			nameText.text = e.equipmentName;
 		}
 
+		public void SetGauge(float value)
+		{
+			if (gauge != null)
+			{
+				gauge.fillAmount = value;
+			}
+		}
+
 		private void Awake()
 		{
 			if (transform.Find("Gauge") != null)

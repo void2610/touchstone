@@ -24,7 +24,6 @@ namespace NManager
 				if (isRandomedSeed)
 				{
 					seed = (int)DateTime.Now.Ticks;
-					Debug.Log("seed: " + seed);
 				}
 				random = new System.Random(seed);
 				DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 200, sequencesCapacity: 200);
