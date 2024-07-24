@@ -23,8 +23,11 @@ namespace NUI
 
 		private void Awake()
 		{
-			gauge = transform.Find("Gauge").gameObject.GetComponent<Image>();
-			gauge.fillAmount = 0;
+			if (transform.Find("Gauge") != null)
+			{
+				gauge = transform.Find("Gauge").gameObject.GetComponent<Image>();
+				gauge.fillAmount = 0;
+			}
 		}
 	}
 }
