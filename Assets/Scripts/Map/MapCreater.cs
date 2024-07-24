@@ -3,6 +3,7 @@ namespace NMap
     using UnityEngine;
     using System.Collections.Generic;
     using System.Linq;
+    using NManager;
 
     public class MapCreater : MonoBehaviour
     {
@@ -29,12 +30,12 @@ namespace NMap
         {
             for (int i = 0; i < enemyNum; i++)
             {
-                int x = Random.Range(0, mapSize.x);
-                int y = Random.Range(0, mapSize.y);
+                int x = GameManager.instance.RandomRange(0, mapSize.x);
+                int y = GameManager.instance.RandomRange(0, mapSize.y);
 
                 // 重みを元に敵を選択
                 float totalWeight = enemies.Sum(enemy => enemy.weight);
-                float randomValue = Random.Range(0, totalWeight);
+                float randomValue = GameManager.instance.RandomRange(0, totalWeight);
                 foreach (var enemy in enemies)
                 {
                     randomValue -= enemy.weight;

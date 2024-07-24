@@ -24,7 +24,7 @@ namespace NManager
 				{
 					seed = (int)DateTime.Now.Ticks;
 				}
-				UnityEngine.Random.InitState(seed);
+				random = new System.Random(seed);
 				DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 200, sequencesCapacity: 200);
 			}
 			else
@@ -52,9 +52,22 @@ namespace NManager
 		[SerializeField]
 		private int seed = 42;
 
+		public System.Random random { get; private set; }
 		public Player player { get; private set; }
 		public GameObject playerObj { get; private set; }
 		public float maxAltitude { get; set; } = 0;
+
+		public float RandomRange(float min, float max)
+		{
+			float randomValue = (float)(this.random.NextDouble() * (max - min) + min);
+			return randomValue;
+		}
+
+		public int RandomRange(int min, int max)
+		{
+			int randomValue = this.random.Next(min, max);
+			return randomValue;
+		}
 
 		public void SetMaxAltitude(float altitude)
 		{
@@ -109,6 +122,7 @@ namespace NManager
 
 		public void ClearStage()
 		{
+			player.isInvincible = true;
 			Initiate.Fade("ItemScene", Color.black, 1.0f);
 			// SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
 		}

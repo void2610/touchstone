@@ -30,7 +30,7 @@ namespace NMap
 
         private void SetMap(float h)
         {
-            int index = Random.Range(0, mapPrefabs.Count);
+            int index = GameManager.instance.RandomRange(0, mapPrefabs.Count);
             var m = Instantiate(mapPrefabs[index], new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
             m.GetComponent<MapCreater>().Create();
             nextHight += h;
@@ -44,7 +44,7 @@ namespace NMap
             nextHight = startHight;
             mapContainer = new GameObject("MapContainer");
             player = GameManager.instance.player.transform;
-            for (int i = 0; i < mapLength -1; i++)
+            for (int i = 0; i < mapLength - 1; i++)
             {
                 SetMap(mapHight);
             }

@@ -23,7 +23,7 @@ namespace NMap
 
         private void SetMap()
         {
-            int index = Random.Range(0, mapPrefabs.Count);
+            int index = GameManager.instance.RandomRange(0, mapPrefabs.Count);
             GameObject map = Instantiate(mapPrefabs[index], new Vector3(0, nextHight, 0), Quaternion.identity);
             map.transform.SetParent(mapContainer.transform);
             nextHight += mapHight;

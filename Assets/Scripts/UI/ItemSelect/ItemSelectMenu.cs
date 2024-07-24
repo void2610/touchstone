@@ -6,6 +6,7 @@ namespace NUI
     using UnityEngine.UI;
     using TMPro;
     using NEquipment;
+    using NManager;
 
     public class ItemSelectMenu : MonoBehaviour
     {
@@ -50,7 +51,7 @@ namespace NUI
             nowEquip1.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
             nowEquip2.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
             nowEquip3.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 2)]);
-            newEquip.GetComponent<SelectEquipmentContainer>().SetItem(allEquipments.list[Random.Range(0, allEquipments.list.Count)]);
+            newEquip.GetComponent<SelectEquipmentContainer>().SetItem(allEquipments.list[GameManager.instance.RandomRange(0, allEquipments.list.Count)]);
         }
 
         // Update is called once per frame

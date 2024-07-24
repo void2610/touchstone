@@ -4,6 +4,7 @@ namespace NCharacter
     using System.Collections.Generic;
     using UnityEngine;
     using DG.Tweening;
+    using NManager;
 
     public class FloatCube : Enemy
     {
@@ -46,7 +47,8 @@ namespace NCharacter
         protected override void Start()
         {
             base.Start();
-            Invoke(nameof(StartMovement), Random.Range(0.1f, 1.5f));
+
+            Invoke(nameof(StartMovement), GameManager.instance.RandomRange(0.1f, 1.5f));
         }
 
         protected override void Update()
