@@ -4,6 +4,7 @@ namespace NUI
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
     using TMPro;
     using NEquipment;
     using NManager;
@@ -79,11 +80,16 @@ namespace NUI
                 Color c = backGround.GetComponent<Image>().color;
                 backGround.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 0.0f);
                 canvasGroup.alpha = 0.0f;
+                GameManager.instance.SetUp();
 
                 foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).OnComplete(() =>
                 {
                     foreGround.SetActive(false);
-                    GameManager.instance.SetUp();
+
+                    if (SceneManager.GetSceneByName("ItemScene").isLoaded)
+                    {
+                        SceneManager.UnloadSceneAsync("ItemScene");
+                    }
                 });
             });
         }

@@ -141,10 +141,7 @@ namespace NManager
 			player.isMovable = true;
 			player.isOnGame = true;
 			state = GameState.Playing;
-			if (SceneManager.GetSceneByName("ItemScene").isLoaded)
-			{
-				SceneManager.UnloadSceneAsync("ItemScene");
-			}
+
 			player.transform.position = new Vector3(0, 0, 0);
 			this.GetComponent<MapManager>().SetUp();
 			this.GetComponent<EquipmentManager>().SetUp();
