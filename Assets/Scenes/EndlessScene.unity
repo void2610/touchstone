@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c47a249b0d8d654ba396cac97f6a8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEndless: 0
+  isEndless: 1
   allEquipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
   state: 0
   isRandomedSeed: 1

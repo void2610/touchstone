@@ -192,7 +192,7 @@ namespace NCharacter
 				}
 				else
 				{
-					if (isMovable && !isInvincible)
+					if (isMovable)
 					{
 						Camera.main.GetComponent<CameraMoveScript>().ShakeCamera();
 						if (other.transform.position.y < this.transform.position.y)
@@ -203,13 +203,15 @@ namespace NCharacter
 						}
 						else
 						{
-
-							this.CutHp(enemy.atk);
-							Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
-							this.AddForce(new Vector2(dir.x, dir.y) * 30);
-							this.GetComponent<PlayerParticles>().PlayDamageSe();
-							// 無敵時間
-							StartCoroutine(InvincibilityCoroutine());
+							if (!isInvincible)
+							{
+								this.CutHp(enemy.atk);
+								Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
+								this.AddForce(new Vector2(dir.x, dir.y) * 30);
+								this.GetComponent<PlayerParticles>().PlayDamageSe();
+								// 無敵時間
+								StartCoroutine(InvincibilityCoroutine());
+							}
 						}
 					}
 				}
