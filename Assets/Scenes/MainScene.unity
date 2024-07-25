@@ -1848,12 +1848,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843285157}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25, y: -8.4, z: 0}
   m_LocalScale: {x: 15, y: 45, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4449177565880049363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &845039560
 GameObject:
@@ -2211,12 +2211,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88019db731d42c292299df844f5916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapLength: 1
+  mapLength: 5
   mapHight: 50
   startHight: 75
   mapPrefabs:
   - {fileID: 6251663239724963194, guid: b83a53ef17b91410eacdf3c8c82a3af6, type: 3}
-  goalPrefab: {fileID: 6728442215262723929, guid: 55c5e39bb73834886b4d1e1347d9b231, type: 3}
+  goalPrefab: {fileID: 561291338151706487, guid: 55c5e39bb73834886b4d1e1347d9b231, type: 3}
+  goalBlockGroundPrefab: {fileID: 6251663239724963194, guid: b83a53ef17b91410eacdf3c8c82a3af6, type: 3}
+  mapEndAltitude: 0
 --- !u!114 &1017836019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21207,12 +21209,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439421142}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25, y: -8.4, z: 0}
   m_LocalScale: {x: 15, y: 45, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4449177565880049363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1471282070
 GameObject:
@@ -22058,12 +22060,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025736586}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.68, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -12.08, z: 0}
   m_LocalScale: {x: 35.459843, y: 4.4118, z: 4.4118}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4449177565880049363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2025736589
 BoxCollider2D:
@@ -78164,6 +78166,9 @@ Transform:
   m_Children:
   - {fileID: 1069837092}
   - {fileID: 2107668650}
+  - {fileID: 2025736588}
+  - {fileID: 1439421145}
+  - {fileID: 843285159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4449177565880049364
@@ -78179,7 +78184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 60}
-  offset: 20
+  offset: 30
   enemyNum: 8
   enemies:
   - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
@@ -78356,13 +78361,10 @@ SceneRoots:
   - {fileID: 1471282071}
   - {fileID: 1667344539}
   - {fileID: 1090723336}
-  - {fileID: 2025736588}
-  - {fileID: 1439421145}
-  - {fileID: 843285159}
+  - {fileID: 1062132930}
   - {fileID: 485292041}
   - {fileID: 1325893147}
   - {fileID: 4449177565880049363}
   - {fileID: 11745443}
-  - {fileID: 1062132930}
-  - {fileID: 1017836007}
   - {fileID: 577085158}
+  - {fileID: 1017836007}

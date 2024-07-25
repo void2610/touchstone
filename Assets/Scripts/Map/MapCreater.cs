@@ -28,6 +28,8 @@ namespace NMap
         private bool createOnStart = false;
         public void Create()
         {
+            var enemyContainer = new GameObject("EnemyContainer");
+            enemyContainer.transform.parent = this.transform;
             for (int i = 0; i < enemyNum; i++)
             {
                 int x = GameManager.instance.RandomRange(0, mapSize.x);
@@ -41,7 +43,7 @@ namespace NMap
                     randomValue -= enemy.weight;
                     if (randomValue <= 0)
                     {
-                        Instantiate(enemy.prefab, this.transform.position + new Vector3(x - mapSize.x / 2, y - mapSize.y / 2 + offset, 0), Quaternion.identity);
+                        Instantiate(enemy.prefab, this.transform.position + new Vector3(x - mapSize.x / 2, y - mapSize.y / 2 + offset, 0), Quaternion.identity, enemyContainer.transform);
                         break;
                     }
                 }
