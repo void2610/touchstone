@@ -16,4 +16,4 @@ MonoBehaviour:
   equipmentName: Empty
   equipmentDescription: "\u88C5\u5099\u306A\u3057"
   equipmentPrice: 0
-  equipmentIcon: {fileID: 3643772185187624922, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
+  equipmentIcon: {fileID: 21300000, guid: 8b0739427bd4c47ffa40570b95fc7964, type: 3}
