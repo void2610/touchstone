@@ -15,6 +15,10 @@ namespace NManager
 	{
 		public static GameManager instance = null;
 
+		// TODO: 装備選択がおかしい、選択していないものが選択されている
+		// TODO: マルチシーン読み込み時に固まる 事前にロードできないか
+		// TODO: 再セットアップ後にフェードが一瞬出る
+		//  The object of type 'UnityEngine.UI.Image' has been destroyed but you are still trying to access it.
 		private void Awake()
 		{
 			if (instance == null)
