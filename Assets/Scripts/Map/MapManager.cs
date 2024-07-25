@@ -18,6 +18,8 @@ namespace NMap
         [SerializeField]
         private List<GameObject> mapPrefabs;
         [SerializeField]
+        private GameObject firstMap;
+        [SerializeField]
         private GameObject goalPrefab;
         [SerializeField]
         private GameObject goalBlockGroundPrefab;
@@ -48,6 +50,7 @@ namespace NMap
             }
             Instantiate(goalPrefab, new Vector3(0, mapEndAltitude, 0), Quaternion.identity, mapContainer.transform);
             Instantiate(goalBlockGroundPrefab, new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
+            firstMap.GetComponent<MapCreater>().Create();
         }
 
         private void SetMap(float h)

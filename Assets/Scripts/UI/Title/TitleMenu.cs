@@ -164,9 +164,9 @@ namespace NTitle
 			PlayerPrefs.SetFloat("SeVolume", 0.5f);
 
 			UnityroomApiClient.Instance.SendScore(2, 0, ScoreboardWriteMode.Always);
-			PlayerPrefs.SetInt("NowEquip1", 0);
-			PlayerPrefs.SetInt("NowEquip2", 1);
-			PlayerPrefs.SetInt("NowEquip3", 1);
+			PlayerPrefs.SetInt("NowEquip1", 1);
+			PlayerPrefs.SetInt("NowEquip2", 0);
+			PlayerPrefs.SetInt("NowEquip3", 0);
 			for (int i = 0; i < allEquipments.list.Count; i++)
 			{
 				PlayerPrefs.SetInt("Equip" + i, 0);

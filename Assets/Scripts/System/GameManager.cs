@@ -39,6 +39,8 @@ namespace NManager
 		}
 
 		[SerializeField]
+		private bool isEndless = false;
+		[SerializeField]
 		public EquipmentDataList allEquipmentDataList;
 
 
@@ -156,6 +158,12 @@ namespace NManager
 
 		void Start()
 		{
+			if (!isEndless)
+			{
+				PlayerPrefs.SetInt("NowEquip1", 1);
+				PlayerPrefs.SetInt("NowEquip2", 0);
+				PlayerPrefs.SetInt("NowEquip3", 0);
+			}
 			this.SetUp();
 		}
 
