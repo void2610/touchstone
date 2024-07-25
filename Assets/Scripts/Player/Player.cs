@@ -24,7 +24,6 @@ namespace NCharacter
 		private int direction = 1;
 		private float hitInterval = 0.5f;
 		private bool isJumping = false;
-		private float maxAltitude = 0;
 		private float thunderIntensity = 1;
 		private Rigidbody2D rb => this.GetComponent<Rigidbody2D>();
 		private Animator animator => this.GetComponent<Animator>();
@@ -127,11 +126,7 @@ namespace NCharacter
 					transform.localScale = new Vector3(1, 1, 1) * defaultScaleX;
 				}
 
-				if (transform.position.y > maxAltitude)
-				{
-					maxAltitude = transform.position.y;
-					GameManager.instance.SetMaxAltitude(maxAltitude);
-				}
+				GameManager.instance.SetMaxAltitude(transform.position.y);
 			}
 		}
 

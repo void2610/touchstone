@@ -11,8 +11,8 @@ namespace NUI
 
         void Update()
         {
-            float a = GameManager.instance.maxAltitude;
-            this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(defaultPosition.x, a, defaultPosition.z), 3 * Time.deltaTime);
+            float target = GameManager.instance.maxAltitude - GameManager.instance.altitudeOffset;
+            this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(defaultPosition.x, target, defaultPosition.z), 3 * Time.deltaTime);
         }
     }
 }

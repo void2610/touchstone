@@ -58,7 +58,8 @@ namespace NManager
 		public System.Random random { get; private set; }
 		public Player player { get; private set; }
 		public GameObject playerObj { get; private set; }
-		public float maxAltitude { get; set; } = 0;
+		public float maxAltitude { get; private set; } = 0;
+		public float altitudeOffset { get; private set; } = 0;
 
 		public float RandomRange(float min, float max)
 		{
@@ -74,7 +75,7 @@ namespace NManager
 
 		public void SetMaxAltitude(float altitude)
 		{
-			maxAltitude = Mathf.Max(maxAltitude, altitude) - 0.15f;
+			maxAltitude = Mathf.Max(maxAltitude, (altitude + altitudeOffset));
 		}
 
 		public void SetPlayer(GameObject p)
@@ -129,6 +130,7 @@ namespace NManager
 			player.isMovable = false;
 			player.isOnGame = false;
 			state = GameState.Selecting;
+			altitudeOffset = maxAltitude;
 			SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 		}

@@ -17,7 +17,7 @@ namespace NUI
 
         void Update()
         {
-            altitudeText.text = prefix + GameManager.instance.maxAltitude.ToString("F2");
+            altitudeText.text = prefix + (GameManager.instance.maxAltitude - 0.15f).ToString("F2");
         }
     }
 }
