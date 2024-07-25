@@ -2196,6 +2196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allEquipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
+  state: 0
   isRandomedSeed: 0
   seed: 42
 --- !u!114 &1017836019
@@ -11551,6 +11552,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInvincible: 0
+  isShield: 0
+  isMovable: 1
+  isOnGame: 1
 --- !u!114 &1471282079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48173,7 +48177,7 @@ GameObject:
   - component: {fileID: 4407994625355671546}
   - component: {fileID: 4449177565880049364}
   m_Layer: 3
-  m_Name: Grid
+  m_Name: FirstMap
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48303,7 +48307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 30}
-  offset: 0
+  offset: 5
   enemyNum: 5
   enemies:
   - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}

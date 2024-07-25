@@ -149,7 +149,7 @@ namespace NManager
 			state = GameState.Playing;
 
 			player.transform.position = new Vector3(0, 0, 0);
-			this.GetComponent<MapManager>().SetUp();
+			this.GetComponent<MapManager>()?.SetUp();
 			this.GetComponent<EquipmentManager>().SetUp();
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(true);
 		}
