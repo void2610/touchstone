@@ -267,7 +267,6 @@ namespace NTitle
 				int seed = seedInputField.text.GetHashCode();
 				PlayerPrefs.SetInt("Seed", seed);
 				PlayerPrefs.SetString("SeedText", seedInputField.text);
-				Debug.Log("Seed: " + seed);
 			}
 		}
 	}
