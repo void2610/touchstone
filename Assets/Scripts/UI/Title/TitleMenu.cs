@@ -172,6 +172,9 @@ namespace NTitle
 		{
 			PlayerPrefs.SetFloat("BgmVolume", 0.5f);
 			PlayerPrefs.SetFloat("SeVolume", 0.5f);
+			PlayerPrefs.SetInt("RandomSeed", 1);
+			PlayerPrefs.SetInt("Seed", 0);
+			PlayerPrefs.SetString("SeedText", "");
 
 			UnityroomApiClient.Instance.SendScore(2, 0, ScoreboardWriteMode.Always);
 			PlayerPrefs.SetInt("NowEquip1", 1);
@@ -197,6 +200,9 @@ namespace NTitle
 			{
 				PlayerPrefs.SetInt("Coin", 0);
 			}
+
+			randomSeedToggle.isOn = PlayerPrefs.GetInt("RandomSeed", 1) == 0;
+			seedInputField.text = PlayerPrefs.GetString("SeedText", "");
 		}
 
 		void Awake()
@@ -235,6 +241,12 @@ namespace NTitle
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
 			ChangeState(0);
 			SoundManager.instance.PlayBgm(bgmAudioClip);
+
+			randomSeedToggle.isOn = PlayerPrefs.GetInt("RandomSeed", 1) == 0;
+			if (randomSeedToggle.isOn)
+			{
+				seedInputField.text = PlayerPrefs.GetString("SeedText", "");
+			}
 		}
 
 		void Update()
@@ -244,12 +256,18 @@ namespace NTitle
 				seedInputField.interactable = false;
 				seedText.color = new Color(0.2f, 0.2f, 0.2f);
 				placeHolder.text = "";
+				PlayerPrefs.SetInt("RandomSeed", 1);
 			}
 			else
 			{
 				seedInputField.interactable = true;
 				seedText.color = Color.white;
-				placeHolder.text = "Enter number...";
+				placeHolder.text = "Enter seed...";
+				PlayerPrefs.SetInt("RandomSeed", 0);
+				int seed = seedInputField.text.GetHashCode();
+				PlayerPrefs.SetInt("Seed", seed);
+				PlayerPrefs.SetString("SeedText", seedInputField.text);
+				Debug.Log("Seed: " + seed);
 			}
 		}
 	}

@@ -29,9 +29,15 @@ namespace NManager
 			{
 				instance = this;
 
-				if (isRandomedSeed)
+				if (PlayerPrefs.GetInt("RandomSeed", 1) == 1)
 				{
 					seed = (int)DateTime.Now.Ticks;
+					Debug.Log("Random");
+				}
+				else
+				{
+					seed = PlayerPrefs.GetInt("Seed", seed);
+					Debug.Log("Seed: " + seed);
 				}
 				random = new System.Random(seed);
 				DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 200, sequencesCapacity: 200);
@@ -46,7 +52,6 @@ namespace NManager
 		private bool isEndless = false;
 		[SerializeField]
 		public EquipmentDataList allEquipmentDataList;
-
 
 		public enum GameState
 		{
