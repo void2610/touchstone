@@ -97,7 +97,7 @@ namespace NUI
         private void Start()
         {
             Cursor.visible = true;
-            int newEquipID = GameManager.instance.RandomRange(0, allEquipments.list.Count);
+            int newEquipID = GameManager.instance.RandomRange(1, allEquipments.list.Count);
 
             nowEquip1.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
             nowEquip2.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);

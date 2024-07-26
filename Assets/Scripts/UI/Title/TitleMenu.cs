@@ -28,7 +28,17 @@ namespace NTitle
 		[SerializeField]
 		private Slider seSlider;
 		[SerializeField]
+		private Toggle randomSeedToggle;
+		[SerializeField]
+		private TMP_InputField seedInputField;
+		[SerializeField]
+		private TMP_Text placeHolder;
+		[SerializeField]
+		private TMP_Text seedText;
+		[SerializeField]
 		private AudioClip bgmAudioClip;
+
+		public bool isRandomedSeed { get { return seedInputField.interactable; } set { seedInputField.interactable = value; } }
 
 		private int state = 0;
 		//0:タイトル画面 1:装備編成画面 2:設定画面 3:装備選択画面
@@ -225,6 +235,22 @@ namespace NTitle
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
 			ChangeState(0);
 			SoundManager.instance.PlayBgm(bgmAudioClip);
+		}
+
+		void Update()
+		{
+			if (!randomSeedToggle.isOn)
+			{
+				seedInputField.interactable = false;
+				seedText.color = new Color(0.2f, 0.2f, 0.2f);
+				placeHolder.text = "";
+			}
+			else
+			{
+				seedInputField.interactable = true;
+				seedText.color = Color.white;
+				placeHolder.text = "Enter number...";
+			}
 		}
 	}
 }
