@@ -135,8 +135,16 @@ namespace NManager
 			this.GetComponent<UIManager>().SetGaindCoinText("+" + gainedCoins.ToString());
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			Cursor.visible = true;
-			UnityroomApiClient.Instance.SendScore(1, maxAltitude, ScoreboardWriteMode.Always);
-			UnityroomApiClient.Instance.SendScore(2, currentCoins + gainedCoins, ScoreboardWriteMode.Always);
+
+			if (PlayerPrefs.GetInt("RandomSeed", 1) == 1)
+			{
+				UnityroomApiClient.Instance.SendScore(1, maxAltitude, ScoreboardWriteMode.Always);
+				UnityroomApiClient.Instance.SendScore(2, currentCoins + gainedCoins, ScoreboardWriteMode.Always);
+			}
+			else
+			{
+				Debug.Log("Seed is used, not send score");
+			}
 			PlayerPrefs.SetInt("Coin", currentCoins + gainedCoins);
 		}
 
