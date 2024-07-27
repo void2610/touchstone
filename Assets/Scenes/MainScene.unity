@@ -78180,6 +78180,8 @@ MonoBehaviour:
     weight: 1
   - prefab: {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
     weight: 0.3
+  - prefab: {fileID: 4859709793482285359, guid: bae2105c3c53e4560bfbb0d14ad6b907, type: 3}
+    weight: 1
   createOnStart: 0
 --- !u!114 &5771874634429878291 stripped
 MonoBehaviour:
