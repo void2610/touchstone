@@ -14,7 +14,7 @@ namespace NEquipment
 
         private void PlayParticleSystem()
         {
-            footholdInstance.GetComponent<ParticleSystem>().Play();
+            footholdInstance.GetComponentInChildren<ParticleSystem>().Play();
         }
 
         protected override void Awake()
@@ -29,7 +29,7 @@ namespace NEquipment
         protected override void OnActionStart()
         {
             base.OnActionStart();
-            footholdInstance = Instantiate(footholdPrefab, player.transform.position + Vector3.down * 3, Quaternion.Euler(0, 0, 90));
+            footholdInstance = Instantiate(footholdPrefab, player.transform.position + Vector3.down * 3, Quaternion.identity);
             footholdInstance.transform.localScale *= intensity;
             Invoke("PlayParticleSystem", activeTimeLength - 1f);
             Destroy(footholdInstance, activeTimeLength);
