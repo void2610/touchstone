@@ -143,6 +143,12 @@ namespace NTitle
 			InitPlayerPrefs();
 		}
 
+		public void PlayButtonSe()
+		{
+			if (Time.time > 0.5f)
+				SoundManager.instance.PlaySe("button");
+		}
+
 		private void ChangeCanvas(int s)
 		{
 			for (int i = 0; i < canvasGroups.Count; i++)

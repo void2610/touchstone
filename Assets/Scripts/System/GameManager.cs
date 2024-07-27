@@ -21,8 +21,7 @@ namespace NManager
 		// TODO: マルチシーン読み込み時に固まる 事前にロードできないか
 		// TODO: 再セットアップ後にフェードが一瞬出る
 		//  The object of type 'UnityEngine.UI.Image' has been destroyed but you are still trying to access it.
-		// TODO: シード設定追加
-		// TODO: シード使ってたらランキングに載せない
+
 		private void Awake()
 		{
 			if (instance == null)
