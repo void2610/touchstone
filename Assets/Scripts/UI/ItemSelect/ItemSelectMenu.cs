@@ -60,13 +60,18 @@ namespace NUI
 
         private void FadeIn()
         {
+            if (foreGround == null && backGround == null) return;
+
             foreGround.GetComponent<Image>().DOFade(1.0f, fadeTime).OnComplete(() =>
             {
+                if (foreGround == null && backGround == null) return;
                 Color c = backGround.GetComponent<Image>().color;
                 backGround.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1.0f);
                 canvasGroup.alpha = 1.0f;
+                canvasGroup.interactable = true;
                 foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).OnComplete(() =>
                 {
+                    if (foreGround == null && backGround == null) return;
                     foreGround.SetActive(false);
                 });
             });
@@ -74,16 +79,21 @@ namespace NUI
 
         private void FadeOut()
         {
+            if (foreGround == null && backGround == null) return;
+
             foreGround.SetActive(true);
             foreGround.GetComponent<Image>().DOFade(1.0f, fadeTime).OnComplete(() =>
             {
+                if (foreGround == null && backGround == null) return;
                 Color c = backGround.GetComponent<Image>().color;
                 backGround.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 0.0f);
                 canvasGroup.alpha = 0.0f;
+                canvasGroup.interactable = false;
                 GameManager.instance.SetUp();
 
                 foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).OnComplete(() =>
                 {
+                    if (foreGround == null && backGround == null) return;
                     foreGround.SetActive(false);
 
                     if (SceneManager.GetSceneByName("ItemScene").isLoaded)

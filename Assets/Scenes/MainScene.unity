@@ -2211,7 +2211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88019db731d42c292299df844f5916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapLength: 2
+  mapLength: 1
   mapHight: 50
   startHight: 75
   mapPrefabs:
@@ -78172,7 +78172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 40}
-  offset: 25
+  offset: 15
   enemyNum: 8
   enemies:
   - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
