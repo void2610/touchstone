@@ -76,15 +76,15 @@ namespace NManager
 				}
 			}
 		}
-	}
 
-	private void Awake()
-	{
-		if (!isEndless)
+		private void Awake()
 		{
-			PlayerPrefs.SetInt("NowEquip1", 1);
-			PlayerPrefs.SetInt("NowEquip2", 0);
-			PlayerPrefs.SetInt("NowEquip3", 0);
+			if (!isEndless)
+			{
+				PlayerPrefs.SetInt("NowEquip1", 1);
+				PlayerPrefs.SetInt("NowEquip2", 0);
+				PlayerPrefs.SetInt("NowEquip3", 0);
+			}
 		}
 	}
 }

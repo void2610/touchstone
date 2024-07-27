@@ -40,6 +40,10 @@ namespace NMap
             {
                 Destroy(mapContainer);
             }
+            if (firstMap.transform.Find("EnemyContainer") != null)
+            {
+                Destroy(firstMap.transform.Find("EnemyContainer").gameObject);
+            }
 
             nextHight = startHight;
             mapContainer = new GameObject("MapContainer");
