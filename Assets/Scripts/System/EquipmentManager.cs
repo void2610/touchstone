@@ -11,6 +11,8 @@ namespace NManager
 	public class EquipmentManager : MonoBehaviour
 	{
 		[SerializeField]
+		private bool isEndless = false;
+		[SerializeField]
 		private List<string> actionKeys = new List<string>() { "Fire1", "Fire2", "Fire3" };
 		[SerializeField]
 		private List<EquipmentContainer> equipmentContainers = new List<EquipmentContainer>();
@@ -50,7 +52,15 @@ namespace NManager
 
 			for (int i = 0; i < n; i++)
 			{
-				equipmentList[i] = (GameManager.instance.allEquipmentDataList.list[PlayerPrefs.GetInt("NowEquip" + (i + 1).ToString())]);
+				if (isEndless)
+				{
+					equipmentList[i] = (GameManager.instance.allEquipmentDataList.list[PlayerPrefs.GetInt("NowEquipEndless" + (i + 1).ToString())]);
+				}
+				else
+				{
+					equipmentList[i] = (GameManager.instance.allEquipmentDataList.list[PlayerPrefs.GetInt("NowEquip" + (i + 1).ToString())]);
+				}
+
 				GameObject g = Instantiate((GameObject)Resources.Load("Prefabs/Equipment/" + equipmentList[i].equipmentName));
 				g.GetComponent<Equipment>().Init(GameManager.instance.playerObj, equipmentContainers[i].gauge, actionKeys[i]);
 				equipmentObjList[i] = g;
@@ -65,6 +75,16 @@ namespace NManager
 					equipmentObjList[i].GetComponent<IEquipmentModifiable>().ModifyEquipment(equipmentObjList[0].GetComponent<Equipment>(), equipmentObjList[1].GetComponent<Equipment>(), equipmentObjList[2].GetComponent<Equipment>());
 				}
 			}
+		}
+	}
+
+	private void Awake()
+	{
+		if (!isEndless)
+		{
+			PlayerPrefs.SetInt("NowEquip1", 1);
+			PlayerPrefs.SetInt("NowEquip2", 0);
+			PlayerPrefs.SetInt("NowEquip3", 0);
 		}
 	}
 }

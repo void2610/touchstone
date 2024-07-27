@@ -2175,6 +2175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8802f3f68097d124ab9247e3c7718fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEndless: 0
   actionKeys:
   - Fire1
   - Fire2
@@ -2198,8 +2199,6 @@ MonoBehaviour:
   isEndless: 1
   allEquipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
   state: 0
-  isRandomedSeed: 1
-  seed: 42
 --- !u!114 &1017836018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2212,7 +2211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88019db731d42c292299df844f5916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapLength: 5
+  mapLength: 2
   mapHight: 50
   startHight: 75
   mapPrefabs:

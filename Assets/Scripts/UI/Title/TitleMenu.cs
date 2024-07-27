@@ -118,17 +118,17 @@ namespace NTitle
 		{
 			if (selectEquip == 1)
 			{
-				PlayerPrefs.SetInt("NowEquip1", i);
+				PlayerPrefs.SetInt("NowEquipEndless1", i);
 				e1.SetItem(allEquipments.list[i]);
 			}
 			else if (selectEquip == 2)
 			{
-				PlayerPrefs.SetInt("NowEquip2", i);
+				PlayerPrefs.SetInt("NowEquipEndless2", i);
 				e2.SetItem(allEquipments.list[i]);
 			}
 			else if (selectEquip == 3)
 			{
-				PlayerPrefs.SetInt("NowEquip3", i);
+				PlayerPrefs.SetInt("NowEquipEndless3", i);
 				e3.SetItem(allEquipments.list[i]);
 			}
 			SoundManager.instance.PlaySe("button");
@@ -183,9 +183,9 @@ namespace NTitle
 			PlayerPrefs.SetString("SeedText", "");
 
 			UnityroomApiClient.Instance.SendScore(2, 0, ScoreboardWriteMode.Always);
-			PlayerPrefs.SetInt("NowEquip1", 1);
-			PlayerPrefs.SetInt("NowEquip2", 0);
-			PlayerPrefs.SetInt("NowEquip3", 0);
+			PlayerPrefs.SetInt("NowEquipEndless1", 1);
+			PlayerPrefs.SetInt("NowEquipEndless2", 0);
+			PlayerPrefs.SetInt("NowEquipEndless3", 0);
 			for (int i = 0; i < allEquipments.list.Count; i++)
 			{
 				PlayerPrefs.SetInt("Equip" + i, 0);
@@ -193,9 +193,9 @@ namespace NTitle
 			PlayerPrefs.SetInt("Equip0", 1);
 			PlayerPrefs.SetInt("Equip1", 1);
 
-			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
-			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
-			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
+			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless1", 0)]);
+			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless2", 1)]);
+			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless3", 1)]);
 			Debug.Log("Init PlayerPrefs");
 
 			if (Application.isEditor)
@@ -215,7 +215,7 @@ namespace NTitle
 		{
 			Time.timeScale = 1;
 			allEquipments.Init();
-			if (PlayerPrefs.HasKey("NowEquip1") == false)
+			if (PlayerPrefs.HasKey("NowEquipEndless1") == false)
 			{
 				InitPlayerPrefs();
 			}
@@ -242,9 +242,9 @@ namespace NTitle
 			}));
 			trigger.triggers.Add(entry);
 
-			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 0)]);
-			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 1)]);
-			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip3", 1)]);
+			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless1", 0)]);
+			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless2", 1)]);
+			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless3", 1)]);
 			ChangeState(0);
 			SoundManager.instance.PlayBgm(bgmAudioClip);
 

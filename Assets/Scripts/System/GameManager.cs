@@ -64,16 +64,13 @@ namespace NManager
 		[SerializeField]
 		public GameState state = GameState.Playing;
 
-		[SerializeField]
-		private bool isRandomedSeed = false;
-		[SerializeField]
-		private int seed = 42;
-
 		public System.Random random { get; private set; }
 		public Player player { get; private set; }
 		public GameObject playerObj { get; private set; }
 		public float maxAltitude { get; private set; } = 0;
 		public float altitudeOffset { get; private set; } = 0;
+
+		private int seed = 42;
 
 		public float RandomRange(float min, float max)
 		{
@@ -174,12 +171,6 @@ namespace NManager
 
 		void Start()
 		{
-			if (!isEndless)
-			{
-				PlayerPrefs.SetInt("NowEquip1", 1);
-				PlayerPrefs.SetInt("NowEquip2", 0);
-				PlayerPrefs.SetInt("NowEquip3", 0);
-			}
 			this.SetUp();
 		}
 
