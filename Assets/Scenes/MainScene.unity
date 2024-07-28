@@ -21488,6 +21488,7 @@ MonoBehaviour:
   isShield: 0
   isMovable: 1
   isOnGame: 1
+  jumpCnt: 0
 --- !u!114 &1471282079
 MonoBehaviour:
   m_ObjectHideFlags: 0
