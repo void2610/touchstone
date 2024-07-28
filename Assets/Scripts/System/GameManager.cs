@@ -144,13 +144,13 @@ namespace NManager
 			player.isMovable = false;
 			player.isOnGame = false;
 			state = GameState.Selecting;
-			altitudeOffset = maxAltitude;
 			SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 		}
 
 		public void SetUp()
 		{
+			altitudeOffset = maxAltitude;
 			state = GameState.Playing;
 			Time.timeScale = 1;
 			Cursor.visible = false;
