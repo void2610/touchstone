@@ -4,6 +4,8 @@ namespace NManager
 	using System.Collections.Generic;
 	using UnityEngine;
 	using DG.Tweening;
+	using NMap;
+	using NManager;
 
 	public class CameraMoveScript : MonoBehaviour
 	{
@@ -30,9 +32,10 @@ namespace NManager
 
 		private void LateUpdate()
 		{
+			float max = GameManager.instance.gameObject.GetComponent<MapManager>().mapEndAltitude - 5;
 			// プレイヤーの位置に基づいてベース位置を更新
 			Vector2 pos = player.transform.position;
-			basePosition = new Vector3(offsetX, pos.y + offsetY, -10);
+			basePosition = new Vector3(offsetX, Mathf.Min(pos.y + offsetY, max), -10);
 			// カメラの実際の位置をベース位置と揺れのオフセットの合計に設定
 			this.transform.position = basePosition + shakeOffset;
 		}

@@ -24,7 +24,7 @@ namespace NMap
         [SerializeField]
         private GameObject goalBlockGroundPrefab;
 
-        public float mapEndAltitude;
+        public float mapEndAltitude { get; private set; }
         private GameObject mapContainer;
         private Transform player;
 
