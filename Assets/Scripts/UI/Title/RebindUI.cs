@@ -3,6 +3,7 @@ namespace NTitle
     using TMPro;
     using UnityEngine;
     using UnityEngine.InputSystem;
+    using NManager;
 
     public class RebindUI : MonoBehaviour
     {
@@ -47,6 +48,8 @@ namespace NTitle
             // もしActionが設定されていなければ、何もしない
             if (_action == null) return;
 
+            SoundManager.instance?.PlaySe("button");
+
             // もしリバインド中なら、強制的にキャンセル
             // Cancelメソッドを実行すると、OnCancelイベントが発火する
             _rebindOperation?.Cancel();
@@ -85,6 +88,7 @@ namespace NTitle
                 .OnComplete(_ =>
                 {
                     // リバインドが完了した時の処理
+                    SoundManager.instance?.PlaySe("button");
                     SaveRebinds();
                     RefreshDisplay();
                     OnFinished();
@@ -100,6 +104,7 @@ namespace NTitle
         // 上書きされた情報をリセットする
         public void ResetOverrides()
         {
+            SoundManager.instance?.PlaySe("button");
             // Bindingの上書きを全て解除する
             _action?.RemoveAllBindingOverrides();
             SaveRebinds();
@@ -125,7 +130,7 @@ namespace NTitle
         private void SaveRebinds()
         {
             string rebinds = _action.SaveBindingOverridesAsJson();
-            PlayerPrefs.SetString(_action.name, rebinds);
+            PlayerPrefs.SetString("KeyBind_" + _action.name, rebinds);
             PlayerPrefs.Save();
         }
 
@@ -133,7 +138,7 @@ namespace NTitle
         {
             if (PlayerPrefs.HasKey(_action.name))
             {
-                string rebinds = PlayerPrefs.GetString(_action.name);
+                string rebinds = PlayerPrefs.GetString("KeyBind_" + _action.name);
                 _action.LoadBindingOverridesFromJson(rebinds);
             }
         }

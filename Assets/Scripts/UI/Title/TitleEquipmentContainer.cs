@@ -75,7 +75,7 @@ namespace NTitle
 			descriptionBG.transform.position = Vector3.Lerp(descriptionBG.transform.position, Input.mousePosition + windowOffset, Time.deltaTime * 10);
 			descriptionBG.transform.localScale = Vector3.one / descriptionBG.transform.parent.localScale.x;
 
-			isBought = PlayerPrefs.GetInt("Equip" + equipmentData.equipmentID, 0) == 1;
+			isBought = PlayerPrefs.GetInt("Equip" + equipmentData?.equipmentID, 0) == 1;
 			priceText.gameObject.SetActive(!isBought);
 		}
 	}

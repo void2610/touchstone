@@ -149,14 +149,6 @@ namespace NTitle
 			ChangeState(1);
 		}
 
-		public void ResetPlayerPrefs()
-		{
-			SoundManager.instance.PlaySe("button");
-			PlayerPrefs.DeleteAll();
-			Debug.Log("DeleteAll");
-			InitPlayerPrefs();
-		}
-
 		public void PlayButtonSe()
 		{
 			if (Time.time > 0.5f)
@@ -190,7 +182,7 @@ namespace NTitle
 
 		private void InitPlayerPrefs()
 		{
-			PlayerPrefs.DeleteAll();
+			PlayerPrefs.SetInt("IsInitPlayerPrefs", 1);
 			//キーバインドの初期化
 			foreach (Transform child in keyBindElements.transform)
 			{
@@ -220,6 +212,7 @@ namespace NTitle
 			e1.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless1", 0)]);
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless2", 1)]);
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless3", 1)]);
+
 			Debug.Log("Init PlayerPrefs");
 
 			if (Application.isEditor)
@@ -235,19 +228,43 @@ namespace NTitle
 			seedInputField.text = PlayerPrefs.GetString("SeedText", "");
 		}
 
+		public void ResetSetting()
+		{
+			foreach (Transform child in keyBindElements.transform)
+			{
+				if (child.GetComponent<RebindUI>() != null)
+				{
+					child.GetComponent<RebindUI>().ResetOverrides();
+				}
+			}
+
+			PlayerPrefs.SetFloat("BgmVolume", 0.5f);
+			PlayerPrefs.SetFloat("SeVolume", 0.5f);
+			PlayerPrefs.SetInt("RandomSeed", 1);
+			PlayerPrefs.SetInt("Seed", 0);
+			PlayerPrefs.SetString("SeedText", "");
+
+			Debug.Log("Reset PlayerPrefs");
+
+			randomSeedToggle.isOn = PlayerPrefs.GetInt("RandomSeed", 1) == 0;
+			seedInputField.text = PlayerPrefs.GetString("SeedText", "");
+		}
+
 		void Awake()
 		{
 			Time.timeScale = 1;
 			allEquipments.Init();
-			if (PlayerPrefs.HasKey("NowEquipEndless1") == false)
+		}
+		void Start()
+		{
+			if (PlayerPrefs.HasKey("IsInitPlayerPrefs") == false)
 			{
 				InitPlayerPrefs();
 			}
 			bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
 			seSlider.value = PlayerPrefs.GetFloat("SeVolume", 0.5f);
-		}
-		void Start()
-		{
+
+
 			bgmSlider.onValueChanged.AddListener((value) =>
 			{
 				SoundManager.instance.BgmVolume = value;
