@@ -30,6 +30,7 @@ namespace NTitle
             _action = _actionRef.action;
 
             // キーバインドの表示を反映する
+            LoadRebinds();
             RefreshDisplay();
         }
 
@@ -84,6 +85,7 @@ namespace NTitle
                 .OnComplete(_ =>
                 {
                     // リバインドが完了した時の処理
+                    SaveRebinds();
                     RefreshDisplay();
                     OnFinished();
                 })
@@ -100,7 +102,6 @@ namespace NTitle
         {
             // Bindingの上書きを全て解除する
             _action?.RemoveAllBindingOverrides();
-            RefreshDisplay();
         }
 
         // 現在のキーバインド表示を更新
@@ -117,6 +118,27 @@ namespace NTitle
             // オペレーションを作成したら、Disposeしないとメモリリークする
             _rebindOperation?.Dispose();
             _rebindOperation = null;
+        }
+
+        private void SaveRebinds()
+        {
+            string rebinds = _action.SaveBindingOverridesAsJson();
+            PlayerPrefs.SetString(_action.name, rebinds);
+            PlayerPrefs.Save();
+        }
+
+        private void LoadRebinds()
+        {
+            if (PlayerPrefs.HasKey(_action.name))
+            {
+                string rebinds = PlayerPrefs.GetString(_action.name);
+                _action.LoadBindingOverridesFromJson(rebinds);
+            }
+        }
+
+        private void Update()
+        {
+            RefreshDisplay();
         }
     }
 }

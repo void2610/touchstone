@@ -188,6 +188,7 @@ namespace NTitle
 
 		private void InitPlayerPrefs()
 		{
+			PlayerPrefs.DeleteAll();
 			PlayerPrefs.SetFloat("BgmVolume", 0.5f);
 			PlayerPrefs.SetFloat("SeVolume", 0.5f);
 			PlayerPrefs.SetInt("RandomSeed", 1);
