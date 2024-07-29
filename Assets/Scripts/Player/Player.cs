@@ -3,8 +3,9 @@ namespace NCharacter
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
-	using NManager;
 	using UnityEngine;
+	using UnityEngine.InputSystem;
+	using NManager;
 
 	public class Player : MonoBehaviour
 	{
@@ -20,6 +21,7 @@ namespace NCharacter
 		private int maxJumpCnt = 2;
 		private float speed = 15;
 		private float jumpForce = 17.5f;
+		[SerializeField]
 		private int jumpCnt = 0;
 		private int direction = 1;
 		private float hitInterval = 0.5f;
@@ -27,6 +29,9 @@ namespace NCharacter
 		private float thunderIntensity = 1;
 		private Rigidbody2D rb => this.GetComponent<Rigidbody2D>();
 		private Animator animator => this.GetComponent<Animator>();
+
+		private InputAction moveRight, moveLeft, jump;
+		private PlayerInput playerInput => this.GetComponent<PlayerInput>();
 
 		public void Heal(int amount)
 		{
@@ -90,18 +95,24 @@ namespace NCharacter
 		{
 			defaultScaleX = transform.localScale.x;
 			isOnGame = true;
+
+
+			moveRight = playerInput.actions["MoveRight"];
+			moveLeft = playerInput.actions["MoveLeft"];
+			jump = playerInput.actions["Jump"];
 		}
 
 		private void Update()
 		{
+			Debug.Log(moveRight.ReadValue<float>());
 			if (isMovable && isOnGame)
 			{
-				if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+				if (moveRight.ReadValue<float>() > 0 && !(moveLeft.ReadValue<float>() > 0))
 				{
 					direction = 1;
-					animator.SetInteger("PlayerState", 1);
+					animator.SetInteger("PlayerState", 0);
 				}
-				else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+				else if (!(moveRight.ReadValue<float>() > 0) && (moveLeft.ReadValue<float>() > 0))
 				{
 					direction = -1;
 					animator.SetInteger("PlayerState", 1);
@@ -112,7 +123,7 @@ namespace NCharacter
 					animator.SetInteger("PlayerState", 0);
 				}
 
-				if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+				if (jump.WasPressedThisFrame())
 				{
 					isJumping = true;
 				}

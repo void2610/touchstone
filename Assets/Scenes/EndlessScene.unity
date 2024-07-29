@@ -11541,7 +11541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: a89d9cf149f1b408d8b90229d1fec78b, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -11552,12 +11552,52 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1471282070}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 662bfb78-0ae7-4958-9685-d97c2ef97d82
+    m_ActionName: 'Player/MoveRight[/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5dec5591-b6ce-4fee-9d20-b597716a09a9
+    m_ActionName: 'Player/MoveLeft[/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fd8c90b9-1d3e-4655-b9f0-49289e04dd9a
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 51df734c-9aed-450d-9754-9b5888384e1b
+    m_ActionName: 'Player/Equip1[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e43c5004-56c1-4ce6-a6cc-4994a02db03d
+    m_ActionName: 'Player/Equip2[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d382d8ba-a93f-4e85-8760-07e4148a3fbc
+    m_ActionName: 'Player/Equip3[/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1cd9e247-23b6-4ecb-a7ac-160dc414b0a1
+    m_ActionName: 'Player/Pause[/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
 --- !u!1 &1534958803
 GameObject:
   m_ObjectHideFlags: 0
