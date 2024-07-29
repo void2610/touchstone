@@ -10,6 +10,7 @@ namespace NManager
 	using NEquipment;
 	using NMap;
 	using UnityEngine.SceneManagement;
+	using UnityEngine.InputSystem;
 
 	public class GameManager : MonoBehaviour
 	{
@@ -66,6 +67,8 @@ namespace NManager
 		public float altitudeOffset { get; private set; } = 0;
 
 		private int seed = 42;
+		private PlayerInput playerInput => this.GetComponent<PlayerInput>();
+		private InputAction pause;
 
 		public float RandomRange(float min, float max)
 		{
@@ -97,6 +100,8 @@ namespace NManager
 
 		public void Pause()
 		{
+			playerInput.actions.Disable();
+			pause.Enable();
 			state = GameState.Paused;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.Paused);
 			Cursor.visible = true;
@@ -106,6 +111,7 @@ namespace NManager
 
 		public void Resume()
 		{
+			playerInput.actions.Enable();
 			state = GameState.Playing;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.Playing);
 			Cursor.visible = false;
@@ -166,6 +172,7 @@ namespace NManager
 
 		void Start()
 		{
+			pause = playerInput.actions["Pause"];
 			this.SetUp();
 		}
 
@@ -174,13 +181,13 @@ namespace NManager
 			switch (state)
 			{
 				case GameState.Playing:
-					if (Input.GetKeyDown(KeyCode.P))
+					if (pause.WasPressedThisFrame())
 					{
 						Pause();
 					}
 					break;
 				case GameState.Paused:
-					if (Input.GetKeyDown(KeyCode.P))
+					if (pause.WasPressedThisFrame())
 					{
 						Resume();
 					}
