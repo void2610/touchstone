@@ -2139,6 +2139,7 @@ GameObject:
   - component: {fileID: 1017836015}
   - component: {fileID: 1017836018}
   - component: {fileID: 1017836019}
+  - component: {fileID: 1017836020}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2188,10 +2189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndless: 0
-  actionKeys:
-  - Fire1
-  - Fire2
-  - Fire3
+  actions: []
   equipmentContainers:
   - {fileID: 5771874634429878291}
   - {fileID: 415251975}
@@ -2249,6 +2247,36 @@ MonoBehaviour:
   - {fileID: 1711021071}
   resultText: {fileID: 649797944}
   gaindCoinText: {fileID: 845039562}
+--- !u!114 &1017836020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017836006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a89d9cf149f1b408d8b90229d1fec78b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1032762191
 GameObject:
   m_ObjectHideFlags: 0
@@ -21300,6 +21328,7 @@ GameObject:
   - component: {fileID: 1471282076}
   - component: {fileID: 1471282077}
   - component: {fileID: 1471282079}
+  - component: {fileID: 1471282080}
   m_Layer: 0
   m_Name: Player
   m_TagString: PlayerTrigger
@@ -21510,6 +21539,36 @@ MonoBehaviour:
   sandParticle: {fileID: 1783607878392164987, guid: 1af85b9d788d14f0395ad6992b1c6224, type: 3}
   dashParticle: {fileID: 3530141316214896690, guid: be1f5e445e8294bbbaed0636b6ec159a, type: 3}
   healParticle: {fileID: 443494868773313826, guid: 6371796b4ed214a66b6b0f8620c4ee3e, type: 3}
+--- !u!114 &1471282080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471282070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a89d9cf149f1b408d8b90229d1fec78b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1534958803
 GameObject:
   m_ObjectHideFlags: 0
