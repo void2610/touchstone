@@ -16,7 +16,6 @@ namespace NCharacter
 		public int killScore { get; protected set; }
 		protected int direction = 1; //-1 = 左  1 = 右
 		protected Vector3 startPosition => this.transform.position;
-		private bool isQuitting = false;
 		protected GameObject deathParticle => Resources.Load<GameObject>("Prefabs/Particle/EnemyDeathParticle");
 
 		public virtual void Attack()
@@ -28,16 +27,18 @@ namespace NCharacter
 			hp -= damage;
 			if (hp <= 0)
 			{
+				InstantiateDeathParticle();
 				Destroy(this.gameObject);
 			}
 		}
 
+		public void InstantiateDeathParticle()
+		{
+			Instantiate(deathParticle, this.transform.position, Quaternion.identity);
+		}
+
 		protected virtual void OnDestroy()
 		{
-			if (!isQuitting && GameManager.instance.state == GameManager.GameState.Playing)
-			{
-				Instantiate(deathParticle, this.transform.position, Quaternion.identity);
-			}
 		}
 
 		protected virtual void Awake()
@@ -54,11 +55,6 @@ namespace NCharacter
 
 		protected virtual void FixedUpdate()
 		{
-		}
-
-		private void OnApplicationQuit()
-		{
-			isQuitting = true;
 		}
 	}
 }
