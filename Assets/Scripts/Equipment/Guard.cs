@@ -9,8 +9,7 @@ namespace NEquipment
 	{
 		protected override void Awake()
 		{
-			name = "Dash";
-			actionKey = "Fire2";
+			name = "Guard";
 			isCooling = false;
 			coolTimeLength = 3.0f;
 			isEnable = true;
@@ -22,6 +21,7 @@ namespace NEquipment
 		protected override void OnActionStart()
 		{
 			player.GetComponent<Player>().isShield = true;
+			this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
 		}
 
 		protected override void Effect()
@@ -32,12 +32,12 @@ namespace NEquipment
 		protected override void OnActionEnd()
 		{
 			player.GetComponent<Player>().isShield = false;
-			this.transform.position = new Vector3(0, 0, -10);
+			this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.0f);
 		}
 
 		protected override void Start()
 		{
-			this.transform.position = new Vector3(0, 0, -10);
+			this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.0f);
 			base.Start();
 		}
 

@@ -104,7 +104,6 @@ namespace NCharacter
 
 		private void Update()
 		{
-			Debug.Log(moveRight.ReadValue<float>());
 			if (isMovable && isOnGame)
 			{
 				if (moveRight.ReadValue<float>() > 0 && !(moveLeft.ReadValue<float>() > 0))

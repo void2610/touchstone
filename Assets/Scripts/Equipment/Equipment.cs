@@ -3,6 +3,7 @@ namespace NEquipment
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using UnityEngine.InputSystem;
 	using NCharacter;
 	using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ namespace NEquipment
 		/// <summary>
 		/// 装備を使用するためのキー
 		/// </summary>
-		public string actionKey;
+		public InputAction actionKey;
 
 		/// <summary>
 		/// 長押しかどうか
@@ -82,7 +83,7 @@ namespace NEquipment
 
 		public Image gauge;
 
-		public void Init(GameObject player, Image gauge, string actionKey)
+		public void Init(GameObject player, Image gauge, InputAction actionKey)
 		{
 			this.player = player;
 			this.gauge = gauge;
@@ -163,12 +164,12 @@ namespace NEquipment
 		protected virtual void Update()
 		{
 			angle = getMouseAngle();
-			if (Input.GetButton(actionKey) && isEnable && !isCooling && !isActive)
+			if (actionKey.WasPressedThisFrame() && isEnable && !isCooling && !isActive)
 			{
 				StartCoroutine(Action());
 			}
 
-			if (isHold && isActive && Input.GetButtonUp(actionKey))
+			if (isHold && isActive && actionKey.WasReleasedThisFrame())
 			{
 				isActive = false;
 				activeStartTime = 0;

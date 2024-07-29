@@ -4,6 +4,7 @@ namespace NManager
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using UnityEngine.InputSystem;
 	using NEquipment;
 	using NUI;
 	using NInterface;
@@ -13,12 +14,13 @@ namespace NManager
 		[SerializeField]
 		private bool isEndless = false;
 		[SerializeField]
-		private List<string> actionKeys = new List<string>() { "Fire1", "Fire2", "Fire3" };
+		private List<InputAction> actions = new List<InputAction>();
 		[SerializeField]
 		private List<EquipmentContainer> equipmentContainers = new List<EquipmentContainer>();
 		private EquipmentData[] equipmentList = { null, null, null };
 		private GameObject[] equipmentObjList = { null, null, null };
 		private int n = 3;
+		private PlayerInput playerInput => this.GetComponent<PlayerInput>();
 
 		public void ChangeAllEquipmentEnabled(bool enabled)
 		{
@@ -62,7 +64,7 @@ namespace NManager
 				}
 
 				GameObject g = Instantiate((GameObject)Resources.Load("Prefabs/Equipment/" + equipmentList[i].equipmentName));
-				g.GetComponent<Equipment>().Init(GameManager.instance.playerObj, equipmentContainers[i].gauge, actionKeys[i]);
+				g.GetComponent<Equipment>().Init(GameManager.instance.playerObj, equipmentContainers[i].gauge, actions[i]);
 				equipmentObjList[i] = g;
 				equipmentContainers[i].SetItem(equipmentList[i]);
 				equipmentContainers[i].GetComponent<EquipmentContainer>().SetGauge(0);
@@ -85,6 +87,10 @@ namespace NManager
 				PlayerPrefs.SetInt("NowEquip2", 0);
 				PlayerPrefs.SetInt("NowEquip3", 0);
 			}
+
+			actions.Add(playerInput.actions["Equip1"]);
+			actions.Add(playerInput.actions["Equip2"]);
+			actions.Add(playerInput.actions["Equip3"]);
 		}
 	}
 }

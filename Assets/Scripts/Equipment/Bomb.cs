@@ -15,7 +15,6 @@ namespace NEquipment
 		protected override void Awake()
 		{
 			name = "Bomb";
-			actionKey = "Fire3";
 			isCooling = false;
 			coolTimeLength = 4.0f;
 			isEnable = true;
