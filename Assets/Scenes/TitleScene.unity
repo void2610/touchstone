@@ -1490,6 +1490,7 @@ MonoBehaviour:
   seedInputField: {fileID: 1210961428}
   placeHolder: {fileID: 1277414634}
   seedText: {fileID: 38468761}
+  keyBindElements: {fileID: 1457593926}
   bgmAudioClip: {fileID: 8300000, guid: 4c7b19c02815f4531974357fafe64795, type: 3}
 --- !u!1 &326350723
 GameObject:
@@ -8842,7 +8843,7 @@ GameObject:
   - component: {fileID: 1457593927}
   - component: {fileID: 1457593928}
   m_Layer: 0
-  m_Name: Layout
+  m_Name: KeyBindings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -102,6 +102,8 @@ namespace NTitle
         {
             // Bindingの上書きを全て解除する
             _action?.RemoveAllBindingOverrides();
+            SaveRebinds();
+            RefreshDisplay();
         }
 
         // 現在のキーバインド表示を更新
@@ -134,11 +136,6 @@ namespace NTitle
                 string rebinds = PlayerPrefs.GetString(_action.name);
                 _action.LoadBindingOverridesFromJson(rebinds);
             }
-        }
-
-        private void Update()
-        {
-            RefreshDisplay();
         }
     }
 }

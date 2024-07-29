@@ -36,6 +36,8 @@ namespace NTitle
 		[SerializeField]
 		private TMP_Text seedText;
 		[SerializeField]
+		private GameObject keyBindElements;
+		[SerializeField]
 		private AudioClip bgmAudioClip;
 
 		public bool isRandomedSeed { get { return seedInputField.interactable; } set { seedInputField.interactable = value; } }
@@ -189,6 +191,15 @@ namespace NTitle
 		private void InitPlayerPrefs()
 		{
 			PlayerPrefs.DeleteAll();
+			//キーバインドの初期化
+			foreach (Transform child in keyBindElements.transform)
+			{
+				if (child.GetComponent<RebindUI>() != null)
+				{
+					child.GetComponent<RebindUI>().ResetOverrides();
+				}
+			}
+
 			PlayerPrefs.SetFloat("BgmVolume", 0.5f);
 			PlayerPrefs.SetFloat("SeVolume", 0.5f);
 			PlayerPrefs.SetInt("RandomSeed", 1);
