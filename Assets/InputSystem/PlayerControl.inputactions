@@ -94,17 +94,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f9dbef64-52a3-4be0-bde9-e00f3ed880e3",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d6ac8648-3236-49b5-a2c9-b2e7d323b7b4",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",

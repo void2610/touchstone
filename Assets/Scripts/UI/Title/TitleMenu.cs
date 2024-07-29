@@ -64,6 +64,12 @@ namespace NTitle
 			ChangeState(2);
 		}
 
+		public void OnClickControlSettingButton()
+		{
+			SoundManager.instance.PlaySe("button");
+			ChangeState(4);
+		}
+
 		public void OnClickBackButton()
 		{
 			SoundManager.instance.PlaySe("button");
@@ -77,6 +83,12 @@ namespace NTitle
 			Application.Quit();
 			//エディターでプレイモードを終了
 			// UnityEditor.EditorApplication.isPlaying = false;
+		}
+
+		public void BackToSetting()
+		{
+			SoundManager.instance.PlaySe("button");
+			ChangeState(2);
 		}
 
 		public void OnClickMainEntryButton()
