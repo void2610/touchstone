@@ -8952,6 +8952,15 @@ MonoBehaviour:
   - name: dash
     audioClip: {fileID: 8300000, guid: 193a2e417cd1b47118d8115409f8a7ef, type: 3}
     volume: 1
+  - name: foothold
+    audioClip: {fileID: 8300000, guid: 6e0892409531241598d617ffe5573615, type: 3}
+    volume: 0.7
+  - name: thunder
+    audioClip: {fileID: 8300000, guid: d9b5f0beef31e4fa89e86b6cc2dcee58, type: 3}
+    volume: 0.7
+  - name: heal
+    audioClip: {fileID: 8300000, guid: 551ee08d6f4d2436eafcce5b8609d460, type: 3}
+    volume: 0.7
 --- !u!4 &1473492721
 Transform:
   m_ObjectHideFlags: 0

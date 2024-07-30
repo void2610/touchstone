@@ -5,6 +5,7 @@ namespace NEquipment
 	using UnityEngine;
 	using UnityEngine.UI;
 	using NCharacter;
+	using NManager;
 
 	public class Thunder : Equipment
 	{
@@ -25,6 +26,7 @@ namespace NEquipment
 			base.OnActionStart();
 			thunderParticle.Play();
 			player.GetComponent<Player>().SetIsThunder(true, this.intensity);
+			SoundManager.instance.PlaySe("thunder");
 		}
 
 		protected override void Effect()

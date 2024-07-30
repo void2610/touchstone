@@ -5,6 +5,7 @@ namespace NEquipment
     using UnityEngine;
     using UnityEngine.UI;
     using NCharacter;
+    using NManager;
 
     public class Foothold : Equipment
     {
@@ -33,6 +34,7 @@ namespace NEquipment
             footholdInstance.transform.localScale *= intensity;
             Invoke("PlayParticleSystem", activeTimeLength - 1f);
             Destroy(footholdInstance, activeTimeLength);
+            SoundManager.instance.PlaySe("foothold");
         }
 
         protected override void OnActionEnd()

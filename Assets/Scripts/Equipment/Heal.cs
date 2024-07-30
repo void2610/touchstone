@@ -5,6 +5,7 @@ namespace NEquipment
     using UnityEngine;
     using UnityEngine.UI;
     using NCharacter;
+    using NManager;
 
     public class Heal : Equipment
     {
@@ -22,6 +23,7 @@ namespace NEquipment
             base.OnActionStart();
             player.GetComponent<PlayerParticles>().PlayHealParticle();
             player.GetComponent<Player>().Heal(1);
+            SoundManager.instance.PlaySe("heal");
         }
     }
 }

@@ -4,6 +4,7 @@ namespace NEquipment
 	using System.Collections.Generic;
 	using UnityEngine;
 	using NCharacter;
+	using NManager;
 
 	public class Guard : Equipment
 	{
@@ -20,6 +21,7 @@ namespace NEquipment
 
 		protected override void OnActionStart()
 		{
+			SoundManager.instance.PlaySe("foothold");
 			player.GetComponent<Player>().isShield = true;
 			this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
 		}
