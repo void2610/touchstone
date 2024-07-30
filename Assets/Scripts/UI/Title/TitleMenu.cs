@@ -257,7 +257,7 @@ namespace NTitle
 		}
 		void Start()
 		{
-			if (PlayerPrefs.HasKey("IsInitPlayerPrefs") == false)
+			if (PlayerPrefs.HasKey("NowEquipEndless1") == false)
 			{
 				InitPlayerPrefs();
 			}
