@@ -21,14 +21,8 @@ namespace NManager
 
 
         public static SoundManager instance;
-
-        [SerializeField]
-        private AudioSource bgmAudioSource;
-        [SerializeField]
-        private AudioClip bgmAudioClip;
         private AudioSource[] seAudioSourceList = new AudioSource[20];
         private float seVolume = 0.5f;
-        private float bgmVolume = 0.5f;
 
         void Awake()
         {
@@ -48,20 +42,6 @@ namespace NManager
             }
         }
 
-        public float BgmVolume
-        {
-            get
-            {
-                return bgmVolume;
-            }
-            set
-            {
-                bgmVolume = value;
-                bgmAudioSource.volume = value;
-                PlayerPrefs.SetFloat("BgmVolume", value);
-            }
-        }
-
         public float SeVolume
         {
             get
@@ -73,26 +53,6 @@ namespace NManager
                 seVolume = value;
                 PlayerPrefs.SetFloat("SeVolume", value);
             }
-        }
-
-        public void PlayBgm(AudioClip clip, float volume = 1.0f)
-        {
-            bgmAudioSource.clip = clip;
-
-            if (clip == null)
-            {
-                return;
-            }
-            if (volume > 0)
-            {
-                bgmAudioSource.volume = volume * BgmVolume;
-            }
-            bgmAudioSource.Play();
-        }
-
-        public void StopBgm()
-        {
-            bgmAudioSource.Stop();
         }
 
         public void PlaySe(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
@@ -140,7 +100,6 @@ namespace NManager
 
         private void Start()
         {
-            BgmVolume = 0.5f;
             SeVolume = 0.5f;
         }
     }

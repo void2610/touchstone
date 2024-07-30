@@ -49,9 +49,7 @@ namespace NTitle
 		public void OnClickStartButton()
 		{
 			SoundManager.instance.PlaySe("button");
-			SoundManager.instance.StopBgm();
 			Initiate.Fade("SampleScene", Color.black, 1.0f);
-
 		}
 
 		public void OnClickEndlessButton()
@@ -97,7 +95,6 @@ namespace NTitle
 		{
 			//ゲームシーンへ
 			SoundManager.instance.PlaySe("button");
-			SoundManager.instance.StopBgm();
 			Initiate.Fade("MainScene", Color.black, 1.0f);
 		}
 
@@ -105,7 +102,6 @@ namespace NTitle
 		{
 			//ゲームシーンへ
 			SoundManager.instance.PlaySe("button");
-			SoundManager.instance.StopBgm();
 			Initiate.Fade("EndlessScene", Color.black, 1.0f);
 		}
 
@@ -267,7 +263,7 @@ namespace NTitle
 
 			bgmSlider.onValueChanged.AddListener((value) =>
 			{
-				SoundManager.instance.BgmVolume = value;
+				BGMManager.instance.BgmVolume = value;
 			});
 
 			seSlider.onValueChanged.AddListener((value) =>
@@ -287,7 +283,6 @@ namespace NTitle
 			e2.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless2", 1)]);
 			e3.SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquipEndless3", 1)]);
 			ChangeState(0);
-			SoundManager.instance.PlayBgm(bgmAudioClip);
 
 			randomSeedToggle.isOn = PlayerPrefs.GetInt("RandomSeed", 1) == 0;
 			if (randomSeedToggle.isOn)
