@@ -1742,7 +1742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &376509668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7746,7 +7746,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1349387464}
   m_OnClick:
     m_PersistentCalls:
@@ -8948,6 +8948,9 @@ MonoBehaviour:
     volume: 1
   - name: shield
     audioClip: {fileID: 8300000, guid: 05fb231bf8b234f77ae27f871b3c68a3, type: 3}
+    volume: 1
+  - name: dash
+    audioClip: {fileID: 8300000, guid: 193a2e417cd1b47118d8115409f8a7ef, type: 3}
     volume: 1
 --- !u!4 &1473492721
 Transform:
@@ -11167,7 +11170,7 @@ MonoBehaviour:
   playOnStart: 1
   bgmList:
   - audioClip: {fileID: 8300000, guid: 81909652b2d1e42b88b3ec193f75ef72, type: 3}
-    volume: 1.5
+    volume: 2
 --- !u!4 &1756730294
 Transform:
   m_ObjectHideFlags: 0
@@ -11649,8 +11652,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1473492720}
-        m_TargetAssemblyTypeName: NTitle.SoundManager, Assembly-CSharp
+      - m_Target: {fileID: 1756730293}
+        m_TargetAssemblyTypeName: NManager.BGMManager, Assembly-CSharp
         m_MethodName: set_BgmVolume
         m_Mode: 0
         m_Arguments:

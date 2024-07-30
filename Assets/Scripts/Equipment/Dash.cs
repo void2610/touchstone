@@ -37,6 +37,7 @@ namespace NEquipment
 			player.GetComponent<PlayerParticles>().PlayDashParticle(angle);
 			if (aie != null) aie.isCreateAfterImage = true;
 			Camera.main.GetComponent<CameraMoveScript>().ShakeCamera(strength: 0.5f);
+			SoundManager.instance.PlaySe("dash");
 		}
 
 		protected override void Effect()

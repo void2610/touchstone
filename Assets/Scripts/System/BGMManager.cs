@@ -21,6 +21,7 @@ namespace NManager
 
         private AudioSource audioSource => this.GetComponent<AudioSource>();
         private bool isPlaying = false;
+        private SoundData currentBGM;
         private float volume = 0.5f;
 
         public float BgmVolume
@@ -33,6 +34,7 @@ namespace NManager
             {
                 volume = value;
                 PlayerPrefs.SetFloat("BgmVolume", value);
+                audioSource.volume = currentBGM != null ? volume * currentBGM.volume : volume;
             }
         }
 
@@ -51,8 +53,9 @@ namespace NManager
         private void PlayRandomBGM()
         {
             var bgm = bgmList[Random.Range(0, bgmList.Count)];
-            audioSource.clip = bgm.audioClip;
-            audioSource.volume = volume * bgm.volume;
+            currentBGM = bgm;
+            audioSource.clip = currentBGM.audioClip;
+            audioSource.volume = volume * currentBGM.volume;
             audioSource.Play();
         }
 
