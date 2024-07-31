@@ -23,18 +23,17 @@ namespace NUI
 		{
 			Cursor.visible = false;
 
-			if (cursorDotTexture == null)
+			if (cursorDotTexture != null)
 			{
-				return;
-			}
-			for (int i = 0; i < cursorDotNum; i++)
-			{
-				GameObject dot = new GameObject("CursorDot" + i);
-				dot.transform.parent = this.transform;
-				dot.transform.localScale = new Vector3(cursorDotSize, cursorDotSize, 1);
-				dot.AddComponent<SpriteRenderer>().sprite = Sprite.Create(cursorDotTexture, new Rect(0, 0, cursorDotTexture.width, cursorDotTexture.height), new Vector2(0.5f, 0.5f));
-				dot.GetComponent<SpriteRenderer>().material = cursorDotMaterial;
-				dots.Add(dot);
+				for (int i = 0; i < cursorDotNum; i++)
+				{
+					GameObject dot = new GameObject("CursorDot" + i);
+					dot.transform.parent = this.transform;
+					dot.transform.localScale = new Vector3(cursorDotSize, cursorDotSize, 1);
+					dot.AddComponent<SpriteRenderer>().sprite = Sprite.Create(cursorDotTexture, new Rect(0, 0, cursorDotTexture.width, cursorDotTexture.height), new Vector2(0.5f, 0.5f));
+					dot.GetComponent<SpriteRenderer>().material = cursorDotMaterial;
+					dots.Add(dot);
+				}
 			}
 		}
 
@@ -50,7 +49,7 @@ namespace NUI
 			// ワールド座標に変換されたマウス座標を代入
 			if (GameManager.instance.state != GameManager.GameState.GameOver && GameManager.instance.state != GameManager.GameState.Other)
 			{
-				this.transform.position = cursorPos;
+				this.transform.position = Vector3.Lerp(this.transform.position, cursorPos, Time.deltaTime * 40f);
 
 				if (time >= 2)
 				{
