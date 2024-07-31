@@ -5,7 +5,7 @@ namespace NUI
 	using UnityEngine;
 	using NManager;
 
-	public class MoveMouseCursorScript : MonoBehaviour
+	public class MyCursor : MonoBehaviour
 	{
 		[SerializeField]
 		private Texture2D cursorDotTexture;
@@ -23,6 +23,10 @@ namespace NUI
 		{
 			Cursor.visible = false;
 
+			if (cursorDotTexture == null)
+			{
+				return;
+			}
 			for (int i = 0; i < cursorDotNum; i++)
 			{
 				GameObject dot = new GameObject("CursorDot" + i);
@@ -30,7 +34,6 @@ namespace NUI
 				dot.transform.localScale = new Vector3(cursorDotSize, cursorDotSize, 1);
 				dot.AddComponent<SpriteRenderer>().sprite = Sprite.Create(cursorDotTexture, new Rect(0, 0, cursorDotTexture.width, cursorDotTexture.height), new Vector2(0.5f, 0.5f));
 				dot.GetComponent<SpriteRenderer>().material = cursorDotMaterial;
-				// dot.GetComponent<SpriteRenderer>().sortingOrder = 100;
 				dots.Add(dot);
 			}
 		}
