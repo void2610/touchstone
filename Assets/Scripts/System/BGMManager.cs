@@ -3,6 +3,7 @@ namespace NManager
     using UnityEngine;
     using System.Collections;
     using System.Collections.Generic;
+    using DG.Tweening;
 
     public class BGMManager : MonoBehaviour
     {
@@ -23,6 +24,8 @@ namespace NManager
         private bool isPlaying = false;
         private SoundData currentBGM;
         private float volume = 0.5f;
+        private float fadeTime = 1.5f;
+        private bool isFading = false;
 
         public float BgmVolume
         {
@@ -40,23 +43,31 @@ namespace NManager
 
         public void Play()
         {
+            if (currentBGM == null) return;
+
             isPlaying = true;
             audioSource.Play();
+            audioSource.DOFade(volume * currentBGM.volume, fadeTime).SetEase(Ease.InQuad);
         }
 
         public void Stop()
         {
             isPlaying = false;
-            audioSource.Stop();
+            audioSource.DOFade(0, fadeTime).SetEase(Ease.InQuad).OnComplete(() => audioSource.Stop());
         }
 
         private void PlayRandomBGM()
         {
+            Debug.Log("PlayRandomBGM");
+            audioSource.Stop();
+
             var bgm = bgmList[Random.Range(0, bgmList.Count)];
             currentBGM = bgm;
             audioSource.clip = currentBGM.audioClip;
-            audioSource.volume = volume * currentBGM.volume;
+            audioSource.volume = 0;
+
             audioSource.Play();
+            audioSource.DOFade(volume * currentBGM.volume, fadeTime).SetEase(Ease.InQuad).OnComplete(() => isFading = false);
         }
 
         // TODO: フェード
@@ -75,7 +86,7 @@ namespace NManager
         private void Start()
         {
             volume = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
-            audioSource.volume = volume;
+            audioSource.volume = 0;
             if (playOnStart)
             {
                 isPlaying = true;
@@ -85,9 +96,14 @@ namespace NManager
 
         private void Update()
         {
-            if (!audioSource.isPlaying && isPlaying)
+            if (isPlaying && audioSource.clip != null)
             {
-                PlayRandomBGM();
+                float remainingTime = audioSource.clip.length - audioSource.time;
+                if (remainingTime <= fadeTime && !isFading)
+                {
+                    isFading = true;
+                    audioSource.DOFade(0, remainingTime).SetEase(Ease.InQuad).OnComplete(() => PlayRandomBGM());
+                }
             }
         }
     }

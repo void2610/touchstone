@@ -78154,6 +78154,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGMManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7571287356800539307, guid: fb28dd04c60ed43a68654d4b4b1feb0e, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571287356800539307, guid: fb28dd04c60ed43a68654d4b4b1feb0e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7911556191618323286, guid: fb28dd04c60ed43a68654d4b4b1feb0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2859539
