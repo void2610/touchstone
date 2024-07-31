@@ -70,6 +70,8 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"も"
+	"h: ref=<$object:none$>"
 ]
 searchItemFavorites = [
 ]

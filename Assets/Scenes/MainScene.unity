@@ -2132,7 +2132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1017836007}
-  - component: {fileID: 1017836009}
   - component: {fileID: 1017836012}
   - component: {fileID: 1017836015}
   - component: {fileID: 1017836018}
@@ -2160,20 +2159,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1017836009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017836006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eedce050b02f57c4b9e5e2db7703112b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 0}
-  cursor: {fileID: 1245595017}
 --- !u!114 &1017836012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20842,6 +20827,7 @@ GameObject:
   - component: {fileID: 1245595019}
   - component: {fileID: 1245595018}
   - component: {fileID: 1245595020}
+  - component: {fileID: 1245595021}
   m_Layer: 5
   m_Name: Cursor
   m_TagString: Untagged
@@ -20941,6 +20927,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1245595021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245595017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedce050b02f57c4b9e5e2db7703112b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorDotTexture: {fileID: 2800000, guid: 97b1a3eebaa1d4cb59fd748adbbe2907, type: 3}
+  cursorDotSize: 0.25
+  cursorDotNum: 6
 --- !u!1 &1253055597
 GameObject:
   m_ObjectHideFlags: 0
