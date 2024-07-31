@@ -2668,8 +2668,10 @@ MonoBehaviour:
     volume: 0.3
   - audioClip: {fileID: 8300000, guid: 267b6faaffd4148249c6f96e762d31fc, type: 3}
     volume: 0.3
-  - audioClip: {fileID: 8300000, guid: d052064f6736d4804859f5b08f52d29e, type: 3}
+  - audioClip: {fileID: 8300000, guid: 978eff30dd94a46fa96beddd14fa34eb, type: 3}
     volume: 0.4
+  - audioClip: {fileID: 8300000, guid: 61731f4656ee247f7892493c3c1f33cc, type: 3}
+    volume: 0.6
 --- !u!4 &1042018033
 Transform:
   m_ObjectHideFlags: 0
@@ -20876,8 +20878,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 418342947
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
