@@ -10,6 +10,8 @@ namespace NUI
 		[SerializeField]
 		private Texture2D cursorDotTexture;
 		[SerializeField]
+		private Material cursorDotMaterial;
+		[SerializeField]
 		private float cursorDotSize = 0.3f;
 		[SerializeField]
 		private float cursorDotNum = 5;
@@ -27,6 +29,7 @@ namespace NUI
 				dot.transform.parent = this.transform;
 				dot.transform.localScale = new Vector3(cursorDotSize, cursorDotSize, 1);
 				dot.AddComponent<SpriteRenderer>().sprite = Sprite.Create(cursorDotTexture, new Rect(0, 0, cursorDotTexture.width, cursorDotTexture.height), new Vector2(0.5f, 0.5f));
+				dot.GetComponent<SpriteRenderer>().material = cursorDotMaterial;
 				// dot.GetComponent<SpriteRenderer>().sortingOrder = 100;
 				dots.Add(dot);
 			}
@@ -55,9 +58,10 @@ namespace NUI
 				this.transform.rotation = new Quaternion(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z + 0.01f, this.transform.rotation.w);
 			}
 
+			// cursorPosとtargetの間にdots.Count個の点を配置
 			for (int i = 1; i < dots.Count; i++)
 			{
-				dots[i].transform.position = Vector3.Lerp(cursorPos, target, (float)i / dots.Count);
+				dots[i - 1].transform.position = Vector3.Lerp(cursorPos, target, (float)i / dots.Count);
 			}
 		}
 	}
