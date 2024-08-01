@@ -57,8 +57,8 @@ namespace NManager
         public void DisableLowPassFilter()
         {
             if (lowPassFilter.cutoffFrequency == defaultFrequency) return;
-            audioSource.DOFade(volume * currentBGM.volume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
-            DOTween.To(() => lowPassFilter.cutoffFrequency, x => lowPassFilter.cutoffFrequency = x, defaultFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+            audioSource.DOFade(volume * currentBGM.volume, cutoffTime).SetUpdate(true).SetEase(Ease.InExpo);
+            DOTween.To(() => lowPassFilter.cutoffFrequency, x => lowPassFilter.cutoffFrequency = x, defaultFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.InExpo);
         }
 
 
