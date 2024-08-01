@@ -100,6 +100,7 @@ namespace NManager
 
 		public void Pause()
 		{
+			BGMManager.instance.EnableLowPassFilter();
 			playerInput.actions.Disable();
 			pause.Enable();
 			state = GameState.Paused;
@@ -111,6 +112,7 @@ namespace NManager
 
 		public void Resume()
 		{
+			BGMManager.instance.DisableLowPassFilter();
 			playerInput.actions.Enable();
 			state = GameState.Playing;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.Playing);

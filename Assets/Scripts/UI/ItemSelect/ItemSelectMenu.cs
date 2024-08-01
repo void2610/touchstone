@@ -69,6 +69,7 @@ namespace NUI
                 backGround.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 1.0f);
                 canvasGroup.alpha = 1.0f;
                 canvasGroup.interactable = true;
+                BGMManager.instance.EnableLowPassFilter();
                 foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).OnComplete(() =>
                 {
                     if (foreGround == null && backGround == null) return;
@@ -90,9 +91,11 @@ namespace NUI
                 canvasGroup.alpha = 0.0f;
                 canvasGroup.interactable = false;
                 GameManager.instance.SetUp();
+                BGMManager.instance.DisableLowPassFilter();
 
                 foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).OnComplete(() =>
                 {
+
                     if (foreGround == null && backGround == null) return;
                     foreGround.SetActive(false);
 

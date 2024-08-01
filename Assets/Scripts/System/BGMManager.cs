@@ -19,13 +19,19 @@ namespace NManager
         private bool playOnStart = true;
         [SerializeField]
         private List<SoundData> bgmList = new List<SoundData>();
+        [SerializeField]
+        private float cutoffFrequency = 200;
+        private float defaultFrequency = 22000;
+        private float cutoffVolume = 0.5f;
 
         private AudioSource audioSource => this.GetComponent<AudioSource>();
         private bool isPlaying = false;
         private SoundData currentBGM;
         private float volume = 0.5f;
         private float fadeTime = 1.5f;
+        private float cutoffTime = 1.0f;
         private bool isFading = false;
+        private AudioLowPassFilter lowPassFilter => this.GetComponent<AudioLowPassFilter>();
 
         public float BgmVolume
         {
@@ -41,19 +47,34 @@ namespace NManager
             }
         }
 
+        public void EnableLowPassFilter()
+        {
+            if (lowPassFilter.cutoffFrequency == cutoffFrequency) return;
+            audioSource.DOFade(volume * currentBGM.volume * cutoffVolume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+            DOTween.To(() => lowPassFilter.cutoffFrequency, x => lowPassFilter.cutoffFrequency = x, cutoffFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+        }
+
+        public void DisableLowPassFilter()
+        {
+            if (lowPassFilter.cutoffFrequency == defaultFrequency) return;
+            audioSource.DOFade(volume * currentBGM.volume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+            DOTween.To(() => lowPassFilter.cutoffFrequency, x => lowPassFilter.cutoffFrequency = x, defaultFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+        }
+
+
         public void Play()
         {
             if (currentBGM == null) return;
 
             isPlaying = true;
             audioSource.Play();
-            audioSource.DOFade(volume * currentBGM.volume, fadeTime).SetEase(Ease.InQuad);
+            audioSource.DOFade(volume * currentBGM.volume, fadeTime).SetUpdate(true).SetEase(Ease.InQuad);
         }
 
         public void Stop()
         {
             isPlaying = false;
-            audioSource.DOFade(0, fadeTime).SetEase(Ease.InQuad).OnComplete(() => audioSource.Stop());
+            audioSource.DOFade(0, fadeTime).SetUpdate(true).SetEase(Ease.InQuad).OnComplete(() => audioSource.Stop());
         }
 
         private void PlayRandomBGM()
@@ -67,7 +88,7 @@ namespace NManager
             audioSource.volume = 0;
 
             audioSource.Play();
-            audioSource.DOFade(volume * currentBGM.volume, fadeTime).SetEase(Ease.InQuad).OnComplete(() => isFading = false);
+            audioSource.DOFade(volume * currentBGM.volume, fadeTime).SetUpdate(true).SetEase(Ease.InQuad).OnComplete(() => isFading = false);
         }
 
         // TODO: フェード
@@ -102,7 +123,7 @@ namespace NManager
                 if (remainingTime <= fadeTime && !isFading)
                 {
                     isFading = true;
-                    audioSource.DOFade(0, remainingTime).SetEase(Ease.InQuad).OnComplete(() => PlayRandomBGM());
+                    audioSource.DOFade(0, remainingTime).SetUpdate(true).SetEase(Ease.InQuad).OnComplete(() => PlayRandomBGM());
                 }
             }
         }
