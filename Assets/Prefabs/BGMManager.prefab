@@ -62,6 +62,7 @@ MonoBehaviour:
     volume: 0.4
   - audioClip: {fileID: 8300000, guid: 61731f4656ee247f7892493c3c1f33cc, type: 3}
     volume: 0.6
+  cutoffFrequency: 1000
 --- !u!82 &7571287356800539307
 AudioSource:
   m_ObjectHideFlags: 0
@@ -168,7 +169,7 @@ AudioLowPassFilter:
   m_GameObject: {fileID: 5094186816425571267}
   m_Enabled: 1
   serializedVersion: 3
-  m_LowpassResonanceQ: 1
+  m_LowpassResonanceQ: 3
   lowpassLevelCustomCurve:
     serializedVersion: 2
     m_Curve:

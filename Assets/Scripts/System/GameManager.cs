@@ -123,6 +123,7 @@ namespace NManager
 
 		public void GameOver()
 		{
+			BGMManager.instance.EnableLowPassFilter();
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			state = GameState.GameOver;
 			int gainedCoins = (int)(maxAltitude / 10);
