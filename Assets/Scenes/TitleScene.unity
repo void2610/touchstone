@@ -6204,7 +6204,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807121271}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -6887,7 +6887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b49d27adcf104e119e9ac5fc1128089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionRef: {fileID: -5012988863090841623, guid: a89d9cf149f1b408d8b90229d1fec78b, type: 3}
+  _actionRef: {fileID: -17733454872467616, guid: a89d9cf149f1b408d8b90229d1fec78b, type: 3}
   _scheme: Keyboard
   _pathText: {fileID: 1326899485}
   _mask: {fileID: 41024468}
@@ -12359,7 +12359,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932686193}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
