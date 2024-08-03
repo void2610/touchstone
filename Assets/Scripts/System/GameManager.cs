@@ -138,8 +138,11 @@ namespace NManager
 
 			if (PlayerPrefs.GetInt("RandomSeed", 1) == 1)
 			{
-				UnityroomApiClient.Instance.SendScore(1, maxAltitude, ScoreboardWriteMode.Always);
-				UnityroomApiClient.Instance.SendScore(2, currentCoins + gainedCoins, ScoreboardWriteMode.Always);
+				if (UnityroomApiClient.Instance != null)
+				{
+					int boardId = isEndless ? 1 : 2;
+					UnityroomApiClient.Instance.SendScore(boardId, maxAltitude, ScoreboardWriteMode.Always);
+				}
 			}
 			else
 			{
