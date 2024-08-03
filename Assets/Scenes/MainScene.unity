@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &11745442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2205,11 +2205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88019db731d42c292299df844f5916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapLength: 1
+  mapLengths: 010000000200000003000000050000000500000005000000070000000700000007000000
+  termialMapLength: 10
   mapHight: 50
   startHight: 75
   mapPrefabs:
-  - {fileID: 6251663239724963194, guid: b83a53ef17b91410eacdf3c8c82a3af6, type: 3}
+  - {fileID: 6251663239724963194, guid: af88abec54b3b4b04b7c39e8bb6253c6, type: 3}
   firstMap: {fileID: 1282375738782308908}
   goalPrefab: {fileID: 561291338151706487, guid: 55c5e39bb73834886b4d1e1347d9b231, type: 3}
   goalBlockGroundPrefab: {fileID: 6251663239724963194, guid: b83a53ef17b91410eacdf3c8c82a3af6, type: 3}
@@ -21995,6 +21996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2025736588}
   - component: {fileID: 2025736589}
+  - component: {fileID: 2025736590}
   m_Layer: 3
   m_Name: Floor
   m_TagString: Ground
@@ -22063,6 +22065,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2025736590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025736586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1600dd1baa2994659bdf08c944666abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2100509626
 GameObject:
   m_ObjectHideFlags: 0

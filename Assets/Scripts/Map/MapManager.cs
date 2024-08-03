@@ -10,7 +10,9 @@ namespace NMap
     public class MapManager : MonoBehaviour
     {
         [SerializeField]
-        private int mapLength = 5;
+        private List<int> mapLengths;
+        [SerializeField]
+        private int termialMapLength = 10;
         [SerializeField]
         private int mapHight = 40;
         [SerializeField]
@@ -28,12 +30,14 @@ namespace NMap
         private GameObject mapContainer;
         private Transform player;
 
+        private int stageCount = 0;
         private float nextHight = 0;
         private int mapCount = 0;
 
         public void SetUp()
         {
-            if (mapLength <= 0) return;
+            stageCount++;
+            int mapLength = stageCount < mapLengths.Count ? mapLengths[stageCount] : termialMapLength;
             mapEndAltitude = (mapLength) * mapHight;
 
             if (mapContainer != null)

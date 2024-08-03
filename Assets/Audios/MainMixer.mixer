@@ -105,10 +105,8 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: e70edb15ced654ccb992e821e5ace43d
+  - guid: d1c26649380944ca09822367c07f24a0
     name: LowPassCutoff
-  - guid: 556d310ef878b462a891482957909619
-    name: Pitch
   m_AudioMixerGroupViews:
   - guids:
     - a3c3b503635594506978855c82eaa5f2

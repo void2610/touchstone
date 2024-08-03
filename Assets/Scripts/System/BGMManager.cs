@@ -25,7 +25,7 @@ namespace NManager
         [SerializeField]
         private float cutoffFrequency = 200;
         private float defaultFrequency = 22000;
-        private float cutoffVolume = 0.5f;
+        private float cutoffVolume = 0.4f;
 
         private AudioSource audioSource => this.GetComponent<AudioSource>();
         private bool isPlaying = false;
@@ -111,6 +111,7 @@ namespace NManager
         private void Start()
         {
             volume = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
+            mixer.SetFloat("LowPassCutoff", defaultFrequency);
             audioSource.volume = 0;
             if (playOnStart)
             {
