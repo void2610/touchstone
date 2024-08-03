@@ -1,9 +1,10 @@
 namespace NManager
 {
+    using System.Linq;
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
-    using System.Linq;
+    using UnityEngine.Audio;
 
     public class SoundManager : MonoBehaviour
     {
@@ -15,6 +16,8 @@ namespace NManager
             public float volume = 1.0f;
         }
 
+        [SerializeField]
+        private AudioMixerGroup seMixerGroup;
         [SerializeField]
         private SoundData[] soundDatas;
 
@@ -39,6 +42,7 @@ namespace NManager
             for (var i = 0; i < seAudioSourceList.Length; ++i)
             {
                 seAudioSourceList[i] = gameObject.AddComponent<AudioSource>();
+                seAudioSourceList[i].outputAudioMixerGroup = seMixerGroup;
             }
         }
 
