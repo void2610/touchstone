@@ -34,7 +34,6 @@ namespace NManager
         private float fadeTime = 1.5f;
         private float cutoffTime = 1.0f;
         private bool isFading = false;
-        private AudioLowPassFilter lowPassFilter => this.GetComponent<AudioLowPassFilter>();
 
         public float BgmVolume
         {
