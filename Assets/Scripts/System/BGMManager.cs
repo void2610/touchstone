@@ -1,6 +1,7 @@
 namespace NManager
 {
     using UnityEngine;
+    using UnityEngine.Audio;
     using System.Collections;
     using System.Collections.Generic;
     using DG.Tweening;
@@ -17,6 +18,8 @@ namespace NManager
         public static BGMManager instance;
         [SerializeField]
         private bool playOnStart = true;
+        [SerializeField]
+        private AudioMixer mixer;
         [SerializeField]
         private List<SoundData> bgmList = new List<SoundData>();
         [SerializeField]
@@ -49,16 +52,18 @@ namespace NManager
 
         public void EnableLowPassFilter()
         {
-            if (lowPassFilter.cutoffFrequency == cutoffFrequency) return;
+            float f;
+            if (!mixer.GetFloat("LowPassCutoff", out f) || f == cutoffFrequency) return;
             audioSource.DOFade(volume * currentBGM.volume * cutoffVolume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
-            DOTween.To(() => lowPassFilter.cutoffFrequency, x => lowPassFilter.cutoffFrequency = x, cutoffFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+            DOTween.To(() => f, x => mixer.SetFloat("LowPassCutoff", x), cutoffFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
         }
 
         public void DisableLowPassFilter()
         {
-            if (lowPassFilter.cutoffFrequency == defaultFrequency) return;
-            audioSource.DOFade(volume * currentBGM.volume, cutoffTime).SetUpdate(true).SetEase(Ease.InExpo);
-            DOTween.To(() => lowPassFilter.cutoffFrequency, x => lowPassFilter.cutoffFrequency = x, defaultFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.InExpo);
+            float f;
+            if (!mixer.GetFloat("LowPassCutoff", out f) || f == defaultFrequency) return;
+            audioSource.DOFade(volume * currentBGM.volume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+            DOTween.To(() => f, x => mixer.SetFloat("LowPassCutoff", x), defaultFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
         }
 
 
