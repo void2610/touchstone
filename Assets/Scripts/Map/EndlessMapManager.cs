@@ -10,6 +10,8 @@ namespace NMap
     public class EndlessMapManager : MonoBehaviour
     {
         [SerializeField]
+        private float mapClearHight = 100;
+        [SerializeField]
         private int mapHight = 40;
         [SerializeField]
         private float startHight = 80;
@@ -20,6 +22,7 @@ namespace NMap
 
         private float pAltitude = 0;
         private float nextHight = 0;
+        private int clearIndex = 0;
 
         private void SetMap()
         {
@@ -43,6 +46,12 @@ namespace NMap
             if (pAltitude + 60 > nextHight)
             {
                 SetMap();
+            }
+
+            if (pAltitude > mapClearHight + clearIndex * mapHight)
+            {
+                Destroy(mapContainer.transform.GetChild(0).gameObject);
+                clearIndex++;
             }
         }
     }

@@ -2499,7 +2499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &376509668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8320,7 +8320,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1349387464}
   m_OnClick:
     m_PersistentCalls:
@@ -12169,7 +12169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ver_0.9.5
+  m_text: ver_0.9.6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 500a8e386be764cbbbfdd02c567aacfe, type: 2}
   m_sharedMaterial: {fileID: 1429157886967454845, guid: 500a8e386be764cbbbfdd02c567aacfe, type: 2}
