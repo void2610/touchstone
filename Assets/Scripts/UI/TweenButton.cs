@@ -28,13 +28,13 @@ namespace NUI
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (tweenByPointer)
-                this.transform.DOScale(defaultScale * scale, duration).SetEase(Ease.OutElastic);
+                this.transform.DOScale(defaultScale * scale, duration).SetEase(Ease.OutElastic).SetUpdate(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             if (tweenByPointer)
-                this.transform.DOScale(defaultScale, duration).SetEase(Ease.OutElastic);
+                this.transform.DOScale(defaultScale, duration).SetEase(Ease.OutElastic).SetUpdate(true);
         }
 
         private void Awake()

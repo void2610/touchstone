@@ -144,7 +144,7 @@ namespace NManager
 			{
 				if (UnityroomApiClient.Instance != null)
 				{
-					int boardId = isEndless ? 1 : 2;
+					int boardId = isEndless ? 2 : 1;
 					UnityroomApiClient.Instance.SendScore(boardId, maxAltitude, ScoreboardWriteMode.HighScoreDesc);
 				}
 			}
