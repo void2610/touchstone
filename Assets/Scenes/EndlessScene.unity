@@ -1040,6 +1040,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: 6
   player: {fileID: 1471282070}
+  isTracking: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2101,6 +2102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a87b5b94e7ee4993a2efa7852b33edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapClearHight: 100
   mapHight: 40
   startHight: 45
   mapPrefabs:

@@ -44,7 +44,7 @@ namespace NManager
 		}
 
 		[SerializeField]
-		private bool isEndless = false;
+		public bool isEndless = false;
 		[SerializeField]
 		public EquipmentDataList allEquipmentDataList;
 
@@ -123,6 +123,7 @@ namespace NManager
 
 		public void GameOver()
 		{
+			Camera.main.GetComponent<CameraMoveScript>().isTracking = false;
 			BGMManager.instance.EnableLowPassFilter();
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			state = GameState.GameOver;

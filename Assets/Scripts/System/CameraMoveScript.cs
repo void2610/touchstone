@@ -14,6 +14,7 @@ namespace NManager
 		[SerializeField]
 		float offsetY;
 		public GameObject player;
+		public bool isTracking = true;
 		private Vector3 basePosition;
 		private Vector3 shakeOffset = Vector3.zero;
 
@@ -32,19 +33,19 @@ namespace NManager
 
 		private void LateUpdate()
 		{
-			if (GameManager.instance.gameObject.GetComponent<MapManager>() != null)
+			if (!isTracking) return;
+
+			if (GameManager.instance.isEndless)
+			{
+				Vector2 pos = player.transform.position;
+				basePosition = new Vector3(offsetX, pos.y + offsetY, -10);
+			}
+			else
 			{
 				float max = GameManager.instance.gameObject.GetComponent<MapManager>().mapEndAltitude - 5;
 				Vector2 pos = player.transform.position;
 				basePosition = new Vector3(offsetX, Mathf.Min(pos.y + offsetY, max), -100);
 			}
-			else
-			{
-				Vector2 pos = player.transform.position;
-				basePosition = new Vector3(offsetX, pos.y + offsetY, -100);
-			}
-
-
 			// カメラの実際の位置をベース位置と揺れのオフセットの合計に設定
 			this.transform.position = basePosition + shakeOffset;
 		}
