@@ -1101,6 +1101,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: 6
   player: {fileID: 1471282070}
+  isTracking: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2190,7 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c47a249b0d8d654ba396cac97f6a8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEndless: 1
+  isEndless: 0
   allEquipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
   state: 0
 --- !u!114 &1017836018

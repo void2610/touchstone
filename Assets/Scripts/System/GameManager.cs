@@ -9,6 +9,7 @@ namespace NManager
 	using NCharacter;
 	using NEquipment;
 	using NMap;
+	using NUI;
 	using UnityEngine.SceneManagement;
 	using UnityEngine.InputSystem;
 
@@ -123,6 +124,8 @@ namespace NManager
 
 		public void GameOver()
 		{
+			if (this.state == GameState.GameOver) return;
+
 			Camera.main.GetComponent<CameraMoveScript>().isTracking = false;
 			BGMManager.instance.EnableLowPassFilter();
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
@@ -132,7 +135,7 @@ namespace NManager
 			player.isMovable = false;
 			player.isInvincible = true;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.GameOver);
-			this.GetComponent<UIManager>().SetResultText("max: " + maxAltitude.ToString("F2"));
+			this.GetComponent<UIManager>().SetResultText(maxAltitude);
 			this.GetComponent<UIManager>().SetGaindCoinText("+" + gainedCoins.ToString());
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 			Cursor.visible = true;
@@ -142,7 +145,7 @@ namespace NManager
 				if (UnityroomApiClient.Instance != null)
 				{
 					int boardId = isEndless ? 1 : 2;
-					UnityroomApiClient.Instance.SendScore(boardId, maxAltitude, ScoreboardWriteMode.Always);
+					UnityroomApiClient.Instance.SendScore(boardId, maxAltitude, ScoreboardWriteMode.HighScoreDesc);
 				}
 			}
 			else

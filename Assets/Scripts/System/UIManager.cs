@@ -6,6 +6,7 @@ namespace NManager
     using System.Collections.Generic;
     using TMPro;
     using NUI;
+    using DG.Tweening;
 
     public class UIManager : MonoBehaviour
     {
@@ -21,9 +22,9 @@ namespace NManager
             SceneManager.LoadScene("TitleScene");
         }
 
-        public void SetResultText(string text)
+        public void SetResultText(float target)
         {
-            resultText.text = text;
+            DOTween.To(() => 0, x => resultText.text = "max: " + x.ToString("F2") + "m", target, 1.0f + target / 500.0f);
         }
 
         public void SetGaindCoinText(string text)
