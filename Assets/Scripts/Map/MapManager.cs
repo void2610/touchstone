@@ -9,6 +9,25 @@ namespace NMap
 
     public class MapManager : MonoBehaviour
     {
+        [System.Serializable]
+        public class MapTileData
+        {
+            public GameObject prefab;
+            public int difficulty;
+        }
+
+
+        [Header("Map Tiles")]
+        [SerializeField]
+        private GameObject firstMap;
+        [SerializeField]
+        private GameObject goalPrefab;
+        [SerializeField]
+        private GameObject goalBackGroundPrefab;
+        [SerializeField]
+        private List<MapTileData> mapTiles;
+
+        [Header("Map Settings")]
         [SerializeField]
         private List<int> mapLengths;
         [SerializeField]
@@ -17,14 +36,6 @@ namespace NMap
         private int mapHight = 40;
         [SerializeField]
         private float startHight = 80;
-        [SerializeField]
-        private List<GameObject> mapPrefabs;
-        [SerializeField]
-        private GameObject firstMap;
-        [SerializeField]
-        private GameObject goalPrefab;
-        [SerializeField]
-        private GameObject goalBlockGroundPrefab;
 
         public float mapEndAltitude { get; private set; }
         private GameObject mapContainer;
@@ -57,15 +68,32 @@ namespace NMap
                 SetMap(mapHight);
             }
             Instantiate(goalPrefab, new Vector3(0, mapEndAltitude, 0), Quaternion.identity, mapContainer.transform);
-            Instantiate(goalBlockGroundPrefab, new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
+            Instantiate(goalBackGroundPrefab, new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
             firstMap.GetComponent<MapCreater>().Create();
         }
 
         private void SetMap(float h)
         {
-            int index = GameManager.instance.RandomRange(0, mapPrefabs.Count);
-            var m = Instantiate(mapPrefabs[0], new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
-            m.GetComponent<MapCreater>().Create();
+            // mapCountが増えるにつれて難易度が高いマップが選ばれやすくなる
+            float difficultyModifier = 1.0f + (mapCount * 0.1f);
+
+            float totalAdjustedDifficulty = 0;
+            foreach (var tile in mapTiles)
+            {
+                totalAdjustedDifficulty += tile.difficulty * difficultyModifier;
+            }
+            float randomValue = GameManager.instance.RandomRange(0, totalAdjustedDifficulty);
+
+            foreach (var tile in mapTiles)
+            {
+                randomValue -= tile.difficulty * difficultyModifier;
+                if (randomValue <= 0)
+                {
+                    var m = Instantiate(tile.prefab, new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
+                    m.GetComponent<MapCreater>().Create();
+                    break;
+                }
+            }
 
             nextHight += h;
             mapCount++;
