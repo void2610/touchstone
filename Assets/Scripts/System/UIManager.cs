@@ -24,7 +24,7 @@ namespace NManager
 
         public void SetResultText(float target)
         {
-            DOTween.To(() => 0, x => resultText.text = "max: " + x.ToString("F2") + "m", target, 1.0f + target / 500.0f);
+            DOTween.To(() => 0, x => resultText.text = "max: " + x.ToString("F2") + "m", target, 0.2f + target / 1000.0f);
         }
 
         public void SetGaindCoinText(string text)
