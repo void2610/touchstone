@@ -2067,9 +2067,13 @@ MonoBehaviour:
   goalBackGroundPrefab: {fileID: 6251663239724963194, guid: b83a53ef17b91410eacdf3c8c82a3af6, type: 3}
   mapTiles:
   - prefab: {fileID: 6251663239724963194, guid: a76e6cdb7f23a48d1918806002ce0a16, type: 3}
-    difficulty: 1
+    difficulty: 30
   - prefab: {fileID: 6251663239724963194, guid: af88abec54b3b4b04b7c39e8bb6253c6, type: 3}
-    difficulty: 3
+    difficulty: 40
+  - prefab: {fileID: 6251663239724963194, guid: 8c30dd826a1764ab588b5c914be9361f, type: 3}
+    difficulty: 80
+  - prefab: {fileID: 6251663239724963194, guid: 7d69dad80918444c98efd138ff0297e9, type: 3}
+    difficulty: 99
   mapLengths: 010000000200000003000000050000000500000005000000070000000700000007000000
   termialMapLength: 10
   mapHight: 50
@@ -78053,8 +78057,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 50}
-  offset: 25
-  enemyNum: 10
+  offset: 15
+  objectNum: 10
+  objects:
+  - prefab: {fileID: 4859709793482285359, guid: bae2105c3c53e4560bfbb0d14ad6b907, type: 3}
+    weight: 1
+  enemyNum: 0
   enemies:
   - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
     weight: 1

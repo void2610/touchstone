@@ -59,6 +59,10 @@ namespace NMap
             {
                 Destroy(firstMap.transform.Find("EnemyContainer").gameObject);
             }
+            if (firstMap.transform.Find("ObjectContainer") != null)
+            {
+                Destroy(firstMap.transform.Find("ObjectContainer").gameObject);
+            }
 
             nextHight = startHight;
             mapContainer = new GameObject("MapContainer");
@@ -75,18 +79,20 @@ namespace NMap
         private void SetMap(float h)
         {
             // mapCountが増えるにつれて難易度が高いマップが選ばれやすくなる
-            float difficultyModifier = 1.0f + (mapCount * 0.1f);
+            float difficultyModifier = ((mapCount + 1) * 0.1f);
 
             float totalAdjustedDifficulty = 0;
             foreach (var tile in mapTiles)
             {
-                totalAdjustedDifficulty += tile.difficulty * difficultyModifier;
+                if (tile.difficulty >= 100) Debug.LogError("Difficulty is over 100");
+                totalAdjustedDifficulty += (100 - tile.difficulty) * difficultyModifier;
             }
             float randomValue = GameManager.instance.RandomRange(0, totalAdjustedDifficulty);
 
             foreach (var tile in mapTiles)
             {
-                randomValue -= tile.difficulty * difficultyModifier;
+                Debug.Log(tile.prefab.name + " : " + (100 - tile.difficulty) * difficultyModifier / totalAdjustedDifficulty);
+                randomValue -= (100 - tile.difficulty) * difficultyModifier;
                 if (randomValue <= 0)
                 {
                     var m = Instantiate(tile.prefab, new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
