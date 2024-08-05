@@ -55,6 +55,10 @@ namespace NManager
             set
             {
                 seVolume = value;
+                if (value <= 0.0f)
+                {
+                    value = 0.0001f;
+                }
                 seMixerGroup.audioMixer.SetFloat("SeVolume", Mathf.Log10(value) * 20);
                 PlayerPrefs.SetFloat("SeVolume", value);
             }
@@ -105,7 +109,8 @@ namespace NManager
 
         private void Start()
         {
-            SeVolume = 1.0f;
+            SeVolume = PlayerPrefs.GetFloat("SeVolume", 1.0f);
+            seMixerGroup.audioMixer.SetFloat("SeVolume", Mathf.Log10(seVolume) * 20);
         }
     }
 }

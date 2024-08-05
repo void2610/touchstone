@@ -43,6 +43,11 @@ namespace NManager
             }
             set
             {
+                Debug.Log(value);
+                if (value <= 0.0f)
+                {
+                    value = 0.0001f;
+                }
                 volume = value;
                 PlayerPrefs.SetFloat("BgmVolume", value);
                 mixer.SetFloat("BgmVolume", Mathf.Log10(value) * 20);
@@ -110,7 +115,8 @@ namespace NManager
 
         private void Start()
         {
-            volume = 1.0f;
+            volume = PlayerPrefs.GetFloat("BgmVolume", 1.0f);
+            mixer.SetFloat("BgmVolume", Mathf.Log10(volume) * 20);
             mixer.SetFloat("LowPassCutoff", defaultFrequency);
             audioSource.volume = 0;
             if (playOnStart)

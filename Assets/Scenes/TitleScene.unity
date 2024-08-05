@@ -10970,7 +10970,7 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 5d1cbdb0f112045408fd7c2c718c55e0, type: 2}
   bgmList:
   - audioClip: {fileID: 8300000, guid: 81909652b2d1e42b88b3ec193f75ef72, type: 3}
-    volume: 0.7
+    volume: 0.5
   cutoffFrequency: 200
 --- !u!4 &1756730294
 Transform:
