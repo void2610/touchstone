@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1471609132175651847}
   - component: {fileID: -5070007815736844790}
   m_Layer: 3
-  m_Name: FootholdOnly
+  m_Name: 4
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,12 +65,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 50}
   offset: 0
-  objectNum: 10
+  objectNum: 0
   objects:
   - prefab: {fileID: 4859709793482285359, guid: bae2105c3c53e4560bfbb0d14ad6b907, type: 3}
     weight: 1
-  enemyNum: 0
-  enemies: []
+  enemyNum: 10
+  enemies:
+  - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}
+    weight: 0.5
+  - prefab: {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
+    weight: 1
   createOnStart: 0
 --- !u!1 &6452555348443374193
 GameObject:
