@@ -43,7 +43,6 @@ namespace NManager
             }
             set
             {
-                Debug.Log(value);
                 if (value <= 0.0f)
                 {
                     value = 0.0001f;
