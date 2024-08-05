@@ -30,7 +30,7 @@ namespace NManager
         private AudioSource audioSource => this.GetComponent<AudioSource>();
         private bool isPlaying = false;
         private SoundData currentBGM;
-        private float volume = 0.5f;
+        private float volume = 1.0f;
         private float fadeTime = 1.5f;
         private float cutoffTime = 1.0f;
         private bool isFading = false;
@@ -45,7 +45,7 @@ namespace NManager
             {
                 volume = value;
                 PlayerPrefs.SetFloat("BgmVolume", value);
-                audioSource.volume = currentBGM != null ? volume * currentBGM.volume : volume;
+                mixer.SetFloat("BgmVolume", Mathf.Log10(value) * 20);
             }
         }
 
@@ -53,7 +53,7 @@ namespace NManager
         {
             float f;
             if (!mixer.GetFloat("LowPassCutoff", out f) || f == cutoffFrequency) return;
-            audioSource.DOFade(volume * currentBGM.volume * cutoffVolume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+            audioSource.DOFade(currentBGM.volume * cutoffVolume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
             DOTween.To(() => f, x => mixer.SetFloat("LowPassCutoff", x), cutoffFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
         }
 
@@ -61,7 +61,7 @@ namespace NManager
         {
             float f;
             if (!mixer.GetFloat("LowPassCutoff", out f) || f == defaultFrequency) return;
-            audioSource.DOFade(volume * currentBGM.volume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
+            audioSource.DOFade(currentBGM.volume, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
             DOTween.To(() => f, x => mixer.SetFloat("LowPassCutoff", x), defaultFrequency, cutoffTime).SetUpdate(true).SetEase(Ease.OutExpo);
         }
 
@@ -72,7 +72,7 @@ namespace NManager
 
             isPlaying = true;
             audioSource.Play();
-            audioSource.DOFade(volume * currentBGM.volume, fadeTime).SetUpdate(true).SetEase(Ease.InQuad);
+            audioSource.DOFade(currentBGM.volume, fadeTime).SetUpdate(true).SetEase(Ease.InQuad);
         }
 
         public void Stop()
@@ -92,7 +92,7 @@ namespace NManager
             audioSource.volume = 0;
 
             audioSource.Play();
-            audioSource.DOFade(volume * currentBGM.volume, fadeTime).SetUpdate(true).SetEase(Ease.InQuad).OnComplete(() => isFading = false);
+            audioSource.DOFade(currentBGM.volume, fadeTime).SetUpdate(true).SetEase(Ease.InQuad).OnComplete(() => isFading = false);
         }
 
         // TODO: フェード
@@ -110,7 +110,7 @@ namespace NManager
 
         private void Start()
         {
-            volume = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
+            volume = 1.0f;
             mixer.SetFloat("LowPassCutoff", defaultFrequency);
             audioSource.volume = 0;
             if (playOnStart)

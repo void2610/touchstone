@@ -91,7 +91,6 @@ namespace NMap
 
             foreach (var tile in mapTiles)
             {
-                Debug.Log(tile.prefab.name + " : " + (100 - tile.difficulty) * difficultyModifier / totalAdjustedDifficulty);
                 randomValue -= (100 - tile.difficulty) * difficultyModifier;
                 if (randomValue <= 0)
                 {

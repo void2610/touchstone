@@ -55,6 +55,7 @@ namespace NManager
             set
             {
                 seVolume = value;
+                seMixerGroup.audioMixer.SetFloat("SeVolume", Mathf.Log10(value) * 20);
                 PlayerPrefs.SetFloat("SeVolume", value);
             }
         }
@@ -74,7 +75,7 @@ namespace NManager
             }
 
             audioSource.clip = clip;
-            audioSource.volume = volume * SeVolume;
+            audioSource.volume = volume;
             audioSource.pitch = pitch;
             audioSource.Play();
         }
@@ -95,7 +96,7 @@ namespace NManager
             }
 
             audioSource.clip = soundData.audioClip;
-            audioSource.volume = soundData.volume * volume * SeVolume;
+            audioSource.volume = soundData.volume * volume;
             audioSource.pitch = pitch;
             audioSource.Play();
         }
@@ -104,7 +105,7 @@ namespace NManager
 
         private void Start()
         {
-            SeVolume = 0.5f;
+            SeVolume = 1.0f;
         }
     }
 }

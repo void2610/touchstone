@@ -188,8 +188,8 @@ namespace NTitle
 				}
 			}
 
-			PlayerPrefs.SetFloat("BgmVolume", 0.5f);
-			PlayerPrefs.SetFloat("SeVolume", 0.5f);
+			PlayerPrefs.SetFloat("BgmVolume", 1.0f);
+			PlayerPrefs.SetFloat("SeVolume", 1.0f);
 			PlayerPrefs.SetInt("RandomSeed", 1);
 			PlayerPrefs.SetInt("Seed", 0);
 			PlayerPrefs.SetString("SeedText", "");
@@ -234,8 +234,8 @@ namespace NTitle
 				}
 			}
 
-			PlayerPrefs.SetFloat("BgmVolume", 0.5f);
-			PlayerPrefs.SetFloat("SeVolume", 0.5f);
+			PlayerPrefs.SetFloat("BgmVolume", 1.0f);
+			PlayerPrefs.SetFloat("SeVolume", 1.0f);
 			PlayerPrefs.SetInt("RandomSeed", 1);
 			PlayerPrefs.SetInt("Seed", 0);
 			PlayerPrefs.SetString("SeedText", "");
@@ -244,6 +244,8 @@ namespace NTitle
 
 			randomSeedToggle.isOn = PlayerPrefs.GetInt("RandomSeed", 1) == 0;
 			seedInputField.text = PlayerPrefs.GetString("SeedText", "");
+			bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 1.0f);
+			seSlider.value = PlayerPrefs.GetFloat("SeVolume", 1.0f);
 		}
 
 		void Awake()
@@ -257,8 +259,8 @@ namespace NTitle
 			{
 				InitPlayerPrefs();
 			}
-			bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
-			seSlider.value = PlayerPrefs.GetFloat("SeVolume", 0.5f);
+			bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 1.0f);
+			seSlider.value = PlayerPrefs.GetFloat("SeVolume", 1.0f);
 
 
 			bgmSlider.onValueChanged.AddListener((value) =>

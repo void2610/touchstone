@@ -46,22 +46,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStart: 1
-  mixer: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 5d1cbdb0f112045408fd7c2c718c55e0, type: 2}
   bgmList:
   - audioClip: {fileID: 8300000, guid: 07a90d9e069f5417cba10beec37522ab, type: 3}
-    volume: 0.9
+    volume: 0.25
   - audioClip: {fileID: 8300000, guid: bd81399cbb5914b6baeee6dd5c6d3a9d, type: 3}
-    volume: 0.4
+    volume: 0.1
   - audioClip: {fileID: 8300000, guid: 7bc41edf2722d4ddda10e8d08c82f881, type: 3}
-    volume: 0.4
+    volume: 0.1
   - audioClip: {fileID: 8300000, guid: 85a6740855ac34267a183a4ebd4e9b56, type: 3}
-    volume: 0.3
+    volume: 0.1
   - audioClip: {fileID: 8300000, guid: 267b6faaffd4148249c6f96e762d31fc, type: 3}
-    volume: 0.3
+    volume: 0.1
   - audioClip: {fileID: 8300000, guid: 978eff30dd94a46fa96beddd14fa34eb, type: 3}
-    volume: 0.4
+    volume: 0.1
   - audioClip: {fileID: 8300000, guid: 61731f4656ee247f7892493c3c1f33cc, type: 3}
-    volume: 0.6
+    volume: 0.2
   cutoffFrequency: 1000
 --- !u!82 &7571287356800539307
 AudioSource:
