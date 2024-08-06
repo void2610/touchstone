@@ -77821,7 +77821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 50}
-  offset: 15
+  offset: 20
   objectNum: 10
   objects:
   - prefab: {fileID: 4859709793482285359, guid: bae2105c3c53e4560bfbb0d14ad6b907, type: 3}
