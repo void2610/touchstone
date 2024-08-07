@@ -42,10 +42,10 @@ namespace NCharacter
 			}
 		}
 
-		public void CutHp(int damage)
+		public void CutHp(int damage, bool playSe = true)
 		{
 			if (isInvincible) return;
-
+			if (playSe) SoundManager.instance.PlaySe("damage");
 			this.GetComponent<PlayerParticles>().ChangeColorToRed();
 			hp -= damage;
 			if (hp <= 0)
@@ -219,7 +219,6 @@ namespace NCharacter
 								this.CutHp(enemy.atk);
 								Vector3 dir = (this.transform.position - enemy.transform.position).normalized;
 								this.AddForce(new Vector2(dir.x, dir.y) * 30);
-								this.GetComponent<PlayerParticles>().PlayDamageSe();
 								// 無敵時間
 								StartCoroutine(InvincibilityCoroutine());
 							}

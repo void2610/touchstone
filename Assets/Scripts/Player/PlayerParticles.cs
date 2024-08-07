@@ -41,11 +41,6 @@ namespace NCharacter
             SoundManager.instance.PlaySe(killSeClips[killSePitch]);
         }
 
-        public void PlayDamageSe()
-        {
-            SoundManager.instance.PlaySe("damage");
-        }
-
         private void StopDashParticle()
         {
             this.GetComponent<AfterImageEffect>().isCreateAfterImage = false;
