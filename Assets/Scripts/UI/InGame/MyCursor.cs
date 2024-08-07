@@ -19,8 +19,16 @@ namespace NUI
 		private List<GameObject> dots = new List<GameObject>();
 
 		private float time = 0;
+
+		//WebGLビルドの場合はsizeを半分にする
+#if UNITY_WEBGL
+		private int size = 4;
+#else
+		private int size = 8;
+#endif
 		void Start()
 		{
+			this.transform.localScale = new Vector3(size, size, 1);
 			Cursor.visible = false;
 
 			if (cursorDotTexture != null)
