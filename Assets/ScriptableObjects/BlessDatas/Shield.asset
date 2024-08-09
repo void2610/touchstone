@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6316f08ddc944ce8121a61861381ed, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: 
+  blessID: 0
+  blessName: Shield
+  blessDescription: "\u30C0\u30E1\u30FC\u30B8\u30921\u56DE\u7121\u52B9\u5316\u3059\u308B"
+  blessProbability: 1
+  blessPrefab: {fileID: 7045385886362925820, guid: 6130359697a8b41ea940dac95b69b117, type: 3}
