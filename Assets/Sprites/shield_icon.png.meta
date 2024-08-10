@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4290a9bdbe48e4490a5d0fc494ee17f7
+guid: 043796509da60422f8cd9210cabdd25b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7374435777943774961
-    second: dotpict 2_0
+      213: -7690335439021222541
+    second: shield_icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dotpict 2_0
+      name: shield_icon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f09dabc3bbdb8a990800000000000000
-      internalID: -7374435777943774961
+      spriteID: 375da81d9a0764590800000000000000
+      internalID: -7690335439021222541
       vertices: []
       indices: 
       edges: []
@@ -172,7 +172,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dotpict 2_0: -7374435777943774961
+      shield_icon_0: -7690335439021222541
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

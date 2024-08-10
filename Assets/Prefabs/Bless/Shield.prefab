@@ -134,4 +134,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blessName: 
   color: {r: 0, g: 0.53050137, b: 1, a: 0}
-  icon: {fileID: 2800000, guid: 4290a9bdbe48e4490a5d0fc494ee17f7, type: 3}
+  emmision: 2.5
+  icon: {fileID: 2800000, guid: 043796509da60422f8cd9210cabdd25b, type: 3}

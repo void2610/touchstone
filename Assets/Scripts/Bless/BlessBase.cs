@@ -6,6 +6,7 @@ namespace NBless
     {
         public string blessName;
         public Color color;
+        public float emmision;
         public Texture2D icon;
         private Vector3 basePosition;
         private GameObject player;
@@ -26,7 +27,7 @@ namespace NBless
             this.transform.localScale = new Vector3(size, size, size);
             var i = this.transform.Find("Icon").gameObject.GetComponent<SpriteRenderer>();
             i.sprite = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), new Vector2(0.5f, 0.5f));
-            i.material.SetColor("_Color", color * 1.5f);
+            i.material.SetColor("_Color", color * emmision);
         }
 
         protected void Update()
