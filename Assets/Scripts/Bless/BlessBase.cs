@@ -28,6 +28,10 @@ namespace NBless
             var i = this.transform.Find("Icon").gameObject.GetComponent<SpriteRenderer>();
             i.sprite = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), new Vector2(0.5f, 0.5f));
             i.material.SetColor("_Color", color * emmision);
+
+            var p = this.transform.Find("Particle").gameObject.GetComponent<ParticleSystem>();
+            var renderer = p.GetComponent<Renderer>();
+            renderer.material.SetColor("_Color", color * emmision);
         }
 
         protected void Update()
