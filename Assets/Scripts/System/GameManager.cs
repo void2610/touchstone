@@ -162,6 +162,7 @@ namespace NManager
 			state = GameState.Selecting;
 			SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
+			this.GetComponent<BlessManager>().GetRandomBless();
 		}
 
 		public void SetUp()

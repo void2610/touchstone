@@ -1,61 +1,28 @@
 namespace NBless
 {
     using UnityEngine;
+    using NManager;
+    using NCharacter;
     public class Heal : BlessBase
     {
-        public override void OnActive()
+        public override void OnActive(Player p = null)
         {
-            Debug.Log("Heal OnActive");
+            if (p.hp < p.maxHp)
+            {
+                SoundManager.instance.PlaySe("heal");
+                p.Heal(1);
+            }
         }
 
-        public override void OnDeactive()
+        public override bool OnPlayerDamaged(Player p = null)
         {
-            Debug.Log("Heal OnDeactive");
-        }
-
-        public override void OnPlayerDamaged()
-        {
-            Debug.Log("Heal OnPlayerDamaged");
-        }
-
-        public override void OnPlayerHealed()
-        {
-            Debug.Log("Heal OnPlayerHealed");
-        }
-
-        public override void OnPlayerDead()
-        {
-            Debug.Log("Heal OnPlayerDead");
-        }
-
-        public override void OnPlayerJumped()
-        {
-            Debug.Log("Heal OnPlayerJumped");
-        }
-
-        public override void OnPlayerLanded()
-        {
-            Debug.Log("Heal OnPlayerLanded");
-        }
-
-        public override void OnPlayerMoved()
-        {
-            Debug.Log("Heal OnPlayerMoved");
-        }
-
-        public override void OnPlayerAttacked()
-        {
-            Debug.Log("Heal OnPlayerAttacked");
-        }
-
-        public override void OnPlayerKilledEnemy()
-        {
-            Debug.Log("Heal OnPlayerKilledEnemy");
-        }
-
-        public override void OnStageCleared()
-        {
-            Debug.Log("Heal OnStageCleared");
+            if (p.hp - 1 < p.maxHp)
+            {
+                SoundManager.instance.PlaySe("heal");
+                p.Heal(1);
+                return true;
+            }
+            return false;
         }
     }
 }

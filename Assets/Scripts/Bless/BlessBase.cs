@@ -1,6 +1,7 @@
 namespace NBless
 {
     using UnityEngine;
+    using NCharacter;
 
     public class BlessBase : MonoBehaviour
     {
@@ -18,8 +19,16 @@ namespace NBless
         {
             basePosition = pos;
             this.player = player;
-            speed = Random.Range(0.5f, 3f);
+            speed = Random.Range(2f, 5f);
             speed2 = Random.Range(0.1f, 1.5f);
+        }
+
+        public void PlayDisapearParticle()
+        {
+            var p = this.transform.Find("DisappearParticle").gameObject;
+            p.transform.SetParent(null);
+            p.transform.localScale = Vector3.one;
+            p.GetComponent<ParticleSystem>().Play();
         }
 
         protected void Awake()
@@ -34,22 +43,26 @@ namespace NBless
             var p = this.transform.Find("Particle").gameObject.GetComponent<ParticleSystem>();
             var renderer = p.GetComponent<Renderer>();
             renderer.material.SetColor("_Color", color * emmision);
+            var dp = this.transform.Find("DisappearParticle").gameObject.GetComponent<ParticleSystem>();
+            var dpr = dp.GetComponent<Renderer>();
+            dpr.material.SetColor("_Color", color * emmision);
         }
 
         protected void Update()
         {
+            Debug.Log(player);
             if (player == null) return;
             Vector3 target = basePosition + player.transform.position;
             float distance = Vector3.Distance(this.transform.position, target);
 
-            this.transform.position = Vector3.Lerp(this.transform.position, target, (distance / (5 * speed)) * Time.deltaTime * speed2);
+            this.transform.position = Vector3.Lerp(this.transform.position, target, (distance / (1 * speed)) * Time.deltaTime * speed2);
 
             //ゆらゆら上下に揺れる
             float y = Mathf.Sin((Time.time + speed) * 2) * 0.005f * speed;
             this.transform.position += new Vector3(0, y, 0);
         }
 
-        public virtual void OnActive()
+        public virtual void OnActive(Player p = null)
         {
         }
 
@@ -61,8 +74,15 @@ namespace NBless
         {
         }
 
-        public virtual void OnPlayerDamaged()
+        /// <summary>
+        /// プレイヤーがダメージを受けた時に呼ばれる
+        /// </summary>
+        /// <returns>
+        /// trueを返すとダメージを無効化する
+        /// </returns>
+        public virtual bool OnPlayerDamaged(Player p = null)
         {
+            return false;
         }
 
         public virtual void OnPlayerHealed()

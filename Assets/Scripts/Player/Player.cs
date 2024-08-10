@@ -45,6 +45,13 @@ namespace NCharacter
 		public void CutHp(int damage, bool playSe = true)
 		{
 			if (isInvincible) return;
+
+			// 祝福の効果を発動し、trueならダメージを無効化
+			if (GameManager.instance.GetComponent<BlessManager>().OnPlayerDamaged())
+			{
+				return;
+			}
+
 			if (playSe) SoundManager.instance.PlaySe("damage");
 			this.GetComponent<PlayerParticles>().ChangeColorToRed();
 			hp -= damage;

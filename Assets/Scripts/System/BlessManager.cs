@@ -4,6 +4,7 @@ namespace NManager
     using System.Collections.Generic;
     using UnityEngine;
     using NBless;
+    using NCharacter;
 
     public class BlessManager : MonoBehaviour
     {
@@ -15,12 +16,27 @@ namespace NManager
         private List<BlessBase> currentBless = new List<BlessBase>();
         private List<Vector3> currentBlessPos = new List<Vector3>();
         private GameObject blessContainer;
-        private GameObject player;
+        private Player player;
 
         private float radius = 5.0f;
 
+        //ダメージを受けたときにBlessの効果を発動し、trueならダメージを無効化
+        public bool OnPlayerDamaged()
+        {
+            foreach (var bless in currentBless)
+            {
+                if (bless.OnPlayerDamaged(player))
+                {
+                    RemoveBless(currentBless.IndexOf(bless));
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void GetRandomBless()
         {
+            player = GameManager.instance.player;
             GameObject newBless = null;
             float total = 0;
             foreach (var blessData in allBlessData)
@@ -69,15 +85,16 @@ namespace NManager
                     bestPosition = pos;
                 }
             }
-
+            bestPosition.z = -10;
             currentBlessPos.Add(bestPosition);
-            newBless.GetComponent<BlessBase>().SetBasePosition(bestPosition, player);
-            newBless.GetComponent<BlessBase>().OnActive();
+            newBless.GetComponent<BlessBase>().SetBasePosition(bestPosition, GameManager.instance.playerObj);
+            newBless.GetComponent<BlessBase>().OnActive(player);
         }
 
         private void RemoveBless(int index)
         {
             currentBless[index].OnDeactive();
+            currentBless[index].PlayDisapearParticle();
             currentBless.RemoveAt(index);
             currentBlessPos.RemoveAt(index);
             Destroy(currentBlessObj[index]);
@@ -89,15 +106,9 @@ namespace NManager
             blessContainer = new GameObject("BlessContainer");
         }
 
-        void Start()
-        {
-            player = GameManager.instance.playerObj;
-            GetRandomBless();
-        }
-
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.B))
             {
                 GetRandomBless();
             }
