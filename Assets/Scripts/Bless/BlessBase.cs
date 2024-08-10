@@ -45,29 +45,29 @@ namespace NBless
             renderer.material.SetColor("_Color", color * emmision);
             var dp = this.transform.Find("DisappearParticle").gameObject.GetComponent<ParticleSystem>();
             var dpr = dp.GetComponent<Renderer>();
-            dpr.material.SetColor("_Color", color * emmision);
+            dpr.material.SetColor("_Color", color * emmision * 3);
         }
 
         protected void Update()
         {
-            Debug.Log(player);
             if (player == null) return;
             Vector3 target = basePosition + player.transform.position;
             float distance = Vector3.Distance(this.transform.position, target);
 
             this.transform.position = Vector3.Lerp(this.transform.position, target, (distance / (1 * speed)) * Time.deltaTime * speed2);
 
-            //ゆらゆら上下に揺れる
             float y = Mathf.Sin((Time.time + speed) * 2) * 0.005f * speed;
             this.transform.position += new Vector3(0, y, 0);
         }
 
-        public virtual void OnActive(Player p = null)
+        public virtual bool OnActive(Player p = null)
         {
+            return false;
         }
 
-        public virtual void OnDeactive()
+        public virtual bool OnDeactive(Player p = null)
         {
+            return false;
         }
 
         public virtual void OnUpdate()
@@ -78,7 +78,7 @@ namespace NBless
         /// プレイヤーがダメージを受けた時に呼ばれる
         /// </summary>
         /// <returns>
-        /// trueを返すとダメージを無効化する
+        /// trueを返すとダメージを無効化し、その祝福を削除する
         /// </returns>
         public virtual bool OnPlayerDamaged(Player p = null)
         {

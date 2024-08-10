@@ -88,12 +88,16 @@ namespace NManager
             bestPosition.z = -10;
             currentBlessPos.Add(bestPosition);
             newBless.GetComponent<BlessBase>().SetBasePosition(bestPosition, GameManager.instance.playerObj);
-            newBless.GetComponent<BlessBase>().OnActive(player);
+
+            if (newBless.GetComponent<BlessBase>().OnActive(player))
+            {
+                RemoveBless(currentBless.IndexOf(newBless.GetComponent<BlessBase>()));
+            }
         }
 
         private void RemoveBless(int index)
         {
-            currentBless[index].OnDeactive();
+            currentBless[index].OnDeactive(player);
             currentBless[index].PlayDisapearParticle();
             currentBless.RemoveAt(index);
             currentBlessPos.RemoveAt(index);

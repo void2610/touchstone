@@ -5,13 +5,15 @@ namespace NBless
     using NCharacter;
     public class Heal : BlessBase
     {
-        public override void OnActive(Player p = null)
+        public override bool OnActive(Player p = null)
         {
             if (p.hp < p.maxHp)
             {
                 SoundManager.instance.PlaySe("heal");
                 p.Heal(1);
+                return true;
             }
+            return false;
         }
 
         public override bool OnPlayerDamaged(Player p = null)

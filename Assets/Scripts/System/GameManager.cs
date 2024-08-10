@@ -70,6 +70,7 @@ namespace NManager
 		private int seed = 42;
 		private PlayerInput playerInput => this.GetComponent<PlayerInput>();
 		private InputAction pause;
+		private bool isFirst = true;
 
 		public float RandomRange(float min, float max)
 		{
@@ -162,11 +163,11 @@ namespace NManager
 			state = GameState.Selecting;
 			SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
-			this.GetComponent<BlessManager>().GetRandomBless();
 		}
 
 		public void SetUp()
 		{
+			if (!isFirst) this.GetComponent<BlessManager>().GetRandomBless();
 			altitudeOffset = maxAltitude;
 			state = GameState.Playing;
 			Time.timeScale = 1;
@@ -179,6 +180,7 @@ namespace NManager
 			this.GetComponent<MapManager>()?.SetUp();
 			this.GetComponent<EquipmentManager>().SetUp();
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(true);
+			isFirst = false;
 		}
 
 		void Start()
