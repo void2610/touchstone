@@ -4947,9 +4947,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6834537526392819765}
-  - component: {fileID: 5199094698997151815}
+  - component: {fileID: -1896771809770298855}
   m_Layer: 0
-  m_Name: Shield
+  m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4972,7 +4972,7 @@ Transform:
   - {fileID: 333508674070381361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5199094698997151815
+--- !u!114 &-1896771809770298855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4981,10 +4981,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7045385886362925820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbc6d0124ebb347559ee976af840516c, type: 3}
+  m_Script: {fileID: 11500000, guid: 109f3ef8d166347ddac028d37f655f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blessName: 
-  color: {r: 0, g: 0.53050137, b: 1, a: 0}
-  emmision: 3.5
-  icon: {fileID: 2800000, guid: 043796509da60422f8cd9210cabdd25b, type: 3}
+  color: {r: 0.12834764, g: 1, b: 0, a: 0}
+  emmision: 2
+  icon: {fileID: 2800000, guid: 4290a9bdbe48e4490a5d0fc494ee17f7, type: 3}

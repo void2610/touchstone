@@ -12,12 +12,14 @@ namespace NBless
         private GameObject player;
 
         private float speed = 1.0f;
+        private float speed2 = 1.0f;
 
         public void SetBasePosition(Vector3 pos, GameObject player)
         {
             basePosition = pos;
             this.player = player;
             speed = Random.Range(0.5f, 3f);
+            speed2 = Random.Range(0.1f, 1.5f);
         }
 
         protected void Awake()
@@ -39,7 +41,8 @@ namespace NBless
             if (player == null) return;
             Vector3 target = basePosition + player.transform.position;
             float distance = Vector3.Distance(this.transform.position, target);
-            this.transform.position = Vector3.Lerp(this.transform.position, target, (distance / (speed * 3.0f)) * Time.deltaTime * speed);
+
+            this.transform.position = Vector3.Lerp(this.transform.position, target, (distance / (5 * speed)) * Time.deltaTime * speed2);
 
             //ゆらゆら上下に揺れる
             float y = Mathf.Sin((Time.time + speed) * 2) * 0.005f * speed;

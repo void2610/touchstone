@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40244496f84fc407782b05600815b20c, type: 3}
-  m_Name: AllBlessDataList
+  m_Script: {fileID: 11500000, guid: cd6316f08ddc944ce8121a61861381ed, type: 3}
+  m_Name: Heal
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 11400000, guid: 180072213593f47268a3a5443ea7848e, type: 2}
-  - {fileID: 11400000, guid: 8cb9877a622bb4c75b0dfc31cb20d447, type: 2}
+  blessID: 0
+  blessName: Heal
+  blessDescription: "HP\u30921\u56DE\u5FA9\u3059\u308B"
+  blessProbability: 1
+  blessPrefab: {fileID: 7045385886362925820, guid: e02dd52a7ef1d43ab80ca6a8f3bc2c61, type: 3}

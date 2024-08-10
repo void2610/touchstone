@@ -22,7 +22,12 @@ namespace NManager
         public void GetRandomBless()
         {
             GameObject newBless = null;
-            float randomValue = Random.Range(0f, 1f);
+            float total = 0;
+            foreach (var blessData in allBlessData)
+            {
+                total += blessData.blessProbability;
+            }
+            float randomValue = Random.Range(0f, total);
             float sum = 0;
             foreach (var blessData in allBlessData)
             {
@@ -67,6 +72,16 @@ namespace NManager
 
             currentBlessPos.Add(bestPosition);
             newBless.GetComponent<BlessBase>().SetBasePosition(bestPosition, player);
+            newBless.GetComponent<BlessBase>().OnActive();
+        }
+
+        private void RemoveBless(int index)
+        {
+            currentBless[index].OnDeactive();
+            currentBless.RemoveAt(index);
+            currentBlessPos.RemoveAt(index);
+            Destroy(currentBlessObj[index]);
+            currentBlessObj.RemoveAt(index);
         }
 
         void Awake()
