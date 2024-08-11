@@ -56,9 +56,8 @@ namespace NCharacter
             base.Update();
         }
 
-        protected override void OnDestroy()
+        protected void OnDestroy()
         {
-            base.OnDestroy();
             moveSequence?.Kill();
             floatSequence?.Kill();
         }

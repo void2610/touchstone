@@ -34,7 +34,7 @@ namespace NManager
             return false;
         }
 
-        public void GetRandomBless()
+        public void GetRandomBless(Vector3 spawnPos = default)
         {
             player = GameManager.instance.player;
             GameObject newBless = null;
@@ -50,8 +50,7 @@ namespace NManager
                 sum += blessData.blessProbability;
                 if (randomValue <= sum)
                 {
-                    Debug.Log(blessData.blessName);
-                    newBless = Instantiate(blessData.blessPrefab, blessContainer.transform);
+                    newBless = Instantiate(blessData.blessPrefab, spawnPos, Quaternion.identity, blessContainer.transform);
                     currentBlessObj.Add(newBless);
                     currentBless.Add(newBless.GetComponent<BlessBase>());
                     break;

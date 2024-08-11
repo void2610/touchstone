@@ -27,18 +27,14 @@ namespace NCharacter
 			hp -= damage;
 			if (hp <= 0)
 			{
-				InstantiateDeathParticle();
+				DestroyByPlayer();
 				Destroy(this.gameObject);
 			}
 		}
 
-		public void InstantiateDeathParticle()
+		protected virtual void DestroyByPlayer()
 		{
 			Instantiate(deathParticle, this.transform.position, Quaternion.identity);
-		}
-
-		protected virtual void OnDestroy()
-		{
 		}
 
 		protected virtual void Awake()

@@ -6,11 +6,14 @@ namespace NCharacter
     using DG.Tweening;
     using NManager;
 
-    public class MissileBall : Enemy
+    public class BlessHolder : Enemy
     {
-        private float speed = 4f;
+        private float speed = 5f;
         private float searchRange = 30.0f;
         private Transform player => GameManager.instance.player.transform;
+
+        private float leftLimit = -15.0f;
+        private float rightLimit = 15.0f;
         protected override void Awake()
         {
             base.Awake();
@@ -32,9 +35,18 @@ namespace NCharacter
             if (Vector3.Distance(this.transform.position, player.position) > searchRange) return;
 
             Vector2 direction = (player.position - this.transform.position).normalized;
-            // ゆっくりと角度をプレイヤーに向ける
-            this.transform.up = Vector2.Lerp(this.transform.up, direction, 0.1f);
-            this.transform.position = Vector2.Lerp(this.transform.position, this.transform.position + (Vector3)direction * speed, Time.deltaTime);
+            Vector3 newPosition = Vector2.Lerp(this.transform.position, this.transform.position - (Vector3)direction * speed, Time.deltaTime);
+
+            // 左右の制限を追加
+            newPosition.x = Mathf.Clamp(newPosition.x, leftLimit, rightLimit);
+
+            this.transform.position = newPosition;
+        }
+
+        protected override void DestroyByPlayer()
+        {
+            base.DestroyByPlayer();
+            GameManager.instance.GetComponent<BlessManager>().GetRandomBless(this.transform.position);
         }
     }
 }

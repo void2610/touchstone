@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1684d261f293e48b6be02d1754769142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blessProbability: 0.1
 --- !u!1 &4181816599333826116
 GameObject:
   m_ObjectHideFlags: 0
