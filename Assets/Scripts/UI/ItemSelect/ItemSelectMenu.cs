@@ -42,6 +42,7 @@ namespace NUI
         {
             SoundManager.instance.PlaySe("button");
             PlayerPrefs.SetInt("NowEquip1", newEquipID);
+            GameManager.instance.player.Heal(1);
             FadeOut();
         }
 
@@ -49,6 +50,7 @@ namespace NUI
         {
             SoundManager.instance.PlaySe("button");
             PlayerPrefs.SetInt("NowEquip2", newEquipID);
+            GameManager.instance.player.Heal(1);
             FadeOut();
         }
 
@@ -56,6 +58,7 @@ namespace NUI
         {
             SoundManager.instance.PlaySe("button");
             PlayerPrefs.SetInt("NowEquip3", newEquipID);
+            GameManager.instance.player.Heal(1);
             FadeOut();
         }
 
