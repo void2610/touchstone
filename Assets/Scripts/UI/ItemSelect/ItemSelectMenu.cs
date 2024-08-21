@@ -30,6 +30,7 @@ namespace NUI
         private CanvasGroup canvasGroup;
 
         private float fadeTime = 1.0f;
+        private int newEquipID = 0;
 
         public void OnClickTrash()
         {
@@ -40,21 +41,21 @@ namespace NUI
         public void OnClickEquip1()
         {
             SoundManager.instance.PlaySe("button");
-            PlayerPrefs.SetInt("NowEquip1", newEquip.GetComponent<SelectEquipmentContainer>().GetItem().equipmentID);
+            PlayerPrefs.SetInt("NowEquip1", newEquipID);
             FadeOut();
         }
 
         public void OnClickEquip2()
         {
             SoundManager.instance.PlaySe("button");
-            PlayerPrefs.SetInt("NowEquip2", newEquip.GetComponent<SelectEquipmentContainer>().GetItem().equipmentID);
+            PlayerPrefs.SetInt("NowEquip2", newEquipID);
             FadeOut();
         }
 
         public void OnClickEquip3()
         {
             SoundManager.instance.PlaySe("button");
-            PlayerPrefs.SetInt("NowEquip3", newEquip.GetComponent<SelectEquipmentContainer>().GetItem().equipmentID);
+            PlayerPrefs.SetInt("NowEquip3", newEquipID);
             FadeOut();
         }
 
@@ -110,7 +111,14 @@ namespace NUI
         private void Start()
         {
             Cursor.visible = true;
-            int newEquipID = GameManager.instance.RandomRange(1, allEquipments.list.Count);
+            newEquipID = GameManager.instance.RandomRange(1, allEquipments.list.Count);
+            while(allEquipments.list[newEquipID].equipmentName == "Heal")
+            {
+                newEquipID = GameManager.instance.RandomRange(1, allEquipments.list.Count);
+            }
+
+            Debug.Log(allEquipments.list[newEquipID].equipmentName);
+            Debug.Log(newEquipID);
 
             nowEquip1.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 1)]);
             nowEquip2.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 0)]);

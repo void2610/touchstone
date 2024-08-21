@@ -124,6 +124,8 @@ namespace NManager
 
         void Update()
         {
+            if(!Application.isEditor) return;
+
             if (Input.GetKeyDown(KeyCode.B))
             {
                 GetRandomBless();

@@ -103,5 +103,14 @@ namespace NMap
             nextHight += h;
             mapCount++;
         }
+
+        private void Update()
+        {
+            if(!Application.isEditor) return;
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                GameManager.instance.playerObj.transform.position = new Vector3(0, mapEndAltitude + 5, 0);
+            }
+        }
     }
 }
