@@ -9,7 +9,7 @@ namespace NMap
         {
             if (collision.gameObject.CompareTag("PlayerTrigger") && GameManager.instance.maxAltitude > 30 + GameManager.instance.altitudeOffset)
             {
-                GameManager.instance.player.CutHp(10);
+                GameManager.instance.player.CutHp(1);
             }
         }
     }

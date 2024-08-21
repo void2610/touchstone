@@ -167,7 +167,7 @@ namespace NManager
 
 		public void SetUp()
 		{
-			if (!isFirst) this.GetComponent<BlessManager>().GetRandomBless();
+			// if (!isFirst) this.GetComponent<BlessManager>().GetRandomBless();
 			altitudeOffset = maxAltitude;
 			state = GameState.Playing;
 			Time.timeScale = 1;

@@ -76,7 +76,7 @@ MonoBehaviour:
   - prefab: {fileID: 5685808739343059339, guid: c793f2991e85247b1a42027510ee704c, type: 3}
     weight: 0.8
   - prefab: {fileID: 5685808739343059339, guid: ca136b1f71ae941ecbedf76f864d812f, type: 3}
-    weight: 0.1
+    weight: 0.2
   createOnStart: 0
 --- !u!1 &6452555348443374193
 GameObject:
