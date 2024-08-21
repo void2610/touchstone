@@ -97,6 +97,11 @@ namespace NBless
         {
         }
 
+        public virtual bool OnPlayerCantJumped(Player p = null)
+        {
+            return false;
+        }
+
         public virtual void OnPlayerLanded()
         {
         }

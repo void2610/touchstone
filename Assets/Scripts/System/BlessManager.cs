@@ -18,7 +18,7 @@ namespace NManager
         private GameObject blessContainer;
         private Player player;
 
-        private float radius = 5.0f;
+        private float radius = 4.0f;
 
         //ダメージを受けたときにBlessの効果を発動し、trueならダメージを無効化
         public bool OnPlayerDamaged()
@@ -26,6 +26,19 @@ namespace NManager
             foreach (var bless in currentBless)
             {
                 if (bless.OnPlayerDamaged(player))
+                {
+                    RemoveBless(currentBless.IndexOf(bless));
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool OnPlayerCantJumped()
+        {
+            foreach (var bless in currentBless)
+            {
+                if (bless.OnPlayerCantJumped(player))
                 {
                     RemoveBless(currentBless.IndexOf(bless));
                     return true;

@@ -89,7 +89,10 @@ namespace NCharacter
 				rb.velocity = new Vector2(rb.velocity.x, 0);
 				rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 				jumpCnt++;
+				//GameManager.instance.GetComponent<BlessManager>().OnPlayerJumped();
+				return;
 			}
+			GameManager.instance.GetComponent<BlessManager>().OnPlayerCantJumped();
 		}
 
 		private void Awake()
