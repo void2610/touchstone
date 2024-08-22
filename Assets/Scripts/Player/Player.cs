@@ -171,7 +171,7 @@ namespace NCharacter
 				rb.constraints = RigidbodyConstraints2D.FreezeAll;
 			}
 
-			RaycastHit2D hit1 = Physics2D.Raycast(transform.position + new Vector3(0.65f, 0, 0), Vector2.down, 2f, LayerMask.GetMask("Ground"));
+			RaycastHit2D hit1 = Physics2D.Raycast(transform.position + new Vector3(0.95f, 0, 0), Vector2.down, 2f, LayerMask.GetMask("Ground"));
 			RaycastHit2D hit2 = Physics2D.Raycast(transform.position + new Vector3(-0.95f, 0, 0), Vector2.down, 2f, LayerMask.GetMask("Ground"));
 			if (hit1.collider != null || hit2.collider != null)
 			{

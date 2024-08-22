@@ -7,6 +7,7 @@ namespace NBless
     {
         public override bool OnPlayerCantJumped(Player p = null)
         {
+            SoundManager.instance.PlaySe("dash");
             p.JumpByEnemy(1.5f);
             return true;
         }
