@@ -76,3 +76,6 @@ MonoBehaviour:
   - name: heal
     audioClip: {fileID: 8300000, guid: 551ee08d6f4d2436eafcce5b8609d460, type: 3}
     volume: 0.7
+  - name: bless
+    audioClip: {fileID: 8300000, guid: 39a6d9dd4711a422db60487b5aa25a06, type: 3}
+    volume: 0.7

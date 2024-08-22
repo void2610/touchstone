@@ -49,6 +49,7 @@ namespace NManager
 
         public void GetRandomBless(Vector3 spawnPos = default)
         {
+            SoundManager.instance.PlaySe("bless");
             player = GameManager.instance.player;
             GameObject newBless = null;
             float total = 0;
