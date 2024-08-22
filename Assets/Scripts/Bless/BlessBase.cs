@@ -50,7 +50,7 @@ namespace NBless
 
         protected void Update()
         {
-            if (player == null) return;
+            if (player == null || Time.timeScale == 0) return;
             Vector3 target = basePosition + player.transform.position;
             float distance = Vector3.Distance(this.transform.position, target);
 
