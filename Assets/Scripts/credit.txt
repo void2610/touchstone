@@ -1,11 +1,18 @@
-// BGM
+制作
+void2610
+
+
+
+BGM
+
 seadenden 8bit free BGM
 https://seadenden-8bit.com
 
 Gymnopedie No.1 (Music Box Cover)
 https://booth.pm/ja/items/5242247
 
-// SE
+SE
+
 Springin’ Sound Stock
 https://www.springin.org/sound-stock/
 
@@ -27,7 +34,8 @@ http://www.kurage-kosho.info/index.html
 TAM Music Factory
 https://www.tam-music.com/info
 
-// Font
+フォント
+
 HeadUpDaisy
 © 2018-2024 hicc 患者長ひっく
 https://hicchicc.github.io/00ff/

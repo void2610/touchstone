@@ -40,11 +40,48 @@ namespace NTitle
 		[SerializeField]
 		private AudioClip bgmAudioClip;
 
+		[SerializeField]
+		private CanvasGroup credit;
+		[SerializeField]
+		private CanvasGroup license;
+
 		public bool isRandomedSeed { get { return seedInputField.interactable; } set { seedInputField.interactable = value; } }
 
 		private int state = 0;
 		//0:タイトル画面 1:装備編成画面 2:設定画面 3:装備選択画面
 		private int selectEquip = 0;
+
+		public void ShowCredit()
+		{
+			SoundManager.instance.PlaySe("button");
+			credit.alpha = 1;
+			credit.interactable = true;
+			credit.blocksRaycasts = true;
+		}
+
+		public void ShowLicense()
+		{
+			SoundManager.instance.PlaySe("button");
+			license.alpha = 1;
+			license.interactable = true;
+			license.blocksRaycasts = true;
+		}
+
+		public void CloseCredit()
+		{
+			PlayButtonSe();
+			credit.alpha = 0;
+			credit.interactable = false;
+			credit.blocksRaycasts = false;
+		}
+
+		public void CloseLicense()
+		{
+			PlayButtonSe();
+			license.alpha = 0;
+			license.interactable = false;
+			license.blocksRaycasts = false;
+		}
 
 		public void OnClickStartButton()
 		{
@@ -252,6 +289,9 @@ namespace NTitle
 		{
 			Time.timeScale = 1;
 			allEquipments.Init();
+
+			CloseCredit();
+			CloseLicense();
 		}
 		void Start()
 		{
