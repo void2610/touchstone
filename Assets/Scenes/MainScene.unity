@@ -2565,7 +2565,7 @@ MonoBehaviour:
   isEndless: 0
   allEquipmentDataList: {fileID: 11400000, guid: 8ab382cf476e047f587eac25c806649b, type: 2}
   state: 0
-  StageSize: 7
+  StageSize: 10
 --- !u!114 &1017836018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2590,7 +2590,7 @@ MonoBehaviour:
     difficulty: 30
   - prefab: {fileID: 6251663239724963194, guid: cf96589d7762d4e429a752f75c95d6ab, type: 3}
     difficulty: 50
-  mapLengths: 01000000020000000300000004000000050000000600000007000000
+  mapLengths: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   termialMapLength: 10
   mapHight: 50
   startHight: 75

@@ -151,9 +151,9 @@ namespace NManager
 
 			if (PlayerPrefs.GetInt("RandomSeed", 1) == 1)
 			{
-				if (UnityroomApiClient.Instance != null)
+				if (UnityroomApiClient.Instance != null && isEndless)
 				{
-					int boardId = isEndless ? 2 : 1;
+					int boardId = 2;
 					UnityroomApiClient.Instance.SendScore(boardId, maxAltitude, ScoreboardWriteMode.HighScoreDesc);
 				}
 			}
