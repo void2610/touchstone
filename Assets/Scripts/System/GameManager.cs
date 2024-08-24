@@ -59,6 +59,7 @@ namespace NManager
 			Paused,
 			GameOver,
 			Selecting,
+			Clear,
 			Other
 		}
 
@@ -170,6 +171,37 @@ namespace NManager
 			state = GameState.Selecting;
 			SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
+		}
+
+		public void GameClear()
+		{
+			float clearTime = Time.timeSinceLevelLoad;
+			player.ChangeMovable(false);
+			player.isOnGame = false;
+			state = GameState.Clear;
+			Time.timeScale = 0;
+			Cursor.visible = true;
+
+			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
+			this.GetComponent<UIManager>().ChangeUIState(GameState.Clear);
+			this.GetComponent<UIManager>().SetClearTimeText(clearTime);
+			int gainedCoins = (int)(maxAltitude / 10);
+			int currentCoins = PlayerPrefs.GetInt("Coin", 0);
+			this.GetComponent<UIManager>().SetGaindCoinText("+" + gainedCoins.ToString());
+
+			if (PlayerPrefs.GetInt("RandomSeed", 1) == 1)
+			{
+				if (UnityroomApiClient.Instance != null)
+				{
+					int boardId = isEndless ? 2 : 1;
+					UnityroomApiClient.Instance.SendScore(boardId, clearTime, ScoreboardWriteMode.HighScoreAsc);
+				}
+			}
+			else
+			{
+				Debug.Log("Seed is used, not send score");
+			}
+			PlayerPrefs.SetInt("Coin", currentCoins + gainedCoins);
 		}
 
 		public void ResetAltitude()

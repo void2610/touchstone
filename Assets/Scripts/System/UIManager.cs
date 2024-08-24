@@ -19,7 +19,13 @@ namespace NManager
         [SerializeField]
         private TextMeshProUGUI resultText;
         [SerializeField]
+        private TextMeshProUGUI clearTimeText;
+        [SerializeField]
         private TextMeshProUGUI gaindCoinText;
+        [SerializeField]
+        private TextMeshProUGUI gaindCoinText2;
+        [SerializeField]
+        private TextMeshProUGUI inGameTimeText;
 
         public void FadeIn(string loadSceneName = "")
         {
@@ -59,9 +65,16 @@ namespace NManager
             DOTween.To(() => 0, x => resultText.text = "max: " + x.ToString("F2") + "m", target, 0.2f + target / 1000.0f);
         }
 
+        public void SetClearTimeText(float t)
+        {
+            TimeSpan time = TimeSpan.FromSeconds(t);
+            clearTimeText.text = "Clear Time: " + time.ToString(@"mm\:ss\:ff");
+        }
+
         public void SetGaindCoinText(string text)
         {
             gaindCoinText.text = text;
+            gaindCoinText2.text = text;
         }
 
         private void ChangeCanvasGroupEnabled(CanvasGroup c, bool enabled)
@@ -89,6 +102,9 @@ namespace NManager
                 case GameManager.GameState.GameOver:
                     ChangeCanvasGroupEnabled(canvasGroups[1], true);
                     break;
+                case GameManager.GameState.Clear:
+                    ChangeCanvasGroupEnabled(canvasGroups[3], true);
+                    break;
                 case GameManager.GameState.Other:
                     break;
             }
@@ -98,6 +114,12 @@ namespace NManager
         {
             ChangeUIState(GameManager.GameState.Playing);
             FadeOut();
+        }
+
+        private void Update()
+        {
+            TimeSpan time = TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
+            inGameTimeText.text = "time: " + time.ToString(@"mm\:ss\:ff");
         }
     }
 }

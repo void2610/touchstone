@@ -53,6 +53,11 @@ namespace NMap
         {
             if (proceed) stageCount++;
 
+            if (stageCount >= GameManager.instance.StageSize)
+            {
+                GameManager.instance.GameClear();
+                return;
+            }
             currentRandom = new System.Random(GameManager.instance.mapRandomSeeds[stageCount]);
             Debug.Log("Seed: " + currentRandom.Next() + " " + stageCount);
             int mapLength = stageCount < mapLengths.Count ? mapLengths[stageCount] : termialMapLength;

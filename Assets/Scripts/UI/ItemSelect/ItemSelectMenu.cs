@@ -66,7 +66,7 @@ namespace NUI
         {
             if (foreGround == null && backGround == null) return;
 
-            foreGround.GetComponent<Image>().DOFade(1.0f, fadeTime).OnComplete(() =>
+            foreGround.GetComponent<Image>().DOFade(1.0f, fadeTime).SetUpdate(true).OnComplete(() =>
             {
                 if (foreGround == null && backGround == null) return;
                 Color c = backGround.GetComponent<Image>().color;
@@ -74,7 +74,7 @@ namespace NUI
                 canvasGroup.alpha = 1.0f;
                 canvasGroup.interactable = true;
                 BGMManager.instance.EnableLowPassFilter();
-                foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).OnComplete(() =>
+                foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).SetUpdate(true).OnComplete(() =>
                 {
                     if (foreGround == null && backGround == null) return;
                     foreGround.SetActive(false);
@@ -87,7 +87,7 @@ namespace NUI
             if (foreGround == null && backGround == null) return;
 
             foreGround.SetActive(true);
-            foreGround.GetComponent<Image>().DOFade(1.0f, fadeTime).OnComplete(() =>
+            foreGround.GetComponent<Image>().DOFade(1.0f, fadeTime).SetUpdate(true).OnComplete(() =>
             {
                 if (foreGround == null && backGround == null) return;
                 Color c = backGround.GetComponent<Image>().color;
@@ -97,7 +97,7 @@ namespace NUI
                 GameManager.instance.SetUp();
                 BGMManager.instance.DisableLowPassFilter();
 
-                foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).OnComplete(() =>
+                foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).SetUpdate(true).OnComplete(() =>
                 {
                     if (foreGround == null && backGround == null) return;
                     foreGround.SetActive(false);
