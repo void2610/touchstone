@@ -21133,7 +21133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 0
   isShield: 0
-  isMovable: 1
   isOnGame: 1
   jumpCnt: 0
 --- !u!114 &1471282079
@@ -77929,7 +77928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 50}
   offset: 20
-  objectNum: 10
+  objectNum: 5
   objects:
   - prefab: {fileID: 4859709793482285359, guid: bae2105c3c53e4560bfbb0d14ad6b907, type: 3}
     weight: 1

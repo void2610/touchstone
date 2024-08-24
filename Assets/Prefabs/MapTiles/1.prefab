@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 50}
   offset: 0
-  objectNum: 6
+  objectNum: 3
   objects:
   - prefab: {fileID: 4859709793482285359, guid: bae2105c3c53e4560bfbb0d14ad6b907, type: 3}
     weight: 1
