@@ -104,7 +104,7 @@ namespace NManager
 
 		public void Retry()
 		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			this.GetComponent<UIManager>().FadeIn(SceneManager.GetActiveScene().name);
 		}
 
 		public void Pause()
@@ -116,7 +116,7 @@ namespace NManager
 			this.GetComponent<UIManager>().ChangeUIState(GameState.Paused);
 			Cursor.visible = true;
 			Time.timeScale = 0;
-			player.isMovable = false;
+			player.ChangeMovable(false);
 		}
 
 		public void Resume()
@@ -127,7 +127,7 @@ namespace NManager
 			this.GetComponent<UIManager>().ChangeUIState(GameState.Playing);
 			Cursor.visible = false;
 			Time.timeScale = 1;
-			player.isMovable = true;
+			player.ChangeMovable(true);
 		}
 
 		public void GameOver()
@@ -140,7 +140,7 @@ namespace NManager
 			state = GameState.GameOver;
 			int gainedCoins = (int)(maxAltitude / 10);
 			int currentCoins = PlayerPrefs.GetInt("Coin", 0);
-			player.isMovable = false;
+			player.ChangeMovable(false);
 			player.isInvincible = true;
 			this.GetComponent<UIManager>().ChangeUIState(GameState.GameOver);
 			this.GetComponent<UIManager>().SetResultText(maxAltitude);
@@ -165,7 +165,7 @@ namespace NManager
 
 		public void ClearStage()
 		{
-			player.isMovable = false;
+			player.ChangeMovable(false);
 			player.isOnGame = false;
 			state = GameState.Selecting;
 			SceneManager.LoadScene("ItemScene", LoadSceneMode.Additive);
@@ -185,7 +185,7 @@ namespace NManager
 			state = GameState.Playing;
 			Time.timeScale = 1;
 			Cursor.visible = false;
-			player.isMovable = true;
+			player.ChangeMovable(true);
 			player.isOnGame = true;
 			state = GameState.Playing;
 

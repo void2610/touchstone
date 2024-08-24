@@ -184,7 +184,8 @@ namespace NTitle
 
 		public void PlayButtonSe()
 		{
-			if (Time.time > 0.5f)
+			// シーンがロードされてからの経過時間が0.5秒以上の場合にボタンSEを再生
+			if (Time.timeSinceLevelLoad > 1.0f)
 				SoundManager.instance.PlaySe("button");
 		}
 
@@ -289,7 +290,6 @@ namespace NTitle
 		{
 			Time.timeScale = 1;
 			allEquipments.Init();
-
 			CloseCredit();
 			CloseLicense();
 		}

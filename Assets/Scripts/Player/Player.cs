@@ -15,7 +15,7 @@ namespace NCharacter
 		public int maxHp { get; private set; } = 3;
 		public int hp { get; private set; }
 		public int atk { get; private set; } = 1;
-		public bool isMovable = true;
+		public bool isMovable { get; private set; } = true;
 		public bool isOnGame = true;
 		public float defaultScaleX { get; private set; }
 		private int maxJumpCnt = 2;
@@ -32,6 +32,16 @@ namespace NCharacter
 
 		private InputAction moveRight, moveLeft, jump;
 		private PlayerInput playerInput => this.GetComponent<PlayerInput>();
+
+		public void ChangeMovable(bool b)
+		{
+			if (!b)
+			{
+				animator.SetInteger("PlayerState", 0);
+				rb.velocity = Vector2.zero;
+			}
+			this.isMovable = b;
+		}
 
 		public void Heal(int amount)
 		{

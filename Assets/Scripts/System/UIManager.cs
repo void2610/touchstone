@@ -1,9 +1,11 @@
 namespace NManager
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections;
     using UnityEngine;
     using UnityEngine.UI;
     using UnityEngine.SceneManagement;
-    using System.Collections.Generic;
     using TMPro;
     using NUI;
     using DG.Tweening;
@@ -11,15 +13,45 @@ namespace NManager
     public class UIManager : MonoBehaviour
     {
         [SerializeField]
+        private Image fadeImage;
+        [SerializeField]
         private List<CanvasGroup> canvasGroups;
         [SerializeField]
         private TextMeshProUGUI resultText;
         [SerializeField]
         private TextMeshProUGUI gaindCoinText;
 
+        public void FadeIn(string loadSceneName = "")
+        {
+            fadeImage.DOFade(0, 0).SetUpdate(true);
+            fadeImage.DOFade(1, 1.0f).SetUpdate(true).OnComplete(() =>
+            {
+                if (loadSceneName != "") SceneManager.LoadScene(loadSceneName);
+            });
+        }
+
+        public void FadeOut()
+        {
+            fadeImage.DOFade(1, 0).SetUpdate(true);
+            fadeImage.DOFade(0, 1.0f).SetUpdate(true);
+        }
+
+        public void CrossFade(float duration, Action a1, Action a2)
+        {
+            fadeImage.DOFade(0, 0).SetUpdate(true);
+            fadeImage.DOFade(1, duration).SetUpdate(true).OnComplete(() =>
+            {
+                a1();
+                fadeImage.DOFade(0, duration).SetUpdate(true).OnComplete(() =>
+                {
+                    a2();
+                });
+            });
+        }
+
         public void GoToTitle()
         {
-            SceneManager.LoadScene("TitleScene");
+            FadeIn("TitleScene");
         }
 
         public void SetResultText(float target)
@@ -65,6 +97,7 @@ namespace NManager
         private void Start()
         {
             ChangeUIState(GameManager.GameState.Playing);
+            FadeOut();
         }
     }
 }

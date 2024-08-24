@@ -3,6 +3,8 @@ namespace NManager
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+	using UnityEngine.UI;
+	using UnityEngine.SceneManagement;
 	using DG.Tweening;
 	using NMap;
 	using NManager;
