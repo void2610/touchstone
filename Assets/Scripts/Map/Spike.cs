@@ -8,9 +8,8 @@ namespace NMap
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log(collision.gameObject.name);
             var p = collision.gameObject.GetComponent<Player>();
-            if (p != null)
+            if (p != null && !p.isInvincible && p.isMovable)
             {
                 p.CutHp(1);
                 p.JumpByEnemy(1.5f);

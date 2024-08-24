@@ -36,6 +36,10 @@ namespace NManager
 					Debug.Log("Seed: " + seed);
 				}
 				random = new System.Random(seed);
+				for (int i = 0; i < StageSize; i++)
+				{
+					mapRandomSeeds.Add(random.Next());
+				}
 				DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 200, sequencesCapacity: 200);
 			}
 			else
@@ -60,8 +64,11 @@ namespace NManager
 
 		[SerializeField]
 		public GameState state = GameState.Playing;
+		[SerializeField]
+		public int StageSize = 10;
 
 		public System.Random random { get; private set; }
+		public List<int> mapRandomSeeds { get; private set; } = new List<int>();
 		public Player player { get; private set; }
 		public GameObject playerObj { get; private set; }
 		public float maxAltitude { get; private set; } = 0;
@@ -165,9 +172,15 @@ namespace NManager
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(false);
 		}
 
+		public void ResetAltitude()
+		{
+			maxAltitude = altitudeOffset;
+		}
+
 		public void SetUp()
 		{
 			// if (!isFirst) this.GetComponent<BlessManager>().GetRandomBless();
+			Debug.Log(isFirst);
 			altitudeOffset = maxAltitude;
 			state = GameState.Playing;
 			Time.timeScale = 1;
@@ -177,7 +190,7 @@ namespace NManager
 			state = GameState.Playing;
 
 			player.transform.position = new Vector3(0, 0, 0);
-			this.GetComponent<MapManager>()?.SetUp();
+			this.GetComponent<MapManager>()?.SetUp(!isFirst);
 			this.GetComponent<EquipmentManager>().SetUp();
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(true);
 			isFirst = false;

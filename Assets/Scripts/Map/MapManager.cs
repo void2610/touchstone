@@ -45,9 +45,16 @@ namespace NMap
         private float nextHight = 0;
         private int mapCount = 0;
 
-        public void SetUp()
+        private List<int> mapSeedList = new List<int>();
+
+        private System.Random currentRandom;
+
+        public void SetUp(bool proceed = true)
         {
-            stageCount++;
+            if (proceed) stageCount++;
+
+            currentRandom = new System.Random(GameManager.instance.mapRandomSeeds[stageCount]);
+            Debug.Log("Seed: " + currentRandom.Next() + " " + stageCount);
             int mapLength = stageCount < mapLengths.Count ? mapLengths[stageCount] : termialMapLength;
             mapEndAltitude = (mapLength) * mapHight;
 
@@ -73,7 +80,7 @@ namespace NMap
             }
             Instantiate(goalPrefab, new Vector3(0, mapEndAltitude, 0), Quaternion.identity, mapContainer.transform);
             Instantiate(goalBackGroundPrefab, new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
-            firstMap.GetComponent<MapCreater>().Create();
+            firstMap.GetComponent<MapCreater>().Create(currentRandom);
         }
 
         private void SetMap(float h)
@@ -87,7 +94,7 @@ namespace NMap
                 if (tile.difficulty >= 100) Debug.LogError("Difficulty is over 100");
                 totalAdjustedDifficulty += (100 - tile.difficulty) * difficultyModifier;
             }
-            float randomValue = GameManager.instance.RandomRange(0, totalAdjustedDifficulty);
+            float randomValue = RandomRange(0, totalAdjustedDifficulty);
 
             foreach (var tile in mapTiles)
             {
@@ -95,7 +102,7 @@ namespace NMap
                 if (randomValue <= 0)
                 {
                     var m = Instantiate(tile.prefab, new Vector3(0, nextHight, 0), Quaternion.identity, mapContainer.transform);
-                    m.GetComponent<MapCreater>().Create();
+                    m.GetComponent<MapCreater>().Create(currentRandom);
                     break;
                 }
             }
@@ -104,12 +111,28 @@ namespace NMap
             mapCount++;
         }
 
+        private float RandomRange(float min, float max)
+        {
+            float randomValue = (float)(this.currentRandom.NextDouble() * (max - min) + min);
+            return randomValue;
+        }
+
+        private int RandomRange(int min, int max)
+        {
+            int randomValue = this.currentRandom.Next(min, max);
+            return randomValue;
+        }
+
         private void Update()
         {
-            if(!Application.isEditor) return;
+            if (!Application.isEditor) return;
             if (Input.GetKeyDown(KeyCode.G))
             {
                 GameManager.instance.playerObj.transform.position = new Vector3(0, mapEndAltitude + 5, 0);
+            }
+            else if (Input.GetKeyDown(KeyCode.H))
+            {
+                GameManager.instance.player.Heal(1);
             }
         }
     }

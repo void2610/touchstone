@@ -7,9 +7,11 @@ namespace NMap
     {
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("PlayerTrigger") && GameManager.instance.maxAltitude > 30 + GameManager.instance.altitudeOffset)
+            if (collision.gameObject.CompareTag("PlayerTrigger") && GameManager.instance.maxAltitude > 5 + GameManager.instance.altitudeOffset)
             {
                 GameManager.instance.player.CutHp(1);
+                GameManager.instance.GetComponent<MapManager>().SetUp(false);
+                GameManager.instance.ResetAltitude();
             }
         }
     }

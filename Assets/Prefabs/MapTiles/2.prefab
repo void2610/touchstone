@@ -65,10 +65,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSize: {x: 30, y: 50}
   offset: 0
-  objectNum: 3
+  objectNum: 4
   objects:
   - prefab: {fileID: 4859709793482285359, guid: bae2105c3c53e4560bfbb0d14ad6b907, type: 3}
     weight: 1
+  - prefab: {fileID: 6448680009697736842, guid: 9ed56263136ce4f88a2e117edf83944d, type: 3}
+    weight: 0.5
+  - prefab: {fileID: 6448680009697736842, guid: c244de344b064408685d779710620f54, type: 3}
+    weight: 0.2
   enemyNum: 6
   enemies:
   - prefab: {fileID: 3597604276163359059, guid: d73c3d8370819468d86009f1548e4c85, type: 3}

@@ -33,8 +33,14 @@ namespace NMap
         [Header("Setting")]
         [SerializeField]
         private bool createOnStart = false;
-        public void Create()
+
+        private System.Random random;
+
+        public void Create(System.Random r = null)
         {
+            if (r == null) random = GameManager.instance.random;
+            else random = r;
+
             var objectContainer = new GameObject("ObjectContainer");
             objectContainer.transform.parent = this.transform;
             List<Vector3> objectPositions = new List<Vector3>();
@@ -43,7 +49,7 @@ namespace NMap
             {
                 Vector3 position = GetFarPosition(objectPositions);
                 float totalWeight = objects.Sum(o => o.weight);
-                float randomValue = GameManager.instance.RandomRange(0, totalWeight);
+                float randomValue = RandomRange(0, totalWeight);
 
                 foreach (var o in objects)
                 {
@@ -65,7 +71,7 @@ namespace NMap
             {
                 Vector3 position = GetFarPosition(objectPositions.Concat(enemyPositions).ToList());
                 float totalWeight = enemies.Sum(e => e.weight);
-                float randomValue = GameManager.instance.RandomRange(0, totalWeight);
+                float randomValue = RandomRange(0, totalWeight);
 
                 foreach (var e in enemies)
                 {
@@ -87,8 +93,8 @@ namespace NMap
 
             for (int attempt = 0; attempt < 10; attempt++) // 最大10回の試行
             {
-                int x = GameManager.instance.RandomRange(0, mapSize.x);
-                int y = GameManager.instance.RandomRange(0, mapSize.y);
+                int x = RandomRange(0, mapSize.x);
+                int y = RandomRange(0, mapSize.y);
                 Vector3 position = this.transform.position + new Vector3(x - mapSize.x / 2, y - mapSize.y / 2 + offset, 0);
 
                 float minDistance = existingPositions.Count == 0 ? float.MaxValue : existingPositions.Min(p => Vector3.Distance(p, position));
@@ -101,6 +107,18 @@ namespace NMap
             }
 
             return bestPosition;
+        }
+
+        private float RandomRange(float min, float max)
+        {
+            float randomValue = (float)(this.random.NextDouble() * (max - min) + min);
+            return randomValue;
+        }
+
+        private int RandomRange(int min, int max)
+        {
+            int randomValue = this.random.Next(min, max);
+            return randomValue;
         }
 
         private void Start()

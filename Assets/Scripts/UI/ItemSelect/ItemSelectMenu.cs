@@ -99,7 +99,6 @@ namespace NUI
 
                 foreGround.GetComponent<Image>().DOFade(0.0f, fadeTime).OnComplete(() =>
                 {
-
                     if (foreGround == null && backGround == null) return;
                     foreGround.SetActive(false);
 
@@ -115,13 +114,10 @@ namespace NUI
         {
             Cursor.visible = true;
             newEquipID = GameManager.instance.RandomRange(1, allEquipments.list.Count);
-            while(allEquipments.list[newEquipID].equipmentName == "Heal")
+            while (allEquipments.list[newEquipID].equipmentName == "Heal")
             {
                 newEquipID = GameManager.instance.RandomRange(1, allEquipments.list.Count);
             }
-
-            Debug.Log(allEquipments.list[newEquipID].equipmentName);
-            Debug.Log(newEquipID);
 
             nowEquip1.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip1", 1)]);
             nowEquip2.GetComponent<EquipmentContainer>().SetItem(allEquipments.list[PlayerPrefs.GetInt("NowEquip2", 0)]);
