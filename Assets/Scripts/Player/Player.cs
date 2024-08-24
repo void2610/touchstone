@@ -52,14 +52,20 @@ namespace NCharacter
 			}
 		}
 
-		public void CutHp(int damage, bool playSe = true)
+		/// <summary>
+		/// プレイヤーのHPを減らす
+		/// </summary>
+		/// <param name="damage">与えるダメージ</param>
+		/// <param name="playSe">ダメージ音を再生するか</param>
+		/// <returns>HPが0になればtrueを返す</returns>
+		public bool CutHp(int damage, bool playSe = true)
 		{
-			if (isInvincible) return;
+			if (isInvincible) return false;
 
 			// 祝福の効果を発動し、trueならダメージを無効化
 			if (GameManager.instance.GetComponent<BlessManager>().OnPlayerDamaged())
 			{
-				return;
+				return false;
 			}
 
 			if (playSe) SoundManager.instance.PlaySe("damage");
@@ -70,7 +76,26 @@ namespace NCharacter
 				hp = 0;
 				GameManager.instance.GameOver();
 				animator.SetInteger("PlayerState", 0);
+				return true;
 			}
+			return false;
+		}
+
+		public bool CutHpFromFloor()
+		{
+			if (isInvincible) return false;
+
+			SoundManager.instance.PlaySe("damage");
+			this.GetComponent<PlayerParticles>().ChangeColorToRed();
+			hp--;
+			if (hp <= 0)
+			{
+				hp = 0;
+				GameManager.instance.GameOver();
+				animator.SetInteger("PlayerState", 0);
+				return true;
+			}
+			return false;
 		}
 
 		public void AddForce(Vector2 force)

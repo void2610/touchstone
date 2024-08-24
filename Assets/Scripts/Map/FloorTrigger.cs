@@ -9,14 +9,16 @@ namespace NMap
         {
             if (collision.gameObject.CompareTag("PlayerTrigger") && GameManager.instance.maxAltitude > 5 + GameManager.instance.altitudeOffset)
             {
-                GameManager.instance.player.CutHp(1);
-                GameManager.instance.player.ChangeMovable(false);
-                GameManager.instance.GetComponent<UIManager>().CrossFade(1.0f, () =>
+                if (!GameManager.instance.player.CutHpFromFloor())
                 {
-                    GameManager.instance.GetComponent<MapManager>().SetUp(false);
-                    GameManager.instance.ResetAltitude();
-                    GameManager.instance.player.ChangeMovable(true);
-                }, () => { });
+                    GameManager.instance.player.ChangeMovable(false);
+                    GameManager.instance.GetComponent<UIManager>().CrossFade(1.0f, () =>
+                    {
+                        GameManager.instance.GetComponent<MapManager>().SetUp(false);
+                        GameManager.instance.ResetAltitude();
+                        GameManager.instance.player.ChangeMovable(true);
+                    }, () => { });
+                }
             }
         }
     }

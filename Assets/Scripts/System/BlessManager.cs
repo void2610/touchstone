@@ -8,13 +8,18 @@ namespace NManager
 
     public class BlessManager : MonoBehaviour
     {
+        private struct BlessPosData
+        {
+            public BlessBase bless;
+            public Vector3 position;
+        }
+
         [SerializeField]
         private BlessDataList allBlessDataList;
-        private List<BlessData> allBlessData => allBlessDataList.list;
 
+        private List<BlessData> allBlessData => allBlessDataList.list;
         private List<GameObject> currentBlessObj = new List<GameObject>();
-        private List<BlessBase> currentBless = new List<BlessBase>();
-        private List<Vector3> currentBlessPos = new List<Vector3>();
+        private List<BlessPosData> currentBless = new List<BlessPosData>();
         private GameObject blessContainer;
         private Player player;
 
@@ -23,11 +28,11 @@ namespace NManager
         //ダメージを受けたときにBlessの効果を発動し、trueならダメージを無効化
         public bool OnPlayerDamaged()
         {
-            foreach (var bless in currentBless)
+            foreach (var b in currentBless)
             {
-                if (bless.OnPlayerDamaged(player))
+                if (b.bless.OnPlayerDamaged(player))
                 {
-                    RemoveBless(currentBless.IndexOf(bless));
+                    RemoveBless(b.bless);
                     return true;
                 }
             }
@@ -36,11 +41,11 @@ namespace NManager
 
         public bool OnPlayerCantJumped()
         {
-            foreach (var bless in currentBless)
+            foreach (var b in currentBless)
             {
-                if (bless.OnPlayerCantJumped(player))
+                if (b.bless.OnPlayerCantJumped(player))
                 {
-                    RemoveBless(currentBless.IndexOf(bless));
+                    RemoveBless(b.bless);
                     return true;
                 }
             }
@@ -66,7 +71,6 @@ namespace NManager
                 {
                     newBless = Instantiate(blessData.blessPrefab, spawnPos, Quaternion.identity, blessContainer.transform);
                     currentBlessObj.Add(newBless);
-                    currentBless.Add(newBless.GetComponent<BlessBase>());
                     break;
                 }
             }
@@ -83,9 +87,9 @@ namespace NManager
                 Vector3 pos = new Vector3(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance, 0);
 
                 float minDistance = float.MaxValue;
-                foreach (var p in currentBlessPos)
+                foreach (var b in currentBless)
                 {
-                    float distanceToP = Vector3.Distance(p, pos);
+                    float distanceToP = Vector3.Distance(b.position, pos);
                     if (distanceToP < minDistance)
                     {
                         minDistance = distanceToP;
@@ -99,25 +103,32 @@ namespace NManager
                 }
             }
             bestPosition.z = -10;
-            currentBlessPos.Add(bestPosition);
+            currentBless.Add(new BlessPosData { bless = newBless.GetComponent<BlessBase>(), position = bestPosition });
             newBless.GetComponent<BlessBase>().SetBasePosition(bestPosition, GameManager.instance.playerObj);
 
             if (newBless.GetComponent<BlessBase>().OnActive(player))
             {
-                RemoveBless(currentBless.IndexOf(newBless.GetComponent<BlessBase>()));
+                RemoveBless(newBless.GetComponent<BlessBase>());
             }
         }
 
-        private void RemoveBless(int index)
+        private void RemoveBless(BlessBase b)
         {
-            currentBless[index].OnDeactive(player);
-            currentBless[index].PlayDisapearParticle();
+            int index = 0;
+            foreach (var bless in currentBless)
+            {
+                if (bless.bless == b)
+                {
+                    break;
+                }
+                index++;
+            }
+            currentBless[index].bless.OnDeactive(player);
+            currentBless[index].bless.PlayDisapearParticle();
             currentBless.RemoveAt(index);
-            currentBlessPos.RemoveAt(index);
             Destroy(currentBlessObj[index]);
             currentBlessObj.RemoveAt(index);
         }
-
         void Awake()
         {
             blessContainer = new GameObject("BlessContainer");
@@ -125,7 +136,7 @@ namespace NManager
 
         void Update()
         {
-            if(!Application.isEditor) return;
+            if (!Application.isEditor) return;
 
             if (Input.GetKeyDown(KeyCode.B))
             {
