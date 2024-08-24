@@ -15,6 +15,7 @@ namespace NMap
                     GameManager.instance.GetComponent<UIManager>().CrossFade(1.0f, () =>
                     {
                         GameManager.instance.GetComponent<MapManager>().SetUp(false);
+                        // GameManager.instance.GetComponent<BlessManager>().RestoreBless();
                         GameManager.instance.ResetAltitude();
                         GameManager.instance.player.ChangeMovable(true);
                     }, () => { });

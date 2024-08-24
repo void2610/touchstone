@@ -8,8 +8,10 @@ namespace NManager
 
     public class BlessManager : MonoBehaviour
     {
+        [System.Serializable]
         private struct BlessPosData
         {
+            public BlessData data;
             public BlessBase bless;
             public Vector3 position;
         }
@@ -20,10 +22,38 @@ namespace NManager
         private List<BlessData> allBlessData => allBlessDataList.list;
         private List<GameObject> currentBlessObj = new List<GameObject>();
         private List<BlessPosData> currentBless = new List<BlessPosData>();
+        private List<BlessPosData> cachedBless = new List<BlessPosData>();
         private GameObject blessContainer;
         private Player player;
 
         private float radius = 4.0f;
+
+        public void CacheBless()
+        {
+            cachedBless = new List<BlessPosData>(currentBless);
+        }
+
+        public void RestoreBless()
+        {
+            if (cachedBless.Count == 0) return;
+
+            foreach (var b in currentBless)
+            {
+                Destroy(b.bless.gameObject);
+            }
+            currentBlessObj.Clear();
+            currentBless.Clear();
+            foreach (var b in cachedBless)
+            {
+                BlessPosData newBlessData = new BlessPosData();
+                GameObject newBless = Instantiate(b.data.blessPrefab, b.position, Quaternion.identity, blessContainer.transform);
+                currentBlessObj.Add(newBless);
+                newBlessData.bless = newBless.GetComponent<BlessBase>();
+                newBlessData.bless.SetBasePosition(b.position, GameManager.instance.playerObj);
+                newBlessData.position = b.position;
+                currentBless.Add(newBlessData);
+            }
+        }
 
         //ダメージを受けたときにBlessの効果を発動し、trueならダメージを無効化
         public bool OnPlayerDamaged()
@@ -57,6 +87,7 @@ namespace NManager
             SoundManager.instance.PlaySe("bless");
             player = GameManager.instance.player;
             GameObject newBless = null;
+            BlessPosData newBlessData = new BlessPosData();
             float total = 0;
             foreach (var blessData in allBlessData)
             {
@@ -70,6 +101,7 @@ namespace NManager
                 if (randomValue <= sum)
                 {
                     newBless = Instantiate(blessData.blessPrefab, spawnPos, Quaternion.identity, blessContainer.transform);
+                    newBlessData.data = blessData;
                     currentBlessObj.Add(newBless);
                     break;
                 }
@@ -103,7 +135,9 @@ namespace NManager
                 }
             }
             bestPosition.z = -10;
-            currentBless.Add(new BlessPosData { bless = newBless.GetComponent<BlessBase>(), position = bestPosition });
+            newBlessData.bless = newBless.GetComponent<BlessBase>();
+            newBlessData.position = bestPosition;
+            currentBless.Add(newBlessData);
             newBless.GetComponent<BlessBase>().SetBasePosition(bestPosition, GameManager.instance.playerObj);
 
             if (newBless.GetComponent<BlessBase>().OnActive(player))

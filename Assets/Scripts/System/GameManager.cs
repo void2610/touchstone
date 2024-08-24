@@ -180,7 +180,6 @@ namespace NManager
 		public void SetUp()
 		{
 			// if (!isFirst) this.GetComponent<BlessManager>().GetRandomBless();
-			Debug.Log(isFirst);
 			altitudeOffset = maxAltitude;
 			state = GameState.Playing;
 			Time.timeScale = 1;
@@ -193,6 +192,8 @@ namespace NManager
 			this.GetComponent<MapManager>()?.SetUp(!isFirst);
 			this.GetComponent<EquipmentManager>().SetUp();
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(true);
+			this.GetComponent<BlessManager>().CacheBless();
+
 			isFirst = false;
 		}
 
