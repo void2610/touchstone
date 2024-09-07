@@ -29,6 +29,7 @@ namespace NManager
 
         public void FadeIn(string loadSceneName = "")
         {
+            Debug.Log(loadSceneName);
             fadeImage.DOFade(0, 0).SetUpdate(true);
             fadeImage.DOFade(1, 1.0f).SetUpdate(true).OnComplete(() =>
             {
@@ -73,8 +74,10 @@ namespace NManager
 
         public void SetGaindCoinText(string text)
         {
-            gaindCoinText.text = text;
-            gaindCoinText2.text = text;
+            if (gaindCoinText != null)
+                gaindCoinText.text = text;
+            if (gaindCoinText2 != null)
+                gaindCoinText2.text = text;
         }
 
         private void ChangeCanvasGroupEnabled(CanvasGroup c, bool enabled)
@@ -119,7 +122,8 @@ namespace NManager
         private void Update()
         {
             TimeSpan time = TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
-            inGameTimeText.text = "time: " + time.ToString(@"mm\:ss\:ff");
+            if (inGameTimeText != null)
+                inGameTimeText.text = "time: " + time.ToString(@"mm\:ss\:ff");
         }
     }
 }

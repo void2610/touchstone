@@ -224,7 +224,7 @@ namespace NManager
 			this.GetComponent<MapManager>()?.SetUp(!isFirst);
 			this.GetComponent<EquipmentManager>().SetUp();
 			this.GetComponent<EquipmentManager>().ChangeAllEquipmentEnabled(true);
-			this.GetComponent<BlessManager>().CacheBless();
+			this.GetComponent<BlessManager>()?.CacheBless();
 
 			isFirst = false;
 		}
