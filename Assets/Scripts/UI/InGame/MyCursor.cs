@@ -42,6 +42,9 @@ namespace NUI
 
 		void Update()
 		{
+			float scaleAdjustment = 1080f / Screen.height;
+			this.transform.localScale = new Vector3(size * scaleAdjustment * 0.6f, size * scaleAdjustment * 0.6f, 1);
+			
 			var target = GameManager.instance.player.transform.position;
 			time += Time.deltaTime;
 			// Vector3でマウス位置座標を取得する
